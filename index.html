@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Magic Mushroom Dosage Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Arial&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍄</text></svg>">
   <style>
     body { background: radial-gradient(circle at center, #1f1321, #1a1a1a); color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
     .site-header { text-align: center; font-size: 1.6em; color: #ffa500; font-family: 'Orbitron', sans-serif; margin-bottom: 30px; }
@@ -31,7 +32,7 @@
   </style>
 </head>
 <body>
-  <h1 class="site-header">Psychedelic Mushroom Dosage Calculator</h1>
+  <h1 class="site-header">Magic Mushroom Dosage Calculator</h1>
   <div class="container">
     <div class="input-group">
       <label for="weight">Weight</label>
@@ -46,88 +47,87 @@
       <input list="strains" id="strain" required aria-label="Select or type a strain">
       <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
       <datalist id="strains">
-        <option value="Golden Teacher (GT)" data-potency="1.0" data-description="Origin: Gulf Coast, USA. Known for spiritual and insightful trips.">
-        <option value="B+" data-potency="1.0" data-description="Beginner-friendly, balanced effects with mild visuals.">
-        <option value="Penis Envy (PE)" data-potency="1.5" data-description="Very potent, intense visuals and deep introspection.">
-        <option value="Blue Meanie (BM)" data-potency="1.2" data-description="Moderate potency, vivid colors and euphoric effects.">
-        <option value="Albino Penis Envy (APE)" data-potency="1.8" data-description="Extremely potent albino variant, strong body and mind effects.">
-        <option value="Mazatapec" data-potency="1.0" data-description="Origin: Mexico. Balanced effects with cultural significance.">
-        <option value="Amazonian" data-potency="1.2" data-description="Origin: South America. Vibrant visuals and energetic trips.">
-        <option value="Treasure Coast" data-potency="1.1" data-description="Origin: Florida, USA. Moderate potency, smooth effects.">
-        <option value="Psilocybe cubensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe cyanescens (CYA)" data-potency="1.5" data-description="Origin: Pacific Northwest. High potency, intense experiences. Typically found on wood chips, known for its wavy caps.">
-        <option value="Psilocybe semilanceata (SEM)" data-potency="1.0" data-description="Origin: Europe. Moderate potency, spiritual effects.">
-        <option value="Psilocybe azurescens (AZU)" data-potency="1.8" data-description="Origin: Pacific Northwest. One of the strongest species, powerful visuals.">
-        <option value="Psilocybe mexicana (MEX)" data-potency="0.9" data-description="Origin: Mexico. Used in Mesoamerican rituals, milder effects.">
-        <option value="Psilocybe tampanensis (TAM)" data-potency="1.0" data-description="Rare 'Philosopher’s Stone,' balanced effects.">
-        <option value="Panaeolus cyanescens (PCY)" data-potency="2.0" data-description="Highly potent, intense psychedelic experiences. Often found in tropical and subtropical regions, growing on dung.">
-        <option value="Panaeolus cinctulus (PCT)" data-potency="0.7" data-description="Common in grass, milder psychedelic effects.">
-        <option value="Pluteus salicinus (PLS)" data-potency="0.8" data-description="Lesser-known, lower potency, mild effects.">
-        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-description="Low potency, subtle effects, often overlooked.">
-        <option value="Copelandia cyanescens" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe baeocystis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe caerulescens" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe caerulipes" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe hoogshagenii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe stuntzii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe subaeruginosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe weilii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe zapotecorum" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe allenii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe atlantis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe caeruleoannulata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe coprophila" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe crobula" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe cyanofibrillosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe fimetaria" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe galindoi" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe guilartensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe hispanica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe liniformans" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe meridionalis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe mescaleroensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe natalensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe oaxacana" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe pelliculosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe portoricensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe samuiensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe serbica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe sierrae" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe silvatica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe strictipes" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe subcubensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe subtropicalis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe thaizapoteca" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe uxpanapensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe venenata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe villarrealiae" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe weraroa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Psilocybe yungensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Albino A+" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Burma" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Cambodian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Costa Rican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Ecuadorian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Fiji" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Huautla" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Jedi Mind Fuck" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Koh Samui" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Malabar" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Mexican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Orissa India" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="PES Amazonian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="PES Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Puerto Rican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="South American" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Thai" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Transkei" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <option value="Z-Strain" data-potency="1.0" data-description="No specific data available; average potency assumed.">
-        <!-- New Strains Added -->
-        <option value="Blue Pulaski" data-potency="1.2" data-description="A variant of the Pulaski strain with blue caps, offering above-average potency.">
-        <option value="Ghost" data-potency="1.7" data-description="Known for its high potency and ghostly appearance.">
-        <option value="Tidal Wave" data-potency="1.6" data-description="A cross between Penis Envy and B+, known for its high potency and unique effects.">
+        <option value="Golden Teacher (GT)" data-potency="1.0" data-description="Origin: Gulf Coast, USA. Known for spiritual and insightful trips. Potency: Average (1.0)">
+        <option value="B+" data-potency="1.0" data-description="Beginner-friendly, balanced effects with mild visuals. Potency: Average (1.0)">
+        <option value="Penis Envy (PE)" data-potency="1.5" data-description="Very potent, intense visuals and deep introspection. Potency: High (1.5)">
+        <option value="Blue Meanie (BM)" data-potency="1.2" data-description="Moderate potency, vivid colors and euphoric effects. Potency: Above Average (1.2)">
+        <option value="Albino Penis Envy (APE)" data-potency="1.8" data-description="Extremely potent albino variant, strong body and mind effects. Potency: Very High (1.8)">
+        <option value="Mazatapec" data-potency="1.0" data-description="Origin: Mexico. Balanced effects with cultural significance. Potency: Average (1.0)">
+        <option value="Amazonian" data-potency="1.2" data-description="Origin: South America. Vibrant visuals and energetic trips. Potency: Above Average (1.2)">
+        <option value="Treasure Coast" data-potency="1.1" data-description="Origin: Florida, USA. Moderate potency, smooth effects. Potency: Slightly Above Average (1.1)">
+        <option value="Psilocybe cubensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe cyanescens (CYA)" data-potency="1.5" data-description="Origin: Pacific Northwest. High potency, intense experiences. Typically found on wood chips, known for its wavy caps. Potency: High (1.5)">
+        <option value="Psilocybe semilanceata (SEM)" data-potency="1.0" data-description="Origin: Europe. Moderate potency, spiritual effects. Potency: Average (1.0)">
+        <option value="Psilocybe azurescens (AZU)" data-potency="1.8" data-description="Origin: Pacific Northwest. One of the strongest species, powerful visuals. Potency: Very High (1.8)">
+        <option value="Psilocybe mexicana (MEX)" data-potency="0.9" data-description="Origin: Mexico. Used in Mesoamerican rituals, milder effects. Potency: Below Average (0.9)">
+        <option value="Psilocybe tampanensis (TAM)" data-potency="1.0" data-description="Rare 'Philosopher’s Stone,' balanced effects. Potency: Average (1.0)">
+        <option value="Panaeolus cyanescens (PCY)" data-potency="2.0" data-description="Highly potent, intense psychedelic experiences. Often found in tropical and subtropical regions, growing on dung. Potency: Extremely High (2.0)">
+        <option value="Panaeolus cinctulus (PCT)" data-potency="0.7" data-description="Common in grass, milder psychedelic effects. Potency: Low (0.7)">
+        <option value="Pluteus salicinus (PLS)" data-potency="0.8" data-description="Lesser-known, lower potency, mild effects. Potency: Below Average (0.8)">
+        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-description="Low potency, subtle effects, often overlooked. Potency: Very Low (0.3)">
+        <option value="Copelandia cyanescens" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe baeocystis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe caerulescens" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe caerulipes" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe hoogshagenii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe stuntzii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe subaeruginosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe weilii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe zapotecorum" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe allenii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe atlantis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe caeruleoannulata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe coprophila" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe crobula" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe cyanofibrillosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe fimetaria" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe galindoi" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe guilartensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe hispanica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe liniformans" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe meridionalis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe mescaleroensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe natalensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe oaxacana" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe pelliculosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe portoricensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe samuiensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe serbica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe sierrae" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe silvatica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe strictipes" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe subcubensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe subtropicalis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe thaizapoteca" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe uxpanapensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe venenata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe villarrealiae" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe weraroa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Psilocybe yungensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Albino A+" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Burma" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Cambodian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Costa Rican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Ecuadorian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Fiji" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Huautla" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Jedi Mind Fuck" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Koh Samui" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Malabar" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Mexican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Orissa India" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="PES Amazonian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="PES Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Puerto Rican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="South American" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Thai" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Transkei" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Z-Strain" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
+        <option value="Blue Pulaski" data-potency="1.2" data-description="A variant of the Pulaski strain with blue caps, offering above-average potency. Potency: Above Average (1.2)">
+        <option value="Ghost" data-potency="1.7" data-description="Known for its high potency and ghostly appearance. Potency: High (1.7)">
+        <option value="Tidal Wave" data-potency="1.6" data-description="A cross between Penis Envy and B+, known for its high potency and unique effects. Potency: High (1.6)">
       </datalist>
     </div>
     <div class="input-group">
@@ -149,13 +149,16 @@
       <span class="info-icon" onclick="showLemonTekInfo()">ℹ️</span>
     </div>
   </div>
-  <div class="disclaimer">Disclaimer: This calculator provides an estimate based on average potencies. Actual potency may vary. Use responsibly.</div>
+  <div class="disclaimer">
+    <strong>Important Disclaimer:</strong> This calculator is for informational purposes only and provides an estimate based on <strong>averages and assumptions</strong>. Strain potencies are based on general reports, but actual potency can vary significantly due to growing conditions, genetics, and preparation methods. Trip levels and dosages are also based on averages and may not reflect individual experiences. Always start with a lower dose and use responsibly.
+  </div>
 
   <!-- Strain Info Modal -->
   <div id="strain-modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('strain-modal')">×</span>
       <p id="strain-info-text"></p>
+      <p><em>Note: Potency values are based on averages and may not reflect the exact potency of your specific batch.</em></p>
     </div>
   </div>
 

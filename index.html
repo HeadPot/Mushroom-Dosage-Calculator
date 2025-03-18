@@ -3,28 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mushroom Dosage Calculator</title>
+  <title>Psychedelic Mushroom Dosage Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Arial&display=swap" rel="stylesheet">
   <style>
     body {
-      background: url('https://source.unsplash.com/1600x900/?dark-mushrooms,graphic') no-repeat center center fixed;
-      background-size: cover;
+      background: radial-gradient(circle at center, #1f1321, #1a1a1a);
       color: #e0e0e0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
     .site-header {
       text-align: center;
-      font-size: 2em;
-      color: #9b59b6;
-      text-shadow: 0 0 5px rgba(155, 89, 182, 0.7);
+      font-size: 1.8em; /* Adjusted to fit the longer title */
+      color: #ffa500;
+      text-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
       font-family: 'Orbitron', sans-serif;
-      margin: 80px 0 40px;
+      margin: 20px 0 40px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px rgba(255, 165, 0, 0.7); }
+      to { text-shadow: 0 0 10px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.7); }
     }
     .container {
       max-width: 450px;
-      margin: 0 auto 100px;
+      margin: 0 auto 20px;
       padding: 25px;
       background: rgba(26, 26, 26, 0.9);
       box-shadow: 0 0 20px rgba(0,0,0,0.8);
@@ -50,6 +54,7 @@
       border: 1px solid #555;
       border-radius: 6px;
       font-size: 1em;
+      box-shadow: 0 0 5px rgba(155, 89, 182, 0.5); /* Psychedelic glow */
     }
     input:hover, select:hover {
       border-color: #9b59b6;
@@ -68,17 +73,26 @@
       text-align: center;
       font-weight: 700;
       color: #9b59b6;
+      box-shadow: 0 0 10px rgba(155, 89, 182, 0.7); /* Enhanced result box */
     }
     .disclaimer {
+      text-align: center;
       font-size: 0.75em;
       color: #ccc;
-      text-align: center;
-      margin-top: 20px;
+      margin: 20px auto;
+      max-width: 450px;
+    }
+    @media (max-width: 600px) {
+      .container { max-width: 90%; padding: 15px; }
+      .input-group label { font-size: 1em; }
+      input, select { font-size: 0.9em; }
+      .site-header { font-size: 1.4em; margin: 20px 0 20px; }
+      .disclaimer { font-size: 0.65em; }
     }
   </style>
 </head>
 <body>
-  <h1 class="site-header">Mushroom Dosage Calculator</h1>
+  <h1 class="site-header">Psychedelic Mushroom Dosage Calculator</h1>
   <div class="container">
     <div class="input-group">
       <label for="weight">Weight</label>
@@ -93,60 +107,198 @@
       <input list="strains" id="strain" required placeholder="Type strain (e.g., APE)">
       <datalist id="strains">
         <option value="Golden Teacher (GT)" data-potency="1.0">
+        <option value="B+" data-potency="1.0">
         <option value="Penis Envy (PE)" data-potency="1.5">
         <option value="Blue Meanie (BM)" data-potency="1.2">
         <option value="Albino Penis Envy (APE)" data-potency="1.8">
+        <option value="Mazatapec (MZ)" data-potency="1.0">
+        <option value="Cambodian (CAM)" data-potency="1.0">
+        <option value="Thai (TH)" data-potency="1.0">
+        <option value="Ecuador (ECU)" data-potency="1.0">
+        <option value="Amazonian (AMZ)" data-potency="1.1">
+        <option value="Burma (BUR)" data-potency="1.0">
+        <option value="Treasure Coast (TC)" data-potency="1.0">
+        <option value="Orissa India (OI)" data-potency="1.2">
+        <option value="Malabar (MAL)" data-potency="1.0">
+        <option value="Z-Strain (ZS)" data-potency="1.1">
+        <option value="Tidal Wave (TW)" data-potency="1.4">
+        <option value="Lizard King (LK)" data-potency="1.0">
+        <option value="PES Hawaiian (PESH)" data-potency="1.0">
+        <option value="Jedi Mind Fuck (JMF)" data-potency="1.5">
+        <option value="White Rabbit (WR)" data-potency="1.2">
+        <option value="Hillbilly (HB)" data-potency="1.0">
+        <option value="Melmac (MEL)" data-potency="1.4">
+        <option value="Rusty Whyte (RW)" data-potency="1.0">
+        <option value="Trinity (TRI)" data-potency="1.1">
+        <option value="Avery's Albino (AA)" data-potency="1.2">
+        <option value="Enigma (ENI)" data-potency="1.6">
+        <option value="Yeti (YT)" data-potency="1.3">
+        <option value="Alcabenzi (ALC)" data-potency="1.0">
+        <option value="Chitwan (CHT)" data-potency="1.0">
+        <option value="Costa Rican (CR)" data-potency="1.0">
+        <option value="Creeper (CRP)" data-potency="1.0">
+        <option value="Dancing Tiger (DT)" data-potency="1.0">
+        <option value="Dixie (DX)" data-potency="1.0">
+        <option value="Florida White (F+)" data-potency="1.0">
+        <option value="Fuzzy Balls (FB)" data-potency="1.2">
+        <option value="Ghost (GH)" data-potency="1.3">
+        <option value="Hanoi (HAN)" data-potency="1.0">
+        <option value="Huautla (HUA)" data-potency="1.0">
+        <option value="Jedi (JED)" data-potency="1.5">
+        <option value="Koh Samui (KS)" data-potency="1.0">
+        <option value="Leucistic Golden Teacher (LGT)" data-potency="0.9">
+        <option value="Liberty Cap (LC)" data-potency="1.5">
+        <option value="Lipa Yai (LY)" data-potency="1.0">
+        <option value="Malaysian (MYS)" data-potency="1.0">
+        <option value="Mexican (MEX)" data-potency="1.0">
+        <option value="Oak Ridge (OR)" data-potency="1.0">
+        <option value="Palenque (PAL)" data-potency="1.0">
+        <option value="Panama (PAN)" data-potency="1.0">
+        <option value="Pink Buffalo (PB)" data-potency="1.0">
+        <option value="Puerto Rican (PR)" data-potency="1.1">
+        <option value="Tampanensis (Pollock) (TAM)" data-potency="1.0">
+        <option value="Texas Yellow Cap (TYC)" data-potency="1.0">
+        <option value="Transkei (TRK)" data-potency="1.0">
+        <option value="Vietnam (VIE)" data-potency="1.0">
+        <option value="Wavy Cap (WC)" data-potency="1.4">
+        <option value="Wollongong (WOL)" data-potency="1.0">
         <option value="Psilocybe azurescens (AZU)" data-potency="2.8">
         <option value="Psilocybe cyanescens (CYA)" data-potency="1.4">
+        <option value="Psilocybe natalensis (NAT)" data-potency="2.0">
         <option value="Psilocybe semilanceata (SEM)" data-potency="1.5">
+        <option value="Psilocybe cubensis (CUB)" data-potency="1.0">
         <option value="Psilocybe mexicana (PMX)" data-potency="1.2">
+        <option value="Psilocybe tampanensis (PTM)" data-potency="1.0">
+        <option value="Psilocybe galindoi (GAL)" data-potency="1.1">
+        <option value="Psilocybe ovoideocystidiata (OVO)" data-potency="1.3">
+        <option value="Psilocybe subaeruginosa (SUB)" data-potency="1.4">
+        <option value="Stuntzii (STZ)" data-potency="1.2">
+        <option value="Aztec God (AZG)" data-potency="1.1">
+        <option value="Golden Halo (GHAL)" data-potency="1.0">
+        <option value="Jack Frost (JF)" data-potency="1.3">
+        <option value="Moby Dick (MD)" data-potency="1.2">
+        <option value="Pearly Gates (PG)" data-potency="1.2">
+        <option value="Tassili (TAS)" data-potency="1.0">
+        <option value="Acadian Coast (AC)" data-potency="1.0">
+        <option value="African Transkei (AT)" data-potency="1.0">
+        <option value="Albino A+ (A+)" data-potency="1.2">
+        <option value="Albino Treasure Coast (ATC)" data-potency="1.1">
+        <option value="Allen (ALN)" data-potency="1.0">
+        <option value="Argentinia (ARG)" data-potency="1.0">
+        <option value="Ban Hua Thanon (BHT)" data-potency="1.0">
+        <option value="Big Brown Cap (BBC)" data-potency="1.0">
+        <option value="Brazilian (BRZ)" data-potency="1.0">
+        <option value="Chameleon (CHM)" data-potency="1.0">
+        <option value="Corumba (COR)" data-potency="1.0">
+        <option value="Cuban (CBN)" data-potency="1.0">
+        <option value="Elephant Gate (EG)" data-potency="1.0">
+        <option value="Escondido (ESC)" data-potency="1.0">
+        <option value="Fatass (FAT)" data-potency="1.0">
+        <option value="Goliath (GOL)" data-potency="1.0">
+        <option value="Great White Monster (GWM)" data-potency="1.2">
+        <option value="Gulf Coast (GC)" data-potency="1.0">
+        <option value="Hawaiian (HAW)" data-potency="1.0">
+        <option value="Honduras (HON)" data-potency="1.0">
+        <option value="Keeper’s Creepers (KC)" data-potency="1.0">
+        <option value="Kerala (KER)" data-potency="1.0">
+        <option value="McKennaii (MCK)" data-potency="1.2">
+        <option value="Nepal (NEP)" data-potency="1.0">
+        <option value="Panama Red (PRD)" data-potency="1.0">
+        <option value="Peru (PER)" data-potency="1.0">
+        <option value="PF Classic (PFC)" data-potency="1.0">
+        <option value="Quezon (QUE)" data-potency="1.0">
+        <option value="R44 (R44)" data-potency="1.0">
+        <option value="South African (SA)" data-potency="1.0">
+        <option value="South American (SAM)" data-potency="1.0">
+        <option value="Star Gazer (SG)" data-potency="1.0">
+        <option value="Syzygy (SZY)" data-potency="1.0">
+        <option value="Tasmanian (TAS)" data-potency="1.0">
+        <option value="Texas Orange Cap (TOC)" data-potency="1.0">
+        <option value="Thai Pink (TP)" data-potency="1.0">
+        <option value="Tulum (TUL)" data-potency="1.0">
+        <option value="Psilocybe zapotecorum (PZ)" data-potency="1.2">
+        <option value="Psilocybe weilii (PW)" data-potency="1.0">
       </datalist>
     </div>
     <div class="input-group">
       <label for="trip-level">Trip Level</label>
       <select id="trip-level" required>
-        <option value="">Select trip level</option>
-        <option value="1">Microdose</option>
+        <option value="1" selected>Microdose</option>
         <option value="2">Low</option>
         <option value="3">Normal</option>
         <option value="4">High</option>
         <option value="5">Heroic</option>
       </select>
     </div>
+    <div id="trip-description" style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #ccc;"></div>
     <div id="result"></div>
-    <p class="disclaimer">Disclaimer: This calculator provides an estimate based on average potencies. Actual potency may vary.</p>
   </div>
+  <div class="disclaimer">Disclaimer: This calculator provides an estimate based on average potencies. Actual potency may vary.</div>
   <script>
-    document.getElementById('weight').addEventListener('input', calculate);
-    document.getElementById('weight-unit').addEventListener('change', calculate);
-    document.getElementById('strain').addEventListener('input', calculate);
-    document.getElementById('trip-level').addEventListener('change', calculate);
+    const descriptions = {
+      1: "Microdose: Sub-perceptual effects, may enhance focus and creativity.",
+      2: "Low: Mild effects, slight visual enhancements.",
+      3: "Normal: Standard psychedelic experience, visual and mental effects.",
+      4: "High: Strong effects, potential for profound insights or challenging experiences.",
+      5: "Heroic: Very intense, potentially overwhelming experience. Not recommended for beginners."
+    };
+
+    const elements = {
+      weight: document.getElementById('weight'),
+      weightUnit: document.getElementById('weight-unit'),
+      strain: document.getElementById('strain'),
+      tripLevel: document.getElementById('trip-level'),
+      result: document.getElementById('result'),
+      tripDescription: document.getElementById('trip-description')
+    };
+
+    document.querySelector('.container').addEventListener('input', (e) => {
+      if (e.target.matches('#trip-level')) {
+        elements.tripDescription.textContent = descriptions[e.target.value] || '';
+      }
+      calculate();
+    });
 
     function calculate() {
-      let weight = parseFloat(document.getElementById('weight').value);
-      const unit = document.getElementById('weight-unit').value;
-      if (unit === 'lb') weight *= 0.453592;
+      const { weight, weightUnit, strain, tripLevel, result } = elements;
+      const weightValue = parseFloat(weight.value);
+      const unit = weightUnit.value;
+      const strainValue = strain.value;
+      const level = tripLevel.value;
 
-      const strain = document.getElementById('strain').value;
-      const level = document.getElementById('trip-level').value;
-      const resultDiv = document.getElementById('result');
-
-      if (!weight || weight <= 0) return resultDiv.innerHTML = 'Enter a valid weight.';
-      const option = document.querySelector(`datalist#strains option[value="${strain}"]`);
-      if (!strain || !option) return resultDiv.innerHTML = 'Select a valid strain.';
-      if (!level) return resultDiv.innerHTML = 'Select a trip level.';
-
-      const potencyFactor = parseFloat(option.getAttribute('data-potency'));
-      const baseDosages = { 1: 0.25, 2: 1.0, 3: 2.0, 4: 3.5, 5: 5.0 };
-      const finalDoseGrams = (baseDosages[level] * (weight / 70)) / potencyFactor;
-
-      if (unit === 'lb') {
-        const finalDoseOunces = (finalDoseGrams * 0.035274).toFixed(3);
-        resultDiv.innerHTML = `Recommended: <span>${finalDoseGrams.toFixed(2)}g (~${finalDoseOunces}oz)</span>`;
-      } else {
-        resultDiv.innerHTML = `Recommended: <span>${finalDoseGrams.toFixed(2)}g</span>`;
+      if (!weightValue || weightValue <= 0) {
+        result.innerHTML = 'Enter a valid weight.';
+        return;
       }
+
+      const strainOption = document.querySelector(`datalist#strains option[value="${strainValue}"]`);
+      if (!strainOption) {
+        result.innerHTML = 'Select a valid strain.';
+        return;
+      }
+
+      if (!level) {
+        result.innerHTML = 'Select a trip level.';
+        return;
+      }
+
+      const weightInKg = unit === 'lb' ? weightValue * 0.453592 : weightValue;
+      const potencyFactor = parseFloat(strainOption.getAttribute('data-potency'));
+      const baseDosages = { 1: 0.25, 2: 1.0, 3: 2.0, 4: 3.5, 5: 5.0 };
+      const finalDoseGrams = (baseDosages[level] * (weightInKg / 70)) / potencyFactor;
+
+      let ozConversion = '';
+      if (unit === 'lb') {
+        const doseInOz = (finalDoseGrams / 28.3495).toFixed(2);
+        ozConversion = ` (~${doseInOz} oz)`;
+      }
+
+      result.innerHTML = `Recommended: <span>${finalDoseGrams.toFixed(2)}g${ozConversion}</span>`;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      elements.tripDescription.textContent = descriptions[elements.tripLevel.value];
+    });
   </script>
 </body>
 </html>

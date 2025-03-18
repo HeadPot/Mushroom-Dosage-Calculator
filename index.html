@@ -4,272 +4,176 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Psychedelic Mushroom Dosage Calculator</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='24'>🍄</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Arial&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: radial-gradient(circle at center, #1f1321, #1a1a1a);
-      color: #e0e0e0;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .zoom-wrapper {
-      transform: scale(1.25);
-      transform-origin: top center;
-      margin: 20px 0;
-    }
-    .site-header {
-      text-align: center;
-      font-size: 1.6em;
-      color: #ffa500;
-      text-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
-      font-family: 'Orbitron', sans-serif;
-      margin: 20px 0 30px;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px rgba(255, 165, 0, 0.7); }
-      to { text-shadow: 0 0 10px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.7); }
-    }
-    .container {
-      max-width: 500px;
-      margin: 0 auto 20px;
-      padding: 25px;
-      background: rgba(26, 26, 26, 0.9);
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-      border-radius: 12px;
-    }
-    .input-group {
-      display: flex;
-      align-items: center;
-      margin: 20px 0;
-    }
-    .input-group label {
-      width: 120px;
-      text-align: right;
-      font-weight: 700;
-      margin-right: 15px;
-      font-size: 1.1em;
-    }
-    input, select {
-      flex: 1;
-      padding: 10px;
-      background-color: #333;
-      color: #e0e0e0;
-      border: 1px solid #555;
-      border-radius: 6px;
-      font-size: 1em;
-      box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
-      transition: border-color 0.3s ease;
-    }
-    input:hover, select:hover {
-      border-color: #9b59b6;
-    }
-    #weight-unit {
-      max-width: 80px;
-      margin-left: 10px;
-    }
-    #result {
-      margin-top: 25px;
-      padding: 15px;
-      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
-      border: 2px solid #9b59b6;
-      border-radius: 8px;
-      font-size: 1.1em;
-      text-align: center;
-      font-weight: 700;
-      color: #9b59b6;
-      box-shadow: 0 0 10px rgba(155, 89, 182, 0.7);
-    }
-    .disclaimer {
-      text-align: center;
-      font-size: 0.75em;
-      color: #ccc;
-      margin: 20px auto;
-      max-width: 500px;
-    }
+    body { background: radial-gradient(circle at center, #1f1321, #1a1a1a); color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    .site-header { text-align: center; font-size: 1.6em; color: #ffa500; font-family: 'Orbitron', sans-serif; margin-bottom: 30px; }
+    .container { max-width: 500px; margin: 0 auto; padding: 25px; background: rgba(26, 26, 26, 0.9); border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+    .input-group { display: flex; align-items: center; margin: 20px 0; justify-content: center; }
+    .input-group label { width: 120px; text-align: right; font-weight: 700; margin-right: 15px; }
+    input, select { flex: 1; padding: 10px; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 6px; }
+    #weight-unit { max-width: 80px; margin-left: 10px; }
+    #result { margin-top: 25px; padding: 15px; background: linear-gradient(45deg, #2a2a2a, #3a3a3a); border: 2px solid #9b59b6; border-radius: 8px; text-align: center; font-weight: 700; color: #9b59b6; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .info-icon { cursor: pointer; margin-left: 10px; color: #9b59b6; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+    .modal-content { background: #333; padding: 20px; border-radius: 8px; max-width: 400px; text-align: center; }
+    .close { cursor: pointer; float: right; font-size: 1.5em; }
+    .disclaimer { text-align: center; font-size: 0.75em; color: #ccc; margin-top: 20px; }
+    #trip-description { text-align: center; margin-top: 10px; font-size: 0.9em; color: #ccc; }
     @media (max-width: 600px) {
-      .zoom-wrapper {
-        transform: scale(1); /* Reset zoom on mobile */
-      }
-      .container {
-        max-width: 90%;
-        padding: 15px;
-      }
-      .input-group label {
-        font-size: 1em;
-      }
-      input, select {
-        font-size: 1em;
-        padding: 12px;
-      }
-      .site-header {
-        font-size: 1.4em;
-        margin: 20px 0 20px;
-      }
-      .disclaimer {
-        font-size: 0.65em;
-      }
+      .container { padding: 15px; }
+      .input-group { flex-direction: column; align-items: flex-start; }
+      .input-group label { width: auto; margin-bottom: 5px; }
+      input, select { width: 100%; }
+      #weight-unit { margin-left: 0; margin-top: 5px; }
     }
   </style>
 </head>
 <body>
-  <div class="zoom-wrapper">
-    <h1 class="site-header">Psychedelic Mushroom Dosage Calculator</h1>
-    <div class="container">
-      <div class="input-group">
-        <label for="weight">Weight</label>
-        <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
-        <select id="weight-unit" aria-label="Select weight unit">
-          <option value=""></option>
-          <option value="kg">kg</option>
-          <option value="lb">lb</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="strain">Strain</label>
-        <input list="strains" id="strain" required aria-label="Select or type a strain">
-        <datalist id="strains">
-          <option value="Golden Teacher (GT)" data-potency="1.0">
-          <option value="B+" data-potency="1.0">
-          <option value="Penis Envy (PE)" data-potency="1.5">
-          <option value="Blue Meanie (BM)" data-potency="1.2">
-          <option value="Albino Penis Envy (APE)" data-potency="1.8">
-          <option value="Mazatapec (MZ)" data-potency="1.0">
-          <option value="Cambodian (CAM)" data-potency="1.0">
-          <option value="Thai (TH)" data-potency="1.0">
-          <option value="Ecuador (ECU)" data-potency="1.0">
-          <option value="Amazonian (AMZ)" data-potency="1.1">
-          <option value="Burma (BUR)" data-potency="1.0">
-          <option value="Treasure Coast (TC)" data-potency="1.0">
-          <option value="Orissa India (OI)" data-potency="1.2">
-          <option value="Malabar (MAL)" data-potency="1.0">
-          <option value="Z-Strain (ZS)" data-potency="1.1">
-          <option value="Tidal Wave (TW)" data-potency="1.4">
-          <option value="Lizard King (LK)" data-potency="1.0">
-          <option value="PES Hawaiian (PESH)" data-potency="1.0">
-          <option value="Jedi Mind Fuck (JMF)" data-potency="1.5">
-          <option value="White Rabbit (WR)" data-potency="1.2">
-          <option value="Hillbilly (HB)" data-potency="1.0">
-          <option value="Melmac (MEL)" data-potency="1.4">
-          <option value="Rusty Whyte (RW)" data-potency="1.0">
-          <option value="Trinity (TRI)" data-potency="1.1">
-          <option value="Avery's Albino (AA)" data-potency="1.2">
-          <option value="Enigma (ENI)" data-potency="1.6">
-          <option value="Yeti (YT)" data-potency="1.3">
-          <option value="Alcabenzi (ALC)" data-potency="1.0">
-          <option value="Chitwan (CHT)" data-potency="1.0">
-          <option value="Costa Rican (CR)" data-potency="1.0">
-          <option value="Creeper (CRP)" data-potency="1.0">
-          <option value="Dancing Tiger (DT)" data-potency="1.0">
-          <option value="Dixie (DX)" data-potency="1.0">
-          <option value="Florida White (F+)" data-potency="1.0">
-          <option value="Fuzzy Balls (FB)" data-potency="1.2">
-          <option value="Ghost (GH)" data-potency="1.3">
-          <option value="Hanoi (HAN)" data-potency="1.0">
-          <option value="Huautla (HUA)" data-potency="1.0">
-          <option value="Jedi (JED)" data-potency="1.5">
-          <option value="Koh Samui (KS)" data-potency="1.0">
-          <option value="Leucistic Golden Teacher (LGT)" data-potency="0.9">
-          <option value="Liberty Cap (LC)" data-potency="1.5">
-          <option value="Lipa Yai (LY)" data-potency="1.0">
-          <option value="Malaysian (MYS)" data-potency="1.0">
-          <option value="Mexican (MEX)" data-potency="1.0">
-          <option value="Oak Ridge (OR)" data-potency="1.0">
-          <option value="Palenque (PAL)" data-potency="1.0">
-          <option value="Panama (PAN)" data-potency="1.0">
-          <option value="Pink Buffalo (PB)" data-potency="1.0">
-          <option value="Puerto Rican (PR)" data-potency="1.1">
-          <option value="Tampanensis (Pollock) (TAM)" data-potency="1.0">
-          <option value="Texas Yellow Cap (TYC)" data-potency="1.0">
-          <option value="Transkei (TRK)" data-potency="1.0">
-          <option value="Vietnam (VIE)" data-potency="1.0">
-          <option value="Wavy Cap (WC)" data-potency="1.4">
-          <option value="Wollongong (WOL)" data-potency="1.0">
-          <option value="Psilocybe azurescens (AZU)" data-potency="2.8">
-          <option value="Psilocybe cyanescens (CYA)" data-potency="1.4">
-          <option value="Psilocybe natalensis (NAT)" data-potency="2.0">
-          <option value="Psilocybe semilanceata (SEM)" data-potency="1.5">
-          <option value="Psilocybe cubensis (CUB)" data-potency="1.0">
-          <option value="Psilocybe mexicana (PMX)" data-potency="1.2">
-          <option value="Psilocybe tampanensis (PTM)" data-potency="1.0">
-          <option value="Psilocybe galindoi (GAL)" data-potency="1.1">
-          <option value="Psilocybe ovoideocystidiata (OVO)" data-potency="1.3">
-          <option value="Psilocybe subaeruginosa (SUB)" data-potency="1.4">
-          <option value="Stuntzii (STZ)" data-potency="1.2">
-          <option value="Aztec God (AZG)" data-potency="1.1">
-          <option value="Golden Halo (GHAL)" data-potency="1.0">
-          <option value="Jack Frost (JF)" data-potency="1.3">
-          <option value="Moby Dick (MD)" data-potency="1.2">
-          <option value="Pearly Gates (PG)" data-potency="1.2">
-          <option value="Tassili (TAS)" data-potency="1.0">
-          <option value="Acadian Coast (AC)" data-potency="1.0">
-          <option value="African Transkei (AT)" data-potency="1.0">
-          <option value="Albino A+ (A+)" data-potency="1.2">
-          <option value="Albino Treasure Coast (ATC)" data-potency="1.1">
-          <option value="Allen (ALN)" data-potency="1.0">
-          <option value="Argentinia (ARG)" data-potency="1.0">
-          <option value="Ban Hua Thanon (BHT)" data-potency="1.0">
-          <option value="Big Brown Cap (BBC)" data-potency="1.0">
-          <option value="Brazilian (BRZ)" data-potency="1.0">
-          <option value="Chameleon (CHM)" data-potency="1.0">
-          <option value="Corumba (COR)" data-potency="1.0">
-          <option value="Cuban (CBN)" data-potency="1.0">
-          <option value="Elephant Gate (EG)" data-potency="1.0">
-          <option value="Escondido (ESC)" data-potency="1.0">
-          <option value="Fatass (FAT)" data-potency="1.0">
-          <option value="Goliath (GOL)" data-potency="1.0">
-          <option value="Great White Monster (GWM)" data-potency="1.2">
-          <option value="Gulf Coast (GC)" data-potency="1.0">
-          <option value="Hawaiian (HAW)" data-potency="1.0">
-          <option value="Honduras (HON)" data-potency="1.0">
-          <option value="Keeper’s Creepers (KC)" data-potency="1.0">
-          <option value="Kerala (KER)" data-potency="1.0">
-          <option value="McKennaii (MCK)" data-potency="1.2">
-          <option value="Nepal (NEP)" data-potency="1.0">
-          <option value="Panama Red (PRD)" data-potency="1.0">
-          <option value="Peru (PER)" data-potency="1.0">
-          <option value="PF Classic (PFC)" data-potency="1.0">
-          <option value="Quezon (QUE)" data-potency="1.0">
-          <option value="R44 (R44)" data-potency="1.0">
-          <option value="South African (SA)" data-potency="1.0">
-          <option value="South American (SAM)" data-potency="1.0">
-          <option value="Star Gazer (SG)" data-potency="1.0">
-          <option value="Syzygy (SZY)" data-potency="1.0">
-          <option value="Tasmanian (TAS)" data-potency="1.0">
-          <option value="Texas Orange Cap (TOC)" data-potency="1.0">
-          <option value="Thai Pink (TP)" data-potency="1.0">
-          <option value="Tulum (TUL)" data-potency="1.0">
-          <option value="Psilocybe zapotecorum (PZ)" data-potency="1.2">
-          <option value="Psilocybe weilii (PW)" data-potency="1.0">
-        </datalist>
-      </div>
-      <div class="input-group">
-        <label for="trip-level">Trip Level</label>
-        <select id="trip-level" required aria-label="Select trip level">
-          <option value=""></option>
-          <option value="1">Microdose</option>
-          <option value="2">Low</option>
-          <option value="3">Normal</option>
-          <option value="4">High</option>
-          <option value="5">Heroic</option>
-        </select>
-      </div>
-      <!-- Added trip level description display -->
-      <div id="trip-description" style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #ccc;"></div>
-      <div id="result"></div>
+  <h1 class="site-header">Psychedelic Mushroom Dosage Calculator</h1>
+  <div class="container">
+    <div class="input-group">
+      <label for="weight">Weight</label>
+      <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
+      <select id="weight-unit" aria-label="Select weight unit">
+        <option value="kg">kg</option>
+        <option value="lb">lb</option>
+      </select>
     </div>
-    <div class="disclaimer">Disclaimer: This calculator provides an estimate based on average potencies. Actual potency may vary.</div>
+    <div class="input-group">
+      <label for="strain">Strain</label>
+      <input list="strains" id="strain" required aria-label="Select or type a strain">
+      <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
+      <datalist id="strains">
+        <option value="Golden Teacher (GT)" data-potency="1.0" data-description="Origin: Gulf Coast, USA. Known for spiritual and insightful trips.">
+        <option value="B+" data-potency="1.0" data-description="Beginner-friendly, balanced effects with mild visuals.">
+        <option value="Penis Envy (PE)" data-potency="1.5" data-description="Very potent, intense visuals and deep introspection.">
+        <option value="Blue Meanie (BM)" data-potency="1.2" data-description="Moderate potency, vivid colors and euphoric effects.">
+        <option value="Albino Penis Envy (APE)" data-potency="1.8" data-description="Extremely potent albino variant, strong body and mind effects.">
+        <option value="Mazatapec" data-potency="1.0" data-description="Origin: Mexico. Balanced effects with cultural significance.">
+        <option value="Amazonian" data-potency="1.2" data-description="Origin: South America. Vibrant visuals and energetic trips.">
+        <option value="Treasure Coast" data-potency="1.1" data-description="Origin: Florida, USA. Moderate potency, smooth effects.">
+        <option value="Psilocybe cubensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe cyanescens (CYA)" data-potency="1.5" data-description="Origin: Pacific Northwest. High potency, intense experiences. Typically found on wood chips, known for its wavy caps.">
+        <option value="Psilocybe semilanceata (SEM)" data-potency="1.0" data-description="Origin: Europe. Moderate potency, spiritual effects.">
+        <option value="Psilocybe azurescens (AZU)" data-potency="1.8" data-description="Origin: Pacific Northwest. One of the strongest species, powerful visuals.">
+        <option value="Psilocybe mexicana (MEX)" data-potency="0.9" data-description="Origin: Mexico. Used in Mesoamerican rituals, milder effects.">
+        <option value="Psilocybe tampanensis (TAM)" data-potency="1.0" data-description="Rare 'Philosopher’s Stone,' balanced effects.">
+        <option value="Panaeolus cyanescens (PCY)" data-potency="2.0" data-description="Highly potent, intense psychedelic experiences. Often found in tropical and subtropical regions, growing on dung.">
+        <option value="Panaeolus cinctulus (PCT)" data-potency="0.7" data-description="Common in grass, milder psychedelic effects.">
+        <option value="Pluteus salicinus (PLS)" data-potency="0.8" data-description="Lesser-known, lower potency, mild effects.">
+        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-description="Low potency, subtle effects, often overlooked.">
+        <option value="Copelandia cyanescens" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe baeocystis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe caerulescens" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe caerulipes" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe hoogshagenii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe stuntzii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe subaeruginosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe weilii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe zapotecorum" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe allenii" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe atlantis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe caeruleoannulata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe coprophila" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe crobula" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe cyanofibrillosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe fimetaria" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe galindoi" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe guilartensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe hispanica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe liniformans" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe meridionalis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe mescaleroensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe natalensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe oaxacana" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe pelliculosa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe portoricensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe samuiensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe serbica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe sierrae" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe silvatica" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe strictipes" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe subcubensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe subtropicalis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe thaizapoteca" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe uxpanapensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe venenata" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe villarrealiae" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe weraroa" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Psilocybe yungensis" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Albino A+" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Burma" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Cambodian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Costa Rican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Ecuadorian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Fiji" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Huautla" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Jedi Mind Fuck" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Koh Samui" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Malabar" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Mexican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Orissa India" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="PES Amazonian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="PES Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Puerto Rican" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="South American" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Thai" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Transkei" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <option value="Z-Strain" data-potency="1.0" data-description="No specific data available; average potency assumed.">
+        <!-- New Strains Added -->
+        <option value="Blue Pulaski" data-potency="1.2" data-description="A variant of the Pulaski strain with blue caps, offering above-average potency.">
+        <option value="Ghost" data-potency="1.7" data-description="Known for its high potency and ghostly appearance.">
+        <option value="Tidal Wave" data-potency="1.6" data-description="A cross between Penis Envy and B+, known for its high potency and unique effects.">
+      </datalist>
+    </div>
+    <div class="input-group">
+      <label for="trip-level">Trip Level</label>
+      <select id="trip-level" required aria-label="Select trip level">
+        <option value="" selected></option>
+        <option value="1">Microdose</option>
+        <option value="2">Low</option>
+        <option value="3">Normal</option>
+        <option value="4">High</option>
+        <option value="5">Heroic</option>
+      </select>
+    </div>
+    <div id="trip-description"></div>
+    <div id="result"></div>
+    <div style="text-align: center; margin-top: 10px;">
+      <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek">
+      <label for="lemon-tek" style="margin-left: 5px;">Use Lemon Tek</label>
+      <span class="info-icon" onclick="showLemonTekInfo()">ℹ️</span>
+    </div>
   </div>
+  <div class="disclaimer">Disclaimer: This calculator provides an estimate based on average potencies. Actual potency may vary. Use responsibly.</div>
+
+  <!-- Strain Info Modal -->
+  <div id="strain-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('strain-modal')">×</span>
+      <p id="strain-info-text"></p>
+    </div>
+  </div>
+
+  <!-- Lemon Tek Info Modal -->
+  <div id="lemon-tek-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('lemon-tek-modal')">×</span>
+      <p>Lemon Tek involves soaking ground mushrooms in lemon juice for 20-30 minutes. It may enhance psilocybin conversion to psilocin, leading to a faster onset and stronger effects. Dosage is reduced by 20% to compensate.</p>
+    </div>
+  </div>
+
   <script>
-    // Define trip level descriptions
-    const descriptions = {
+    const tripDescriptions = {
       1: "Microdose: Sub-perceptual effects, may enhance focus and creativity.",
       2: "Low: Mild effects, slight visual enhancements.",
       3: "Normal: Standard psychedelic experience, visual and mental effects.",
-      4: "High: Strong effects, potential for profound insights or challenging experiences.",
-      5: "Heroic: Very intense, potentially overwhelming experience. Not recommended for beginners."
+      4: "High: Strong effects, potential for profound insights or challenges.",
+      5: "Heroic: Very intense, potentially overwhelming. Not for beginners."
     };
 
     const elements = {
@@ -277,75 +181,66 @@
       weightUnit: document.getElementById('weight-unit'),
       strain: document.getElementById('strain'),
       tripLevel: document.getElementById('trip-level'),
+      lemonTek: document.getElementById('lemon-tek'),
       result: document.getElementById('result'),
-      tripDescription: document.getElementById('trip-description') // Added for description display
+      tripDescription: document.getElementById('trip-description')
     };
 
-    function debounce(func, wait) {
-      let timeout;
-      return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    }
-
-    // Update description and calculate dosage on input change
     document.querySelector('.container').addEventListener('input', (e) => {
       if (e.target.matches('#trip-level')) {
-        elements.tripDescription.textContent = descriptions[e.target.value] || '';
+        elements.tripDescription.textContent = tripDescriptions[e.target.value] || '';
       }
       calculate();
     });
 
     function calculate() {
-      const { weight, weightUnit, strain, tripLevel, result } = elements;
-      const weightValue = parseFloat(weight.value);
-      const unit = weightUnit.value;
-      const strainValue = strain.value;
-      const level = tripLevel.value;
+      const weight = parseFloat(elements.weight.value);
+      const unit = elements.weightUnit.value;
+      const strain = elements.strain.value;
+      const level = elements.tripLevel.value;
+      const useLemonTek = elements.lemonTek.checked;
 
-      if (!weightValue || weightValue <= 0) {
-        result.innerHTML = 'Enter a valid weight.';
-        return;
-      }
-      if (!unit) {
-        result.innerHTML = 'Please select a weight unit.';
-        return;
-      }
-      const strainOption = document.querySelector(`datalist#strains option[value="${strainValue}"]`);
-      if (!strainOption) {
-        result.innerHTML = 'Select a valid strain.';
-        return;
-      }
-      if (!level) {
-        result.innerHTML = 'Please select a trip level.';
+      if (!weight || !strain || !level) {
+        elements.result.innerHTML = 'Please fill all fields.';
         return;
       }
 
-      const weightInKg = unit === 'lb' ? weightValue * 0.453592 : weightValue;
-      const potencyFactor = parseFloat(strainOption.getAttribute('data-potency'));
+      const weightInKg = unit === 'lb' ? weight * 0.453592 : weight;
+      const strainOption = document.querySelector(`datalist#strains option[value="${strain}"]`);
+      const potency = strainOption ? parseFloat(strainOption.getAttribute('data-potency')) : 1.0;
       const baseDosages = { 1: 0.25, 2: 1.0, 3: 2.0, 4: 3.5, 5: 5.0 };
-      const finalDoseGrams = (baseDosages[level] * (weightInKg / 70)) / potencyFactor;
+      let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
 
-      let ozConversion = '';
+      if (useLemonTek) dose *= 0.8;
+
+      let resultText = `Recommended: <span>${dose.toFixed(2)} g</span>`;
       if (unit === 'lb') {
-        const doseInOz = (finalDoseGrams / 28.3495).toFixed(2);
-        ozConversion = ` (~${doseInOz} oz)`;
+        const doseOz = (dose * 0.035274).toFixed(2);
+        resultText += ` <span>(${doseOz} oz)</span>`;
       }
+      elements.result.innerHTML = resultText;
+    }
 
-      result.innerHTML = `Recommended: <span>${finalDoseGrams.toFixed(2)} g${ozConversion}</span>`;
+    function showStrainInfo() {
+      const selectedStrain = document.querySelector(`datalist#strains option[value="${elements.strain.value}"]`);
+      const info = selectedStrain ? selectedStrain.getAttribute('data-description') : "No specific data available.";
+      document.getElementById('strain-info-text').textContent = info;
+      document.getElementById('strain-modal').style.display = 'flex';
+    }
+
+    function showLemonTekInfo() {
+      document.getElementById('lemon-tek-modal').style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      elements.tripDescription.textContent = ''; // Initialize description as empty
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
-          const countryCode = data.country_code;
-          const imperialCountries = ['US', 'LR', 'MM'];
-          const unit = imperialCountries.includes(countryCode) ? 'lb' : 'kg';
-          elements.weightUnit.value = unit;
-          calculate();
+          elements.weightUnit.value = ['US', 'LR', 'MM'].includes(data.country_code) ? 'lb' : 'kg';
         })
         .catch(() => {
           elements.weightUnit.value = 'kg';

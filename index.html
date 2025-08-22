@@ -211,7 +211,7 @@
       const weightInKg = unit === 'lb' ? weight * 0.453592 : weight;
       const strainOption = document.querySelector(`datalist#strains option[value="${strain}"]`);
       const potency = strainOption ? parseFloat(strainOption.getAttribute('data-potency')) : 1.0;
-      const baseDosages = { 1: 0.25, 2: 1.0, 3: 2.0, 4: 3.5, 5: 5.0 };
+      const baseDosages = { 1: 0.25, 2: 0.7, 3: 1.5, 4: 3, 5: 4.5 };
       let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
 
       if (useLemonTek) dose *= 0.8;
@@ -251,4 +251,5 @@
     });
   </script>
 </body>
+
 </html>

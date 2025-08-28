@@ -48,89 +48,113 @@
       <label for="strain">Strain</label>
       <input list="strains" id="strain" required aria-label="Select or type a strain">
       <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
-            <datalist id="strains">
-        <option value="Golden Teacher (GT)" data-potency="1.0" data-description="Origin: Gulf Coast, USA. Known for spiritual and insightful trips. Potency: Average (1.0)">
-        <option value="B+" data-potency="1.0" data-description="Beginner-friendly, balanced effects with mild visuals. Potency: Average (1.0)">
-        <option value="Penis Envy (PE)" data-potency="1.5" data-description="Very potent, intense visuals and deep introspection. Potency: High (1.5)">
-        <option value="Blue Meanie (BM)" data-potency="1.2" data-description="Moderate potency, vivid colors and euphoric effects. Potency: Above Average (1.2)">
-        <option value="Albino Penis Envy (APE)" data-potency="1.8" data-description="Extremely potent albino variant, strong body and mind effects. Potency: Very High (1.8)">
-        <option value="Mazatapec" data-potency="1.0" data-description="Origin: Mexico. Balanced effects with cultural significance. Potency: Average (1.0)">
-        <option value="Amazonian" data-potency="1.2" data-description="Origin: South America. Vibrant visuals and energetic trips. Potency: Above Average (1.2)">
-        <option value="Treasure Coast" data-potency="1.1" data-description="Origin: Florida, USA. Moderate potency, smooth effects. Potency: Slightly Above Average (1.1)">
-        <option value="Psilocybe cubensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe cyanescens (CYA)" data-potency="1.5" data-description="Origin: Pacific Northwest. High potency, intense experiences. Typically found on wood chips, known for its wavy caps. Potency: High (1.5)">
-        <option value="Psilocybe semilanceata (SEM)" data-potency="1.0" data-description="Origin: Europe. Moderate potency, spiritual effects. Potency: Average (1.0)">
-        <option value="Psilocybe azurescens (AZU)" data-potency="1.8" data-description="Origin: Pacific Northwest. One of the strongest species, powerful visuals. Potency: Very High (1.8)">
-        <option value="Psilocybe mexicana (MEX)" data-potency="0.9" data-description="Origin: Mexico. Used in Mesoamerican rituals, milder effects. Potency: Below Average (0.9)">
-        <option value="Psilocybe tampanensis (TAM)" data-potency="1.0" data-description="Rare 'Philosopher’s Stone,' balanced effects. Potency: Average (1.0)">
-        <option value="Panaeolus cyanescens (PCY)" data-potency="2.0" data-description="Highly potent, intense psychedelic experiences. Often found in tropical and subtropical regions, growing on dung. Potency: Extremely High (2.0)">
-        <option value="Panaeolus cinctulus (PCT)" data-potency="0.7" data-description="Common in grass, milder psychedelic effects. Potency: Low (0.7)">
-        <option value="Pluteus salicinus (PLS)" data-potency="0.8" data-description="Lesser-known, lower potency, mild effects. Potency: Below Average (0.8)">
-        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-description="Low potency, subtle effects, often overlooked. Potency: Very Low (0.3)">
-        <option value="Copelandia cyanescens" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe baeocystis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe caerulescens" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe caerulipes" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe hoogshagenii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe stuntzii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe subaeruginosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe weilii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe zapotecorum" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe allenii" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe atlantis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe caeruleoannulata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe coprophila" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe crobula" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe cyanofibrillosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe fimetaria" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe galindoi" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe guilartensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe hispanica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe liniformans" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe meridionalis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe mescaleroensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe natalensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe oaxacana" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe pelliculosa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe portoricensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe samuiensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe serbica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe sierrae" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe silvatica" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe strictipes" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe subcubensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe subtropicalis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe thaizapoteca" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe uxpanapensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe venenata" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe villarrealiae" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe weraroa" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Psilocybe yungensis" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Albino A+" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Burma" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Cambodian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Costa Rican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Ecuadorian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Fiji" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Huautla" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Jedi Mind Fuck" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Koh Samui" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Malabar" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Mexican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Orissa India" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="PES Amazonian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="PES Hawaiian" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Puerto Rican" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="South American" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Thai" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Transkei" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Z-Strain" data-potency="1.0" data-description="No specific data available; average potency assumed. Potency: Average (1.0)">
-        <option value="Blue Pulaski" data-potency="1.2" data-description="A variant of the Pulaski strain with blue caps, offering above-average potency. Potency: Above Average (1.2)">
-        <option value="Ghost" data-potency="1.7" data-description="Known for its high potency and ghostly appearance. Potency: High (1.7)">
-        <option value="Tidal Wave" data-potency="1.6" data-description="A cross between Penis Envy and B+, known for its high potency and unique effects. Potency: High (1.6)">
-      </datalist>
+<datalist id="strains">
+  <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-description="Likely Gulf Coast cubensis lineage. Gentle, spiritual trips; popular for beginners. Evidence: Moderate (species assayed; cultivar-level claims mainly community). Potency: Average (1.0).">
+  <option value="B+" data-potency="1.0" data-evidence="Moderate" data-description="Classic P. cubensis cultivar. Balanced, reliable effects; frequent community trip reports. Evidence: Moderate. Potency: Average (1.0).">
+  <option value="Penis Envy (PE)" data-potency="1.5" data-evidence="Moderate" data-description="P. cubensis mutation/selection (PE family). Dense fruit, strong subjective intensity in many reports. Evidence: Moderate (community + some assay-level support for cubensis variability). Potency: High (1.5).">
+  <option value="Blue Meanie (BM)" data-potency="0.0" data-evidence="Low" data-description="Name used for multiple things (true P. cyanescens vs cubensis phenos). Reported: vivid visuals, euphoric. Evidence: Low (term conflates species). Potency: Unknown.">
+  <option value="Albino Penis Envy (APE)" data-potency="0.0" data-evidence="Low" data-description="Albino phenotype within PE lineage; strong community reputation for potency. Evidence: Low (community/breeder reports). Potency: Unknown.">
+  <option value="Mazatapec" data-potency="1.0" data-evidence="Moderate" data-description="Cubensis lineage associated with Mazatec region. Reports: introspective, moderate visuals. Evidence: Moderate. Potency: Average (1.0).">
+  <option value="Amazonian" data-potency="1.2" data-evidence="Moderate" data-description="Cubensis Amazonian lineage. Reports: energetic, stronger visuals vs many cubensis strains. Evidence: Moderate. Potency: Above Average (1.2).">
+  <option value="Treasure Coast" data-potency="1.1" data-evidence="Moderate" data-description="Cubensis lineage from Florida coast. Reports: smooth effects, slightly above baseline. Evidence: Moderate. Potency: Slightly Above Average (1.1).">
+  <option value="Psilocybe cubensis" data-potency="1.0" data-evidence="High" data-description="Widespread species — large strain-to-strain variability documented in assays. Evidence: High (multiple assays show wide ranges). Potency: Average baseline (1.0).">
+  <option value="Psilocybe cyanescens (CYA)" data-potency="1.6" data-evidence="High" data-description="Wavy cap wood- and mulch-lover. Multiple assays show higher tryptamine totals than typical cubensis. Evidence: High (peer-reviewed assays). Potency: High (1.6).">
+  <option value="Psilocybe semilanceata (SEM)" data-potency="1.5" data-evidence="High" data-description="Liberty cap — small but commonly high in psilocybin (wide assay range). Evidence: High (numerous studies). Potency: High (1.5).">
+  <option value="Psilocybe azurescens (AZU)" data-potency="1.9" data-evidence="High" data-description="Pacific NW 'flying saucers'. Among the strongest wild Psilocybe species per assays. Evidence: High (assay data). Potency: Very High (1.9).">
+  <option value="Psilocybe mexicana (MEX)" data-potency="0.0" data-evidence="Low" data-description="Historic Mesoamerican species; fruits and sclerotia generally milder. Evidence: Low (few modern quantitative studies). Potency: Unknown.">
+  <option value="Psilocybe tampanensis (TAM)" data-potency="0.0" data-evidence="Moderate" data-description="Noted for sclerotia ('philosopher's stone'). Sclerotia often milder than many potent fruits. Evidence: Moderate. Potency: Unknown.">
+  <option value="Panaeolus cyanescens (PCY)" data-potency="2.0" data-evidence="High" data-description="Dung-loving (Copelandia synonym). Many analyses and reports place this among the most potent species. Evidence: High (assays and repeated reports). Potency: Extremely High (2.0).">
+  <option value="Panaeolus cinctulus (PCT)" data-potency="0.6" data-evidence="Moderate" data-description="Common grass Panaeolus. Often milder than cubensis in assays/reports. Evidence: Moderate. Potency: Low (0.6).">
+  <option value="Pluteus salicinus (PLS)" data-potency="0.6" data-evidence="Low" data-description="Pluteus species with low-to-moderate alkaloid reports; generally milder. Evidence: Low. Potency: Below Average (0.6).">
+  <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-evidence="Low" data-description="Often reported with very low or no psilocybin; psychoactivity unreliable. Evidence: Low (assays often negative). Potency: Very Low (0.3).">
+  <option value="Copelandia cyanescens" data-potency="2.0" data-evidence="High" data-description="Older name for Panaeolus cyanescens (same potent dung species). Evidence: High. Potency: Extremely High (2.0).">
+  <option value="Psilocybe baeocystis" data-potency="1.3" data-evidence="High" data-description="Pacific NW species — multiple assays show above-cubensis tryptamine levels. Evidence: High (published data). Potency: Above Average (1.3).">
+  <option value="Psilocybe caerulescens" data-potency="1.1" data-evidence="Moderate" data-description="Mexican/Central American species; a handful of assays report moderate-to-above-average alkaloids. Evidence: Moderate. Potency: Slightly Above Average (1.1).">
+  <option value="Psilocybe caerulipes" data-potency="0.0" data-evidence="Low" data-description="Eastern NA species; limited quantitative data — usually mild-to-moderate. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe hoogshagenii" data-potency="0.0" data-evidence="Low" data-description="Traditional Oaxaca species; sparse modern quantitative assays. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-evidence="Moderate" data-description="Riparian wood/woodchip species (eastern NA). Some assays/field reports — mixed results. Evidence: Moderate. Potency: Average (1.0).">
+  <option value="Psilocybe stuntzii" data-potency="0.0" data-evidence="Low" data-description="Pacific NW reports historically show lower tryptamine levels. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe subaeruginosa" data-potency="1.6" data-evidence="High" data-description="Australasia wood-lover — many regional assays report high tryptamine totals. Evidence: High. Potency: High (1.6).">
+  <option value="Psilocybe weilii" data-potency="0.0" data-evidence="Low" data-description="SE USA species; limited published assay data — treated as unknown. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe zapotecorum" data-potency="1.4" data-evidence="Moderate" data-description="Mesoamerican wood/leaf-litter species; assays and reports indicate moderate-to-high totals in some samples. Evidence: Moderate. Potency: High (1.4).">
+  <option value="Psilocybe allenii" data-potency="1.5" data-evidence="Moderate" data-description="West Coast wood-lover described in recent surveys; several assays and community reports indicate high potency. Evidence: Moderate. Potency: High (1.5).">
+  <option value="Psilocybe atlantis" data-potency="0.0" data-evidence="Low" data-description="Associated with sclerotia in some reports; typically milder. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe caeruleoannulata" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative data available. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe coprophila" data-potency="0.0" data-evidence="Negligible" data-description="Modern taxonomy places many records in Deconica (non-psychoactive). Evidence: Negligible. Potency: Unknown.">
+  <option value="Psilocybe crobula" data-potency="0.0" data-evidence="Low" data-description="Little quantitative data located; baseline assumed. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe cyanofibrillosa" data-potency="0.0" data-evidence="Low" data-description="Limited/older assays report low tryptamine levels; treated conservatively. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe fimetaria" data-potency="0.0" data-evidence="Low" data-description="Reports and some older assays indicate little-to-no psilocybin in many specimens. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe galindoi" data-potency="0.0" data-evidence="Low" data-description="Name often applied to sclerotia/cultivated isolates; variable reports and sclerotia often milder. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe guilartensis" data-potency="0.0" data-evidence="Low" data-description="Puerto Rico species; limited modern assays. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe hispanica" data-potency="0.0" data-evidence="Low" data-description="Historic/regionally-reported species; modern quantitative data sparse. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe liniformans" data-potency="0.0" data-evidence="Low" data-description="Closely related to semilanceata group; assay data limited and sometimes low. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe meridionalis" data-potency="0.0" data-evidence="Low" data-description="Relatively recently described; not enough assays to rescale. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe mescaleroensis" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative data. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe natalensis" data-potency="0.0" data-evidence="Low" data-description="Recently described; early comparisons indicate cubensis-like totals. Anecdotally claimed strong. Potency: Unknown.">
+  <option value="Psilocybe oaxacana" data-potency="0.0" data-evidence="Low" data-description="Sparse assays; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe pelliculosa" data-potency="0.0" data-evidence="Low" data-description="Several assay reports indicate low psilocybin (e.g., ~0.1–0.2% dry weight). Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe portoricensis" data-potency="0.0" data-evidence="Low" data-description="Little quantitative work available publicly. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe samuiensis" data-potency="0.0" data-evidence="Low" data-description="SE Asia species; quantitative data sparse. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe serbica" data-potency="1.5" data-evidence="High" data-description="Central/Eastern Europe complex (var. bohemica etc.); modern assays show high psilocybin in some varieties. Evidence: High (assays). Potency: High (1.5).">
+  <option value="Psilocybe sierrae" data-potency="0.0" data-evidence="Low" data-description="Limited modern assay data. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe silvatica" data-potency="0.0" data-evidence="Low" data-description="Sparse assay data; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe strictipes" data-potency="1.2" data-evidence="Moderate" data-description="Related to liberty-cap group; some comparative work suggests above-cubensis potency. Evidence: Moderate. Potency: Above Average (1.2).">
+  <option value="Psilocybe subcubensis" data-potency="0.0" data-evidence="Low" data-description="Taxon allied to P. cubensis; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe subtropicalis" data-potency="0.0" data-evidence="Low" data-description="Recent breeder interest but wild assay data sparse; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe thaizapoteca" data-potency="0.0" data-evidence="Low" data-description="Sparse data available publicly. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe uxpanapensis" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative reporting. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe venenata" data-potency="0.0" data-evidence="Low" data-description="Little modern assay data. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe villarrealiae" data-potency="0.0" data-evidence="Low" data-description="Insufficient quantitative data to rescale. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe weraroa" data-potency="0.0" data-evidence="Low" data-description="Pouched fungus (old records); modern chemical data limited and mixed. Evidence: Low. Potency: Unknown.">
+  <option value="Psilocybe yungensis" data-potency="0.0" data-evidence="Low" data-description="Sparse modern assay data. Evidence: Low. Potency: Unknown.">
+  <option value="Albino A+" data-potency="0.0" data-evidence="Low" data-description="Cubensis phenotype—no convincing evidence it’s systematically stronger than baseline. Evidence: Low. Potency: Unknown.">
+  <option value="Burma" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Cambodian" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety — fast colonizer; community favorite. Evidence: Low. Potency: Unknown.">
+  <option value="Costa Rican" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Ecuadorian" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Fiji" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Hawaiian" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Huautla" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety tied to Mazatec region localities. Evidence: Low. Potency: Unknown.">
+  <option value="Jedi Mind Fuck" data-potency="0.0" data-evidence="Low" data-description="Cubensis lineage; community reports vary widely. Evidence: Low. Potency: Unknown.">
+  <option value="Koh Samui" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety originally from Thailand; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Malabar" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="Mexican" data-potency="0.0" data-evidence="Low" data-description="Generic Mexican cubensis varieties; wide variation. Evidence: Low. Potency: Unknown.">
+  <option value="Orissa India" data-potency="0.0" data-evidence="Low" data-description="Cubensis lineage from India. Evidence: Low. Potency: Unknown.">
+  <option value="PES Amazonian" data-potency="0.0" data-evidence="Low" data-description="Vendor/cultivar label for an Amazonian cubensis isolate. Evidence: Low. Potency: Unknown.">
+  <option value="PES Hawaiian" data-potency="0.0" data-evidence="Low" data-description="Vendor/cultivar label for a Hawaiian cubensis isolate. Evidence: Low. Potency: Unknown.">
+  <option value="Puerto Rican" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
+  <option value="South American" data-potency="0.0" data-evidence="Low" data-description="Generic cubensis lineage tag; baseline retained. Evidence: Low. Potency: Unknown.">
+  <option value="Thai" data-potency="0.0" data-evidence="Low" data-description="Cubensis-style strains from Thailand. Evidence: Low. Potency: Unknown.">
+  <option value="Transkei" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety from Transkei. Evidence: Low. Potency: Unknown.">
+  <option value="Z-Strain" data-potency="0.0" data-evidence="Low" data-description="Vendor/strain label for cubensis lineage. Evidence: Low. Potency: Unknown.">
+  <option value="Blue Pulaski" data-potency="1.2" data-evidence="Low" data-description="Variant reported with blue caps; community reports place it above many cubensis lines. Evidence: Low. Potency: Above Average (1.2).">
+  <option value="Ghost" data-potency="1.7" data-evidence="Low" data-description="Breeder-isolate family (TAT/Ghost lineage) with strong community potency claims. Evidence: Low (breeder/community). Potency: High (1.7).">
+  <option value="Tidal Wave" data-potency="1.6" data-evidence="Low" data-description="Hybrid (Penis Envy × B+) that produced the Enigma/Brainiac phenotypes. Community: potent/unstable phenotypes. Evidence: Low (community/breeder sources). Potency: High (1.6).">
+  <option value="PF Classic" data-potency="0.0" data-evidence="Low" data-description="Well-known lab/cultivar (PF Classic). Popular among growers; potency not verified. Evidence: Low. Potency: Unknown.">
+  <option value="Enigma" data-potency="1.6" data-evidence="Low" data-description="Mutation/phenotype arising from Tidal Wave family; unusual 'blob/brain' morphology and strong subjective reports. Evidence: Low (community). Potency: High (1.6).">
+  <option value="Brainiac" data-potency="1.6" data-evidence="Low" data-description="Phenotype/derivative of Tidal Wave isolations; community reports emphasize intensity and odd morphology. Evidence: Low. Potency: High (1.6).">
+  <option value="Long Ghost" data-potency="1.7" data-evidence="Low" data-description="TAT/Ghost family isolate with elongated stipes; breeder/community claim high potency. Evidence: Low. Potency: High (1.7).">
+  <option value="Blue Ghost" data-potency="1.7" data-evidence="Low" data-description="Hybrid/selection from Ghost lineage and blue-cap isolates; breeder reports emphasize visual contrast and potency. Evidence: Low. Potency: High (1.7).">
+  <option value="Golden Ghost" data-potency="1.7" data-evidence="Low" data-description="Cross between Golden Teacher-derived lineage and Ghost/TAT isolates; visually striking, community reports above-average potency. Evidence: Low. Potency: High (1.7).">
+  <option value="Swamp Ghost" data-potency="1.6" data-evidence="Low" data-description="Selection from Ghost lines and swamp/wild isolates (breeder lineage). Community: potent selection. Evidence: Low. Potency: High (1.6).">
+  <option value="Jack Frost (TAT × APE)" data-potency="1.6" data-evidence="Low" data-description="Reported cross of TAT (True Albino Teacher) and Albino PE; breeder claims strong potency and striking albino phenotype. Evidence: Low. Potency: High (1.6).">
+  <option value="Yeti (TAT isolation)" data-potency="1.6" data-evidence="Low" data-description="TAT-family isolate (large-fruited albino phenotype); community/breeder reputation for potency. Evidence: Low. Potency: High (1.6).">
+  <option value="Shakti / Blue Shakti" data-potency="1.3" data-evidence="Low" data-description="Shakti family isolates and blue variants (albino/Malabar-derived isolations); community note above-average potency. Evidence: Low. Potency: Above Average (1.3).">
+  <option value="RipTide / Riptide" data-potency="1.4" data-evidence="Low" data-description="Squat, dense phenotypes with multiple isolations (incl. Albino Riptide). Community: body-heavy trips and consistency. Evidence: Low. Potency: High (1.4).">
+  <option value="Albino Riptide" data-potency="1.4" data-evidence="Low" data-description="Albino isolate of Riptide family — visual appeal, reported solid potency. Evidence: Low. Potency: High (1.4).">
+  <option value="Makilla Gorilla" data-potency="1.6" data-evidence="Low" data-description="Modern breeder/vendor isolation (PE/Melmac-style lineage) — large fruits and strong community potency claims. Evidence: Low. Potency: High (1.6).">
+  <option value="TWAPE (Tidal Wave × APE)" data-potency="1.8" data-evidence="Low" data-description="Cross of Tidal Wave with Albino PE; breeder/community claims of very high potency for some isolations. Evidence: Low. Potency: Very High (1.8).">
+  <option value="TWAPE variants" data-potency="1.7" data-evidence="Low" data-description="Multiple downstream isolations from TW×APE crosses; variable phenotypes, generally high reputation. Evidence: Low. Potency: High (1.7).">
+  <option value="Golden Jack (GT × Jack Frost)" data-potency="1.1" data-evidence="Low" data-description="Breeder cross (Golden Teacher × Jack Frost) — visually notable; potency near baseline or slightly above by community reports. Evidence: Low. Potency: Slightly Above Average (1.1).">
+  <option value="Squatty Riptide" data-potency="1.4" data-evidence="Low" data-description="Squat phenotype of Riptide family with dense fruits; community: body-heavy, stable isolates exist. Evidence: Low. Potency: High (1.4).">
+  <option value="Steel Magnolia (PE × Blue Magnolia)" data-potency="1.5" data-evidence="Low" data-description="Breeder cross combining PE lineage with Blue Magnolia isolates; community claims above-average potency. Evidence: Low. Potency: High (1.5).">
+  <option value="DC MAK (PE isolation family)" data-potency="1.5" data-evidence="Low" data-description="Vendor/breeder isolation name tied to PE-family isolations; community reports strong potency. Evidence: Low. Potency: High (1.5).">
+  <option value="Melmac" data-potency="1.5" data-evidence="Low" data-description="PE-family isolations and derivatives (commonly referenced in breeder/vendor circles). Evidence: Low. Potency: High (1.5).">
+  <option value="Uncut Envy / Uncut PE" data-potency="1.6" data-evidence="Low" data-description="PE phenotype/line name seen in community/vendor lists — often reported stronger-than-average. Evidence: Low. Potency: High (1.6).">
+  <option value="Albino Chode Wave (example albino lines)" data-potency="1.5" data-evidence="Low" data-description="Representative albino isolates from modern breeder catalogs (visual novelty + often above-baseline potency reputation). Evidence: Low. Potency: Above Average (1.5).">
+  <option value="Blue Pulaski x Ghost hybrids" data-potency="1.7" data-evidence="Low" data-description="Hybrid projects combining blue-cap isolates with TAT/Ghost lines; breeder reports highlight potent visual profiles. Evidence: Low. Potency: High (1.7).">
+</datalist>
+
     </div>
     <!-- trip level -->
     <div class="input-group">

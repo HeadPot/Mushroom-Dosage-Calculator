@@ -17,8 +17,8 @@
     #result { margin-top: 25px; padding: 15px; background: linear-gradient(45deg, #2a2a2a, #3a3a3a); border: 2px solid #9b59b6; border-radius: 8px; text-align: center; font-weight: 700; color: #9b59b6; animation: fadeIn 0.5s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .info-icon { cursor: pointer; margin-left: 10px; color: #9b59b6; }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
-    .modal-content { background: #333; padding: 20px; border-radius: 8px; max-width: 400px; text-align: center; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 9999; }
+    .modal-content { background: #333; padding: 20px; border-radius: 8px; max-width: 500px; text-align: center; color: #e0e0e0; }
     .close { cursor: pointer; float: right; font-size: 1.5em; }
     .disclaimer { text-align: center; font-size: 0.75em; color: #ccc; margin-top: 20px; }
     #trip-description { text-align: center; margin-top: 10px; font-size: 0.9em; color: #ccc; }
@@ -34,6 +34,7 @@
 <body>
   <h1 class="site-header">Magic Mushroom Dosage Calculator</h1>
   <div class="container">
+    <!-- weight input -->
     <div class="input-group">
       <label for="weight">Weight</label>
       <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
@@ -42,11 +43,12 @@
         <option value="lb">lb</option>
       </select>
     </div>
+    <!-- strain input -->
     <div class="input-group">
       <label for="strain">Strain</label>
       <input list="strains" id="strain" required aria-label="Select or type a strain">
       <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
-      <datalist id="strains">
+            <datalist id="strains">
         <option value="Golden Teacher (GT)" data-potency="1.0" data-description="Origin: Gulf Coast, USA. Known for spiritual and insightful trips. Potency: Average (1.0)">
         <option value="B+" data-potency="1.0" data-description="Beginner-friendly, balanced effects with mild visuals. Potency: Average (1.0)">
         <option value="Penis Envy (PE)" data-potency="1.5" data-description="Very potent, intense visuals and deep introspection. Potency: High (1.5)">
@@ -130,6 +132,7 @@
         <option value="Tidal Wave" data-potency="1.6" data-description="A cross between Penis Envy and B+, known for its high potency and unique effects. Potency: High (1.6)">
       </datalist>
     </div>
+    <!-- trip level -->
     <div class="input-group">
       <label for="trip-level">Trip Level</label>
       <select id="trip-level" required aria-label="Select trip level">
@@ -149,6 +152,8 @@
       <span class="info-icon" onclick="showLemonTekInfo()">ℹ️</span>
     </div>
   </div>
+
+  <!-- footer disclaimer -->
   <div class="disclaimer">
     <strong>Important Disclaimer:</strong> This calculator is for informational purposes only and provides an estimate based on <strong>averages and assumptions</strong>. Strain potencies are based on general reports, but actual potency can vary significantly due to growing conditions, genetics, and preparation methods. Trip levels and dosages are also based on averages and may not reflect individual experiences. Always start with a lower dose and use responsibly.
   </div>
@@ -167,6 +172,20 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('lemon-tek-modal')">×</span>
       <p>Lemon Tek involves soaking ground mushrooms in lemon juice for 20-30 minutes. It may enhance psilocybin conversion to psilocin, leading to a faster onset and stronger effects. Dosage is reduced by 20% to compensate.</p>
+    </div>
+  </div>
+
+  <!-- Popup Disclaimer Modal -->
+  <div id="disclaimer-popup" class="modal">
+    <div class="modal-content">
+      <h2>Disclaimer</h2>
+      <p>
+        <strong>This calculator gives rough estimates only. Potency and effects can change with strain, batch, preparation,
+		and <u>many personal factors</u>. Dosage guides are general and may not match your experience. Start low and use responsibly.</strong>
+
+      </p>
+      <p id="countdown-text">15 </p>
+      <button id="close-disclaimer" style="display:none;">OK</button>
     </div>
   </div>
 
@@ -239,6 +258,7 @@
       document.getElementById(modalId).style.display = 'none';
     }
 
+    // Set default unit based on country
     document.addEventListener('DOMContentLoaded', () => {
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
@@ -248,8 +268,37 @@
         .catch(() => {
           elements.weightUnit.value = 'kg';
         });
+
+      // Popup disclaimer logic
+      const POPUP_KEY = "disclaimer_last_seen";
+      const now = Date.now();
+      const lastSeen = localStorage.getItem(POPUP_KEY);
+
+      if (!lastSeen || now - lastSeen > 86400000) {
+        const popup = document.getElementById("disclaimer-popup");
+        const closeBtn = document.getElementById("close-disclaimer");
+        const countdownText = document.getElementById("countdown-text");
+
+        popup.style.display = "flex";
+
+        let timer = 10;
+        const interval = setInterval(() => {
+          timer--;
+          if (timer > 0) {
+            countdownText.textContent = "" + timer + "";
+          } else {
+            clearInterval(interval);
+            countdownText.textContent = "";
+            closeBtn.style.display = "inline-block";
+          }
+        }, 1000);
+
+        closeBtn.addEventListener("click", () => {
+          popup.style.display = "none";
+          localStorage.setItem(POPUP_KEY, now.toString());
+        });
+      }
     });
   </script>
 </body>
-
 </html>

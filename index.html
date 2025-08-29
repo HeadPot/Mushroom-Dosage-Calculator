@@ -223,7 +223,7 @@
   <div id="strain-modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('strain-modal')">×</span>
-      <p id="strain-info-text"></p>
+      <div id="strain-info-text"></div>
     </div>
   </div>
 
@@ -307,9 +307,23 @@
     }
 
     function showStrainInfo() {
-      const selectedStrain = document.querySelector(`datalist#strains option[value="${elements.strain.value}"]`);
-      const info = selectedStrain ? selectedStrain.getAttribute('data-description') : "No specific data available.";
-      document.getElementById('strain-info-text').textContent = info;
+      const selectedStrain = elements.strain.value;
+      const strainOption = document.querySelector(`datalist#strains option[value="${selectedStrain}"]`);
+      if (!strainOption) {
+        document.getElementById('strain-info-text').innerHTML = "No specific data available.";
+      } else {
+        const fullDesc = strainOption.getAttribute('data-description');
+        const parts = fullDesc.split(' Evidence: ');
+        const mainDesc = parts[0] || fullDesc;
+        const potency = strainOption.getAttribute('data-potency');
+        const evidence = strainOption.getAttribute('data-evidence');
+        const formatted = `
+          <h2 style="color: #9b59b6; text-align: center; margin-bottom: 10px;">${selectedStrain}</h2>
+          <div style="text-align: center; font-weight: bold; color: #ffa500; margin-bottom: 15px;">Potency - ${potency} | Evidence - ${evidence}</div>
+          <p>${mainDesc}</p>
+        `;
+        document.getElementById('strain-info-text').innerHTML = formatted;
+      }
       document.getElementById('strain-modal').style.display = 'flex';
     }
 

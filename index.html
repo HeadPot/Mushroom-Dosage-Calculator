@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Magic Mushroom Dosage Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Arial&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍄</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
   <style>
     body { background: radial-gradient(circle at center, #1f1321, #1a1a1a); color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
     .site-header { text-align: center; font-size: 1.6em; color: #ffa500; font-family: 'Orbitron', sans-serif; margin-bottom: 30px; }
@@ -29,6 +29,33 @@
       input, select { width: 100%; }
       #weight-unit { margin-left: 0; margin-top: 5px; }
     }
+
+    /* added: AI note + hallucinate effect */
+    .ai-note { text-align: center; font-size: 0.9em; color: #ccc; margin-top: 10px; }
+    .hallucinate {
+      background: linear-gradient(90deg, #ffa500, #9b59b6, #00ffd1, #ffa500);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: hallucinateShift 6s linear infinite, hallucinateGlow 2.4s ease-in-out infinite;
+    }
+    @keyframes hallucinateShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    @keyframes hallucinateGlow {
+      0%, 100% {
+        text-shadow: 0 0 6px rgba(155,89,182,.6), 0 0 12px rgba(255,165,0,.35);
+        transform: translateY(0);
+        letter-spacing: 0px;
+      }
+      50% {
+        text-shadow: 0 0 12px rgba(155,89,182,1), 0 0 22px rgba(255,165,0,.6);
+        transform: translateY(-1px);
+        letter-spacing: 0.5px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -49,7 +76,7 @@
       <input list="strains" id="strain" required aria-label="Select or type a strain">
       <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
 <datalist id="strains">
- <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-description="Likely Gulf Coast cubensis lineage. Gentle, spiritual trips; popular for beginners. Evidence: Moderate (species assayed; cultivar-level claims mainly community). Potency: Average (1.0).">
+  <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-description="Likely Gulf Coast cubensis lineage. Gentle, spiritual trips; popular for beginners. Evidence: Moderate (species assayed; cultivar-level claims mainly community). Potency: Average (1.0).">
   <option value="B+" data-potency="1.0" data-evidence="Moderate" data-description="Classic P. cubensis cultivar. Balanced, reliable effects; frequent community trip reports. Evidence: Moderate. Potency: Average (1.0).">
   <option value="Penis Envy (PE)" data-potency="1.5" data-evidence="High" data-description="P. cubensis mutation/selection (PE family). Dense fruit, strong subjective intensity in many reports. Evidence: High (Hyphae Cup assays show high potency, up to 2.9% tryptamines). Potency: High (1.5).">
   <option value="Blue Meanie (BM)" data-potency="0.0" data-evidence="Low" data-description="Name used for multiple things (true P. cyanescens vs cubensis phenos). Reported: vivid visuals, euphoric. Evidence: Low (term conflates species). Potency: Unknown.">
@@ -134,7 +161,7 @@
   <option value="Enigma" data-potency="3.0" data-evidence="High" data-description="Mutation/phenotype arising from Tidal Wave family; unusual 'blob/brain' morphology and strong subjective reports. Evidence: High (Hyphae Cup winner at 3.8% tryptamines). Potency: Extremely High (3.0).">
   <option value="Brainiac" data-potency="1.6" data-evidence="Low" data-description="Phenotype/derivative of Tidal Wave isolations; community reports emphasize intensity and odd morphology. Evidence: Low. Potency: High (1.6).">
   <option value="Long Ghost" data-potency="1.7" data-evidence="Low" data-description="TAT/Ghost family isolate with elongated stipes; breeder/community claim high potency. Evidence: Low. Potency: High (1.7).">
-  <option value="Blue Ghost" data-potency="1.7" data-evidence="Low" data-description="Hybrid/selection from Ghost lineage and blue-cap isolates; breeder reports highlight potent visual profiles. Evidence: Low. Potency: High (1.7).">
+  <option value="Blue Ghost" data-potency="1.7" data-evidence="Low" data-description="Hybrid/selection from Ghost lineage and blue-cap isolates; breeder reports emphasize visual contrast and potency. Evidence: Low. Potency: High (1.7).">
   <option value="Golden Ghost" data-potency="1.7" data-evidence="Low" data-description="Cross between Golden Teacher-derived lineage and Ghost/TAT isolates; visually striking, community reports above-average potency. Evidence: Low. Potency: High (1.7).">
   <option value="Swamp Ghost" data-potency="1.6" data-evidence="Low" data-description="Selection from Ghost lines and swamp/wild isolates (breeder lineage). Community: potent selection. Evidence: Low. Potency: High (1.6).">
   <option value="Jack Frost (TAT × APE)" data-potency="1.0" data-evidence="Moderate" data-description="Reported cross of TAT (True Albino Teacher) and Albino PE; breeder claims strong potency and striking albino phenotype. Evidence: Moderate (lab tests around 1% tryptamines). Potency: Average (1.0).">
@@ -164,28 +191,28 @@
   <option value="Inocybe aeruginascens" data-potency="0.0" data-evidence="Low" data-description="Psilocybin-containing Inocybe; most in genus poisonous, potency unknown. Evidence: Low. Potency: Unknown.">
   <option value="Pluteus americanus" data-potency="0.0" data-evidence="Low" data-description="Psilocybin-containing Pluteus species; potency data limited. Evidence: Low. Potency: Unknown.">
 </datalist>
-		
-    </div>
-    <!-- trip level -->
-    <div class="input-group">
-      <label for="trip-level">Trip Level</label>
-      <select id="trip-level" required aria-label="Select trip level">
-        <option value="" selected></option>
-        <option value="1">Microdose</option>
-        <option value="2">Low</option>
-        <option value="3">Normal</option>
-        <option value="4">High</option>
-        <option value="5">Heroic</option>
-      </select>
-    </div>
-    <div id="trip-description"></div>
-    <div id="result"></div>
-    <div style="text-align: center; margin-top: 10px;">
-      <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek">
-      <label for="lemon-tek" style="margin-left: 5px;">Use Lemon Tek</label>
-      <span class="info-icon" onclick="showLemonTekInfo()">ℹ️</span>
-    </div>
-  </div>
+
+
+</div>
+<!-- trip level -->
+<div class="input-group">
+  <label for="trip-level">Trip Level</label>
+  <select id="trip-level" required aria-label="Select trip level">
+    <option value="" selected></option>
+    <option value="1">Microdose</option>
+    <option value="2">Low</option>
+    <option value="3">Normal</option>
+    <option value="4">High</option>
+    <option value="5">Heroic</option>
+  </select>
+</div>
+<div id="trip-description"></div>
+<div id="result"></div>
+<div style="text-align: center; margin-top: 10px;">
+  <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek">
+   <label for="lemon-tek" style="margin-left: 5px;">Use Lemon Tek</label>
+   <span class="info-icon" onclick="showLemonTekInfo()">ℹ️</span>
+</div>  </div>
 
   <!-- footer disclaimer -->
   <div class="disclaimer">
@@ -197,7 +224,6 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('strain-modal')">×</span>
       <p id="strain-info-text"></p>
-      <p><em>Note: Potency values are based on averages and may not reflect the exact potency of your specific batch.</em></p>
     </div>
   </div>
 
@@ -215,13 +241,16 @@
       <h2>Disclaimer</h2>
       <p>
         <strong>This calculator gives rough estimates only. Potency and effects can change with strain, batch, preparation,
-		and <u>many personal factors</u>. Dosage guides are general and may not match your experience. Start low and use responsibly.</strong>
+        and <u>many personal factors</u>. Dosage guides are general and may not match your experience. Start low and use responsibly.</strong>
 
-      </p>
-      <p id="countdown-text">15 </p>
-      <button id="close-disclaimer" style="display:none;">OK</button>
-    </div>
-  </div>
+  </p>
+  <!-- added: AI note line -->
+  <p class="ai-note">&gt; Made with help of AI which is also known to <span class="hallucinate">hallucinate</span>.</p>
+  <p id="countdown-text">15 </p>
+  <button id="close-disclaimer" style="display:none;">OK</button>
+</div>  </div>
+
+
 
   <script>
     const tripDescriptions = {
@@ -336,4 +365,3 @@
   </script>
 </body>
 </html>
-

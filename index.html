@@ -13,7 +13,9 @@
     .input-group { display: flex; align-items: center; margin: 20px 0; justify-content: center; }
     .input-group label { width: 120px; text-align: right; font-weight: 700; margin-right: 15px; }
     input, select { flex: 1; padding: 10px; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 6px; }
-    #weight-unit { max-width: 80px; margin-left: 10px; }
+    #weight-unit-toggle { display: flex; margin-left: 10px; }
+    .unit-btn { padding: 10px 15px; background: #333; color: #e0e0e0; border: 1px solid #555; cursor: pointer; }
+    .unit-btn.active { background: #9b59b6; color: #fff; border-color: #9b59b6; }
     #result { margin-top: 25px; padding: 15px; background: linear-gradient(45deg, #2a2a2a, #3a3a3a); border: 2px solid #9b59b6; border-radius: 8px; text-align: center; font-weight: 700; color: #9b59b6; animation: fadeIn 0.5s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .info-icon { cursor: pointer; margin-left: 10px; color: #9b59b6; }
@@ -27,7 +29,7 @@
       .input-group { flex-direction: column; align-items: flex-start; }
       .input-group label { width: auto; margin-bottom: 5px; }
       input, select { width: 100%; }
-      #weight-unit { margin-left: 0; margin-top: 5px; }
+      #weight-unit-toggle { margin-left: 0; margin-top: 5px; }
     }
 
     /* added: AI note + hallucinate effect */
@@ -65,15 +67,15 @@
     <div class="input-group">
       <label for="weight">Weight</label>
       <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
-      <select id="weight-unit" aria-label="Select weight unit">
-        <option value="kg">kg</option>
-        <option value="lb">lb</option>
-      </select>
+      <div id="weight-unit-toggle">
+        <button class="unit-btn active" data-unit="kg">kg</button>
+        <button class="unit-btn" data-unit="lb">lb</button>
+      </div>
     </div>
     <!-- strain input -->
     <div class="input-group">
       <label for="strain">Strain</label>
-      <input list="strains" id="strain" required aria-label="Select or type a strain">
+      <input list="strains" id="strain" required aria-label="Select or type a strain" onfocus="this.select()">
       <span class="info-icon" onclick="showStrainInfo()">ℹ️</span>
 <datalist id="strains">
   <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-description="Likely Gulf Coast cubensis lineage. Gentle, spiritual trips; popular for beginners. Evidence: Moderate (species assayed; cultivar-level claims mainly community). Potency: Average (1.0).">
@@ -263,13 +265,23 @@
 
     const elements = {
       weight: document.getElementById('weight'),
-      weightUnit: document.getElementById('weight-unit'),
       strain: document.getElementById('strain'),
       tripLevel: document.getElementById('trip-level'),
       lemonTek: document.getElementById('lemon-tek'),
       result: document.getElementById('result'),
       tripDescription: document.getElementById('trip-description')
     };
+
+    let weightUnit = 'kg';
+
+    document.querySelectorAll('.unit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.unit-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        weightUnit = btn.dataset.unit;
+        calculate();
+      });
+    });
 
     document.querySelector('.container').addEventListener('input', (e) => {
       if (e.target.matches('#trip-level')) {
@@ -280,7 +292,7 @@
 
     function calculate() {
       const weight = parseFloat(elements.weight.value);
-      const unit = elements.weightUnit.value;
+      const unit = weightUnit;
       const strain = elements.strain.value;
       const level = elements.tripLevel.value;
       const useLemonTek = elements.lemonTek.checked;
@@ -294,6 +306,10 @@
       const strainOption = document.querySelector(`datalist#strains option[value="${strain}"]`);
       const potency = strainOption ? parseFloat(strainOption.getAttribute('data-potency')) : 1.0;
       const baseDosages = { 1: 0.25, 2: 0.7, 3: 1.5, 4: 3, 5: 4.5 };
+      if (potency <= 0) {
+        elements.result.innerHTML = 'Potency unknown, cannot calculate dose.';
+        return;
+      }
       let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
 
       if (useLemonTek) dose *= 0.8;
@@ -314,12 +330,15 @@
       } else {
         const fullDesc = strainOption.getAttribute('data-description');
         const parts = fullDesc.split(' Evidence: ');
-        const mainDesc = parts[0] || fullDesc;
-        const potency = strainOption.getAttribute('data-potency');
+        const mainDesc = parts[0].trim();
+        const evidencePart = parts[1] || '';
+        const potencyMatch = evidencePart.match(/Potency: (.*)\./);
+        const potency = parseFloat(strainOption.getAttribute('data-potency'));
         const evidence = strainOption.getAttribute('data-evidence');
+        const potencyLabel = potencyMatch ? potencyMatch[1] : (potency <= 0 ? 'Unknown' : potency.toString());
         const formatted = `
           <h2 style="color: #9b59b6; text-align: center; margin-bottom: 10px;">${selectedStrain}</h2>
-          <div style="text-align: center; font-weight: bold; color: #ffa500; margin-bottom: 15px;">Potency - ${potency} | Evidence - ${evidence}</div>
+          <div style="text-align: center; font-weight: bold; color: #ffa500; margin-bottom: 15px;">Potency - ${potencyLabel} | Evidence - ${evidence}</div>
           <p>${mainDesc}</p>
         `;
         document.getElementById('strain-info-text').innerHTML = formatted;
@@ -337,13 +356,19 @@
 
     // Set default unit based on country
     document.addEventListener('DOMContentLoaded', () => {
+      const kgBtn = document.querySelector('[data-unit="kg"]');
+      const lbBtn = document.querySelector('[data-unit="lb"]');
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
-          elements.weightUnit.value = ['US', 'LR', 'MM'].includes(data.country_code) ? 'lb' : 'kg';
+          if (['US', 'LR', 'MM'].includes(data.country_code)) {
+            lbBtn.classList.add('active');
+            kgBtn.classList.remove('active');
+            weightUnit = 'lb';
+          }
         })
         .catch(() => {
-          elements.weightUnit.value = 'kg';
+          // default kg
         });
 
       // Popup disclaimer logic

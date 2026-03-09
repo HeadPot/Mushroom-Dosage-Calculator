@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magic Mushroom Dosage Calculator</title>
+  <title>🍄 Shroomulator</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Arial&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
   <style>
@@ -31,87 +31,161 @@
       border-radius: 16px; 
       box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
     }
-    .input-group { 
-      display: flex; 
-      align-items: center; 
-      margin: 22px 0; 
-      justify-content: center; 
+
+    /* ── Shared row layout ── */
+    .input-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
     }
-    .input-group label { 
-      width: 130px; 
-      text-align: right; 
-      font-weight: 700; 
-      margin-right: 15px; 
+    .input-group label {
+      width: 85px;
+      flex-shrink: 0;
+      text-align: right;
+      padding-right: 12px;
+      font-weight: 700;
       color: #ffa500;
+      line-height: 1;
     }
-    input, select { 
-      flex: 1; 
-      padding: 11px; 
-      background: #333; 
-      color: #e0e0e0; 
-      border: 1px solid #555; 
-      border-radius: 8px; 
+
+    /* all three right-side containers: same fixed width so inputs align */
+    .row-right {
+      width: 240px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── Shared control height ── */
+    input[type="number"],
+    input[type="text"],
+    input[list],
+    select,
+    .unit-btn {
+      height: 38px;
+      box-sizing: border-box;
+      font-size: 0.95em;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[list],
+    select {
+      padding: 0 10px;
+      background: #333;
+      color: #e0e0e0;
+      border: 1px solid #555;
+      border-radius: 8px;
       transition: border 0.3s;
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 28px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23aaa'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      cursor: pointer;
     }
     input:focus, select:focus { 
       border-color: #9b59b6; 
       outline: none; 
     }
-    #weight-unit-toggle { display: flex; margin-left: 10px; }
+
+    /* ── Weight: number input flex-fills, buttons flush right ── */
+    .weight-row-right input[type="number"] {
+      flex: 1;
+      min-width: 0;
+      border-radius: 6px 0 0 6px;
+      border-right: none;
+    }
+    #weight-unit-toggle { display: flex; flex-shrink: 0; }
     .unit-btn { 
-      padding: 8px 14px; 
-      background: #333; 
-      color: #e0e0e0; 
+      padding: 0 11px;
+      background: #2a2a2a; 
+      color: #aaa; 
       border: 1px solid #555; 
       cursor: pointer; 
-      transition: all 0.2s;
-      font-size: 0.95em;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+      font-size: 0.88em;
+      letter-spacing: 0.03em;
     }
-    .unit-btn.active { 
-      background: #9b59b6; 
-      color: #fff; 
-      border-color: #9b59b6; 
+    .unit-btn:first-child { border-radius: 0; border-right: none; }
+    .unit-btn:last-child  { border-radius: 0 6px 6px 0; }
+    .unit-btn:hover:not(.active) { background: #3a3a3a; color: #e0e0e0; }
+    .unit-btn.active { background: #7d3faa; color: #fff; border-color: #7d3faa; }
+
+    /* ── Strain: input fills full row-right width ── */
+    .strain-row-right input[list] {
+      width: 100%;
     }
-    #result { 
-      margin-top: 30px; 
-      padding: 18px; 
-      background: linear-gradient(45deg, #2a2a2a, #3a3a3a); 
-      border: 2px solid #9b59b6; 
-      border-radius: 10px; 
-      text-align: center; 
-      font-weight: 700; 
+
+
+    /* ── Icon slot — every row has one (weight gets invisible placeholder) ── */
+    .icon-slot {
+      width: 28px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* ── Info icon ── */
+    .info-icon { 
+      cursor: pointer;
       color: #9b59b6; 
-      font-size: 1.3em;
-      animation: fadeIn 0.6s;
+      font-size: 1.15em; 
+      line-height: 1;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .info-icon:hover { color: #ffcc66; transform: scale(1.2); }
+
+    /* ── Lemon tek row ── */
+    .lemon-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .lemon-row input[type="checkbox"] {
+      width: 15px; height: 15px; flex: none; cursor: pointer; accent-color: #9b59b6;
+    }
+    .lemon-row label { margin: 0; cursor: pointer; }
+
+    /* ── Result row ── */
+    #result {
+      width: 100%;
+      padding: 7px 10px;
+      background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+      border: 2px solid #9b59b6;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      color: #9b59b6;
+      font-size: 0.95em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      animation: fadeIn 0.4s;
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .info-icon { 
-      cursor: pointer; 
-      margin-left: 12px; 
-      color: #9b59b6; 
-      font-size: 1.35em; 
-      transition: all 0.2s;
-    }
-    .info-icon:hover { 
-      color: #ffcc66; 
-      transform: scale(1.25); 
-    }
+
+    /* ── Modals ── */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); justify-content: center; align-items: center; z-index: 9999; }
-    .modal-content { background: #333; padding: 25px; border-radius: 12px; max-width: 520px; text-align: center; color: #e0e0e0; }
-    .close { cursor: pointer; float: right; font-size: 1.8em; }
+    .modal-content { background: #333; padding: 25px; border-radius: 12px; width: 90%; max-width: 520px; text-align: center; color: #e0e0e0; box-sizing: border-box; }
+    .close { cursor: pointer; float: right; font-size: 1.8em; line-height: 1; }
+
+    /* ── Disclaimer ── */
     .disclaimer-wrapper { max-width: 500px; margin: 25px auto 0; }
     .disclaimer { 
       text-align: center; 
       font-size: 0.76em; 
       color: #ccc; 
       line-height: 1.45;
-    }
-    #trip-description { 
-      text-align: center; 
-      margin-top: 10px; 
-      font-size: 0.95em; 
-      color: #ffffff; 
-      font-weight: bold;
     }
     .ai-note { text-align: center; font-size: 0.88em; color: #ccc; margin-top: 12px; }
     .hallucinate {
@@ -124,169 +198,360 @@
     }
     @keyframes hallucinateShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
     @keyframes hallucinateGlow { 0%,100% { text-shadow: 0 0 6px rgba(155,89,182,.6); } 50% { text-shadow: 0 0 14px rgba(255,165,0,.7); } }
-    @media (max-width: 600px) {
-      .container { padding: 20px; }
-      .input-group { flex-direction: column; align-items: flex-start; }
-      .input-group label { width: auto; margin-right: 0; margin-bottom: 6px; }
-      #weight-unit-toggle { margin-left: 0; margin-top: 6px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      body { padding: 12px; }
+      .container { padding: 16px 14px; }
+      .site-header { font-size: 1.35em; margin-bottom: 18px; }
+      .input-group label { width: 78px; padding-right: 8px; font-size: 0.87em; }
+      .row-right { width: calc(100vw - 150px); max-width: 240px; }
+      .modal-content { padding: 16px 14px; }
+      #strain-modal .modal-content { max-height: 88vh; }
+      #trip-description {
+      margin-left: 85px;
+      margin-top: 8px;
+      font-size: 0.9em;
+      color: #ddd;
+      font-weight: 600;
+      text-align: left;
     }
+    }
+    @media (min-width: 481px) and (max-width: 600px) {
+      .container { padding: 22px 20px; }
+      .row-right { width: 200px; }
+    }
+
+    /* ── Strain modal polish ── */
+    #strain-modal .modal-content {
+      padding: 26px 22px 22px;
+      max-height: 82vh;
+      overflow-y: auto;
+    }
+    .strain-modal-name {
+      color: #9b59b6;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 14px;
+      word-break: break-word;
+    }
+    .strain-badges {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: default;
+      position: relative;
+    }
+    .badge-potency {
+      background: rgba(155,89,182,0.2);
+      border: 1px solid #9b59b6;
+      color: #c39ad8;
+    }
+    .badge-num {
+      opacity: 1;
+      font-weight: 700;
+      font-size: 0.9em;
+      margin-left: 4px;
+      color: #e0c0ff;
+      display: inline;
+      position: static;
+    }
+    .badge-evidence {
+      background: rgba(255,165,0,0.15);
+      border: 1px solid #ffa500;
+      color: #ffcc66;
+    }
+    /* tooltip bubble */
+    .badge .tip {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      border: 1px solid #555;
+      color: #ddd;
+      font-size: 0.82em;
+      font-weight: 400;
+      line-height: 1.45;
+      padding: 7px 10px;
+      border-radius: 7px;
+      width: min(210px, 70vw);
+      text-align: center;
+      z-index: 9999;
+      pointer-events: none;
+      white-space: normal;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .badge .tip::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-bottom-color: #555;
+    }
+    .badge:hover .tip,
+    .badge.tip-open .tip { display: block; }
+    .strain-modal-origin {
+      text-align: center;
+      font-size: 0.8em;
+      color: #aaa;
+      margin: 0 0 14px;
+      letter-spacing: 0.02em;
+    }
+    .strain-modal-origin span {
+      color: #ccc;
+    }
+    .strain-modal-desc {
+      color: #ddd;
+      font-size: 0.87em;
+      line-height: 1.68;
+      text-align: left;
+      margin: 0;
+    }
+    .strain-modal-divider {
+      border: none;
+      border-top: 1px solid #3a3a3a;
+      margin: 0 0 14px;
+    }
+
+    /* ── Trip level cards ── */
+    .trip-card {
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #444;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      text-align: left;
+    }
+    .trip-card:hover { background: rgba(155,89,182,0.12); border-color: #7d3faa; }
+    .trip-card-active { background: rgba(155,89,182,0.2); border-color: #9b59b6; }
+    .trip-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .trip-bar { font-size: 1.1em; line-height: 1; color: #9b59b6; letter-spacing: -1px; }
+    .trip-card-active .trip-bar { color: #c39ad8; }
+    .trip-name {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1em;
+      letter-spacing: 0.02em;
+    }
+    .trip-card-active .trip-name { color: #c39ad8; }
+
+    .trip-desc {
+      color: #aaa;
+      font-size: 0.83em;
+      line-height: 1.5;
+    }
+    .trip-card-active .trip-desc { color: #ccc; }
+
+    /* ── Trip display (replaces select) ── */
+    #trip-display {
+      width: 100%;
+      height: 38px;
+      padding: 0 12px;
+      background: #333;
+      color: #bbb;
+      border: 1px solid #555;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95em;
+      box-sizing: border-box;
+      transition: border 0.3s;
+      user-select: none;
+    }
+    #trip-display::after { content: "▾"; color: #aaa; font-size: 0.9em; }
+    #trip-display:hover { border-color: #9b59b6; color: #e0e0e0; }
+    #trip-display.has-value { color: #e0e0e0; font-weight: 600; }
   </style>
 </head>
 <body>
-  <h1 class="site-header">🍄 Magic Mushroom Dosage Calculator</h1>
+  <h1 class="site-header">🍄 Shroomulator 🍄</h1>
   <div class="container">
-    <!-- weight input - back to original one-line layout -->
+
+    <!-- Weight -->
     <div class="input-group">
       <label for="weight">Weight</label>
-      <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
-      <div id="weight-unit-toggle">
-        <button class="unit-btn active" data-unit="kg">kg</button>
-        <button class="unit-btn" data-unit="lb">lb</button>
+      <div class="row-right weight-row-right">
+        <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
+        <div id="weight-unit-toggle">
+          <button class="unit-btn active" data-unit="kg">kg</button>
+          <button class="unit-btn" data-unit="lb">lb</button>
+        </div>
       </div>
+      <span class="icon-slot"></span>
     </div>
-    <!-- strain input - label left, input + icon right -->
+
+    <!-- Strain -->
     <div class="input-group">
       <label for="strain">Strain</label>
-      <div style="display:flex; align-items:center; flex:1;">
-        <input list="strains" id="strain" required aria-label="Select or type a strain" onfocus="this.select()" style="flex:1;">
-        <span class="info-icon" onclick="showStrainInfo()" title="Click for strain details & evidence">ℹ️</span>
+      <div class="row-right strain-row-right">
+        <input list="strains" id="strain" required aria-label="Select or type a strain" onfocus="this.select()">
       </div>
+      <span class="icon-slot"><span class="info-icon" onclick="showStrainInfo()" title="Strain info &amp; evidence">ℹ️</span></span>
       <datalist id="strains">
-        <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-description="Likely Gulf Coast cubensis lineage. Gentle, spiritual trips; popular for beginners. Evidence: Moderate (species assayed; cultivar-level claims mainly community). Potency: Average (1.0).">
-        <option value="B+" data-potency="1.0" data-evidence="Moderate" data-description="Classic P. cubensis cultivar. Balanced, reliable effects; frequent community trip reports. Evidence: Moderate. Potency: Average (1.0).">
-        <option value="Penis Envy (PE)" data-potency="1.6" data-evidence="High" data-description="P. cubensis mutation/selection (PE family). Dense fruit, strong subjective intensity in many reports. Evidence: High (Hyphae Cup assays show high potency, up to 2.9% tryptamines). Potency: High (1.6).">
-        <option value="Blue Meanie (BM)" data-potency="0.0" data-evidence="Low" data-description="Name used for multiple things (true P. cyanescens vs cubensis phenos). Reported: vivid visuals, euphoric. Evidence: Low (term conflates species). Potency: Unknown.">
-        <option value="Albino Penis Envy (APE)" data-potency="1.7" data-evidence="High" data-description="Albino phenotype within PE lineage; strong community reputation for potency. Evidence: High (assays show similar to PE, often 1.5-2% tryptamines). Potency: High (1.7).">
-        <option value="Mazatapec" data-potency="1.0" data-evidence="Moderate" data-description="Cubensis lineage associated with Mazatec region. Reports: introspective, moderate visuals. Evidence: Moderate. Potency: Average (1.0).">
-        <option value="Amazonian" data-potency="1.2" data-evidence="Moderate" data-description="Cubensis Amazonian lineage. Reports: energetic, stronger visuals vs many cubensis strains. Evidence: Moderate. Potency: Above Average (1.2).">
-        <option value="Treasure Coast" data-potency="1.1" data-evidence="Moderate" data-description="Cubensis lineage from Florida coast. Reports: smooth effects, slightly above baseline. Evidence: Moderate. Potency: Slightly Above Average (1.1).">
-        <option value="Psilocybe cubensis" data-potency="1.0" data-evidence="High" data-description="Widespread species — large strain-to-strain variability documented in assays. Evidence: High (multiple assays show wide ranges, average ~0.63% tryptamines). Potency: Average baseline (1.0).">
-        <option value="Psilocybe cyanescens (CYA)" data-potency="1.6" data-evidence="High" data-description="Wavy cap wood- and mulch-lover. Multiple assays show higher tryptamine totals than typical cubensis. Evidence: High (peer-reviewed assays, ~1.24% tryptamines). Potency: High (1.6).">
-        <option value="Psilocybe semilanceata (SEM)" data-potency="1.5" data-evidence="High" data-description="Liberty cap — small but commonly high in psilocybin (wide assay range). Evidence: High (numerous studies, ~0.98% psilocybin). Potency: High (1.5).">
-        <option value="Psilocybe azurescens (AZU)" data-potency="1.9" data-evidence="High" data-description="Pacific NW 'flying saucers'. Among the strongest wild Psilocybe species per assays. Evidence: High (assay data, up to 1.78% psilocybin + 0.38% psilocin). Potency: Very High (1.9).">
-        <option value="Psilocybe mexicana (MEX)" data-potency="0.0" data-evidence="Low" data-description="Historic Mesoamerican species; fruits and sclerotia generally milder. Evidence: Low (few modern quantitative studies). Potency: Unknown.">
-        <option value="Psilocybe tampanensis (TAM)" data-potency="0.0" data-evidence="Moderate" data-description="Noted for sclerotia ('philosopher's stone'). Sclerotia often milder than many potent fruits. Evidence: Moderate. Potency: Unknown.">
-        <option value="Panaeolus cyanescens (PCY)" data-potency="2.1" data-evidence="High" data-description="Dung-loving (Copelandia synonym). Many analyses and reports place this among the most potent species. Evidence: High (assays and repeated reports, up to 2.5% psilocybin +1.194% psilocin). Potency: Extremely High (2.1).">
-        <option value="Panaeolus cinctulus (PCT)" data-potency="0.6" data-evidence="Moderate" data-description="Common grass Panaeolus. Often milder than cubensis in assays/reports. Evidence: Moderate. Potency: Low (0.6).">
-        <option value="Pluteus salicinus (PLS)" data-potency="0.6" data-evidence="Low" data-description="Pluteus species with low-to-moderate alkaloid reports; generally milder. Evidence: Low. Potency: Below Average (0.6).">
-        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-evidence="Low" data-description="Often reported with very low or no psilocybin; psychoactivity unreliable. Evidence: Low (assays often negative). Potency: Very Low (0.3).">
-        <option value="Copelandia cyanescens" data-potency="2.1" data-evidence="High" data-description="Older name for Panaeolus cyanescens (same potent dung species). Evidence: High. Potency: Extremely High (2.1).">
-        <option value="Psilocybe baeocystis" data-potency="1.3" data-evidence="High" data-description="Pacific NW species — multiple assays show above-cubensis tryptamine levels. Evidence: High (published data). Potency: Above Average (1.3).">
-        <option value="Psilocybe caerulescens" data-potency="1.1" data-evidence="Moderate" data-description="Mexican/Central American species; a handful of assays report moderate-to-above-average alkaloids. Evidence: Moderate. Potency: Slightly Above Average (1.1).">
-        <option value="Psilocybe caerulipes" data-potency="0.0" data-evidence="Low" data-description="Eastern NA species; limited quantitative data — usually mild-to-moderate. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe hoogshagenii" data-potency="0.0" data-evidence="Low" data-description="Traditional Oaxaca species; sparse modern quantitative assays. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-evidence="Moderate" data-description="Riparian wood/woodchip species (eastern NA). Some assays/field reports — mixed results. Evidence: Moderate. Potency: Average (1.0).">
-        <option value="Psilocybe stuntzii" data-potency="0.0" data-evidence="Low" data-description="Pacific NW reports historically show lower tryptamine levels. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe subaeruginosa" data-potency="1.6" data-evidence="High" data-description="Australasia wood-lover — many regional assays report high tryptamine totals. Evidence: High. Potency: High (1.6).">
-        <option value="Psilocybe weilii" data-potency="0.0" data-evidence="Low" data-description="SE USA species; limited published assay data — treated as unknown. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe zapotecorum" data-potency="1.4" data-evidence="Moderate" data-description="Mesoamerican wood/leaf-litter species; assays and reports indicate moderate-to-high totals in some samples. Evidence: Moderate. Potency: High (1.4).">
-        <option value="Psilocybe allenii" data-potency="1.5" data-evidence="Moderate" data-description="West Coast wood-lover described in recent surveys; several assays and community reports indicate high potency. Evidence: Moderate. Potency: High (1.5).">
-        <option value="Psilocybe atlantis" data-potency="0.0" data-evidence="Low" data-description="Associated with sclerotia in some reports; typically milder. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe caeruleoannulata" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative data available. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe coprophila" data-potency="0.0" data-evidence="Negligible" data-description="Modern taxonomy places many records in Deconica (non-psychoactive). Evidence: Negligible. Potency: Unknown.">
-        <option value="Psilocybe crobula" data-potency="0.0" data-evidence="Low" data-description="Little quantitative data located; baseline assumed. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe cyanofibrillosa" data-potency="0.0" data-evidence="Low" data-description="Limited/older assays report low tryptamine levels; treated conservatively. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe fimetaria" data-potency="0.0" data-evidence="Low" data-description="Reports and some older assays indicate little-to-no psilocybin in many specimens. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe galindoi" data-potency="0.0" data-evidence="Low" data-description="Name often applied to sclerotia/cultivated isolates; variable reports and sclerotia often milder. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe guilartensis" data-potency="0.0" data-evidence="Low" data-description="Puerto Rico species; limited modern assays. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe hispanica" data-potency="0.0" data-evidence="Low" data-description="Historic/regionally-reported species; modern quantitative data sparse. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe liniformans" data-potency="0.0" data-evidence="Low" data-description="Closely related to semilanceata group; assay data limited and sometimes low. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe meridionalis" data-potency="0.0" data-evidence="Low" data-description="Relatively recently described; not enough assays to rescale. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe mescaleroensis" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative data. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe natalensis" data-potency="0.0" data-evidence="Low" data-description="Recently described; early comparisons indicate cubensis-like totals. Anecdotally claimed strong. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe oaxacana" data-potency="0.0" data-evidence="Low" data-description="Sparse assays; baseline retained. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe pelliculosa" data-potency="0.0" data-evidence="Low" data-description="Several assay reports indicate low psilocybin (e.g., ~0.1–0.2% dry weight). Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe portoricensis" data-potency="0.0" data-evidence="Low" data-description="Little quantitative work available publicly. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe samuiensis" data-potency="0.0" data-evidence="Low" data-description="SE Asia species; quantitative data sparse. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe serbica" data-potency="1.5" data-evidence="High" data-description="Central/Eastern Europe complex (var. bohemica etc.); modern assays show high psilocybin in some varieties. Evidence: High (assays). Potency: High (1.5).">
-        <option value="Psilocybe sierrae" data-potency="0.0" data-evidence="Low" data-description="Limited modern assay data. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe silvatica" data-potency="0.0" data-evidence="Low" data-description="Sparse assay data; baseline retained. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe strictipes" data-potency="1.2" data-evidence="Moderate" data-description="Related to liberty-cap group; some comparative work suggests above-cubensis potency. Evidence: Moderate. Potency: Above Average (1.2).">
-        <option value="Psilocybe subcubensis" data-potency="0.0" data-evidence="Low" data-description="Taxon allied to P. cubensis; baseline retained. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe subtropicalis" data-potency="5.0" data-evidence="Moderate" data-description="Subtropical species; enhanced variants through breeding reach ~5% alkaloids. Evidence: Moderate (breeding reports and assays). Potency: Extremely High (5.0).">
-        <option value="Psilocybe thaizapoteca" data-potency="0.0" data-evidence="Low" data-description="Sparse data available publicly. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe uxpanapensis" data-potency="0.0" data-evidence="Low" data-description="Sparse quantitative reporting. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe venenata" data-potency="0.0" data-evidence="Low" data-description="Little modern assay data. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe villarrealiae" data-potency="0.0" data-evidence="Low" data-description="Insufficient quantitative data to rescale. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe weraroa" data-potency="0.0" data-evidence="Low" data-description="Pouched fungus (old records); modern chemical data limited and mixed. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe yungensis" data-potency="0.0" data-evidence="Low" data-description="Sparse modern assay data. Evidence: Low. Potency: Unknown.">
-        <option value="Albino A+" data-potency="0.0" data-evidence="Low" data-description="Cubensis phenotype—no convincing evidence it’s systematically stronger than baseline. Evidence: Low. Potency: Unknown.">
-        <option value="Burma" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Cambodian" data-potency="0.8" data-evidence="Low" data-description="Cubensis variety — fast colonizer; community favorite, reported as lower potency. Evidence: Low (anecdotal reports). Potency: Below Average (0.8).">
-        <option value="Costa Rican" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Ecuadorian" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Fiji" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Hawaiian" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Huautla" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety tied to Mazatec region localities. Evidence: Low. Potency: Unknown.">
-        <option value="Jedi Mind Fuck" data-potency="1.5" data-evidence="Low" data-description="Cubensis lineage; community reports vary widely, noted as potent. Evidence: Low (anecdotal). Potency: High (1.5).">
-        <option value="Koh Samui" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety originally from Thailand; baseline retained. Evidence: Low. Potency: Unknown.">
-        <option value="Malabar" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="Mexican" data-potency="0.0" data-evidence="Low" data-description="Generic Mexican cubensis varieties; wide variation. Evidence: Low. Potency: Unknown.">
-        <option value="Orissa India" data-potency="0.0" data-evidence="Low" data-description="Cubensis lineage from India. Evidence: Low. Potency: Unknown.">
-        <option value="PES Amazonian" data-potency="0.0" data-evidence="Low" data-description="Vendor/cultivar label for an Amazonian cubensis isolate. Evidence: Low. Potency: Unknown.">
-        <option value="PES Hawaiian" data-potency="0.0" data-evidence="Low" data-description="Vendor/cultivar label for a Hawaiian cubensis isolate. Evidence: Low. Potency: Unknown.">
-        <option value="Puerto Rican" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety. Evidence: Low. Potency: Unknown.">
-        <option value="South American" data-potency="0.0" data-evidence="Low" data-description="Generic cubensis lineage tag; baseline retained. Evidence: Low. Potency: Unknown.">
-        <option value="Thai" data-potency="0.0" data-evidence="Low" data-description="Cubensis-style strains from Thailand. Evidence: Low. Potency: Unknown.">
-        <option value="Transkei" data-potency="0.0" data-evidence="Low" data-description="Cubensis variety from Transkei. Evidence: Low. Potency: Unknown.">
-        <option value="Z-Strain" data-potency="0.0" data-evidence="Low" data-description="Vendor/strain label for cubensis lineage. Evidence: Low. Potency: Unknown.">
-        <option value="Blue Pulaski" data-potency="1.2" data-evidence="Low" data-description="Variant reported with blue caps; community reports place it above many cubensis lines. Evidence: Low. Potency: Above Average (1.2).">
-        <option value="Ghost" data-potency="1.7" data-evidence="Moderate" data-description="Breeder-isolate family (TAT/Ghost lineage) with strong community potency claims. Evidence: Moderate (community/breeder + some assays). Potency: High (1.7).">
-        <option value="Tidal Wave" data-potency="1.7" data-evidence="High" data-description="Hybrid (Penis Envy × B+) that produced the Enigma/Brainiac phenotypes. Community: potent/unstable phenotypes. Evidence: High (Hyphae Cup winner at 3.8% tryptamines for Enigma mutation). Potency: High (1.7).">
-        <option value="PF Classic" data-potency="0.0" data-evidence="Low" data-description="Well-known lab/cultivar (PF Classic). Popular among growers; potency not verified. Evidence: Low. Potency: Unknown.">
-        <option value="Enigma" data-potency="3.2" data-evidence="High" data-description="Mutation/phenotype arising from Tidal Wave family; unusual 'blob/brain' morphology and strong subjective reports. Evidence: High (Hyphae Cup winner at 3.8% tryptamines). Potency: Extremely High (3.2).">
-        <option value="Brainiac" data-potency="1.6" data-evidence="Low" data-description="Phenotype/derivative of Tidal Wave isolations; community reports emphasize intensity and odd morphology. Evidence: Low. Potency: High (1.6).">
-        <option value="Long Ghost" data-potency="1.7" data-evidence="Low" data-description="TAT/Ghost family isolate with elongated stipes; breeder/community claim high potency. Evidence: Low. Potency: High (1.7).">
-        <option value="Blue Ghost" data-potency="1.7" data-evidence="Low" data-description="Hybrid/selection from Ghost lineage and blue-cap isolates; breeder reports emphasize visual contrast and potency. Evidence: Low. Potency: High (1.7).">
-        <option value="Golden Ghost" data-potency="1.7" data-evidence="Low" data-description="Cross between Golden Teacher-derived lineage and Ghost/TAT isolates; visually striking, community reports above-average potency. Evidence: Low. Potency: High (1.7).">
-        <option value="Swamp Ghost" data-potency="1.6" data-evidence="Low" data-description="Selection from Ghost lines and swamp/wild isolates (breeder lineage). Community: potent selection. Evidence: Low. Potency: High (1.6).">
-        <option value="Jack Frost (TAT × APE)" data-potency="1.0" data-evidence="Moderate" data-description="Reported cross of TAT (True Albino Teacher) and Albino PE; breeder claims strong potency and striking albino phenotype. Evidence: Moderate (lab tests around 1% tryptamines). Potency: Average (1.0).">
-        <option value="Yeti (TAT isolation)" data-potency="1.6" data-evidence="Low" data-description="TAT-family isolate (large-fruited albino phenotype); community/breeder reputation for potency. Evidence: Low. Potency: High (1.6).">
-        <option value="Shakti / Blue Shakti" data-potency="1.3" data-evidence="Low" data-description="Shakti family isolates and blue variants (albino/Malabar-derived isolations); community note above-average potency. Evidence: Low. Potency: Above Average (1.3).">
-        <option value="RipTide / Riptide" data-potency="1.4" data-evidence="Low" data-description="Squat, dense phenotypes with multiple isolations (incl. Albino Riptide). Community: body-heavy trips and consistency. Evidence: Low. Potency: High (1.4).">
-        <option value="Albino Riptide" data-potency="1.4" data-evidence="Low" data-description="Albino isolate of Riptide family — visual appeal, reported solid potency. Evidence: Low. Potency: High (1.4).">
-        <option value="Makilla Gorilla" data-potency="1.6" data-evidence="Moderate" data-description="Modern breeder/vendor isolation (PE/Melmac-style lineage) — large fruits and strong community potency claims. Evidence: Moderate (assays up to 1.93% psilocybin). Potency: High (1.6).">
-        <option value="TWAPE (Tidal Wave × APE)" data-potency="1.8" data-evidence="Low" data-description="Cross of Tidal Wave with Albino PE; breeder/community claims of very high potency for some isolations. Evidence: Low. Potency: Very High (1.8).">
-        <option value="TWAPE variants" data-potency="1.7" data-evidence="Low" data-description="Multiple downstream isolations from TW×APE crosses; variable phenotypes, generally high reputation. Evidence: Low. Potency: High (1.7).">
-        <option value="Golden Jack (GT × Jack Frost)" data-potency="1.1" data-evidence="Low" data-description="Breeder cross (Golden Teacher × Jack Frost) — visually notable; potency near baseline or slightly above by community reports. Evidence: Low. Potency: Slightly Above Average (1.1).">
-        <option value="Squatty Riptide" data-potency="1.4" data-evidence="Low" data-description="Squat phenotype of Riptide family with dense fruits; community: body-heavy, stable isolates exist. Evidence: Low. Potency: High (1.4).">
-        <option value="Steel Magnolia (PE × Blue Magnolia)" data-potency="1.5" data-evidence="Low" data-description="Breeder cross combining PE lineage with Blue Magnolia isolates; community claims above-average potency. Evidence: Low. Potency: High (1.5).">
-        <option value="DC MAK (PE isolation family)" data-potency="1.5" data-evidence="Low" data-description="Vendor/breeder isolation name tied to PE-family isolations; community reports strong potency. Evidence: Low. Potency: High (1.5).">
-        <option value="Melmac" data-potency="1.5" data-evidence="Low" data-description="PE-family isolations and derivatives (commonly referenced in breeder/vendor circles). Evidence: Low. Potency: High (1.5).">
-        <option value="Uncut Envy / Uncut PE" data-potency="1.6" data-evidence="Low" data-description="PE phenotype/line name seen in community/vendor lists — often reported stronger-than-average. Evidence: Low. Potency: High (1.6).">
-        <option value="Albino Chode Wave (example albino lines)" data-potency="1.5" data-evidence="Low" data-description="Representative albino isolates from modern breeder catalogs (visual novelty + often above-baseline potency reputation). Evidence: Low. Potency: Above Average (1.5).">
-        <option value="Blue Pulaski x Ghost hybrids" data-potency="1.7" data-evidence="Low" data-description="Hybrid projects combining blue-cap isolates with TAT/Ghost lines; breeder reports highlight potent visual profiles. Evidence: Low. Potency: High (1.7).">
-        <option value="Hillbilly" data-potency="1.0" data-evidence="Low" data-description="Cubensis variety from Arkansas; reports of average potency with giggly effects. Evidence: Low (community/anecdotal). Potency: Average (1.0).">
-        <option value="Rusty Whyte" data-potency="1.0" data-evidence="Low" data-description="Leucistic cubensis hybrid (Albino A+ × Colombian Rust); average potency, visually striking. Evidence: Low (community reports). Potency: Average (1.0).">
-        <option value="Avery's Albino" data-potency="0.0" data-evidence="Low" data-description="Rare albino cubensis mutation from Cambodian lineage; beautiful but potency unverified. Evidence: Low. Potency: Unknown.">
-        <option value="Psilocybe ingeli" data-potency="0.0" data-evidence="Low" data-description="Newly discovered African species; traditional use reported but no quantitative potency data. Evidence: Low (recent discovery). Potency: Unknown.">
-        <option value="Psilocybe maluti" data-potency="0.0" data-evidence="Low" data-description="Newly discovered African species; used in traditional brews, potency unknown. Evidence: Low (recent discovery). Potency: Unknown.">
-        <option value="TTBVI" data-potency="5.0" data-evidence="Moderate" data-description="Hybrid with P. azurescens genes; competition winner with over 5% alkaloids. Evidence: Moderate (assays and breeding reports). Potency: Extremely High (5.0).">
-        <option value="Pearly Gates" data-potency="1.8" data-evidence="Low" data-description="Potent cubensis hybrid; won recreational category in potency contests. Evidence: Low (community/breeder). Potency: Very High (1.8).">
-        <option value="Gymnopilus luteofolius" data-potency="0.0" data-evidence="Low" data-description="Psilocybin-containing Gymnopilus species; potency data sparse. Evidence: Low. Potency: Unknown.">
-        <option value="Inocybe aeruginascens" data-potency="0.0" data-evidence="Low" data-description="Psilocybin-containing Inocybe; most in genus poisonous, potency unknown. Evidence: Low. Potency: Unknown.">
-        <option value="Pluteus americanus" data-potency="0.0" data-evidence="Low" data-description="Psilocybin-containing Pluteus species; potency data limited. Evidence: Low. Potency: Unknown.">
-        <option value="Bluey Vuitton" data-potency="1.8" data-evidence="Moderate" data-description="Modern PE hybrid (Panama × Melmac PE). Strong 2025-2026 community and test reports. Evidence: Moderate. Potency: High (1.8).">
-        <option value="Albino Bluey Vuitton" data-potency="1.9" data-evidence="Low" data-description="Albino version of the popular Bluey Vuitton hybrid. Breeder reports emphasize visual appeal and above-average potency. Evidence: Low. Potency: Very High (1.9).">
+        <option value="Golden Teacher (GT)" data-potency="1.0" data-evidence="Moderate" data-origin="Florida, USA — 1980s" data-description="Named for its distinct golden-caramel caps and the introspective, reflective quality of the experience. One of the most widely cultivated cubensis strains ever; popular for beginners due to consistent, manageable effects. Fast-growing with good yields. Effects emphasise clarity, insight, and emotional warmth rather than heavy visuals — often described as the quintessential beginner mushroom with a gentle, enlightening quality. Evidence: Moderate (species-level assays; cultivar claims mainly community). Potency: Average (1.0).">
+        <option value="B+" data-potency="1.0" data-evidence="Moderate" data-origin="Florida, USA — 1990s (cultivator Mr. G)" data-description="Developed by a Florida cultivator known as Mr. G in the 1990s. One of the most forgiving strains to grow — tolerates a wide range of substrates and temperatures. Known for large fruiting bodies, good yields, and a warm, positive experience with balanced visuals and euphoria. Effects are often described as uplifting and social; considered beginner-friendly. The 'B+' name is said to stand for 'Be Positive'. Evidence: Moderate (frequent community data; species-level assays). Potency: Average (1.0).">
+        <option value="Penis Envy (PE)" data-potency="1.6" data-evidence="High" data-origin="Colombian Amazon → Florida, USA — 1970s–80s" data-description="Origin traces to spores collected by Terence McKenna in the Colombian Amazon in the early 1970s, subsequently stabilised by cultivators Steven Pollock and Rich Gee. Genomic research (PMC 2021) identified a 4.6kb insertion in the N-methyltransferase gene (PsiM), likely contributing to elevated psilocybin production. Most PE mushrooms are near-sterile — they rarely produce viable spore prints, meaning propagation requires agar cultures. Dense, thick-stemmed fruits with underdeveloped caps. Intense, immersive experience; typically not suggested for beginners. Evidence: High (Hyphae Cup assays up to 2.9% total tryptamines; published genome study). Potency: High (1.6).">
+        <option value="Blue Meanie (BM)" data-potency="0.0" data-evidence="Low" data-origin="Ambiguous — Australia / Tropics" data-description="'Blue Meanie' is a dangerously ambiguous name applied to at least two entirely different fungi: (1) Panaeolus cyanescens — a tropical dung species that is extremely potent (2–3× stronger than P. cubensis), and (2) various P. cubensis cultivars informally called Blue Meanie due to heavy bruising. Without knowing which species you have, dosing is impossible to predict safely. If this refers to Pan. cyanescens, reduce dose significantly. If it's a cubensis variant, treat as average potency. Always confirm your species before dosing. Evidence: Low (name conflates species). Potency: Unknown — do not dose without species confirmation.">
+        <option value="Albino Penis Envy (APE)" data-potency="1.7" data-evidence="High" data-origin="USA — lab selection (PE × PF Albino)" data-description="A leucistic (near-albino) phenotype developed from a cross between Penis Envy and PF Albino. Retains the characteristic dense PE fruiting body with a white/cream coloration and intense blue bruising. Considered one of the most potent PE-family variants by the community. Like standard PE, it produces very few viable spores and is best propagated via agar. Beginners should approach with caution — this is not an entry-level strain. Evidence: High (assays frequently show 1.5–2% total tryptamines, similar to PE parent). Potency: High (1.7).">
+        <option value="Mazatapec" data-potency="1.0" data-evidence="Moderate" data-origin="Oaxaca, Mexico — Mazatec region" data-description="A P. cubensis strain originating from the Mazatec region of Oaxaca, Mexico — home to the indigenous Mazatec people who have used psilocybin mushrooms in healing ceremonies for centuries. One of the slower-growing cubensis strains but relatively reliable. Effects are commonly described as spiritual, introspective, and calming rather than visually intense — fitting its ceremonial roots. Often suggested for those seeking a more meditative experience. Evidence: Moderate (species-level assays; community reports). Potency: Average (1.0).">
+        <option value="Amazonian" data-potency="1.2" data-evidence="Moderate" data-origin="Amazon Basin, South America" data-description="A P. cubensis strain attributed to the Amazon basin region of South America. Known in the community as a vigorous grower with above-average yields and dense, medium-to-large fruiting bodies. Effects are frequently described as energetic and visually stimulating with a more body-forward onset than many cubensis strains. Colonisation speed is typically fast. A good intermediate strain — beginner-accessible but with noticeably more intensity than Golden Teacher or B+. Evidence: Moderate (species-level assays; community reports). Potency: Above Average (1.2).">
+        <option value="Treasure Coast" data-potency="1.1" data-evidence="Moderate" data-origin="Treasure Coast, Florida, USA" data-description="A P. cubensis strain originally collected along Florida's Treasure Coast (the Atlantic coast around St. Lucie and Martin counties). Known for producing albino or near-albino mutations at a higher rate than most cubensis strains. Moderate grower with good yields. Effects are reported as smooth, clear-headed, and introspective — often described as a 'cleaner' cubensis experience without overwhelming body load. A solid all-rounder sitting just above baseline potency. Evidence: Moderate (species-level assays; community reports). Potency: Slightly Above Average (1.1).">
+        <option value="Psilocybe cubensis" data-potency="1.0" data-evidence="High" data-origin="Tropical worldwide — first described Cuba, 1906" data-description="First described in 1906 in Cuba by mycologist Franklin Sumner Earle. The world's most widely cultivated psilocybin mushroom due to ease of growth and broad substrate tolerance. Naturally found on cattle and water buffalo dung across subtropical regions worldwide. Psilocybin ranges from ~0.2% to over 2% dry weight depending on strain, flush, and growing conditions; caps typically contain roughly twice the psilocybin of stems. Later flushes tend to carry more psilocin. Wide strain-to-strain variability means the species label alone tells you little about potency. Evidence: High (multiple peer-reviewed assays; Hyphae Cup HPLC data). Potency: Average baseline (1.0).">
+        <option value="Psilocybe cyanescens (CYA)" data-potency="1.6" data-evidence="High" data-origin="Pacific Northwest, USA / Europe" data-description="The Wavy Cap — a wood-loving species found across the Pacific Northwest, Europe, and other temperate regions, typically fruiting on mulched garden beds and wood chips in autumn. A 2025 PMC bibliographic review of 74 studies found agitation-extraction methods yielded over 2% psilocybin in P. cyanescens samples; fungarium specimens showed consistently higher and more stable alkaloid levels than P. cubensis over decades of storage. Strong bruising reaction. Produces aeruginascin in addition to psilocybin/psilocin. Evidence: High (multiple peer-reviewed HPLC studies; PMC 2025 review). Potency: High (1.6).">
+        <option value="Psilocybe semilanceata (SEM)" data-potency="1.5" data-evidence="High" data-origin="Europe, temperate North America" data-description="The Liberty Cap — one of the most widely distributed wild psilocybin mushrooms in Europe and temperate North America. Small, conical, with a distinctive nipple-like umbo. Despite their small size they are potent; a 2025 PMC review found psilocybin up to 1.70–2.02% dry weight, with an average around 0.98%. Found in pastures and meadows, typically fruiting in autumn. Do not confuse with toxic lookalikes. Evidence: High (numerous peer-reviewed studies; psilocybin range ~0.2–2.02% dry weight). Potency: High (1.5).">
+        <option value="Psilocybe azurescens (AZU)" data-potency="1.9" data-evidence="High" data-origin="Columbia River mouth, Pacific Northwest, USA" data-description="The Flying Saucer mushroom — native to a small coastal area of the Pacific Northwest, originally found near the Columbia River mouth. Among the most potent wild Psilocybe species, with an average ~1.78% psilocybin and up to 0.38% psilocin per dry weight. A 2026 HPTLC cultivation study confirmed relatively strong psilocin alongside psilocybin. Wood-loving; grows on buried deciduous wood and sandy soils. Fruiting limited to a narrow autumn window. Can cause temporary paralysis of the lower extremities ('wood lover's paralysis') in some users — a phenomenon not yet fully explained. Evidence: High (peer-reviewed HPLC and HPTLC studies; PMC 2026). Potency: Very High (1.9).">
+        <option value="Psilocybe mexicana (MEX)" data-potency="0.7" data-evidence="Moderate" data-origin="Mexico, Central America" data-description="One of the most historically significant psilocybin mushrooms. Used by the Aztec people — who called it teonanácatl ('flesh of the gods') — for over 2,000 years in religious and healing ceremonies. Samples collected in Mexico were sent to Albert Hofmann at Sandoz, who isolated and named psilocybin and psilocin from this species in 1958 — the first time these compounds were ever identified. Hofmann's original 1959 paper reported 0.2–0.4% psilocybin in dried fruiting bodies. Known for producing underground sclerotia ('philosopher's stones'). Known as pajaritos ('little birds') in Mexico. Experience is mild, colourful, and introspective — good for beginners. Evidence: Moderate (Hofmann 1959 original paper; some modern assays). Potency: Below Average (0.7).">
+        <option value="Psilocybe tampanensis (TAM)" data-potency="0.6" data-evidence="Moderate" data-origin="Tampa, Florida, USA — discovered 1977" data-description="Discovered in 1977 near Tampa, Florida by Steven Pollock (who also helped stabilise Penis Envy) — he found a single specimen growing in a sand dune. Pollock cloned the find and the culture has been in circulation ever since; it has only been found wild once more in over 40 years. Famous for producing psychoactive underground sclerotia nicknamed 'philosopher's stones'. Alkaloid assays on sclerotia show 0.31–0.68% psilocybin dry weight. Sclerotia are legally sold in the Netherlands. Experience is typically gentle, introspective, and suitable for beginners. Evidence: Moderate (German forensic seizure data; Pellegrini 2012 sclerotia assay). Potency: Below Average (0.6).">
+        <option value="Panaeolus cyanescens (PCY)" data-potency="2.1" data-evidence="High" data-origin="Tropical worldwide — dung-loving species" data-description="Also known as 'Blue Meanie' in Australia and 'Natal Blue Meanie' in South Africa (Copelandia cyanescens is an older synonym). A dung-loving tropical/subtropical species; one of the most potent psilocybin mushrooms known. A PMC cardiomyocyte study noted that Pan. cyanescens contains very high levels of urea alongside psilocybin, psilocin, and baeocystin — a distinct chemical profile from Psilocybe species. Fast onset reported by users. Significantly stronger than P. cubensis; dose with serious caution — what looks like a small amount can be extremely potent. Evidence: High (multiple HPLC studies; up to 2.5% psilocybin + 1.194% psilocin). Potency: Extremely High (2.1).">
+        <option value="Panaeolus cinctulus (PCT)" data-potency="0.6" data-evidence="Moderate" data-origin="Cosmopolitan — worldwide" data-description="One of the most widespread Panaeolus species — found in lawns, compost heaps, and enriched grasslands worldwide. Formerly known as Panaeolus subbalteatus. A small brown mushroom easily confused with non-psychoactive relatives; misidentification risk is moderate. Psilocybin content is lower and more variable than P. cubensis; some specimens test negative. Effects are reportedly milder and shorter-lasting. Often confused with Panaeolus cyanescens in the field — a potentially dangerous error given Pan. cyanescens is several times more potent. Evidence: Moderate (multiple assays; Gartz reports). Potency: Below Average (0.6).">
+        <option value="Pluteus salicinus (PLS)" data-potency="0.6" data-evidence="Low" data-origin="Europe, North America" data-description="One of the few psilocybin-containing mushrooms outside the Psilocybe/Panaeolus/Gymnopilus genera. Grows on decaying hardwood logs and stumps across Europe and North America. A grey-brown wood-rotting species with pink-tinted gills at maturity. Psilocybin content is low and inconsistent across specimens. Also contains aeruginascin alongside psilocybin. Not considered a reliable or practical source of psilocybin due to low and variable potency. Evidence: Low (limited assays; alkaloid presence confirmed but not well quantified). Potency: Below Average (0.6).">
+        <option value="Gymnopilus junonius (GJ)" data-potency="0.3" data-evidence="Low" data-origin="Cosmopolitan — worldwide" data-description="A large, striking orange-brown mushroom growing in clusters on hardwood stumps across North America and Europe — sometimes called the 'spectacular rustgill'. Despite historical reports of psychoactivity and listings in older psychedelic guides, modern chemical assays frequently return negative or negligible psilocybin results. The psychoactivity of this species is thought to be unreliable or possibly attributable to other compounds (bisnoregonol, gymnopilin). Should not be relied upon as a psilocybin source, and is a look-alike risk for toxic species. Evidence: Low (assays often negative; PNAS phylogenomics 2024 notes biosynthesis cluster present but expression questionable). Potency: Very Low (0.3).">
+        <option value="Copelandia cyanescens" data-potency="2.1" data-evidence="High" data-origin="Tropical worldwide (synonym of Pan. cyanescens)" data-description="An older synonym for Panaeolus cyanescens — the same extremely potent dung-loving tropical species. The name Copelandia is still used colloquially in some cultivation and vendor communities. See Panaeolus cyanescens for full details. Dose with serious caution — extremely potent, significantly stronger than P. cubensis. Evidence: High (same species as Pan. cyanescens; multiple HPLC studies; up to 2.5% psilocybin + 1.194% psilocin). Potency: Extremely High (2.1).">
+        <option value="Psilocybe baeocystis" data-potency="1.3" data-evidence="High" data-origin="Pacific Northwest, USA" data-description="A Pacific Northwest wood chip and mulch species also known as 'bottle caps', 'knobby tops', 'blue bells', or 'olive caps'. Historically significant: the compound baeocystin was first isolated and named from this very species (Leung and Paul, 1967–68). Beug and Bigwood (1981) HPLC assays found 0.15–0.85% psilocybin, up to 0.59% psilocin, and up to 0.10% baeocystin. Uniquely, potency is markedly higher when fresh — reported to diminish by roughly half when dried, likely due to baeocystin and psilocin degradation. Bruises intensely metallic blue. Often grows alongside P. stuntzii and P. cyanescens in mulched garden beds. Evidence: High (Beug and Bigwood 1981 HPLC; peer-reviewed sources). Potency: Above Average (1.3).">
+        <option value="Psilocybe caerulescens" data-potency="1.1" data-evidence="Moderate" data-origin="Mexico, Venezuela, Central America" data-description="A tropical to subtropical species found in Mexico, Venezuela, and surrounding regions, typically growing in landslide debris, eroded banks, and sugarcane mulch. One of the Mazatec ceremonial species used alongside P. mexicana. Known as 'derrumbe' (landslide mushroom) in Mexico. Forms sclerotia in some reports. A handful of assays report moderate-to-above-average alkaloids. Evidence: Moderate (species assays; ethnomycological records). Potency: Slightly Above Average (1.1).">
+        <option value="Psilocybe caerulipes" data-potency="0.5" data-evidence="Low" data-origin="Eastern North America" data-description="Known as the 'blue-foot' mushroom — found on decaying hardwood logs in eastern North America, particularly on beech and maple. One of the few psilocybin species native to the eastern USA. Assay data is sparse; effects described as mild to moderate. Often found alongside Galerina marginata (deadly toxic) — identification confidence is critical before any contact. Not a practical source due to low and inconsistent potency. Evidence: Low (sparse assays; limited field data). Potency: Below Average (0.5).">
+        <option value="Psilocybe hoogshagenii" data-potency="0.7" data-evidence="Low" data-origin="Oaxaca, Mexico — mountain regions" data-description="A small, dung-loving species found in the mountains of Oaxaca and other parts of Mexico. Used historically in Mazatec ceremonies alongside P. mexicana and P. caerulescens. Named after Richard Evans Schultes collaborator Schultes-Hoogshagen. Small conical fruiting bodies. Very limited modern chemical data; potency assumed roughly comparable to P. mexicana based on traditional use context. Evidence: Low (ethnomycological records; sparse assays). Potency: Below Average (0.7).">
+        <option value="Psilocybe ovoideocystidiata" data-potency="1.0" data-evidence="Moderate" data-origin="Eastern North America — river banks" data-description="Found along rivers and streams of the eastern USA, particularly Pennsylvania and Ohio, growing on wood chips and woody debris — often turning up in landscaped parks near rivers. One of the more recently described North American psilocybin species. Some specimens have tested positive for psilocybin at near-cubensis levels; others have not. Variable and batch-dependent — treat with caution. Evidence: Moderate (some field assays; community reports). Potency: Average (1.0).">
+        <option value="Psilocybe stuntzii" data-potency="0.5" data-evidence="High" data-origin="Pacific Northwest, USA" data-description="A Pacific Northwest wood chip and lawn species. The 2026 HPTLC cultivation study found P. stuntzii had the lowest psilocybin content (0.45%) of all six Psilocybe species tested under controlled conditions. Psilocybin concentrations remained stable across three successive flushes. Generally considered a weak species not worth seeking for potency. Also grows alongside P. baeocystis and P. cyanescens, where it can be confused for more potent species. Evidence: High (HPTLC assay, PMC 2026). Potency: Below Average (0.5).">
+        <option value="Psilocybe subaeruginosa" data-potency="1.6" data-evidence="High" data-origin="Southeastern Australia, New Zealand" data-description="The dominant potent wild species in southeastern Australia and New Zealand; grows on decaying wood and wood chips, typically fruiting in autumn and winter. An Australian M.App.Sci thesis reported specimens up to 1.93% psilocybin — comparable to P. azurescens. A 2026 HPTLC cultivation study found P. subaeruginosa exhibited the most pronounced psilocin band of all six tested species, suggesting higher psilocin content relative to psilocybin than other Psilocybe. Considered the Australasian equivalent of azurescens in terms of potency. Evidence: High (regional assays; HPTLC study PMC 2026). Potency: High (1.6).">
+        <option value="Psilocybe weilii" data-potency="0.6" data-evidence="Low" data-origin="Northern Georgia, USA — very limited range" data-description="Found in a very limited area of northern Georgia, USA, described in 1995. Grows in bermudagrass and red clay soils — a habitat unlike most other Psilocybe species. Fruiting bodies are small and fragile. Psychoactive alkaloids confirmed by original description but limited assay data available since. Rarely encountered in practice; a notable curiosity given its unusual habitat. Evidence: Low (original description; limited follow-up). Potency: Below Average (0.6).">
+        <option value="Psilocybe zapotecorum" data-potency="1.4" data-evidence="High" data-origin="Oaxaca, Mexico — Zapotec region" data-description="A sacred Mesoamerican species used historically by Zapotec peoples in Oaxaca, Mexico for spiritual and ceremonial purposes. A 2026 controlled HPTLC cultivation study (AOAC International / PMC) found P. zapotecorum had the highest psilocybin content (1.89%) of six Psilocybe species tested, outperforming even P. azurescens under the same conditions. Used in traditional brews alongside other entheogens. Evidence: High (HPTLC assay PMC 2026; historical ethnomycological records). Potency: High (1.4).">
+        <option value="Psilocybe allenii" data-potency="1.5" data-evidence="Moderate" data-origin="West Coast, USA — Pacific Northwest to Bay Area" data-description="First formally described in 2012 from the West Coast of North America, particularly the San Francisco Bay Area. Grows on wood chips and woody debris in landscaped areas — a species adapted to human-modified environments. Morphologically similar to P. cyanescens but with distinguishing micro-features. Several assays and community reports indicate high potency, possibly comparable to P. cyanescens. Named after mycologist John Allen. Evidence: Moderate (some assays; community reports; published species description). Potency: High (1.5).">
+        <option value="Psilocybe atlantis" data-potency="0.6" data-evidence="Low" data-origin="Fulton County, Georgia, USA — described 2006" data-description="First collected in Fulton County, Georgia, USA and formally described in 2006. One of a small number of North American psilocybin species found in the eastern USA. Notable for forming both fruiting bodies and underground sclerotia ('philosopher's stones') similar to P. tampanensis. Sclerotia are the primary product from cultivated specimens and are typically milder than fruiting bodies. Limited potency data; experience reported as gentle and colourful. Evidence: Low (original species description; limited assays). Potency: Below Average (0.6).">
+        <option value="Psilocybe caeruleoannulata" data-potency="0.6" data-evidence="Low" data-origin="South America — Brazil, Colombia" data-description="A South American species (Brazil, Colombia) with a distinctive blue-green ring on the stem — the name means 'blue-ringed'. Very limited chemical data published. Listed in psilocybin mushroom references but rarely encountered in practice or studied with modern methods. Assumed to contain psilocybin based on genetic and morphological data. Evidence: Low (sparse older references; no modern HPLC data). Potency: Below Average (0.6).">
+        <option value="Psilocybe coprophila" data-potency="0.0" data-evidence="Negligible" data-origin="Cosmopolitan — mostly reclassified" data-description="A dung-inhabiting species historically listed as psilocybin-containing, but modern taxonomic revisions have moved most records to Deconica species — which are not psychoactive. This reclassification means what is sold or listed as 'P. coprophila' is likely not a reliable psilocybin source. Exercise extreme caution. Do not use this species name as confirmation of psychoactivity. Evidence: Negligible (modern taxonomy places most records in non-psychoactive Deconica). Potency: Unknown.">
+        <option value="Psilocybe crobula" data-potency="0.5" data-evidence="Low" data-origin="Europe, North America" data-description="A small species found in Europe and North America on grass and woody debris. Historically listed as psilocybin-containing. Little modern quantitative data available; older assays suggest low potency. Rarely encountered in practical use; primarily of academic taxonomic interest. Evidence: Low (older references; limited modern data). Potency: Below Average (0.5).">
+        <option value="Psilocybe cyanofibrillosa" data-potency="0.4" data-evidence="Low" data-origin="Pacific Northwest, USA" data-description="A Pacific Northwest species found in grassy areas near the coast, distinguishable by its fibrous stem that stains blue when damaged. Older assays report very low tryptamine levels — generally considered the least potent of the commonly listed Pacific Northwest Psilocybe species. Not considered a potent or practical species. Evidence: Low (limited/older assays reporting low tryptamines). Potency: Very Low (0.4).">
+        <option value="Psilocybe fimetaria" data-potency="0.3" data-evidence="Low" data-origin="Europe, North America — dung habitats" data-description="A European and North American dung species. Multiple older reports and some assays indicate little-to-no psilocybin in many specimens; results are inconsistent across different collections. Not considered a reliable psilocybin source. Predominantly of taxonomic interest; not practical for use. Evidence: Low (inconsistent older assays; no modern HPLC confirmation). Potency: Very Low (0.3).">
+        <option value="Psilocybe galindoi" data-potency="0.6" data-evidence="Low" data-origin="Oaxaca, Mexico" data-description="A Mexican species often confused with P. tampanensis in cultivation circles, where 'galindoi' is sometimes used as a label for sclerotia-producing cultures. The true P. galindoi is a small fruiting body species from Oaxaca. Both fruiting body and sclerotia potency are variable and generally considered mild — comparable to P. tampanensis. Evidence: Low (limited assays; cultivation community conflation with tampanensis). Potency: Below Average (0.6).">
+        <option value="Psilocybe guilartensis" data-potency="0.5" data-evidence="Low" data-origin="Puerto Rico" data-description="A small species native to Puerto Rico. Very limited modern data available; known primarily from its original species description. Listed as psilocybin-containing in references but has not been studied with modern analytical methods. Assume low potency pending better data. Evidence: Low (original description only; no modern assays). Potency: Below Average (0.5).">
+        <option value="Psilocybe hispanica" data-potency="0.8" data-evidence="Low" data-origin="Pyrenees — Spain, France" data-description="A European species found in the Pyrenees mountains of northern Spain and southern France — one of the few confirmed psilocybin species in continental Europe alongside P. semilanceata and P. cyanescens. Grows in high-altitude alpine meadows, typically associated with sheep dung. First described in 2000. Modern quantitative data is sparse; known primarily from a handful of reports. Evidence: Low (original description; limited modern studies). Potency: Below Average (0.8).">
+        <option value="Psilocybe liniformans" data-potency="0.6" data-evidence="Low" data-origin="Netherlands, Pacific Northwest" data-description="A European and Pacific Northwest species closely related to P. semilanceata. Some specimens have tested positive for low levels of psilocybin, but data is inconsistent across collections. Typically found in enriched grasslands similar to P. semilanceata but morphologically distinct. Not considered a reliable or potent source. Evidence: Low (inconsistent assay data). Potency: Below Average (0.6).">
+        <option value="Psilocybe meridionalis" data-potency="0.6" data-evidence="Low" data-origin="Southern Europe" data-description="A recently described species from southern Europe. Phylogenetically confirmed to carry the psilocybin biosynthesis gene cluster, but not enough quantitative assay data to establish a reliable potency baseline. Listed as psilocybin-containing by modern genomic studies but limited in practical documentation. Evidence: Low (genomic confirmation; insufficient assay data). Potency: Below Average (0.6).">
+        <option value="Psilocybe mescaleroensis" data-potency="0.6" data-evidence="Low" data-origin="New Mexico, USA — Mescalero Apache territory" data-description="Described from coniferous forests near Mescalero Apache territory in New Mexico, USA. Found on enriched soils in high-altitude pine/fir forests. Very sparse data — known primarily from the original description. Named for the Mescalero Apache people of the region. Psychoactivity assumed based on species placement; no modern quantitative assay data. Evidence: Low (original description; no follow-up studies). Potency: Below Average (0.6).">
+        <option value="Psilocybe natalensis" data-potency="1.1" data-evidence="Moderate" data-origin="KwaZulu-Natal, South Africa" data-description="Originally thought to be a P. cubensis variety from South Africa, but recent genetic testing confirmed it as a distinct species (P. natalensis). Native to subtropical grasslands of KwaZulu-Natal. The 2026 HPTLC study showed a relative psilocin band. Community reports describe the experience as 'cleaner' and 'smoother' than cubensis, with fewer side effects and superior visuals. More resistant to contamination than cubensis due to vigorous rhizomorphic growth. Evidence: Moderate (genetic confirmation; HPTLC data; community reports). Potency: Slightly Above Average (1.1).">
+        <option value="Psilocybe oaxacana" data-potency="0.6" data-evidence="Low" data-origin="Oaxaca, Mexico" data-description="A small species described from Oaxaca, Mexico. Described by mycologist Gastón Guzmán from specimens collected in the Sierra Juárez region. Grows at high altitude in cloud forest habitats. Very limited chemical data published beyond the original description. Assumed to contain psilocybin based on species placement and habitat. Evidence: Low (Guzmán original description; no modern assays). Potency: Below Average (0.6).">
+        <option value="Psilocybe pelliculosa" data-potency="0.4" data-evidence="Low" data-origin="Pacific Northwest, USA / Canada" data-description="A Pacific Northwest species found on wood chips and mossy areas in coniferous forests of the PNW and British Columbia. Multiple assays report consistently low psilocybin (0.1–0.2% dry weight). Not considered a potent source; sometimes mistaken for P. stuntzii or P. baeocystis in the field. Edibility-wise it is not suggested and not practical for psilocybin use given its low alkaloid content. Evidence: Low (limited assays reporting low psilocybin). Potency: Very Low (0.4).">
+        <option value="Psilocybe portoricensis" data-potency="0.6" data-evidence="Low" data-origin="Puerto Rico" data-description="A species from Puerto Rico related to other Mesoamerican and Caribbean species. Very limited published data — known from the original species description and a small number of collections. Listed as psilocybin-containing in references but unstudied with modern analytical methods. Assume low-to-moderate potency pending better data. Evidence: Low (original description only). Potency: Below Average (0.6).">
+        <option value="Psilocybe samuiensis" data-potency="0.7" data-evidence="Low" data-origin="Koh Samui, Thailand — first described 1993" data-description="First described from Koh Samui island, Thailand in 1993 — the first psilocybin mushroom formally described from Asia. A small, caramel-brown species growing in buffalo dung and clay soils on the island. Sclerotia have been reported in some cultivated strains. Potency appears comparable to P. mexicana based on limited data. The species has cultural significance given the Thai island's association with 'mushroom shakes' in the backpacker tourism era. Evidence: Low (original species description; limited follow-up). Potency: Below Average (0.7).">
+        <option value="Psilocybe serbica" data-potency="1.5" data-evidence="High" data-origin="Central/Eastern Europe — Serbia, Czech Republic" data-description="A Central and Eastern European wood-loving species complex including the well-known variety P. serbica var. bohemica from Bohemia (Czech Republic). One of the few potent wild Psilocybe species native to Europe alongside P. semilanceata and P. cyanescens. Grows on decaying broadleaf wood and woody debris. Modern HPLC assays and genomic studies (PNAS 2024) confirm the full psilocybin biosynthesis cluster. High psilocybin reported in some specimens; considered comparable in potency to P. cyanescens in good samples. Evidence: High (HPLC assays; PNAS 2024 genomics). Potency: High (1.5).">
+        <option value="Psilocybe sierrae" data-potency="0.6" data-evidence="Low" data-origin="Sierra Nevada foothills, California, USA" data-description="A California species described from the Sierra Nevada foothills. Found in a limited geographic area, typically in enriched grasslands and forest clearings at higher elevations. Known primarily from its species description; very sparse modern assay data. Assumed to contain psilocybin based on species placement. Evidence: Low (original description; no modern HPLC data). Potency: Below Average (0.6).">
+        <option value="Psilocybe silvatica" data-potency="0.5" data-evidence="Low" data-origin="Europe, North America" data-description="A woodland species found in Europe and North America, typically on decaying woody debris and mossy areas in deciduous forests. Historically listed as psilocybin-containing; limited assay data suggests low and inconsistent alkaloid content. Not commonly encountered in practice; primarily of academic interest. Evidence: Low (sparse assay data; no modern HPLC confirmation). Potency: Below Average (0.5).">
+        <option value="Psilocybe strictipes" data-potency="1.2" data-evidence="Moderate" data-origin="Europe — Netherlands, UK" data-description="A close relative of P. semilanceata found primarily in the Netherlands and UK, growing in enriched grasslands and lawns. Some comparative assay work suggests it may contain psilocybin at above-average levels in good specimens. Morphologically distinguished from the Liberty Cap by its more cylindrical cap (lacking the prominent umbo) and different stipe features. Limited data but considered potentially useful in regions where it grows abundantly. Evidence: Moderate (comparative assay work; species differentiation studies). Potency: Above Average (1.2).">
+        <option value="Psilocybe subcubensis" data-potency="1.0" data-evidence="Low" data-origin="Tropical worldwide" data-description="Taxonomically considered very closely related to P. cubensis, and sometimes synonymised with it entirely in modern treatments. Found in tropical regions worldwide in similar habitats (dung, enriched soils). Potency is assumed to be similar to P. cubensis; no separate reliable assay data. If you have what is labelled subcubensis, treat it as standard cubensis baseline. Evidence: Low (taxon allied to P. cubensis; no separate assays). Potency: Average (1.0).">
+        <option value="Psilocybe subtropicalis" data-potency="5.0" data-evidence="Moderate" data-origin="Subtropical regions — enhanced breeding" data-description="Enhanced breeding variants of subtropical Psilocybe species have reportedly reached extraordinarily high alkaloid concentrations approaching ~5% through selective breeding programs. This figure — if verified — would represent one of the highest alkaloid concentrations ever recorded. Treat with extreme caution: even a fraction of a normal dose could be overwhelming. The evidence behind the 5% figure relies on competition and breeder reports rather than independent peer-reviewed assays. Evidence: Moderate (breeding reports and competition assay data). Potency: Extremely High (5.0).">
+        <option value="Psilocybe thaizapoteca" data-potency="0.7" data-evidence="Low" data-origin="Oaxaca, Mexico" data-description="A recently described Mexican species from the highlands of Oaxaca. The name combines 'thai' (referring to certain morphological similarities) and 'zapoteca' (Zapotec region). Described by Guzmán and colleagues. Grows in similar habitats to P. zapotecorum. Very sparse modern data; potency assumed comparable to related Mesoamerican species. Evidence: Low (original description; no modern assays). Potency: Below Average (0.7).">
+        <option value="Psilocybe uxpanapensis" data-potency="0.6" data-evidence="Low" data-origin="Uxpanapa region, Veracruz, Mexico" data-description="A Mexican species described from the Uxpanapa region of Veracruz. Found in tropical forest habitats alongside rivers. Described by Guzmán. Sparse quantitative data; known primarily from morphological and ecological documentation. Psychoactivity assumed from species placement in the psilocybin Psilocybe group. Evidence: Low (original description; no modern HPLC). Potency: Below Average (0.6).">
+        <option value="Psilocybe venenata" data-potency="0.7" data-evidence="Low" data-origin="Japan" data-description="A Japanese species historically documented as psilocybin-containing — notable as one of the few confirmed psilocybin mushrooms from East Asia. The name 'venenata' means 'poisonous' in Latin, which is somewhat misleading given its psychoactive (rather than lethally toxic) properties. Now considered rare and understudied. Limited modern chemical data; psychoactivity confirmed in older Japanese mycological literature. Evidence: Low (older Japanese mycological references; limited modern confirmation). Potency: Below Average (0.7).">
+        <option value="Psilocybe villarrealiae" data-potency="0.7" data-evidence="Low" data-origin="Jalisco, Mexico" data-description="A Mexican species from Jalisco, described by Guzmán. Found in mixed oak-pine forests. Named for Mexican mycologist María Elena Valenzuela Villarreal. Contains psilocybin based on original description and species placement. Limited modern assay data; potency assumed comparable to similar Mesoamerican species. Evidence: Low (Guzmán original description; no modern HPLC). Potency: Below Average (0.7).">
+        <option value="Psilocybe weraroa" data-potency="0.6" data-evidence="Low" data-origin="New Zealand" data-description="A pouched (secotioid) species from New Zealand — one of the most unusual psilocybin mushrooms morphologically. Rather than a typical mushroom cap, it produces a closed, pouch-like or truffle-shaped fruiting body that never opens fully. Contains psilocybin but modern quantitative data is mixed and limited. A fascinating evolutionary case of a psilocybin species that has lost typical mushroom morphology. Evidence: Low (modern chemical data limited and mixed; morphological studies). Potency: Below Average (0.6).">
+        <option value="Psilocybe yungensis" data-potency="0.8" data-evidence="Low" data-origin="Mexico, Colombia — cloud forests" data-description="Found in Mexico and Colombia at higher altitudes in cloud forests and coffee plantations. Grows on decaying plant matter and enriched soils. Used in traditional practices in some Colombian communities. Limited modern assay data; potency estimated comparable to P. mexicana based on related species and traditional use context. Evidence: Low (sparse assays; ethnobotanical references). Potency: Below Average (0.8).">
+        <option value="Albino A+" data-potency="1.0" data-evidence="Low" data-origin="USA — A+ albino mutation" data-description="A leucistic (near-albino) phenotype of the A+ cubensis strain, characterised by white to cream-coloured caps and stems with a blue bruising reaction. A+ itself is a robust, easy-to-grow cubensis variety; the Albino A+ mutation retains these growth traits. Despite community speculation about elevated potency in albino phenotypes, there is no confirmed evidence that Albino A+ is systematically stronger than standard cubensis. Effects are typical cubensis — balanced visuals, euphoria, and introspection. Evidence: Low (community reports; no formal potency assays). Potency: Average (1.0).">
+        <option value="Burma" data-potency="1.0" data-evidence="Low" data-origin="Myanmar (Burma)" data-description="A P. cubensis strain reportedly collected in Burma (Myanmar). Known in the cultivation community as a fast, aggressive coloniser similar to Cambodian — tolerant of suboptimal conditions and resistant to contamination. Produces medium to large fruits with consistent flushes. Effects reported as energetic and uplifting with moderate visuals. Potency is considered average for cubensis; no formal assays available. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Cambodian" data-potency="0.8" data-evidence="Low" data-origin="Cambodia — collected near Angkor Wat" data-description="Originally collected near Angkor Wat, Cambodia. Prized in the cultivation community as one of the fastest colonising cubensis strains — ideal for beginners due to contamination resistance and ease of growth. Produces medium-sized fruits with above-average yields. The trade-off is lower potency; community reports consistently place it below baseline cubensis for intensity. A practical choice for learning cultivation before moving to more demanding or potent strains. Evidence: Low (community/anecdotal; no formal assays). Potency: Below Average (0.8).">
+        <option value="Costa Rican" data-potency="1.0" data-evidence="Low" data-origin="Costa Rica" data-description="A P. cubensis strain from the rainforests of Costa Rica. Known for producing large, caramel-capped fruits with thick stems. Favoured for its reliable contamination resistance and consistent flushes. Community reports describe a warm, visually colourful experience with a relatively gentle body load — suited for beginners or outdoor settings. Average potency for cubensis. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Ecuadorian" data-potency="1.0" data-evidence="Low" data-origin="Ecuador — high-altitude regions near the Andes" data-description="A P. cubensis strain collected from high-altitude regions of Ecuador, often near the Andes. Produces large, meaty fruits with broad caps — one of the larger-fruiting cubensis strains. Moderate-to-fast coloniser. Effects described as colourful and euphoric with good body sensation — often cited as a pleasant all-rounder. Average potency; one of the more beginner-friendly geographic strains. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Fiji" data-potency="1.0" data-evidence="Low" data-origin="Fiji Islands, Pacific" data-description="A P. cubensis strain collected from the Fiji Islands. Moderately fast coloniser with above-average yields. Produces thick-stemmed fruits with broad caramel caps. Community reports are sparse but generally positive — balanced effects typical of cubensis. Sometimes reported to have a particularly earthy flavour. Average potency; limited documentation. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Hawaiian" data-potency="1.0" data-evidence="Low" data-origin="Hawaii, USA (disputed — possibly vendor name)" data-description="Despite the name, this P. cubensis strain may not be genuinely endemic to Hawaii — some accounts suggest the name is a vendor label. A popular early cultivation variety known for consistent growth and above-average yields. Produces broad, golden-capped fruits. Effects are typical cubensis — balanced visuals, euphoria, and moderate body load. Average potency; not to be confused with PES Hawaiian (a different vendor strain). Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Huautla" data-potency="1.0" data-evidence="Low" data-origin="Huautla de Jiménez, Oaxaca, Mexico" data-description="A P. cubensis strain associated with the Mazatec town of Huautla de Jiménez in Oaxaca — the same community where María Sabina performed legendary mushroom ceremonies witnessed by R. Gordon Wasson in 1955, which introduced psilocybin mushrooms to Western culture. Slow grower but culturally significant lineage. Effects described as introspective and spiritual — befitting its ceremonial heritage. Average potency. Evidence: Low (community/anecdotal). Potency: Average (1.0).">
+        <option value="Jedi Mind Fuck (JMF)" data-potency="1.5" data-evidence="Low" data-origin="USA — early 2000s vendor selection" data-description="A P. cubensis cultivar with an attention-grabbing name and a reputation to partially match it. Origin is obscure — likely a vendor selection from the early 2000s online community. Known for producing above-average visual intensity and a strong cerebral component compared to typical cubensis strains. Fast-growing and decent yielder. Community reports are notably variable (some find it unremarkable, others find it quite strong), suggesting batch-to-batch variability typical of unverified community strains. No formal assays. Evidence: Low (anecdotal community reports). Potency: High (1.5).">
+        <option value="Koh Samui (KS)" data-potency="0.9" data-evidence="Low" data-origin="Koh Samui, Thailand" data-description="A P. cubensis strain originally collected on Koh Samui island, Thailand — an island long associated with 'mushroom shakes' served in beach bars. Produces small to medium fruiting bodies but multiple dense flushes with above-average yield. Fast coloniser. Reportedly more body-heavy than average cubensis with moderate visuals. Potency is considered slightly below average; often suggested for beginners who want a manageable, warm experience. Evidence: Low (community reports). Potency: Below Average (0.9).">
+        <option value="Malabar" data-potency="1.0" data-evidence="Low" data-origin="Malabar Coast, India" data-description="A P. cubensis strain from the Malabar Coast of southwestern India. Produces large, dense fruits with thick caps and stems — one of the more impressive-looking cubensis strains. Known as a fast, vigorous coloniser with good yields and contamination resistance. Effects reported as uplifting and euphoric with moderate visuals — considered beginner-friendly. The Malabar Coast is the origin region for several popular cubensis strains and related isolates. Average potency. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Mexican" data-potency="1.0" data-evidence="Low" data-origin="Mexico (geographic label — multiple lineages)" data-description="A generic label applied to various P. cubensis strains collected across Mexico. Potency and effects vary significantly depending on the specific lineage. Note: 'Mexican' cubensis should not be confused with Psilocybe mexicana — an entirely different species used in Aztec ceremonies. When referring to P. cubensis with a Mexican geographic label, expect average potency. Mexico has been historically one of the most important sources of psilocybin mushroom diversity. Evidence: Low (community reports; multiple undefined lineages). Potency: Average (1.0).">
+        <option value="Orissa India (OI)" data-potency="1.0" data-evidence="Low" data-origin="Odisha (formerly Orissa), India" data-description="A P. cubensis strain from Odisha (formerly Orissa), India. One of the larger cubensis varieties — known for producing impressively large fruiting bodies, sometimes described as among the biggest in the cubensis world. Moderate colonisation speed but generous yields. Effects are typical cubensis; potency average. The large fruiting bodies make it visually impressive even if pharmacologically standard. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="PES Amazonian (PESA)" data-potency="1.0" data-evidence="Low" data-origin="Amazon Basin (Pacific Exotica Spores vendor)" data-description="A vendor label from Pacific Exotica Spores (PES) for an Amazonian P. cubensis isolate — historically one of the most popular spore vendor offerings in the early online cultivation era. Fast and reliable coloniser with large fruits. Average potency; a classic beginner strain. Note: PES Amazonian and 'Amazonian' may refer to similar or overlapping lineages depending on the vendor. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="PES Hawaiian (PESH)" data-potency="1.0" data-evidence="Low" data-origin="Hawaii (Pacific Exotica Spores vendor)" data-description="A vendor label from Pacific Exotica Spores (PES) for a Hawaiian P. cubensis isolate. Similar growth characteristics to PES Amazonian — fast, reliable, and good yields. Average potency. A classic early online-era vendor strain. Distinct from the plain 'Hawaiian' strain depending on vendor source. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Puerto Rican (PR)" data-potency="1.0" data-evidence="Low" data-origin="Puerto Rico" data-description="A P. cubensis strain with origins attributed to Puerto Rico. Produces medium-to-large fruits with golden-brown caps. Reports are consistent with average cubensis potency. Moderate contamination resistance; relatively easy to grow. Effects are typical cubensis — balanced visuals and euphoria. Occasionally produces unusually wide, dinner-plate caps. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="South American (SA)" data-potency="1.0" data-evidence="Low" data-origin="South America — Colombia, Brazil, Peru" data-description="A broad geographic label for P. cubensis strains collected from various South American countries (Colombia, Brazil, Peru, etc.). Variable potency and characteristics depending on the specific lineage. Generally considered average cubensis baseline. Multiple distinct strains may be sold under this name by different vendors. Evidence: Low (community reports; multiple undefined lineages). Potency: Average (1.0).">
+        <option value="Thai" data-potency="0.9" data-evidence="Low" data-origin="Thailand — island beach culture (Koh Phangan / Koh Samui)" data-description="P. cubensis strains from Thailand, historically associated with the backpacker 'mushroom shake' culture around Koh Samui and Koh Phangan. Multiple Thai lineages exist under this label. Generally considered average to slightly below average potency; some strains overlap with Koh Samui. Colonisation tends to be fast in Thai-origin strains. Effects are warm and euphoric with moderate visuals. Evidence: Low (community reports). Potency: Below Average (0.9).">
+        <option value="Transkei" data-potency="1.1" data-evidence="Low" data-origin="Transkei, Eastern Cape, South Africa" data-description="A P. cubensis strain from the Transkei region of South Africa's Eastern Cape province. Known for producing golden-orange caps and moderate yields. Often described as producing a more active, moving visual experience compared to typical cubensis — sometimes called SAT (South African Transkei). Reports suggest a more energetic, body-forward onset than many other cubensis strains. Beginner-accessible with slightly above-average effects. Evidence: Low (community reports). Potency: Slightly Above Average (1.1).">
+        <option value="Z-Strain (ZS)" data-potency="1.0" data-evidence="Low" data-origin="USA — early online vendor selection" data-description="A popular P. cubensis vendor strain known for aggressive rhizomorphic growth, fast colonisation, and above-average yields. The 'Z' origin is obscure — likely a vendor selection from the early online era (possibly Richard Gee's lineage). Competitive coloniser that works well on many substrates. One of the most popular beginner strains due to forgiving nature and fast results. Average potency; a favourite for first-time growers wanting reliable output. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Blue Pulaski (BP)" data-potency="1.2" data-evidence="Low" data-origin="USA — community selection" data-description="A P. cubensis community isolate named for its notably vivid blue bruising reaction on caps when handled — an indication of psilocin oxidation. Community reports suggest above-average visual intensity and a clean cerebral onset. Origin and genetics are undocumented; a later-era community selection. The deep blue bruising is one of the most visually striking of any cubensis strain. No formal assays. Evidence: Low (community reports). Potency: Above Average (1.2).">
+        <option value="Ghost" data-potency="1.7" data-evidence="Moderate" data-origin="USA — TAT/True Albino Teacher breeder lineage" data-description="A family of isolates descended from True Albino Teacher (TAT), a leucistic Golden Teacher phenotype. The Ghost lineage was developed by breeders focusing on elevated potency alongside albino aesthetics. Some assays from community Cup entries place selections in this family significantly above standard cubensis baseline. Community reports are consistently enthusiastic about potency and experience quality. The 'Ghost' name refers to the pale, near-white phenotype and the lineage's reputation for an intense, ethereal quality of experience. Evidence: Moderate (community/breeder assays; multiple Cup entries). Potency: High (1.7).">
+        <option value="Tidal Wave (TW)" data-potency="1.7" data-evidence="High" data-origin="USA — lab hybrid (PE × B+)" data-description="A hybrid of Penis Envy × B+, combining PE potency with B+ vigour and ease of cultivation. Won the 2021 Spring Hyphae Cup — but importantly, the record-breaking 3.82% total tryptamines came from a spontaneous Enigma blob mutation of this strain (labelled Tidal Wave 2 by the grower), not from standard fruiting bodies. Regular Tidal Wave fruits averaged ~1.17% total tryptamines across multiple Cup entries, still well above typical cubensis baseline. Fast coloniser with above-average yields. Evidence: High (multiple Hyphae Cup HPLC assays). Potency: High (1.7).">
+        <option value="PF Classic (PFC)" data-potency="1.0" data-evidence="Low" data-origin="USA — Robert McPherson 'Psilocybe Fanaticus'" data-description="Named after Robert McPherson, who used the online handle 'Psilocybe Fanaticus' and developed the famous PF Tek method — growing psilocybin mushrooms on brown rice flour in small jars. PF Classic refers to his associated cubensis culture. One of the most historically significant strains in home cultivation, responsible for spreading amateur mushroom growing throughout the 1990s internet. Average potency; easy to grow using original PF Tek instructions. Evidence: Low (community/historical). Potency: Average (1.0).">
+        <option value="Enigma" data-potency="3.2" data-evidence="High" data-origin="USA — spontaneous mutation of Tidal Wave" data-description="A spontaneous sporeless mutation of the Tidal Wave strain (PE × B+), producing bizarre brain/blob-shaped growth instead of normal fruiting bodies. The 2021 Spring Hyphae Cup Recreational Champion sample tested at 3.82% total tryptamines (2.26% psilocybin + 1.56% psilocin) — the highest confirmed result for any cubensis in competition history. Because it produces no spores, it can only be propagated via agar culture. Its unusual growth pattern means yields are unpredictable. Extremely potent; dose with extreme caution — treat as 3× stronger than average cubensis. Evidence: High (HPLC assay, Hyphae Labs, 2021). Potency: Extremely High (3.2).">
+        <option value="Brainiac" data-potency="1.6" data-evidence="Low" data-origin="USA — Tidal Wave phenotype" data-description="A phenotype/derivative from the Tidal Wave family exhibiting unusual morphological characteristics — dense, layered caps with a heavier-than-average fruiting body. Related to the Enigma mutation family but retains more normal growth patterns. Community reports emphasise cerebral intensity and strong visuals. No formal assays specific to Brainiac; regarded as potent but below the extreme Enigma mutation. Evidence: Low (community/breeder reports). Potency: High (1.6).">
+        <option value="Long Ghost" data-potency="1.7" data-evidence="Low" data-origin="USA — Ghost/TAT lineage selection" data-description="A Ghost-family isolate selected for unusually elongated stipes — the long, elegant stems are both aesthetically distinctive and practically useful for dosing by weight. Bred for aesthetics combined with maintained Ghost-lineage potency reputation. Community reports are enthusiastic and consistent with other Ghost-family strains. No formal assays; potency assumed from lineage. Evidence: Low (community/breeder reports). Potency: High (1.7).">
+        <option value="Blue Ghost" data-potency="1.7" data-evidence="Low" data-origin="USA — Ghost lineage × blue-cap hybrid" data-description="A hybrid selection combining Ghost/TAT lineage with blue-cap isolates. The 'blue' refers to both the striking blue bruising reaction and the slightly blue-tinted cap surface on some phenotypes. Visually striking with Ghost-lineage potency reputation. Community reports of high potency are consistent with other Ghost family members. No formal assays. Evidence: Low (community/breeder reports). Potency: High (1.7).">
+        <option value="Golden Ghost" data-potency="1.7" data-evidence="Low" data-origin="USA — Ghost × Golden Teacher lineage" data-description="A cross between Golden Teacher-derived lineage and Ghost/TAT isolates. Combines GT's reliable, consistent growth and mild visual appearance with Ghost's potency reputation. Produces golden-capped fruits with near-white stems — a visually appealing phenotype. Community reports above-average potency with a characteristically warm, insightful quality that the GT lineage is known for. No formal assays. Evidence: Low (community/breeder reports). Potency: High (1.7).">
+        <option value="Swamp Ghost" data-potency="1.6" data-evidence="Low" data-origin="USA — Ghost lineage × swamp/wild isolate" data-description="A selection from the Ghost lineage crossed with unspecified swamp or wild-collected isolates. Less documented than other Ghost variants. Community reports of potency consistent with the Ghost family, with some reports of a heavier, more body-focused experience than typical Ghost selections. No formal assays. Evidence: Low (community/breeder reports). Potency: High (1.6).">
+        <option value="Jack Frost (JF)" data-potency="1.0" data-evidence="Moderate" data-origin="USA — lab cross (TAT × APE)" data-description="A cross of True Albino Teacher (TAT) and Albino PE, producing an all-white fruiting body with a frosted crystalline appearance at maturity caused by spore deposits forming on the cap surface before the veil breaks. Visually one of the most striking cubensis strains. Despite the impressive PE-crossed genetics, lab tests around 1% total tryptamines place it at average potency — the albino aesthetics did not translate to elevated pharmacology in this cross. Very popular for aesthetics regardless. Evidence: Moderate (lab tests ~1% tryptamines). Potency: Average (1.0).">
+        <option value="Yeti" data-potency="1.6" data-evidence="Low" data-origin="USA — TAT isolation, large albino phenotype" data-description="A TAT-family isolate selected for large, albino fruiting bodies. The 'Yeti' name references the large white appearance of the fruiting bodies. Considered one of the more vigorous white cubensis strains with good yields for an albino. Community and breeder reputation for above-average potency, consistent with other TAT/Ghost-family isolates. No formal assays; potency assumed from lineage. Evidence: Low (community/breeder reports). Potency: High (1.6).">
+        <option value="Blue Shakti" data-potency="1.3" data-evidence="Low" data-origin="USA — Malabar-derived albino isolation" data-description="A Malabar Coast-derived leucistic/albino isolation developed by breeders interested in combining South Asian cubensis genetics with albino aesthetics. The 'Shakti' name references Hindu goddess Shakti, fitting given the Indian Malabar origin. Community reports consistently note above-average potency and a smooth, flowing quality to the experience. No formal assays. Evidence: Low (community/breeder reports). Potency: Above Average (1.3).">
+        <option value="Riptide (RT)" data-potency="1.4" data-evidence="Low" data-origin="USA — breeder selection" data-description="A compact, dense cubensis selection with a reputation for consistent, reliable potency. Multiple stable isolates exist under this name. Community describes the experience as body-heavy with good visual quality — the short, wide fruiting body shape (resembling a wave just before it crests) is characteristic. One of the more consistent modern community strains in terms of potency reports. No formal assays. Evidence: Low (community reports). Potency: High (1.4).">
+        <option value="Albino Riptide" data-potency="1.4" data-evidence="Low" data-origin="USA — Riptide albino phenotype" data-description="The albino phenotype of the Riptide strain. Retains Riptide's characteristic compact, dense fruiting body in an all-white/cream version with intense blue bruising. Community reports are consistent with standard Riptide potency — above-average and reliable. Visually striking; popular with collectors and those who appreciate the contrast between the white body and vivid blue bruising. No formal assays. Evidence: Low (community reports). Potency: High (1.4).">
+        <option value="Makilla Gorilla (MG)" data-potency="1.6" data-evidence="Moderate" data-origin="USA — modern PE/Melmac-style breeder" data-description="A modern breeder selection from PE/Melmac-family lineages. Named for the large, gorilla-like size of its fruiting bodies. Some assays have shown notably high psilocybin (up to 1.93%), placing it among the more potent modern cubensis selections. Developed for both potency and yield — large, dense fruits with the PE-style thick stems. Community reports are consistently above average. Evidence: Moderate (community assays up to 1.93% psilocybin). Potency: High (1.6).">
+        <option value="TWAPE" data-potency="1.8" data-evidence="Low" data-origin="USA — lab hybrid (Tidal Wave × APE)" data-description="A cross of Tidal Wave (PE × B+) with Albino PE, stacking PE genetics heavily (PE appears in both parents). Breeder claims suggest very high potency in some isolations — the triple PE genetics (PE in TW, plus APE) should theoretically amplify the PsiM gene effect. No formal competition assays; community reports are variable but consistently above average and trending very high. Near-sterile like other PE-heavy hybrids; agar propagation required. Evidence: Low (community/breeder reports; no formal HPLC). Potency: Very High (1.8).">
+        <option value="TWAPE Variants" data-potency="1.7" data-evidence="Low" data-origin="USA — TWAPE downstream isolations" data-description="Multiple downstream isolations from Tidal Wave × APE crosses. Variable phenotypes ranging from near-white albino to speckled and standard colour. The 'variants' label covers a range of inbred PE-heavy isolates that different breeders have stabilised from the original cross. Generally high potency reputation across all phenotypes. No formal assays on specific variants. Evidence: Low (community/breeder reports). Potency: High (1.7).">
+        <option value="Golden Jack (GJ)" data-potency="1.1" data-evidence="Low" data-origin="USA — lab cross (GT × Jack Frost)" data-description="A breeder cross between Golden Teacher-derived lineage and Jack Frost (TAT × APE). Visually distinctive — pale to near-white coloration from the Jack Frost parent combined with GT's golden-brown cap genetics produces variable but interesting phenotypes. Potency reported near baseline or slightly above by community — the GT genetics appear to bring potency back toward average despite Jack Frost's PE lineage. No formal assays. Evidence: Low (community/breeder reports). Potency: Slightly Above Average (1.1).">
+        <option value="Squatty Riptide" data-potency="1.4" data-evidence="Low" data-origin="USA — Riptide phenotype selection" data-description="The squat, compact phenotype selection of the Riptide family — selected specifically for extremely short stipes and wide, dense caps. Community reports consistently note body-heavy effects and good visual quality consistent with the Riptide family. Some stable isolates in circulation with breeder documentation. No formal assays. Evidence: Low (community reports). Potency: High (1.4).">
+        <option value="Steel Magnolia (SM)" data-potency="1.5" data-evidence="Low" data-origin="USA — lab cross (PE × Blue Magnolia)" data-description="A cross of Penis Envy lineage with Blue Magnolia isolates (Blue Magnolia is itself a PE-related selection with distinctive blue cap colouring). The name 'Steel Magnolia' references PE's robust genetics (the steel) combined with Blue Magnolia's aesthetics (the magnolia). Community reports above-average potency with visually interesting blue-cap phenotypes. No formal assays. Evidence: Low (community/breeder reports). Potency: High (1.5).">
+        <option value="DC Mak" data-potency="1.5" data-evidence="Low" data-origin="USA — PE family isolation" data-description="A PE-family isolation from an independent breeder/vendor. Known in community circles for dense fruiting bodies and strong community potency reports. Related to Makilla Gorilla lineage by some accounts — the 'Mak' in both names suggests a shared or parallel breeding project. No formal assays but community consensus places it in the upper-tier cubensis potency range. Evidence: Low (community/breeder reports). Potency: High (1.5).">
+        <option value="Melmac" data-potency="1.5" data-evidence="Low" data-origin="USA — PE family selection" data-description="A Penis Envy-derived isolate, sometimes called 'Melmac PE' or 'Home Depot PE'. Characterised by a distinctive wavy, contorted cap edge that makes it visually distinctive from standard PE. Retains the PE characteristics of dense stems and high potency but reportedly fruits slightly more reliably than standard PE. Like PE, it produces very few viable spores and needs agar for propagation. Community considers it in the same potency tier as APE and standard PE. Evidence: Low (community/breeder reports; no formal assays specific to Melmac). Potency: High (1.5).">
+        <option value="Uncut Envy" data-potency="1.6" data-evidence="Low" data-origin="USA — PE phenotype/vendor selection" data-description="A PE phenotype/line marketed as an 'uncut' or 'original' Penis Envy selection — the implication being it has not been outcrossed or diluted with other genetics. Community reports strong potency consistent with the PE family. The 'uncut' branding is a marketing claim with no formal verification; it may refer to a specific breeder's PE isolation that they consider closer to the original Pollock lineage. No formal assays. Evidence: Low (community/breeder reports). Potency: High (1.6).">
+        <option value="Albino Chode Wave (ACW)" data-potency="1.5" data-evidence="Low" data-origin="USA — modern breeder albino selection" data-description="A modern breeder albino cubensis isolate with a compact, wide-capped fruiting body. Representative of the wave of aesthetic/potency-focused cubensis breeding in the 2020s. The 'chode wave' name references the unusually wide, stubby (chode-shaped) fruiting body morphology combined with wave-cresting cap edges. Above-baseline potency reputation from community; no formal assays. Evidence: Low (community/breeder reports). Potency: Above Average (1.5).">
+        <option value="Blue Pulaski × Ghost" data-potency="1.7" data-evidence="Low" data-origin="USA — hybrid (Blue Pulaski × Ghost lineage)" data-description="A hybrid project combining Blue Pulaski (notable blue-cap cubensis isolate) with Ghost/TAT lineage (albino, high-potency PE-adjacent line). Developed for combining the visual distinctiveness of Blue Pulaski's intense bruising with Ghost-level potency. Breeder documentation only; no formal assays. Expected to carry above-average potency from both parent strains. Evidence: Low (breeder reports). Potency: High (1.7).">
+        <option value="Hillbilly" data-potency="1.0" data-evidence="Low" data-origin="Arkansas, USA" data-description="A P. cubensis strain originating from Arkansas, USA. Known in the community for an unusually social, giggly, and uplifting experience compared to most cubensis strains — often described as a 'party strain'. Easy to grow with consistent flushes and good contamination resistance. Average potency. The Hillbilly Pumpkin mutation (a round, bulbous cap variant) is a related phenotype prized for aesthetics. A good choice if you want a lighter, more social experience. Evidence: Low (community/anecdotal reports). Potency: Average (1.0).">
+        <option value="Rusty Whyte" data-potency="1.0" data-evidence="Low" data-origin="USA — lab cross (Albino A+ × Colombian Rust)" data-description="A leucistic (off-white) cubensis hybrid created by crossing Albino A+ with Colombian Rust spores. Developed as a stable, visually distinctive alternative to full albinos. Produces white to cream caps with rusty-orange edges and patches on some specimens — hence the name. One of the more aesthetically unique non-albino cubensis strains. Average potency; reliable grower with good yields. Evidence: Low (community reports). Potency: Average (1.0).">
+        <option value="Avery's Albino (AA)" data-potency="0.9" data-evidence="Low" data-origin="USA — true albino mutation of Cambodian" data-description="A true albino mutation isolated from the Cambodian cubensis lineage. Produces ghostly white fruiting bodies that are visually stunning — lacking any pigmentation whatsoever, unlike the more common leucistic 'albino' variants. True albinos are rarer and more fragile than leucistic strains. Potency is assumed comparable to the Cambodian parent (slightly below average) given the genetic relationship. Limited information available — largely a collector's strain for aesthetics. Evidence: Low (community reports; inferred from parent strain). Potency: Below Average (0.9).">
+        <option value="Psilocybe ingeli" data-potency="0.0" data-evidence="Low" data-origin="Ingeli Forest, KwaZulu-Natal, South Africa" data-description="Newly described (2023) from the Ingeli Forest in KwaZulu-Natal, South Africa — one of several new African Psilocybe species formally documented in recent years. Traditional use by local communities has been reported. No quantitative potency data published yet. Named for the Ingeli Forest locality. Expected to contain psilocybin based on species placement; actual levels unknown. Evidence: Low (recent species description 2023; no assay data). Potency: Unknown.">
+        <option value="Psilocybe maluti" data-potency="0.0" data-evidence="Low" data-origin="Maluti Mountains, Lesotho / South Africa" data-description="Newly described (2023) from the Maluti mountain range spanning Lesotho and South Africa. Used in traditional cultural practices in the region. No quantitative potency data published to date. Part of a recent wave of formally described African Psilocybe species. Expected to contain psilocybin based on taxonomy; actual concentrations unknown. Evidence: Low (recent species description 2023; no assay data). Potency: Unknown.">
+        <option value="TTBVI" data-potency="5.0" data-evidence="Moderate" data-origin="USA — interspecies hybrid (includes P. azurescens genes)" data-description="An extraordinary interspecies hybrid reportedly incorporating P. azurescens genetics into a P. cubensis background. Won a potency competition with a reported alkaloid content exceeding 5% — which, if verified, would be the highest ever recorded for any cultivated psilocybin mushroom. This figure is based on competition and breeder reports rather than independent peer-reviewed assays and should be treated with significant caution. If the 5% figure is accurate, even a fraction of a normal dose would be overwhelming. Dose with extreme caution pending independent verification. Evidence: Moderate (competition entry; breeder/assay reports). Potency: Extremely High (5.0).">
+        <option value="Pearly Gates (PG)" data-potency="1.8" data-evidence="Low" data-origin="USA — competition winner, lineage unclear" data-description="A potent modern cubensis hybrid that reportedly won the Recreational category at a community potency competition. Limited documentation on lineage — likely a PE-family cross given the high potency reports. Community buzz and competition win place it in the very high tier. No independently verified assay data beyond competition results. Very high community potency reputation; treat with appropriate caution. Evidence: Low (community/competition reports). Potency: Very High (1.8).">
+        <option value="Gymnopilus luteofolius" data-potency="0.4" data-evidence="Low" data-origin="North America, Europe — wood-rotting species" data-description="A yellow-gilled wood-rotting mushroom found across North America and Europe, growing in clusters on decaying hardwood. Historically listed as psilocybin-containing. Modern assays are inconsistent — some confirm psilocybin at very low levels, others do not. Unreliable as a psilocybin source; not practical for use. Not to be confused with the more commonly listed Gymnopilus junonius. Evidence: Low (inconsistent assays; historical references). Potency: Very Low (0.4).">
+        <option value="Inocybe aeruginascens" data-potency="0.5" data-evidence="Low" data-origin="Central Europe — found in sandy soils, parks" data-description="A small European species that stains blue-green when damaged — unusual for the Inocybe genus, where most species are either non-psychoactive or contain muscarine (a toxic compound). Contains psilocybin, baeocystin, and aeruginascin. Found in sandy soils in parks and roadsides of Central Europe. WARNING: The Inocybe genus contains many deadly toxic look-alikes containing muscarine. Misidentification risk is extremely high — this is not a safe species to forage under any circumstances. Evidence: Low (alkaloid presence confirmed; Gartz reports). Potency: Below Average (0.5).">
+        <option value="Pluteus americanus" data-potency="0.5" data-evidence="Low" data-origin="Eastern North America" data-description="An eastern North American wood-rotting species growing on decaying hardwood logs and stumps. Contains psilocybin alongside aeruginascin and baeocystin — making it one of the few confirmed psilocybin-containing Pluteus species in North America. Mushroom has a grey-brown cap with distinctive pink-tinted gills at maturity. Potency is low and inconsistent across specimens. Not a practical source but notable as a psilocybin-containing Pluteus. Evidence: Low (alkaloid presence confirmed; limited assay data). Potency: Below Average (0.5).">
+        <option value="Bluey Vuitton (BV)" data-potency="1.8" data-evidence="Moderate" data-origin="USA — modern hybrid (Panama × Melmac PE)" data-description="A modern PE hybrid crossing Panama cubensis with Melmac PE. Developed around 2024–2025 and rapidly gaining community popularity for high potency combined with Melmac's relative ease of cultivation. The Panama genetics add aggressive colonisation and vigour while Melmac contributes PE-level potency. Named in the fashion-brand style common to modern boutique strain naming. Strong community and some early test reports. Evidence: Moderate (community/breeder test reports). Potency: Very High (1.8).">
+        <option value="Albino Bluey Vuitton (ABV)" data-potency="1.9" data-evidence="Low" data-origin="USA — Bluey Vuitton albino phenotype" data-description="The albino/leucistic phenotype of the Bluey Vuitton hybrid. White/cream fruiting bodies with the Bluey Vuitton potency reputation and vigorous Panama/Melmac growth genetics. Less documented than the original strain; community reports are very positive for both aesthetics and potency. Given the strong Melmac PE parent, potency may be even higher than standard BV. No formal assays specific to this phenotype. Evidence: Low (community/breeder reports). Potency: Very High (1.9).">
       </datalist>
     </div>
-    <!-- trip level -->
+
+    <!-- Trip Level -->
     <div class="input-group">
-      <label for="trip-level">Trip Level</label>
-      <select id="trip-level" required aria-label="Select trip level">
-        <option value="" selected></option>
-        <option value="1">Microdose</option>
-        <option value="2">Low</option>
-        <option value="3">Normal</option>
-        <option value="4">High</option>
-        <option value="5">Heroic</option>
-      </select>
+      <label>Trip Level</label>
+      <div class="row-right trip-row-right">
+        <div id="trip-display" onclick="showTripInfo()" title="Click to select trip level" aria-label="Select trip level">Select level…</div>
+        <input type="hidden" id="trip-level" value="">
+      </div>
+      <span class="icon-slot"></span>
     </div>
-    <div id="trip-description"></div>
-    <div id="result"></div>
-    <div style="text-align: center; margin-top: 15px;">
+    <div class="input-group">
+      <label></label>
+      <div class="row-right">
+        <div id="result"></div>
+      </div>
+      <span class="icon-slot"></span>
+    </div>
+
+    <!-- Lemon Tek -->
+    <div class="lemon-row">
       <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek">
-      <label for="lemon-tek" style="margin-left: 5px;">Use Lemon Tek</label>
+      <label for="lemon-tek">Use Lemon Tek</label>
       <span class="info-icon" onclick="showLemonTekInfo()" title="What is Lemon Tek?">ℹ️</span>
     </div>
   </div>
@@ -304,6 +569,14 @@
       <div id="strain-info-text"></div>
     </div>
   </div>
+  <!-- Trip Level Info Modal -->
+  <div id="trip-info-modal" class="modal">
+    <div class="modal-content" style="max-height:85vh;overflow-y:auto;">
+      <span class="close" onclick="closeModal('trip-info-modal')">×</span>
+      <h3 style="color:#9b59b6;margin-top:0">Trip Levels</h3>
+      <div id="trip-info-text"></div>
+    </div>
+  </div>
   <!-- Lemon Tek Info Modal -->
   <div id="lemon-tek-modal" class="modal">
     <div class="modal-content">
@@ -317,26 +590,18 @@
       <h2>Disclaimer</h2>
       <p><strong>This calculator gives rough estimates only. Potency and effects can change with strain, batch, preparation, and many personal factors.</strong></p>
       <p class="ai-note">&gt; Made with help of AI which is also known to <span class="hallucinate">hallucinate</span>.</p>
-      <p id="countdown-text">10 </p>
+      <p id="countdown-text">10</p>
       <button id="close-disclaimer" style="display:none;">OK</button>
     </div>
   </div>
 
   <script>
-    const tripDescriptions = {
-      1: "Microdose: Sub-perceptual effects, may enhance focus and creativity.",
-      2: "Low: Mild effects, slight visual enhancements.",
-      3: "Normal: Standard psychedelic experience, visual and mental effects.",
-      4: "High: Strong effects, potential for profound insights or challenges.",
-      5: "Heroic: Very intense, potentially overwhelming. Not for beginners."
-    };
     const elements = {
       weight: document.getElementById('weight'),
       strain: document.getElementById('strain'),
       tripLevel: document.getElementById('trip-level'),
       lemonTek: document.getElementById('lemon-tek'),
-      result: document.getElementById('result'),
-      tripDescription: document.getElementById('trip-description')
+      result: document.getElementById('result')
     };
     let weightUnit = 'kg';
 
@@ -349,10 +614,22 @@
       });
     });
 
+    function scaleStrainFont() {
+      const input = elements.strain;
+      const len = input.value.length;
+      let size = 0.95;
+      if (len > 22) size = 0.85;
+      if (len > 30) size = 0.78;
+      if (len > 38) size = 0.70;
+      if (len > 46) size = 0.63;
+      input.style.fontSize = size + 'em';
+    }
+
+    elements.strain.addEventListener('input', scaleStrainFont);
+    elements.strain.addEventListener('change', scaleStrainFont);
+    elements.lemonTek.addEventListener('change', calculate);
+
     document.querySelector('.container').addEventListener('input', (e) => {
-      if (e.target.matches('#trip-level')) {
-        elements.tripDescription.textContent = tripDescriptions[e.target.value] || '';
-      }
       calculate();
     });
 
@@ -363,13 +640,17 @@
       const level = elements.tripLevel.value;
       const useLemonTek = elements.lemonTek.checked;
 
-      if (!weight || !strain || !level) {
+      if (!weight || weight <= 0 || !strain || !level) {
         elements.result.innerHTML = 'Please fill all fields.';
         return;
       }
 
       const weightInKg = unit === 'lb' ? weight * 0.453592 : weight;
       const strainOption = document.querySelector(`datalist#strains option[value="${strain}"]`);
+      if (strain && !strainOption) {
+        elements.result.innerHTML = 'Unknown strain — select from the list.';
+        return;
+      }
       const potency = strainOption ? parseFloat(strainOption.getAttribute('data-potency')) : 1.0;
       const baseDosages = { 1: 0.25, 2: 0.7, 3: 1.5, 4: 3, 5: 4.5 };
 
@@ -381,35 +662,67 @@
       let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
       if (useLemonTek) dose *= 0.8;
 
-      let resultText = `Recommended: <span>${dose.toFixed(2)} g</span>`;
-      if (unit === 'lb') {
-        const doseOz = (dose * 0.035274).toFixed(2);
-        resultText += ` <span>(${doseOz} oz)</span>`;
-      }
+      let resultText = `Suggested: <strong>${dose.toFixed(2)} g</strong>`;
+
       elements.result.innerHTML = resultText;
+    }
+
+    function getPotencyLabel(p) {
+      if (p <= 0)   return 'Unknown';
+      if (p < 0.45) return 'Very Low';
+      if (p < 0.95) return 'Below Average';
+      if (p < 1.05) return 'Average';
+      if (p < 1.2)  return 'Slightly Above Average';
+      if (p < 1.4)  return 'Above Average';
+      if (p < 1.75) return 'High';
+      if (p < 2.05) return 'Very High';
+      if (p < 3.5)  return 'Extremely High';
+      return 'Exceptionally High';
     }
 
     function showStrainInfo() {
       const selectedStrain = elements.strain.value;
       const strainOption = document.querySelector(`datalist#strains option[value="${selectedStrain}"]`);
-      if (!strainOption) {
-        document.getElementById('strain-info-text').innerHTML = "No specific data available.";
-      } else {
-        const fullDesc = strainOption.getAttribute('data-description');
-        const parts = fullDesc.split(' Evidence: ');
-        const mainDesc = parts[0].trim();
-        const evidencePart = parts[1] || '';
-        const potencyMatch = evidencePart.match(/Potency: (.*)\./);
-        const potency = parseFloat(strainOption.getAttribute('data-potency'));
-        const evidence = strainOption.getAttribute('data-evidence');
-        const potencyLabel = potencyMatch ? potencyMatch[1] : (potency <= 0 ? 'Unknown' : potency.toString());
-        const formatted = `
-          <h2 style="color: #9b59b6; text-align: center; margin-bottom: 10px;">${selectedStrain}</h2>
-          <div style="text-align: center; font-weight: bold; color: #ffcc66; margin-bottom: 15px;">Potency - ${potencyLabel} | Evidence - ${evidence}</div>
-          <p>${mainDesc}</p>
-        `;
-        document.getElementById('strain-info-text').innerHTML = formatted;
-      }
+      if (!strainOption) return;
+
+      const fullDesc = strainOption.getAttribute('data-description');
+      // Strip trailing "Evidence: ... Potency: ..." from desc so it doesn't show in the modal body
+      const mainDesc = fullDesc.split(' Evidence: ')[0].trim();
+      const potency  = parseFloat(strainOption.getAttribute('data-potency'));
+      const evidence = strainOption.getAttribute('data-evidence');
+      const origin   = strainOption.getAttribute('data-origin') || 'Unknown';
+      const potencyLabel = getPotencyLabel(potency);
+
+      const evidenceTips = {
+        'Negligible': 'No credible data supports psilocybin content. Likely non-psychoactive.',
+        'Low':        'Anecdotal community reports only. No formal lab testing. Treat with caution.',
+        'Moderate':   'Some verified lab assays or well-documented community data, but coverage is limited.',
+        'High':       'Multiple independent peer-reviewed studies or verified HPLC/HPTLC assays.'
+      };
+      const potencyTip = potency <= 0
+        ? 'Insufficient data — do not dose without species confirmation.'
+        : `${potency.toFixed(1)}× average P. cubensis baseline. Adjust your dose accordingly.`;
+
+      document.getElementById('strain-info-text').innerHTML = `
+        <p class="strain-modal-name">${selectedStrain}</p>
+        <div class="strain-badges">
+          <span class="badge badge-potency">⚡ ${potencyLabel}${potency > 0 ? ' <span class="badge-num">x' + potency.toFixed(1) + '</span>' : ''}
+            <span class="tip">${potencyTip}</span>
+          </span>
+          <span class="badge badge-evidence">🔬 Evidence: ${evidence}
+            <span class="tip">${evidenceTips[evidence] || 'See description.'}</span>
+          </span>
+        </div>
+        <p class="strain-modal-origin">📍 <span>${origin}</span></p>
+        <hr class="strain-modal-divider">
+        <p class="strain-modal-desc">${mainDesc}</p>
+      `;
+
+      // mobile: tap badge to toggle tooltip
+      document.querySelectorAll('#strain-info-text .badge').forEach(b => {
+        b.addEventListener('click', e => { e.stopPropagation(); b.classList.toggle('tip-open'); });
+      });
+
       document.getElementById('strain-modal').style.display = 'flex';
     }
 
@@ -417,11 +730,67 @@
       document.getElementById('lemon-tek-modal').style.display = 'flex';
     }
 
+    function showTripInfo() {
+      const current = elements.tripLevel.value;
+      const levels = [
+        {v:'1', name:'Microdose', bar:'▁', desc:'Sub-perceptual. No hallucinations. Subtle mood lift, focus, and creativity. Work-safe for most people.'},
+        {v:'2', name:'Low',       bar:'▃', desc:'Mild effects. Light visuals, colour enhancement, gentle euphoria. Good for social settings.'},
+        {v:'3', name:'Normal',    bar:'▅', desc:'Full psychedelic experience. Visuals, pattern distortion, introspective thoughts. Prepare your set and setting.'},
+        {v:'4', name:'High',      bar:'▇', desc:'Strong effects. Ego softening, profound insights, possible challenging moments. Experienced users only.'},
+        {v:'5', name:'Heroic',    bar:'█', desc:'Very intense. Ego dissolution likely. Not suggested without significant experience and a trusted sitter.'},
+      ];
+
+      document.getElementById('trip-info-text').innerHTML = levels.map(({v, name, bar, desc}) => {
+        const active = v === current;
+        return `<div class="trip-card${active ? ' trip-card-active' : ''}" onclick="selectTripLevel('${v}')">
+          <div class="trip-card-header">
+            <span class="trip-bar">${bar}</span>
+            <span class="trip-name">${name}</span>
+          </div>
+          <div class="trip-desc">${desc}</div>
+        </div>`;
+      }).join('');
+
+      document.getElementById('trip-info-modal').style.display = 'flex';
+    }
+
+    const tripNames = {'1':'Microdose','2':'Low','3':'Normal','4':'High','5':'Heroic'};
+    const tripDescriptions = {
+      '1': 'Microdose — sub-perceptual, creative lift.',
+      '2': 'Low — gentle, social, light visuals.',
+      '3': 'Normal — full experience, prepare well.',
+      '4': 'High — intense, experienced users only.',
+      '5': 'Heroic — ego dissolution territory.'
+    };
+
+    function selectTripLevel(v) {
+      elements.tripLevel.value = v;
+      const display = document.getElementById('trip-display');
+      display.textContent = tripNames[v] || 'Select level…';
+      display.classList.toggle('has-value', !!v);
+      // update active card visually
+      document.querySelectorAll('.trip-card').forEach(c => c.classList.remove('trip-card-active'));
+      const card = document.querySelector(`.trip-card[onclick="selectTripLevel('${v}')"]`);
+      if (card) card.classList.add('trip-card-active');
+      const td = document.getElementById('trip-description');
+      if (td) td.textContent = tripDescriptions[v] || '';
+      calculate();
+      setTimeout(() => closeModal('trip-info-modal'), 180);
+    }
+
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
     }
 
+    // Close modals by clicking the dark backdrop
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal(modal.id);
+      });
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
+      scaleStrainFont();
       const kgBtn = document.querySelector('[data-unit="kg"]');
       const lbBtn = document.querySelector('[data-unit="lb"]');
       fetch('https://ipapi.co/json/')
@@ -435,7 +804,7 @@
         })
         .catch(() => {});
 
-      const POPUP_KEY = "disclaimer_last_seen";
+      const POPUP_KEY = "disclaimer_v2";
       const now = Date.now();
       const lastSeen = localStorage.getItem(POPUP_KEY);
       if (!lastSeen || now - lastSeen > 86400000) {
@@ -447,7 +816,7 @@
         const interval = setInterval(() => {
           timer--;
           if (timer > 0) {
-            countdownText.textContent = "" + timer + "";
+            countdownText.textContent = "" + timer;
           } else {
             clearInterval(interval);
             countdownText.textContent = "";

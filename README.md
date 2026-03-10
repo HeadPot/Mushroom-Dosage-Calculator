@@ -1,20 +1,26 @@
 # 🍄 Shroomulator 🍄
 
-**Psilocybin dosage calculator.**
+**Psilocybin dosage calculator — 128 strains, scaled to your weight.**
 
 → **[shroomulator.app](https://headpot.github.io/Mushroom-Dosage-Calculator/)**
 
 ---
 
-## How it works
+## Why this exists
 
+Most psilocybin calculators out there are either too vague, ignore potency differences between species entirely, or are clearly just copied from each other. This started as a personal frustration and turned into a proper project — a funnel for random bursts of research and inspiration, built iteratively with AI as a thinking partner.
 
-Formula used:
+The strain data is sourced from peer-reviewed HPLC/HPTLC assays, competition lab results, and curated community data — not vibes.
 
+---
+
+## Formula
+
+```
 dose = (base × weight / 70) / potency × lemonTek
+```
 
-Adapted from established harm-reduction dosage tables (Erowid, PsychonautWiki) and scaled by the potency multipliers from published HPLC/HPTLC assay data where available, community consensus elsewhere. The 70 kg reference body weight is standard in pharmacological dosing literature.
-
+Adapted from established harm-reduction dosage tables (Erowid, PsychonautWiki) and scaled by potency multipliers from published HPLC/HPTLC assay data. The 70 kg reference body weight is standard in pharmacological dosing literature.
 
 ---
 
@@ -30,7 +36,11 @@ Psilocybin is a controlled substance in most jurisdictions. Know your local laws
 
 ## Technical
 
-Single self-contained HTML file. No frameworks, no build step, no external dependencies beyond Google Fonts (Orbitron) and ipapi.co for country detection.
+Single self-contained HTML file. No frameworks, no build step, no external JS dependencies beyond:
+- **Google Fonts** (Orbitron) — typography
+- **ipapi.co** — country detection for kg/lb auto-toggle
+- **GoatCounter** — anonymous, privacy-respecting visit counter (no cookies, no fingerprinting, GDPR compliant). Stats are private and visible only to the author.
+
 
 ---
 

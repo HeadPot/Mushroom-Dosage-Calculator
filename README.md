@@ -8,8 +8,8 @@
 
 ## Why this exists
 
-Most psilocybin calculators out there are either too vague, ignore potency differences between species entirely, or are clearly just copied from each other. This started as a personal frustration and turned into a proper project — a funnel for random bursts of research and inspiration, built iteratively with AI as a thinking partner.
 
+Passion project. Wanted to make something I actually liked — something that felt considered, looked good, and didn't cut corners on the data. Built it in random bursts whenever the inspiration hit, using AI as a sounding board to research strains, chase down lab papers, and work through the design decisions.
 The strain data is sourced from peer-reviewed HPLC/HPTLC assays, competition lab results, and curated community data — not vibes.
 
 ---

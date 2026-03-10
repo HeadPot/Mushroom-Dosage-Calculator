@@ -12,6 +12,7 @@
   <meta name="author" content="Shroomulator">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#2a1f35">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJjZyIgY3g9IjUwJSIgY3k9IjY1JSIgcj0iNTUlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzE3MGU4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNmIxZmEwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTE2IDNDNyAzIDIgMTIgMiAxN2MwIDIuNSAyLjUgMy41IDUuNSAzLjVoMTdjMyAwIDUuNS0xIDUuNS0zLjUgMC01LTUtMTQtMTQtMTR6IiBmaWxsPSJ1cmwoI2NnKSIvPjxlbGxpcHNlIGN4PSIxMSIgY3k9IjExIiByeD0iMi41IiByeT0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+PGVsbGlwc2UgY3g9IjE2IiBjeT0iMjAuNSIgcng9IjkuNSIgcnk9IjEuMiIgZmlsbD0iIzhiMzBjMCIgb3BhY2l0eT0iMC41Ii8+PHJlY3QgeD0iMTIuNSIgeT0iMjAiIHdpZHRoPSI3IiBoZWlnaHQ9IjkiIHJ4PSIyLjUiIGZpbGw9IiNjODkwZjAiLz48L3N2Zz4=">
 
   <!-- ── Open Graph ── -->
   <meta property="og:type" content="website">
@@ -154,9 +155,11 @@
     .site-header{text-align:center;font-size:2.1em;color:#ffa500;font-family:'Orbitron',sans-serif;margin:0 0 14px;text-shadow:0 0 15px rgba(255,165,0,0.4)}
     .container{max-width:500px;margin:0 auto;padding:22px 30px 26px;background:rgba(26,26,26,0.92);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     .input-group{display:flex;align-items:center;justify-content:center;margin:12px 0}
-    .input-group label{width:95px;flex-shrink:0;text-align:right;padding-right:12px;font-weight:700;color:#ffa500;line-height:1;font-size:0.88em;letter-spacing:0.01em}
+    .input-group label{width:95px;flex-shrink:0;text-align:right;padding-right:12px;font-weight:700;color:#ffa500;line-height:1;font-size:0.78em;letter-spacing:0.05em;font-family:'Orbitron',sans-serif}
     .row-right{width:240px;flex-shrink:0;display:flex;align-items:center}
     input[type="number"],.unit-btn{height:38px;box-sizing:border-box;font-size:0.95em}
+    /* Prevent iOS auto-zoom on input focus — must be ≥16px computed */
+    @media(max-width:768px){input[type="number"],input[type="text"],.picker-search{font-size:16px !important}}
     input[type="number"]{padding:0 10px;background:#333;color:#e0e0e0;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0}
     input[type="number"]:focus{border-color:#9b59b6;outline:none}
     #weight-unit-toggle{display:flex;flex-shrink:0}
@@ -168,6 +171,8 @@
     .icon-slot{width:95px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;padding-left:8px}
     .info-icon{cursor:pointer;color:#9b59b6;font-size:1.15em;line-height:1;transition:all 0.2s;user-select:none}
     .info-icon:hover{color:#ffcc66;transform:scale(1.2)}
+    .info-btn{background:rgba(155,89,182,0.15);border:1.5px solid #9b59b6;color:#c39ad8;border-radius:50%;width:22px;height:22px;font-size:0.72em;font-weight:700;font-style:italic;font-family:Georgia,serif;cursor:pointer;padding:0;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;vertical-align:middle}
+    .info-btn:hover,.info-btn:active{color:#ffcc66;border-color:#ffcc66;background:rgba(255,165,0,0.12)}
     /* Strain display button */
     .strain-display{width:100%;height:38px;padding:0 12px;background:#333;color:#bbb;border:1px solid #555;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:0.93em;box-sizing:border-box;transition:border 0.3s;user-select:none;gap:6px}
     .strain-display::after{content:"▾";color:#aaa;font-size:0.9em;flex-shrink:0}
@@ -207,7 +212,7 @@
     .picker-no-results{color:#666;text-align:center;padding:20px 0;font-size:0.85em}
     /* ── Strain info modal ── */
     #strain-modal .modal-content{max-height:85vh;overflow-y:auto}
-    .strain-modal-name{color:#9b59b6;text-align:center;font-size:1.2em;font-weight:700;line-height:1.3;margin:0 0 14px;word-break:break-word}
+    .strain-modal-name{color:#b07fd8;text-align:center;font-size:0.95em;font-weight:700;line-height:1.35;margin:0 0 14px;word-break:break-word;font-family:'Orbitron',sans-serif}
     .strain-badges{display:flex;justify-content:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
     .badge{padding:4px 12px;border-radius:20px;font-size:0.78em;font-weight:700;letter-spacing:0.03em;cursor:default;position:relative}
     .badge-potency{background:rgba(155,89,182,0.2);border:1px solid #9b59b6;color:#c39ad8}
@@ -220,20 +225,25 @@
     .strain-modal-origin span{color:#ccc}
     .strain-modal-desc{color:#ddd;font-size:0.87em;line-height:1.68;text-align:left;margin:0}
     .strain-modal-divider{border:none;border-top:1px solid #3a3a3a;margin:0 0 14px}
+    .strain-modal-wrap{position:relative;overflow:visible !important}
+    .strain-nav-btn{display:none;position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,20,50,0.92);border:1px solid rgba(155,89,182,0.5);color:#c39ad8;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.3em;line-height:1;padding:0;transition:all 0.15s;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .strain-nav-btn:hover,.strain-nav-btn:active{background:rgba(155,89,182,0.3);border-color:#9b59b6}
+    #strain-nav-prev{left:-18px}
+    #strain-nav-next{right:-18px}
     /* ── Trip level cards — compact ── */
     #trip-info-modal .modal-content{max-height:88vh;overflow-y:auto;padding:12px 12px 10px}
-    .trip-modal-title{color:#9b59b6;margin:0 0 10px;font-size:1em;letter-spacing:0.03em}
+    .trip-modal-title{color:#c39ad8;margin:0 0 10px;font-size:0.8em;letter-spacing:0.12em;text-transform:uppercase;font-family:'Orbitron',sans-serif}
     .trip-card{margin-bottom:3px;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid #3a3a3a;cursor:pointer;transition:background 0.15s,border-color 0.15s;text-align:left}
     .trip-card:last-of-type{margin-bottom:0}
     .trip-card:hover{background:rgba(155,89,182,0.10);border-color:#7d3faa}
     .trip-card-active{background:rgba(155,89,182,0.18);border-color:#9b59b6}
-    .trip-card-header{display:flex;align-items:center;gap:6px;margin-bottom:1px}
-    .trip-bar{font-size:0.88em;line-height:1;color:#9b59b6;letter-spacing:-1px}
+    .trip-card-header{display:flex;align-items:center;gap:9px;margin-bottom:3px}
+    .trip-bar{font-size:1em;color:#9b59b6;letter-spacing:-1px;min-width:14px;text-align:center;flex-shrink:0}
     .trip-card-active .trip-bar{color:#c39ad8}
-    .trip-name{color:#ddd;font-weight:700;font-size:0.85em;letter-spacing:0.02em}
-    .trip-card-active .trip-name{color:#c39ad8}
-    .trip-desc{color:#888;font-size:0.74em;line-height:1.3;margin-left:22px;margin-top:0}
-    .trip-card-active .trip-desc{color:#aaa}
+    .trip-name{color:#e8e8e8;font-weight:700;font-size:0.82em;letter-spacing:0.06em;font-family:'Orbitron',sans-serif}
+    .trip-card-active .trip-name{color:#d4a8f0}
+    .trip-desc{color:#b0a0c0;font-size:0.76em;line-height:1.38;margin-left:23px;margin-top:1px;font-style:italic}
+    .trip-card-active .trip-desc{color:#c8b0e0}
     /* ── Lemon tek modal ── */
     #lemon-tek-modal .modal-content{max-width:min(380px,90vw)}
     /* ── Disclaimer ── */
@@ -243,11 +253,11 @@
     #countdown-text{font-size:0.9em;color:#666;margin:0 0 8px;min-height:1.3em}
     #close-disclaimer{background:#9b59b6;border:2px solid #9b59b6;color:#fff;padding:8px 28px;border-radius:8px;cursor:pointer;font-size:0.9em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s;letter-spacing:0.03em}
     #close-disclaimer:hover{background:#7d3faa;border-color:#7d3faa}
-    @media(max-width:480px){body{padding:12px}.container{padding:16px 14px}.site-header{font-size:1.35em;margin-bottom:18px}.input-group label{width:82px;padding-right:8px;font-size:0.82em}.row-right{width:calc(100vw - 200px);max-width:220px}.icon-slot{width:82px;padding-left:6px}.modal-content{padding:14px 12px 12px}}
+    @media(max-width:480px){body{padding:10px 10px 20px}.container{padding:14px 12px}.site-header{font-size:1.25em;margin-bottom:12px}.input-group{padding:0}.input-group label{width:74px;min-width:74px;padding-right:6px;font-size:0.64em}.row-right{flex:1;width:auto;max-width:none;min-width:0}.icon-slot{width:30px;min-width:30px;padding-left:4px;justify-content:flex-end}.modal-content{padding:14px 12px 12px}}
     @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}.row-right{width:200px}}
     /* ── SEO content section (collapsible spoiler) ── */
     .seo-section{max-width:500px;margin:14px auto 16px;font-size:0.78em;line-height:1.65;background:rgba(12,10,20,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:10px;padding:10px 14px;border:1px solid rgba(80,60,120,0.15)}
-    .seo-section summary{color:#bbb;font-size:0.88em;font-weight:700;letter-spacing:0.06em;text-transform:none;cursor:pointer;padding:8px 0;list-style:none;display:flex;align-items:center;justify-content:center;gap:0;user-select:none;transition:color 0.2s;text-align:center}
+    .seo-section summary{color:#bbb;font-size:0.75em;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-family:'Orbitron',sans-serif;cursor:pointer;padding:8px 0;list-style:none;display:flex;align-items:center;justify-content:center;user-select:none;transition:color 0.2s;text-align:center}
     .seo-section summary::-webkit-details-marker{display:none}
     .seo-section summary:hover{color:#ddd}
     .seo-body{color:#777;padding-top:12px;border-top:1px solid #2a2a2a;margin-top:6px}
@@ -259,13 +269,14 @@
     /* faq nested details */
     .faq-list{margin:0;display:flex;flex-direction:column;gap:2px}
     .faq-item{border-bottom:1px solid #2a2a2a}
-    .faq-item summary{color:#666;font-size:0.95em;font-weight:600;cursor:pointer;padding:7px 0 7px 16px;list-style:none;position:relative;user-select:none;transition:color 0.15s;display:block;justify-content:unset;letter-spacing:0;text-transform:none;text-align:left}
+    .faq-item summary{color:#ccc;font-size:0.9em;font-weight:600;font-family:Arial,Helvetica,sans-serif;cursor:pointer;padding:8px 0 8px 18px;list-style:none;position:relative;user-select:none;transition:color 0.15s;display:block;text-align:left;letter-spacing:0}
     .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::before{content:'▸';position:absolute;left:0;top:8px;font-size:0.75em;color:#555;transition:transform 0.15s;font-weight:400}
+    .faq-item summary::before{content:'▸';position:absolute;left:2px;top:9px;font-size:0.72em;color:#8060a0;transition:transform 0.15s;font-weight:400}
     .faq-item[open] summary::before{transform:rotate(90deg)}
-    .faq-item summary:hover{color:#888}
-    .faq-answer{color:#666;font-size:0.92em;line-height:1.6;padding:4px 0 10px 16px}
-    .faq-answer strong{color:#777}
+    .faq-item summary:hover{color:#d0c0e8}
+    .faq-answer{color:#e0e0e0;font-size:0.88em;line-height:1.65;padding:4px 0 10px 18px;font-family:Arial,Helvetica,sans-serif}
+    .faq-answer strong{color:#fff}
+    .faq-answer em{color:#ddd}
 
     /* ── Cosmic background ── */
     #cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(2px);opacity:0.7}
@@ -278,7 +289,7 @@
   </style>
 </head>
 <body>
-  <h1 class="site-header"><span style="color:rgba(200,200,220,0.35)">꩜</span> <span class="hallucinate">Shroomulator</span> <span style="display:inline-block;transform:scaleX(-1);color:rgba(200,200,220,0.35)">꩜</span></h1>
+  <h1 class="site-header"><span style="display:inline-block;transform:rotate(180deg);color:rgba(200,200,220,0.35)">꩜</span> <span class="hallucinate">Shroomulator</span> <span style="display:inline-block;transform:rotate(180deg) scaleX(-1);color:rgba(200,200,220,0.35)">꩜</span></h1>
   <canvas id="cosmos"></canvas>
   <div class="container">
     <!-- Weight -->
@@ -301,7 +312,7 @@
           <span class="strain-display-text" id="strain-display-text">Select strain…</span>
         </div>
       </div>
-      <span class="icon-slot"><span class="info-icon" onclick="showStrainInfoFromIcon()" title="Strain info">ℹ️</span></span>
+      <span class="icon-slot"><button class="info-btn" onclick="showStrainInfoFromIcon()" aria-label="Strain info">i</button></span>
     </div>
     <!-- Trip Level -->
     <div class="input-group">
@@ -323,12 +334,11 @@
     <!-- Lemon Tek -->
     <div class="input-group" style="margin-top:2px">
       <label></label>
-      <div class="row-right" style="justify-content:center;gap:8px">
+      <div class="row-right" style="justify-content:center;gap:8px;white-space:nowrap;flex-wrap:nowrap">
         <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek" style="width:14px;height:14px;flex:none;cursor:pointer;accent-color:#9b59b6;margin:0">
         <label for="lemon-tek" style="cursor:pointer;margin:0;font-size:0.93em;color:#bbb;white-space:nowrap">Use Lemon Tek</label>
-        <span class="info-icon" onclick="showLemonTekInfo()" title="What is Lemon Tek?">ℹ️</span>
       </div>
-      <span class="icon-slot"></span>
+      <span class="icon-slot" style="justify-content:flex-start;padding-left:6px"><button class="info-btn" onclick="showLemonTekInfo()" aria-label="Lemon Tek info">i</button></span>
     </div>
   </div>
 
@@ -349,63 +359,63 @@
       <div class="faq-list">
 
         <details class="faq-item">
-          <summary>Why did I feel almost nothing at this dose last time?</summary>
-          <div class="faq-answer">Three most likely reasons: <strong>tolerance</strong> — psilocybin tolerance spikes immediately after a dose and takes 2–3 weeks to fully reset, so if you dosed recently you'll need significantly more for the same effect; <strong>food</strong> — a full stomach slows absorption dramatically, sometimes turning a 2 g experience into a 0.5 g one; <strong>batch variation</strong> — even the same strain from the same grower can vary 30–50% in potency between flushes. If the calculator gave a number that barely touched you, try going 20–30% higher next time, not double.</div>
+          <summary>Is psilocybin safe if I have a history of mental illness?</summary>
+          <div class="faq-answer">This is the most important safety question. Psilocybin is <strong>contraindicated</strong> for anyone with a personal or family history of schizophrenia, schizoaffective disorder, bipolar I, or any psychosis-spectrum condition — <em>every major clinical research programme, including Johns Hopkins and Imperial College London, excludes these individuals from trials for this reason.</em> The risk is not physical toxicity but triggering a latent psychotic episode that may not resolve. Active severe depression or suicidal ideation are also exclusion criteria in all published research. If any of this applies to you or a first-degree relative, psilocybin is not a suitable substance regardless of dose.</div>
         </details>
 
         <details class="faq-item">
-          <summary>Should I eat before or fast?</summary>
-          <div class="faq-answer">Fast for at least 3–4 hours before dosing if you want reliable onset and full effect. A full stomach doesn't make the experience safer — it just makes it slower, more unpredictable, and often weaker. If nausea is a concern, a very small amount of ginger tea beforehand helps without significantly blunting the experience. Avoid fatty meals in the hours before — fat slows gastric emptying more than carbs or protein.</div>
+          <summary>What's the difference between a difficult experience and a bad trip?</summary>
+          <div class="faq-answer">A difficult experience still has a frame around it — challenging emotions, confrontational thoughts, discomfort — but you remain grounded enough to know what you took and that it will end. A bad trip involves losing that anchor entirely: real terror, paranoia, or ego dissolution with no sense of ground. Dose is a factor, but set and setting usually matter more. Most difficult experiences resolve positively if you surrender rather than fight them. If someone is in genuine distress: calm voice, safe space, constant presence, no new stimulation. Never leave them alone.</div>
         </details>
 
         <details class="faq-item">
           <summary>It's been 90 minutes and I barely feel anything — should I redose?</summary>
-          <div class="faq-answer">Almost certainly not yet. Slow onset on a full stomach can push first effects past 2 hours. Redosing too early is one of the most common mistakes — people take more, then the original dose and the second hit simultaneously, often resulting in a much more intense experience than intended. Wait the full 2 hours minimum. If still nothing at 2.5 hours on a genuinely empty stomach, a half-dose redose is reasonable. Never redose a full amount.</div>
+          <div class="faq-answer">Almost certainly not yet. On a full stomach, onset can push past 2 hours. Redosing too early is one of the most common causes of overwhelming experiences — the first dose and the second peak simultaneously, far stronger than intended. Wait the full 2 hours before considering it. If genuinely nothing at 2.5 hours on an empty stomach, a <em>half</em>-dose top-up is reasonable. Never take a second full dose.</div>
         </details>
 
         <details class="faq-item">
-          <summary>How long does it actually last?</summary>
-          <div class="faq-answer">Peak effects typically last 2–3 hours, with the full experience running 4–6 hours for most people. Higher doses extend this — a heroic dose can run 6–8 hours. The come-up takes 30–90 minutes depending on stomach content and whether you used Lemon Tek (15–30 min). After-effects — a tired but often reflective afterglow — can persist for several more hours. Plan for a full day. Don't have obligations the next morning for higher doses.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Why is my strain not in the list?</summary>
-          <div class="faq-answer">Marketing names for cubensis strains multiply faster than anyone can track — many are rebranded versions of existing genetics, often with inflated potency claims. If you can't find your strain, use <strong>Golden Teacher</strong> as a conservative baseline for any unknown cubensis, or <strong>Penis Envy</strong> as a baseline if it's marketed as a PE variant. For anything described as "extremely potent" or a "new hybrid," start at 50% of what the calculator suggests until you know the batch.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Fresh vs dried — does the calculator work for fresh mushrooms?</summary>
-          <div class="faq-answer">No — Shroomulator calculates doses for <strong>dried mushrooms only</strong>. Fresh mushrooms are approximately 90% water, so the conversion is roughly 10:1 by weight. A 1.5 g dried dose corresponds to about 15 g fresh. Fresh mushroom potency also varies more than dried because the water content fluctuates. Weigh after drying to bone-dry cracker consistency for the most accurate dosing.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>What's the difference between a bad trip and just a difficult experience?</summary>
-          <div class="faq-answer">A difficult experience has challenging emotions, confrontational thoughts, or physical discomfort — but you remain grounded enough to know what's happening and that it will end. A bad trip can involve genuine terror, paranoia, or complete loss of the sense that you took a substance and it will wear off. The dose is only one factor — set and setting often matter more. Most difficult experiences resolve positively if you surrender rather than fight. If someone is in genuine distress: calm voice, safe space, reassurance that it will end, no new stimulation. Never leave them alone.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>How should I store dried mushrooms?</summary>
-          <div class="faq-answer">The two enemies are moisture and UV light. Store in an airtight container (mason jar with a desiccant packet) in a cool, dark place. Properly dried and stored mushrooms lose minimal potency over 1–2 years. Vacuum sealing extends this further. Never store in a plastic bag long-term — they're not airtight. Freezing works if the mushrooms are completely bone-dry before freezing; any residual moisture will degrade them. Check periodically for softness or mold.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Why do some people feel nothing even at high doses?</summary>
-          <div class="faq-answer">Beyond the obvious suspects (tolerance, food), there's genuine individual variation in how people metabolise psilocybin. A small subset appear to be low-responders even on an empty stomach with no prior use &mdash; likely involving gut enzyme activity and serotonin receptor density. If you've genuinely had no response three times on an empty stomach with verified mushrooms, the mushrooms were probably weak. True non-responders are rare.</div>
+          <summary>How does tolerance work, and how long to reset?</summary>
+          <div class="faq-answer">Psilocybin tolerance builds after a single dose via rapid down-regulation of 5-HT₂A serotonin receptors. <em>Dose again within 2–3 days and the effect is noticeably blunted.</em> Full reset takes approximately 2–4 weeks. Cross-tolerance exists with LSD, DMT, and other classic psychedelics — all acting on the same receptors. This is why recreational weekend use produces rapidly diminishing returns, and why every microdosing protocol includes multiple off-days. Tolerance is not dependence — psilocybin produces no physical withdrawal and has low addiction potential.</div>
         </details>
 
         <details class="faq-item">
           <summary>Can you combine mushrooms with cannabis?</summary>
-          <div class="faq-answer">Cannabis intensifies psilocybin significantly &mdash; often more than doubling the perceived strength. A lot of difficult experiences happen because someone added cannabis mid-trip when things felt manageable. The combination can be extraordinary but it removes directional control. If you combine, use cannabis sparingly and only once you're well into the experience and feel grounded. Never during the come-up.</div>
+          <div class="faq-answer">Cannabis amplifies psilocybin for most people — sometimes significantly. Many unexpectedly intense experiences involve cannabis added mid-trip when things seemed manageable. Whether this is desirable or overwhelming depends entirely on dose, tolerance, and setting. If you do combine, use it sparingly, only after the peak, and only if you already have experience with both substances separately.</div>
         </details>
 
         <details class="faq-item">
-          <summary>What's the difference between P. cubensis strains and wild species?</summary>
-          <div class="faq-answer">Every cultivated "strain" &mdash; Golden Teacher, PE, B+, Enigma &mdash; is Psilocybe cubensis. Wild species like P. azurescens, P. cyanescens, P. semilanceata, and Panaeolus cyanescens are entirely different species. Most wild species are meaningfully more potent than cubensis and vary more with season, habitat, and drying. The calculator adjusts for this per-species, but wild species warrant extra caution regardless.</div>
+          <summary>Why did I feel almost nothing at this dose last time?</summary>
+          <div class="faq-answer">Three most common reasons: <strong>tolerance</strong> — dose within the past 2–3 weeks means you need significantly more for the same effect; <strong>food</strong> — a full stomach can reduce absorption dramatically, sometimes turning a 2g experience into a barely perceptible one; <strong>batch variation</strong> — potency varies 30–50% between flushes of the same strain from the same grower. If the number barely touched you, try 20–30% higher next time — not double.</div>
         </details>
 
         <details class="faq-item">
-          <summary>How do I know if my mushrooms have lost potency?</summary>
-          <div class="faq-answer">Blue bruising on intact dried mushrooms is a good sign &mdash; psilocin oxidation is still occurring, meaning the compound is present. Degraded mushrooms often lose bruising reactivity. They should be bone-dry (cracker-crisp), have no mold, and no off smell. Slightly bendy mushrooms stored in a sealed jar with a desiccant are usually fine. If they smell musty or have any white or green fuzz, discard them.</div>
+          <summary>Should I fast beforehand?</summary>
+          <div class="faq-answer">Fast for at least 3–4 hours for reliable onset and full effect. A full stomach doesn't make the experience safer — it makes it slower, less predictable, and often significantly weaker. If nausea is a concern, ginger tea beforehand helps without blunting the experience. <em>Fatty meals slow gastric emptying the most — avoid them in the hours before.</em></div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How long does it last?</summary>
+          <div class="faq-answer">The full experience typically runs <strong>4–6 hours</strong>, with the peak lasting 2–3 hours. Heroic doses can extend to 6–8 hours. Come-up is 30–90 minutes depending on stomach content, or 15–30 minutes with Lemon Tek. An afterglow — tired but often reflective — can persist several hours beyond that. Plan the full day and clear the next morning for anything above Level 3.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>My strain isn't in the list — what do I use?</summary>
+          <div class="faq-answer">Marketing names for cubensis strains multiply faster than anyone can track — many are rebranded genetics, often with inflated potency claims. Use <strong>Golden Teacher</strong> as a conservative baseline for any unknown cubensis, or <strong>Penis Envy</strong> if it's marketed as a PE variant. For anything described as "extremely potent" or a new hybrid, start at 50% of the suggested dose until you know the batch.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Fresh vs dried — does this calculator work for fresh mushrooms?</summary>
+          <div class="faq-answer">No — <strong>dried only</strong>. Fresh mushrooms are approximately 90% water, so the rough conversion is 10:1 by weight (15g fresh ≈ 1.5g dried). <em>Potency also varies more in fresh mushrooms because water content fluctuates with age and handling.</em> Dry to cracker-crisp consistency before weighing for the most accurate dosing.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What's the difference between cultivated strains and wild species?</summary>
+          <div class="faq-answer">Every cultivated "strain" — Golden Teacher, PE, B+, Enigma — is <em>Psilocybe cubensis</em>. Wild species like <em>P. azurescens</em>, <em>P. cyanescens</em>, <em>P. semilanceata</em>, and <em>Panaeolus cyanescens</em> are entirely different organisms. <em>Most wild species are meaningfully more potent than cubensis and vary more with season, habitat, and drying method.</em> The calculator adjusts per species, but treat wild species with additional caution regardless.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Are my mushrooms still good?</summary>
+          <div class="faq-answer">For <strong>safety</strong>: discard anything with mold (white or green fuzz), a musty or sour smell, or visible slime — these indicate contamination regardless of storage. For <strong>potency</strong>: bone-dry mushrooms in an airtight jar with a desiccant packet, stored in a cool dark place, retain most of their potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is still present and oxidising. <em>Soft or bendy mushrooms may still be fine if the jar is sealed, but re-dry them before use.</em></div>
         </details>
 
       </div>
@@ -416,14 +426,16 @@
   <div id="strain-picker-modal" class="modal">
     <div class="modal-content picker-modal-content">
       <p class="picker-title">Strains</p>
-      <input class="picker-search" id="picker-search" type="text" placeholder="Search strains…" autocomplete="off">
+      <input class="picker-search" id="picker-search" type="text" placeholder="Search strains…" autocomplete="off" inputmode="search">
       <div class="strain-list" id="strain-grid"></div>
     </div>
   </div>
 
   <!-- Strain Info Modal -->
   <div id="strain-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content strain-modal-wrap">
+      <button id="strain-nav-prev" class="strain-nav-btn" onclick="navigateStrain(-1)" aria-label="Previous strain">&#8249;</button>
+      <button id="strain-nav-next" class="strain-nav-btn" onclick="navigateStrain(1)" aria-label="Next strain">&#8250;</button>
       <div id="strain-info-text"></div>
       <div class="modal-buttons">
         <button class="btn-back" id="strain-info-back" onclick="strainInfoBack()">Back</button>
@@ -620,12 +632,20 @@
     return 'Exceptionally High';
   }
 
+  // Sort strains A-Z (strip trailing parenthetical for sort key)
+  STRAINS.sort(function(a,b){
+    var ka=a.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
+    var kb=b.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
+    return ka<kb?-1:ka>kb?1:0;
+  });
+
   // ── Strain picker ──────────────────────────────────────────────────────────
   function openStrainPicker() {
     renderStrainGrid('');
     document.getElementById('picker-search').value = '';
     document.getElementById('strain-picker-modal').style.display = 'flex';
     setTimeout(() => document.getElementById('picker-search').focus(), 120);
+    _startSearchPoll();
   }
 
   function renderStrainGrid(q) {
@@ -655,7 +675,12 @@
     if (!s) return;
     pendingStrain = s;
     strainInfoSource = 'picker';
+    const items = document.querySelectorAll('#strain-grid .strain-list-item');
+    strainNavList = Array.from(items).map(el => STRAINS.find(x => x.name === el.textContent)).filter(Boolean);
+    strainNavIdx = strainNavList.findIndex(x => x.name === name);
+    if (strainNavIdx < 0) strainNavIdx = 0;
     renderStrainInfo(s);
+    _updateNavBtns();
     document.getElementById('strain-modal').style.display = 'flex';
   }
 
@@ -663,7 +688,11 @@
     if (!selectedStrain) { openStrainPicker(); return; }
     strainInfoSource = 'icon';
     pendingStrain = null;
+    strainNavList = STRAINS;
+    strainNavIdx = STRAINS.findIndex(x => x.name === selectedStrain.name);
+    if (strainNavIdx < 0) strainNavIdx = 0;
     renderStrainInfo(selectedStrain);
+    _updateNavBtns();
     document.getElementById('strain-modal').style.display = 'flex';
   }
 
@@ -714,6 +743,44 @@
     }
     pendingStrain = null;
   }
+
+  function _updateNavBtns() {
+    const prev = document.getElementById('strain-nav-prev');
+    const next = document.getElementById('strain-nav-next');
+    if (!prev) return;
+    const show = strainNavList.length > 1;
+    prev.style.display = next.style.display = show ? 'flex' : 'none';
+    prev.style.opacity = strainNavIdx > 0 ? '1' : '0.25';
+    next.style.opacity = strainNavIdx < strainNavList.length - 1 ? '1' : '0.25';
+  }
+
+  function navigateStrain(dir) {
+    const ni = strainNavIdx + dir;
+    if (ni < 0 || ni >= strainNavList.length) return;
+    strainNavIdx = ni;
+    const s = strainNavList[ni];
+    if (strainInfoSource === 'picker') pendingStrain = s;
+    renderStrainInfo(s);
+    _updateNavBtns();
+  }
+
+  // keyboard left/right for strain nav
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('strain-modal').style.display !== 'flex') return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); navigateStrain(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); navigateStrain(1); }
+  });
+
+  // touch swipe for strain modal
+  (function(){
+    var tx = 0;
+    var sm = document.getElementById('strain-modal');
+    sm.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; }, {passive:true});
+    sm.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) navigateStrain(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  })();
 
   function updateStrainDisplay() {
     const el = document.getElementById('strain-display');
@@ -787,12 +854,13 @@
     const baseDosages = {1:0.25, 2:0.7, 3:1.5, 4:3, 5:4.5};
     let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
     if (useLemonTek) dose *= 0.8;
-    result.innerHTML = `Suggested: <strong>${dose.toFixed(2)} g</strong>`;
+    result.innerHTML = `Suggested: <strong>${dose.toFixed(2)}g</strong> <span style="color:#888;font-size:0.85em">(dry)</span>`;
   }
 
   // ── Modal helpers ──────────────────────────────────────────────────────────
   function closeModal(id) {
     document.getElementById(id).style.display = 'none';
+    if (id === 'strain-picker-modal') _stopSearchPoll();
   }
   document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', e => {
@@ -811,6 +879,19 @@
   });
 
   document.getElementById('weight').addEventListener('input', calculate);
+  document.getElementById('picker-search').addEventListener('keyup', function(e){ renderStrainGrid(e.target.value.toLowerCase().trim()); });
+
+  // Robust mobile search: poll while picker is open (catches Android composing, paste, autofill)
+  var _searchPoll = null;
+  function _startSearchPoll() {
+    var el = document.getElementById('picker-search');
+    var last = '';
+    _searchPoll = setInterval(function() {
+      var v = el.value.toLowerCase().trim();
+      if (v !== last) { last = v; renderStrainGrid(v); }
+    }, 80);
+  }
+  function _stopSearchPoll() { clearInterval(_searchPoll); _searchPoll = null; }
   document.getElementById('lemon-tek').addEventListener('change', calculate);
 
   // ── Init ───────────────────────────────────────────────────────────────────
@@ -826,17 +907,24 @@
       }).catch(() => {});
 
     {
-      const popup = document.getElementById('disclaimer-popup');
-      const closeBtn = document.getElementById('close-disclaimer');
-      const countdownText = document.getElementById('countdown-text');
-      popup.style.display = 'flex';
-      let timer = 7; countdownText.textContent = timer;
-      const iv = setInterval(() => {
-        timer--;
-        if (timer > 0) { countdownText.textContent = timer; }
-        else { clearInterval(iv); countdownText.style.display = 'none'; closeBtn.style.display = 'inline-block'; }
-      }, 1000);
-      closeBtn.addEventListener('click', () => { popup.style.display = 'none'; });
+      const DISC_KEY = 'shroom_disc_v3';
+      const last = parseInt(localStorage.getItem(DISC_KEY) || '0');
+      if (Date.now() - last > 345600000) { // 4 days
+        const popup = document.getElementById('disclaimer-popup');
+        const closeBtn = document.getElementById('close-disclaimer');
+        const countdownText = document.getElementById('countdown-text');
+        popup.style.display = 'flex';
+        let timer = 7; countdownText.textContent = timer;
+        const iv = setInterval(() => {
+          timer--;
+          if (timer > 0) { countdownText.textContent = timer; }
+          else { clearInterval(iv); countdownText.style.display = 'none'; closeBtn.style.display = 'inline-block'; }
+        }, 1000);
+        closeBtn.addEventListener('click', () => {
+          popup.style.display = 'none';
+          localStorage.setItem(DISC_KEY, Date.now().toString());
+        });
+      }
     }
   });
   </script>

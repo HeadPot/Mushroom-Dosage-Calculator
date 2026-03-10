@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- ── Primary SEO ── -->
+  <title>Shroomulator — Psilocybin Dosage Calculator by Weight & Strain</title>
+  <meta name="description" content="Free psilocybin dosage calculator for 100+ mushroom strains. Enter your body weight and strain — Golden Teacher, Penis Envy, Liberty Cap, Enigma, Panaeolus cyanescens, Psilocybe azurescens — and get a personalised gram dose. Supports Lemon Tek, microdose through heroic levels.">
+  <meta name="keywords" content="psilocybin dosage calculator, magic mushroom dose calculator, shroom dose calculator, how many grams of mushrooms to take, golden teacher dosage, penis envy dose, liberty cap potency, enigma mushroom potency, panaeolus cyanescens dose, psilocybe azurescens dose, lemon tek calculator, microdose psilocybin calculator, heroic dose mushrooms, psilocybe cubensis calculator, mushroom trip level guide, psychedelic harm reduction, set and setting psychedelics, psilocybin tolerance, shroom potency by strain, wavy caps dose, flying saucer mushroom potency">
+  <link rel="canonical" href="https://headpot.github.io/Mushroom-Dosage-Calculator/">
+  <meta name="google-site-verification" content="google9a106d9128b77227">
+  <link rel="sitemap" type="application/xml" href="/Mushroom-Dosage-Calculator/sitemap.xml">
+  <meta name="author" content="Shroomulator">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#2a1f35">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJjZyIgY3g9IjUwJSIgY3k9IjY1JSIgcj0iNTUlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzE3MGU4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNmIxZmEwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTE2IDNDNyAzIDIgMTIgMiAxN2MwIDIuNSAyLjUgMy41IDUuNSAzLjVoMTdjMyAwIDUuNS0xIDUuNS0zLjUgMC01LTUtMTQtMTQtMTR6IiBmaWxsPSJ1cmwoI2NnKSIvPjxlbGxpcHNlIGN4PSIxMSIgY3k9IjExIiByeD0iMi41IiByeT0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+PGVsbGlwc2UgY3g9IjE2IiBjeT0iMjAuNSIgcng9IjkuNSIgcnk9IjEuMiIgZmlsbD0iIzhiMzBjMCIgb3BhY2l0eT0iMC41Ii8+PHJlY3QgeD0iMTIuNSIgeT0iMjAiIHdpZHRoPSI3IiBoZWlnaHQ9IjkiIHJ4PSIyLjUiIGZpbGw9IiNjODkwZjAiLz48L3N2Zz4=">
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://headpot.github.io/Mushroom-Dosage-Calculator/">
+  <meta property="og:site_name" content="Shroomulator">
+  <meta property="og:title" content="Shroomulator — Psilocybin Dosage Calculator">
+  <meta property="og:description" content="Magic mushroom dose calculator — 128 strains, scaled to your weight.">
+  <meta property="og:image" content="https://headpot.github.io/Mushroom-Dosage-Calculator/og-image.png">
+  <meta property="og:image:alt" content="Shroomulator psilocybin dosage calculator interface">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- ── Twitter / X ── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shroomulator">
+  <meta name="twitter:title" content="Shroomulator — Psilocybin Dosage Calculator">
+  <meta name="twitter:description" content="Magic mushroom dose calculator — 128 strains, scaled to your weight.">
+  <meta name="twitter:image" content="https://headpot.github.io/Mushroom-Dosage-Calculator/og-image.png">
+  <meta name="twitter:image:alt" content="Shroomulator psilocybin dosage calculator">
+
+  <!-- ── JSON-LD: FAQ rich results (Google shows these in SERPs) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much stronger is Penis Envy than Golden Teacher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roughly 1.5–2x stronger based on lab data and competition results. A 2 g Golden Teacher dose corresponds to about 1.25 g of standard Penis Envy. Albino PE runs about 1.7x, and Enigma — which tested at 3.82% total tryptamines at the 2021 Hyphae Cup — is approximately 3.2x average cubensis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Lemon Tek and does it actually work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lemon Tek means soaking finely ground dried mushrooms in fresh citrus juice for 20–30 minutes before consuming. The citric acid pre-converts psilocybin to psilocin outside the body, resulting in a faster onset (15–30 min vs 45–90 min), sharper peak, and often less nausea. The mechanism is plausible but not proven in controlled trials. Standard practice is to reduce dose by 20% — Shroomulator applies this automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a microdose of psilocybin mushrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A psilocybin microdose is a sub-perceptual amount — typically 0.05–0.3 g dried cubensis — taken on a schedule such as one day on, two days off (Fadiman protocol). You should not feel high or see visuals. The goal is subtle improvements in mood, focus, and creativity. Shroomulator's Level 1 estimates a microdose scaled to your weight and strain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Blue Meanie show unknown potency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Blue Meanie refers to two completely different mushrooms: Panaeolus cyanescens (extremely potent, 2–3x stronger than average cubensis) and various P. cubensis cultivars informally called Blue Meanie due to bruising. Without confirming which species you have, any dose calculation could be off by a factor of three — which is why Shroomulator flags this as unknown potency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How potent are Liberty Caps compared to regular mushrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Psilocybe semilanceata (Liberty Caps) are significantly more potent than average P. cubensis — typically around 1.5x stronger, with psilocybin content up to 1.7–2.0% dry weight. They are also smaller and more variable in potency depending on season and habitat. Shroomulator applies a 1.5x multiplier for Liberty Caps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does body weight affect psilocybin dosage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but less than most people expect. Shroomulator scales dose proportionally to a 70 kg baseline. Individual sensitivity, whether you have eaten, your mental state, and your environment typically have a larger practical effect on the experience than body weight alone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is set and setting in psychedelics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set refers to your mindset going in — mood, intentions, expectations, and any unresolved anxiety. Setting is the physical and social environment — who you're with, where you are, whether it's safe and comfortable. Research consistently shows these factors shape a psychedelic experience more than dose alone. A moderate dose in a bad environment can be harder than a higher dose in a trusted, calm setting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does psilocybin build tolerance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — psilocybin builds tolerance extremely fast, often after a single dose. If you take a full dose two days in a row, the second will be significantly weaker. Full reset takes approximately 2–4 weeks. There is also cross-tolerance with LSD and other classic psychedelics, which all act on the same serotonin 5-HT2A receptors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you take psilocybin if you're on antidepressants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SSRIs and SNRIs blunt or completely block psilocybin effects in most people. Chronic SSRI use down-regulates the 5-HT₂A receptors that psilocybin activates. Many people on SSRIs report needing 2–3× their expected dose for any effect, or nothing at all. Do not stop or taper SSRIs without medical supervision. MAOIs combined with psilocybin can cause serotonin syndrome, a medical emergency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you overdose on psilocybin mushrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not in the lethal sense — psilocybin has an extraordinarily high safety margin and no confirmed human deaths from toxicity alone. The real risks are behavioural: loss of coordination at high doses can lead to accidents. Psychological overdose — overwhelming ego dissolution, terror, and loss of reality anchoring — is very possible at high doses and can have lasting effects. Non-toxic does not mean safe at any dose."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ego death on psilocybin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ego dissolution is the temporary loss of the sense of being a separate self — the boundary between you and everything else dissolves. At its best it's described as profoundly liberating or mystical. At its worst it's terrifying. It typically requires a heroic dose (4.5g+ at baseline cubensis) and appropriate setting and preparation. Clinical research associates it with psilocybin's most profound therapeutic effects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is wood lover's paralysis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A rare phenomenon reported with wood-loving Psilocybe species — particularly P. azurescens, P. cyanescens, and P. subaeruginosa. Some users experience temporary leg weakness or paralysis during the come-up, lasting 30 minutes to a few hours. The cause is unknown, possibly related to aeruginascin. It resolves on its own with no permanent effects but can be alarming if unexpected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What microdosing protocol should I follow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Fadiman protocol is most widely used: dose one day, off two days, repeat. A typical starting microdose is 0.05–0.1g dried cubensis — sub-perceptual, meaning you should feel no obvious alteration. The Stamets protocol is more aggressive: four days on, three days off. Start lower than you think you need and keep a journal. Effects often accumulate and are easier to notice in retrospect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much stronger is Enigma mushroom than regular cubensis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enigma tested at 3.82% total tryptamines at the 2021 Hyphae Cup — roughly 3–4× average cubensis. It's a sporeless mutation of Tidal Wave that can only propagate via agar. Always start at a fraction of your normal dose with Enigma."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much stronger is Panaeolus cyanescens than P. cubensis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Panaeolus cyanescens is typically 2–3× stronger than average P. cubensis by dry weight. They are also much smaller mushrooms, making visual comparisons extremely misleading. Treat them as an entirely different category — halve your expected dose and don't underestimate them based on appearance."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── JSON-LD: WebApplication schema ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Shroomulator",
+    "url": "https://headpot.github.io/Mushroom-Dosage-Calculator/",
+    "description": "Psilocybin mushroom dosage calculator. Calculates personalised doses in grams based on body weight, mushroom strain potency, trip level, and Lemon Tek preparation. Covers 100+ strains of Psilocybe, Panaeolus, and other psilocybin-containing fungi.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "100+ psilocybin mushroom strains",
+      "Dose calculation by body weight",
+      "Kg and lb unit support",
+      "Five experience levels from microdose to heroic",
+      "Lemon Tek dosage adjustment",
+      "Potency and evidence ratings per strain"
+    ]
+  }
+  </script>
+
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body{background:#050408;color:#e0e0e0;font-family:Arial,sans-serif;margin:0;padding:6px 16px 10px;overflow-x:hidden;box-sizing:border-box}
+    .site-header{text-align:center;font-size:2.1em;color:#ffa500;font-family:'Orbitron',sans-serif;margin:0 0 14px;text-shadow:0 0 15px rgba(255,165,0,0.4)}
+    .container{max-width:500px;margin:0 auto;padding:20px 30px 22px;background:rgba(26,26,26,0.92);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.6);box-sizing:border-box}
+    .input-group{display:flex;align-items:center;justify-content:center;margin:10px 0}
+    .input-group > label{width:95px;flex-shrink:0;visibility:hidden;padding:0}
+    .row-right{width:240px;flex-shrink:0;display:flex;align-items:center}
+    input[type="number"]::placeholder{color:#ffa500;font-family:'Orbitron',sans-serif;font-size:0.78em;font-weight:700;letter-spacing:0.05em;opacity:1}
+    input[type="number"],.unit-btn{height:44px;box-sizing:border-box}
+    input[type="number"]{padding:0 10px;background:#333;color:#ffa500;-webkit-text-fill-color:#ffa500;font-size:16px;font-weight:700;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
+    input[type="number"]:focus{border-color:#9b59b6;outline:none}
+    #weight-unit-toggle{display:flex;flex-shrink:0}
+    .unit-btn{padding:0 11px;background:#2a2a2a;color:#aaa;border:1px solid #555;cursor:pointer;transition:background 0.2s,color 0.2s;flex-shrink:0;font-size:0.88em;letter-spacing:0.03em}
+    .unit-btn:first-child{border-radius:0;border-right:none}
+    .unit-btn:last-child{border-radius:0 6px 6px 0}
+    .unit-btn:hover:not(.active){background:#3a3a3a;color:#e0e0e0}
+    .unit-btn.active{background:#7d3faa;color:#fff;border-color:#7d3faa}
+    .icon-slot{width:95px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;padding-left:8px}
+    .info-icon{cursor:pointer;color:#9b59b6;font-size:1.15em;line-height:1;transition:all 0.2s;user-select:none}
+    .info-icon:hover{color:#ffcc66;transform:scale(1.2)}
+    .info-btn{background:rgba(155,89,182,0.15);border:1.5px solid #9b59b6;color:#c39ad8;border-radius:50%;width:22px;height:22px;font-size:0.72em;font-weight:700;font-style:italic;font-family:Georgia,serif;cursor:pointer;padding:0;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;vertical-align:middle}
+    .info-btn:hover,.info-btn:active{color:#ffcc66;border-color:#ffcc66;background:rgba(255,165,0,0.12)}
+    /* Strain display button */
+    .strain-display{width:100%;height:44px;padding:0 12px;background:#333;color:#ffa500;border:1px solid #555;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:0.03em;box-sizing:border-box;transition:border 0.3s;user-select:none;gap:6px;touch-action:manipulation}
+    .strain-display::after{content:"▾";color:#ffa500;font-size:0.9em;flex-shrink:0}
+    .strain-display:hover{border-color:#9b59b6}
+    .strain-display.has-value{font-size:16px;letter-spacing:0.02em}
+    .strain-display.has-value::after{color:#c39ad8}
+    .strain-display-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+    /* Trip display */
+    #trip-display{width:100%;height:44px;padding:0 12px;background:#333;color:#ffa500;border:1px solid #555;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:0.03em;box-sizing:border-box;transition:border 0.3s;user-select:none;touch-action:manipulation}
+    #trip-display::after{content:"▾";color:#ffa500;font-size:0.9em}
+    #trip-display:hover{border-color:#9b59b6}
+    #trip-display.has-value{font-size:16px;letter-spacing:0.02em}
+    #trip-display.has-value::after{color:#c39ad8}
+    /* Result */
+    #result{width:100%;padding:7px 10px;background:linear-gradient(45deg,#2a2a2a,#3a3a3a);border:2px solid #9b59b6;border-radius:8px;text-align:center;font-weight:700;color:#9b59b6;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;animation:fadeIn 0.4s}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    /* ── Modals ── */
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);justify-content:center;align-items:center;z-index:9999}
+    .modal-content{background:#333;padding:20px 20px 16px;border-radius:12px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:#e0e0e0;box-sizing:border-box}
+    /* Back / Done buttons */
+    .modal-buttons{display:flex;gap:10px;justify-content:center;margin-top:16px}
+    .btn-back{background:transparent;border:2px solid #ffa500;color:#ffa500;padding:8px 24px;border-radius:8px;cursor:pointer;font-size:0.9em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s;letter-spacing:0.03em}
+    .btn-back:hover{background:rgba(255,165,0,0.12)}
+    .btn-done{background:#9b59b6;border:2px solid #9b59b6;color:#fff;padding:8px 24px;border-radius:8px;cursor:pointer;font-size:0.9em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s,border-color 0.2s;letter-spacing:0.03em}
+    .btn-done:hover{background:#7d3faa;border-color:#7d3faa}
+    /* ── Strain picker modal ── */
+    .picker-modal-content{width:min(360px,92vw);max-width:min(360px,92vw);padding:14px 14px 14px;display:flex;flex-direction:column;max-height:60vh}
+    .picker-title{color:#c39ad8;font-size:0.8em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;font-family:'Orbitron',sans-serif;margin:0 0 10px;text-align:center}
+    .picker-search{width:100%;box-sizing:border-box;padding:10px 12px;background:#2a2a2a;border:1px solid #555;border-radius:8px;color:#e0e0e0;font-size:16px;margin-bottom:8px;outline:none;transition:border 0.2s;-webkit-text-size-adjust:100%}
+    .picker-search:focus{border-color:#9b59b6}
+    .picker-search::placeholder{color:#666}
+    .strain-list{overflow-y:auto;flex:1}
+    .strain-list::-webkit-scrollbar{width:4px}
+    .strain-list::-webkit-scrollbar-track{background:transparent}
+    .strain-list::-webkit-scrollbar-thumb{background:#9b59b6;border-radius:2px}
+    .strain-list::-webkit-scrollbar-thumb:hover{background:#c39ad8}
+    .strain-list-item{padding:7px 10px;cursor:pointer;border-radius:5px;font-size:0.88em;color:#ccc;transition:background 0.12s,color 0.12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .strain-list-item:hover{background:rgba(155,89,182,0.15);color:#e0e0e0}
+    .strain-list-item.selected{color:#c39ad8;font-weight:600}
+    .picker-no-results{color:#666;text-align:center;padding:20px 0;font-size:0.85em}
+    /* ── Strain info modal ── */
+    #strain-modal .modal-content{max-height:85vh;overflow-y:auto}
+    .strain-modal-name{color:#b07fd8;text-align:center;font-size:0.95em;font-weight:700;line-height:1.35;margin:0 0 14px;word-break:break-word;font-family:'Orbitron',sans-serif}
+    .strain-badges{display:flex;justify-content:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+    .badge{padding:4px 12px;border-radius:20px;font-size:0.78em;font-weight:700;letter-spacing:0.03em;cursor:default;position:relative}
+    .badge-potency{background:rgba(155,89,182,0.2);border:1px solid #9b59b6;color:#c39ad8}
+    .badge-num{font-weight:700;font-size:0.9em;margin-left:4px;color:#e0c0ff}
+    .badge-evidence{background:rgba(255,165,0,0.15);border:1px solid #ffa500;color:#ffcc66}
+    .badge .tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#222;border:1px solid #555;color:#ddd;font-size:0.82em;font-weight:400;line-height:1.45;padding:7px 10px;border-radius:7px;width:min(210px,70vw);text-align:center;z-index:9999;pointer-events:none;white-space:normal;box-shadow:0 4px 12px rgba(0,0,0,0.5)}
+    .badge .tip::after{content:'';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-bottom-color:#555}
+    .badge:hover .tip,.badge.tip-open .tip{display:block}
+    .strain-modal-origin{text-align:center;font-size:0.8em;color:#aaa;margin:0 0 14px;letter-spacing:0.02em}
+    .strain-modal-origin span{color:#ccc}
+    .strain-modal-desc{color:#ddd;font-size:0.87em;line-height:1.68;text-align:left;margin:0}
+    .strain-modal-divider{border:none;border-top:1px solid #3a3a3a;margin:0 0 14px}
+    .strain-modal-wrap{position:relative;overflow:visible !important}
+    .strain-nav-btn{display:none;position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,20,50,0.92);border:1px solid rgba(155,89,182,0.5);color:#c39ad8;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.3em;line-height:1;padding:0;transition:all 0.15s;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .strain-nav-btn:hover,.strain-nav-btn:active{background:rgba(155,89,182,0.3);border-color:#9b59b6}
+    #strain-nav-prev{left:-18px}
+    #strain-nav-next{right:-18px}
+    /* ── Trip level cards — compact ── */
+    #trip-info-modal .modal-content{max-height:88vh;overflow-y:auto;padding:12px 12px 10px}
+    .trip-modal-title{color:#c39ad8;margin:0 0 10px;font-size:0.8em;letter-spacing:0.12em;text-transform:uppercase;font-family:'Orbitron',sans-serif}
+    .trip-card{margin-bottom:3px;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid #3a3a3a;cursor:pointer;transition:background 0.15s,border-color 0.15s;text-align:left}
+    .trip-card:last-of-type{margin-bottom:0}
+    .trip-card:hover{background:rgba(155,89,182,0.10);border-color:#7d3faa}
+    .trip-card-active{background:rgba(155,89,182,0.18);border-color:#9b59b6}
+    .trip-card-header{display:flex;align-items:center;gap:9px;margin-bottom:3px}
+    .trip-bar{font-size:1em;color:#9b59b6;letter-spacing:-1px;min-width:14px;text-align:center;flex-shrink:0}
+    .trip-card-active .trip-bar{color:#c39ad8}
+    .trip-name{color:#e8e8e8;font-weight:700;font-size:0.82em;letter-spacing:0.06em;font-family:'Orbitron',sans-serif}
+    .trip-card-active .trip-name{color:#d4a8f0}
+    .trip-desc{color:#e0e0e0;font-size:0.76em;line-height:1.38;margin-left:23px;margin-top:1px;font-style:italic}
+    .trip-card-active .trip-desc{color:#fff}
+    /* ── Lemon tek modal ── */
+    #lemon-tek-modal .modal-content{max-width:min(380px,90vw)}
+    /* ── Disclaimer ── */
+    .hallucinate{background:linear-gradient(90deg,#ffa500,#9b59b6,#00ffd1,#ffa500);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:hallucinateShift 6s linear infinite,hallucinateGlow 2.4s ease-in-out infinite}
+    @keyframes hallucinateShift{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+    @keyframes hallucinateGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(155,89,182,.55))}50%{filter:drop-shadow(0 0 10px rgba(255,165,0,.65))}}
+    #countdown-text{font-size:0.9em;color:#666;margin:0 0 8px;min-height:1.3em}
+    #close-disclaimer{background:#9b59b6;border:2px solid #9b59b6;color:#fff;padding:8px 28px;border-radius:8px;cursor:pointer;font-size:0.9em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s;letter-spacing:0.03em}
+    #close-disclaimer:hover{background:#7d3faa;border-color:#7d3faa}
+    @media(max-width:480px){body{padding:8px 6px 14px}.container{padding:12px 8px 16px}.site-header{font-size:1.2em;margin-bottom:10px}.input-group{padding:0;justify-content:center}.input-group > label{width:28px;min-width:28px;flex-shrink:0;padding:0}.row-right{flex:1;width:auto;max-width:none;min-width:0}.icon-slot{width:28px;min-width:28px;flex-shrink:0;padding-left:2px;justify-content:flex-start}.modal-content{padding:12px 10px 10px}}
+    @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}.row-right{width:200px}}
+    /* ── SEO content section (collapsible spoiler) ── */
+    .seo-section{max-width:500px;margin:14px auto 16px;font-size:0.78em;line-height:1.65;background:rgba(12,10,20,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:10px;padding:10px 14px;border:1px solid rgba(80,60,120,0.15)}
+    .seo-section summary{color:#bbb;font-size:0.75em;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-family:'Orbitron',sans-serif;cursor:pointer;padding:8px 0;list-style:none;display:flex;align-items:center;justify-content:center;user-select:none;transition:color 0.2s;text-align:center}
+    .seo-section summary::-webkit-details-marker{display:none}
+    .seo-section summary:hover{color:#ddd}
+    .seo-body{color:#777;padding-top:12px;border-top:1px solid #2a2a2a;margin-top:6px}
+    /* formula block */
+    .formula-box{background:rgba(20,16,30,0.85);border:1px solid rgba(155,89,182,0.5);border-radius:10px;padding:14px 16px 16px;margin:0 0 14px;text-align:center}
+    .formula-eq{font-family:monospace;font-size:1.2em;font-weight:700;color:#d0a8f0;letter-spacing:0.02em;margin:0;line-height:1.4}
+    .formula-plain{font-size:0.84em;color:#aaa;margin:6px 0 0;font-style:italic;line-height:1.55}
+    .section-label{color:#7a5fa0;font-size:0.72em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:14px 0 6px}
+    /* faq nested details */
+    .faq-list{margin:0;display:flex;flex-direction:column;gap:2px}
+    .faq-item{border-bottom:1px solid #2a2a2a}
+    .faq-item summary{color:#ccc;font-size:0.9em;font-weight:600;font-family:Arial,Helvetica,sans-serif;cursor:pointer;padding:8px 0 8px 18px;list-style:none;position:relative;user-select:none;transition:color 0.15s;display:block;text-align:left;letter-spacing:0}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::before{content:'▸';position:absolute;left:2px;top:9px;font-size:0.72em;color:#8060a0;transition:transform 0.15s;font-weight:400}
+    .faq-item[open] summary::before{transform:rotate(90deg)}
+    .faq-item summary:hover{color:#d0c0e8}
+    .faq-answer{color:#e0e0e0;font-size:0.88em;line-height:1.65;padding:4px 0 10px 18px;font-family:Arial,Helvetica,sans-serif}
+    .faq-answer strong{color:#fff}
+    .faq-answer em{color:#ddd}
+
+    /* ── Cosmic background ── */
+    #cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(2px);opacity:0.7}
+    body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;filter:blur(60px);
+      background:
+        radial-gradient(ellipse 90% 60% at 15% 25%, rgba(20,10,80,0.35) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 80% at 88% 75%, rgba(5,30,70,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 50% 0%, rgba(10,40,60,0.20) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 45% at 5% 90%, rgba(8,20,50,0.18) 0%, transparent 60%)}
+  </style>
+
+  <!-- ── JSON-LD: ItemList of top strains (rich results) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Psilocybin Mushroom Strains — Potency Guide",
+    "description": "Potency and dosage data for 128 psilocybin mushroom strains and species",
+    "url": "https://headpot.github.io/Mushroom-Dosage-Calculator/",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Golden Teacher","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=golden-teacher"},
+      {"@type":"ListItem","position":2,"name":"Penis Envy","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=penis-envy"},
+      {"@type":"ListItem","position":3,"name":"Enigma","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=enigma"},
+      {"@type":"ListItem","position":4,"name":"Tidal Wave","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=tidal-wave"},
+      {"@type":"ListItem","position":5,"name":"Albino Penis Envy","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=albino-penis-envy"},
+      {"@type":"ListItem","position":6,"name":"B+ (Be Positive)","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=b+-be-positive"},
+      {"@type":"ListItem","position":7,"name":"Psilocybe azurescens","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=psilocybe-azurescens"},
+      {"@type":"ListItem","position":8,"name":"Panaeolus cyanescens","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=panaeolus-cyanescens"},
+      {"@type":"ListItem","position":9,"name":"Psilocybe semilanceata","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=psilocybe-semilanceata"},
+      {"@type":"ListItem","position":10,"name":"Liberty Cap","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=psilocybe-semilanceata"}
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <h1 class="site-header"><span style="display:inline-block;transform:rotate(180deg);color:rgba(200,200,220,0.35)">꩜</span> <span class="hallucinate">Shroomulator</span> <span style="display:inline-block;transform:rotate(180deg) scaleX(-1);color:rgba(200,200,220,0.35)">꩜</span></h1>
+  <canvas id="cosmos"></canvas>
+  <div class="container">
+    <!-- Weight -->
+    <div class="input-group">
+      <label for="weight">Your Weight</label>
+      <div class="row-right">
+        <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your body weight" placeholder="Your Weight">
+        <div id="weight-unit-toggle">
+          <button class="unit-btn active" data-unit="kg">kg</button>
+          <button class="unit-btn" data-unit="lb">lb</button>
+        </div>
+      </div>
+      <span class="icon-slot"></span>
+    </div>
+    <!-- Strain -->
+    <div class="input-group">
+      <label>Strain</label>
+      <div class="row-right">
+        <div class="strain-display" id="strain-display" onclick="openStrainPicker()" title="Click to select strain">
+          <span class="strain-display-text" id="strain-display-text">Strain</span>
+        </div>
+      </div>
+      <span class="icon-slot"><button class="info-btn" onclick="showStrainInfoFromIcon()" aria-label="Strain info">i</button></span>
+    </div>
+    <!-- Trip Level -->
+    <div class="input-group">
+      <label>Trip Level</label>
+      <div class="row-right">
+        <div id="trip-display" onclick="showTripInfo()" title="Click to select trip level">Trip Level</div>
+        <input type="hidden" id="trip-level" value="">
+      </div>
+      <span class="icon-slot"></span>
+    </div>
+    <!-- Result -->
+    <div class="input-group">
+      <label></label>
+      <div class="row-right">
+        <div id="result" style="display:none"></div>
+      </div>
+      <span class="icon-slot"></span>
+    </div>
+    <!-- Lemon Tek -->
+    <div class="input-group" style="margin-top:2px">
+      <label></label>
+      <div class="row-right" style="justify-content:center;gap:6px;white-space:nowrap;flex-wrap:nowrap">
+        <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek" style="width:14px;height:14px;flex:none;cursor:pointer;accent-color:#9b59b6;margin:0">
+        <label for="lemon-tek" style="cursor:pointer;margin:0;font-size:13px;font-weight:700;font-family:'Orbitron',sans-serif;color:#ffa500;white-space:nowrap;letter-spacing:0.04em">Use Lemon Tek</label>
+        <button class="info-btn" onclick="showLemonTekInfo()" aria-label="Lemon Tek info">i</button>
+      </div>
+      <span class="icon-slot"></span>
+    </div>
+  </div>
+
+  <p style="max-width:500px;margin:10px auto 0;text-align:center;font-size:0.72em;color:#bbb;line-height:1.5">For harm reduction purposes only. Not medical advice. Psilocybin is a controlled substance — know your local laws.</p>
+
+  <!-- SEO content — indexed by crawlers, readable but secondary for users -->
+  <details class="seo-section" aria-label="Dosage guide and frequently asked questions">
+    <summary>HOW IT WORKS / FAQ</summary>
+    <div class="seo-body">
+
+      <div class="formula-box" style="margin-bottom:0">
+        <div style="text-align:center;margin:0 0 12px;font-size:1em;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c39ad8">Formula used</div>
+        <div class="formula-eq">dose = (base &times; weight / 70) / potency &times; lemonTek</div>
+        <div class="formula-plain">Adapted from established harm-reduction dosage tables (Erowid, PsychonautWiki) and scaled by the potency multipliers from published HPLC/HPTLC assay data where available, community consensus elsewhere. The 70&nbsp;kg reference body weight is standard in pharmacological dosing literature.</div>
+      </div>
+
+      <h3 class="section-label" style="margin-top:18px">FAQ</h3>
+      <div class="faq-list">
+
+        <details class="faq-item" id="faq-mental-health">
+          <summary>Is psilocybin safe if I have a history of mental illness?</summary>
+          <div class="faq-answer">This is the most important safety question. Psilocybin is <strong>contraindicated</strong> for anyone with a personal or family history of schizophrenia, schizoaffective disorder, bipolar I, or any psychosis-spectrum condition — <em>every major clinical research programme, including Johns Hopkins and Imperial College London, excludes these individuals from trials for this reason.</em> The risk is not physical toxicity but triggering a latent psychotic episode that may not resolve. Active severe depression or suicidal ideation are also exclusion criteria in all published research. If any of this applies to you or a first-degree relative, psilocybin is not a suitable substance regardless of dose.</div>
+        </details>
+
+        <details class="faq-item" id="faq-bad-trip">
+          <summary>What's the difference between a difficult experience and a bad trip?</summary>
+          <div class="faq-answer">A difficult experience still has a frame around it — challenging emotions, confrontational thoughts, discomfort — but you remain grounded enough to know what you took and that it will end. A bad trip involves losing that anchor entirely: real terror, paranoia, or ego dissolution with no sense of ground. Dose is a factor, but set and setting usually matter more. Most difficult experiences resolve positively if you surrender rather than fight them. If someone is in genuine distress: calm voice, safe space, constant presence, no new stimulation. Never leave them alone.</div>
+        </details>
+
+        <details class="faq-item" id="faq-redosing">
+          <summary>It's been 90 minutes and I barely feel anything — should I redose?</summary>
+          <div class="faq-answer">Almost certainly not yet. On a full stomach, onset can push past 2 hours. Redosing too early is one of the most common causes of overwhelming experiences — the first dose and the second peak simultaneously, far stronger than intended. Wait the full 2 hours before considering it. If genuinely nothing at 2.5 hours on an empty stomach, a <em>half</em>-dose top-up is reasonable. Never take a second full dose.</div>
+        </details>
+
+        <details class="faq-item" id="faq-tolerance">
+          <summary>How does tolerance work, and how long to reset?</summary>
+          <div class="faq-answer">Psilocybin tolerance builds after a single dose via rapid down-regulation of 5-HT₂A serotonin receptors. <em>Dose again within 2–3 days and the effect is noticeably blunted.</em> Full reset takes approximately 2–4 weeks. Cross-tolerance exists with LSD, DMT, and other classic psychedelics — all acting on the same receptors. This is why recreational weekend use produces rapidly diminishing returns, and why every microdosing protocol includes multiple off-days. Tolerance is not dependence — psilocybin produces no physical withdrawal and has low addiction potential.</div>
+        </details>
+
+        <details class="faq-item" id="faq-cannabis">
+          <summary>Can you combine mushrooms with cannabis?</summary>
+          <div class="faq-answer">Cannabis amplifies psilocybin for most people — sometimes significantly. Many unexpectedly intense experiences involve cannabis added mid-trip when things seemed manageable. Whether this is desirable or overwhelming depends entirely on dose, tolerance, and setting. If you do combine, use it sparingly, only after the peak, and only if you already have experience with both substances separately.</div>
+        </details>
+
+        <details class="faq-item" id="faq-felt-nothing">
+          <summary>Why did I feel almost nothing at this dose last time?</summary>
+          <div class="faq-answer">Three most common reasons: <strong>tolerance</strong> — dose within the past 2–3 weeks means you need significantly more for the same effect; <strong>food</strong> — a full stomach can reduce absorption dramatically, sometimes turning a 2g experience into a barely perceptible one; <strong>batch variation</strong> — potency varies 30–50% between flushes of the same strain from the same grower. If the number barely touched you, try 20–30% higher next time — not double.</div>
+        </details>
+
+        <details class="faq-item" id="faq-fasting">
+          <summary>Should I fast beforehand?</summary>
+          <div class="faq-answer">Fast for at least 3–4 hours for reliable onset and full effect. A full stomach doesn't make the experience safer — it makes it slower, less predictable, and often significantly weaker. If nausea is a concern, ginger tea beforehand helps without blunting the experience. <em>Fatty meals slow gastric emptying the most — avoid them in the hours before.</em></div>
+        </details>
+
+        <details class="faq-item" id="faq-duration">
+          <summary>How long does it last?</summary>
+          <div class="faq-answer">The full experience typically runs <strong>4–6 hours</strong>, with the peak lasting 2–3 hours. Heroic doses can extend to 6–8 hours. Come-up is 30–90 minutes depending on stomach content, or 15–30 minutes with Lemon Tek. An afterglow — tired but often reflective — can persist several hours beyond that. Plan the full day and clear the next morning for anything above Level 3.</div>
+        </details>
+
+        <details class="faq-item" id="faq-unknown-strain">
+          <summary>My strain isn't in the list — what do I use?</summary>
+          <div class="faq-answer">Marketing names for cubensis strains multiply faster than anyone can track — many are rebranded genetics, often with inflated potency claims. Use <strong>Golden Teacher</strong> as a conservative baseline for any unknown cubensis, or <strong>Penis Envy</strong> if it's marketed as a PE variant. For anything described as "extremely potent" or a new hybrid, start at 50% of the suggested dose until you know the batch.</div>
+        </details>
+
+        <details class="faq-item" id="faq-fresh-vs-dried">
+          <summary>Fresh vs dried — does this calculator work for fresh mushrooms?</summary>
+          <div class="faq-answer">No — <strong>dried only</strong>. Fresh mushrooms are approximately 90% water, so the rough conversion is 10:1 by weight (15g fresh ≈ 1.5g dried). <em>Potency also varies more in fresh mushrooms because water content fluctuates with age and handling.</em> Dry to cracker-crisp consistency before weighing for the most accurate dosing.</div>
+        </details>
+
+        <details class="faq-item" id="faq-cultivated-vs-wild">
+          <summary>What's the difference between cultivated strains and wild species?</summary>
+          <div class="faq-answer">Every cultivated "strain" — Golden Teacher, PE, B+, Enigma — is <em>Psilocybe cubensis</em>. Wild species like <em>P. azurescens</em>, <em>P. cyanescens</em>, <em>P. semilanceata</em>, and <em>Panaeolus cyanescens</em> are entirely different organisms. <em>Most wild species are meaningfully more potent than cubensis and vary more with season, habitat, and drying method.</em> The calculator adjusts per species, but treat wild species with additional caution regardless.</div>
+        </details>
+
+        <details class="faq-item" id="faq-storage">
+          <summary>Are my mushrooms still good?</summary>
+          <div class="faq-answer">For <strong>safety</strong>: discard anything with mold (white or green fuzz), a musty or sour smell, or visible slime — these indicate contamination regardless of storage. For <strong>potency</strong>: bone-dry mushrooms in an airtight jar with a desiccant packet, stored in a cool dark place, retain most of their potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is still present and oxidising. <em>Soft or bendy mushrooms may still be fine if the jar is sealed, but re-dry them before use.</em></div>
+        </details>
+
+
+        <details class="faq-item" id="faq-ssri">
+          <summary>Can you take psilocybin if you're on antidepressants?</summary>
+          <div class="faq-answer">SSRIs and SNRIs blunt or completely block psilocybin effects in most people — both act on serotonin receptors, and chronic SSRI use down-regulates the 5-HT₂A receptors that psilocybin activates. Many people on SSRIs report needing 2–3× their expected dose for any effect, or nothing at all. <strong>Do not stop or taper SSRIs to improve a trip without medical supervision</strong> — discontinuation syndrome is real and dangerous. MAOIs are a separate and serious risk: combining with psilocybin can cause serotonin syndrome, which is a medical emergency.</div>
+        </details>
+
+        <details class="faq-item" id="faq-overdose">
+          <summary>Can you overdose on psilocybin?</summary>
+          <div class="faq-answer">Not in the traditional lethal sense — psilocybin has an extraordinarily high safety margin and there are no confirmed human deaths from psilocybin toxicity alone. The real risks are behavioural: at very high doses, loss of coordination and judgment can lead to accidents. Psychological overdose — an overwhelmingly intense experience with full ego dissolution, terror, and loss of reality anchoring — is very possible and can have lasting effects. This is why dose matters, why a sitter matters at high doses, and why "it's non-toxic" is not the same as "it's safe at any dose."</div>
+        </details>
+
+        <details class="faq-item" id="faq-ego-death">
+          <summary>What is ego death and should I be trying to achieve it?</summary>
+          <div class="faq-answer">Ego dissolution — often called ego death — is the temporary loss of the sense of being a separate self. The boundary between "you" and everything else dissolves. At its best it's described as profoundly liberating, oceanic, or mystical. At its worst it's terrifying, because the part of you that knows "this will end" is the same part that disappears. It typically requires a heroic dose (4.5g+ at baseline cubensis) and an appropriate setting. It is not a goal to chase casually — it's something to approach with preparation, intention, and respect. The clinical research showing psilocybin's most profound therapeutic effects also involves the most intense experiences.</div>
+        </details>
+
+        <details class="faq-item" id="faq-trip-sitting">
+          <summary>How do I trip sit for someone?</summary>
+          <div class="faq-answer">Your job as a sitter is to be a calm, stable presence — not a guide, not a therapist, not entertainment. Stay sober. Keep the environment safe, quiet, and familiar. Don't offer unsolicited reassurance or try to redirect the experience — just be there. If they become distressed: lower your voice, get on their level physically, remind them gently what they took and that it will pass. Don't restrain, don't argue with their reality, don't leave them alone. Have water and a blanket available. Know in advance whether they want to be touched or talked to during difficult moments — ask before they dose, not during.</div>
+        </details>
+
+        <details class="faq-item" id="faq-wood-lovers-paralysis">
+          <summary>What is wood lover's paralysis?</summary>
+          <div class="faq-answer">A rare phenomenon reported almost exclusively with wood-loving Psilocybe species — particularly <em>P. azurescens</em>, <em>P. cyanescens</em>, and <em>P. subaeruginosa</em>. Some users experience temporary weakness or paralysis of the legs, typically during the come-up, lasting 30 minutes to a few hours. The cause is unknown — it may be related to aeruginascin or other compounds these species produce alongside psilocybin. It resolves on its own and leaves no permanent effects, but it is alarming if unexpected. If you're using a wood-loving species, be aware, don't be alone, and don't plan to walk anywhere during the experience.</div>
+        </details>
+
+        <details class="faq-item" id="faq-microdose-protocol">
+          <summary>What microdosing protocol should I follow?</summary>
+          <div class="faq-answer">The most widely used is the <strong>Fadiman protocol</strong>: dose one day, off two days, repeat. This prevents tolerance build-up while allowing observation of effects over time. A typical starting microdose is 0.05–0.1g dried cubensis — you should feel nothing perceptible, just subtle shifts in mood, focus, or creativity. <strong>Stamets protocol</strong> is more aggressive: four days on, three days off. Start lower than you think you need. If you feel obviously altered, the dose is too high — a microdose should be sub-perceptual. Keep a journal; effects often accumulate and are easier to see in retrospect than in the moment.</div>
+        </details>
+
+        <details class="faq-item" id="faq-enigma">
+          <summary>How much stronger is Enigma than regular cubensis?</summary>
+          <div class="faq-answer">Significantly. Enigma tested at 3.82% total tryptamines at the 2021 Hyphae Cup — the highest ever recorded for any cubensis sample in a verified competition. That's roughly <strong>3–4× average cubensis</strong>. A dose that would give a normal experience with Golden Teacher could be overwhelming with Enigma. It also can't be grown from spores — it's a sporeless mutation that only propagates via agar — so any Enigma you encounter comes from a clone chain, and potency can vary between them. Always start at a fraction of your normal dose.</div>
+        </details>
+
+        <details class="faq-item" id="faq-panaeolus-vs-cubensis">
+          <summary>How much stronger is Panaeolus cyanescens than P. cubensis?</summary>
+          <div class="faq-answer"><em>Panaeolus cyanescens</em> (Blue Meanie, Natal Blue Meanie) is typically <strong>2–3× stronger than average P. cubensis</strong> by dry weight. Because they're also much smaller mushrooms, visual comparisons are extremely misleading — a handful of Pan. cyan that looks like a modest amount can be an intense experience. They also have a reputation for a faster, sharper onset. Treat them as an entirely different category from cubensis: halve your expected dose, go somewhere safe, and don't underestimate them based on appearance.</div>
+        </details>
+      </div>
+    </div>
+  </details>
+
+  <!-- Strain Picker Modal -->
+  <div id="strain-picker-modal" class="modal">
+    <div class="modal-content picker-modal-content">
+      <p class="picker-title" id="picker-title">SELECT STRAIN</p>
+      <input class="picker-search" id="picker-search" type="text" placeholder="Search strains…" autocomplete="off" inputmode="search">
+      <div class="strain-list" id="strain-grid"></div>
+    </div>
+  </div>
+
+  <!-- Strain Info Modal -->
+  <div id="strain-modal" class="modal">
+    <div class="modal-content strain-modal-wrap">
+      <button id="strain-nav-prev" class="strain-nav-btn" onclick="navigateStrain(-1)" aria-label="Previous strain">&#8249;</button>
+      <button id="strain-nav-next" class="strain-nav-btn" onclick="navigateStrain(1)" aria-label="Next strain">&#8250;</button>
+      <div id="strain-info-text"></div>
+      <div class="modal-buttons">
+        <button class="btn-back" id="strain-info-back" onclick="strainInfoBack()">Back</button>
+        <button class="btn-done" id="strain-info-done" onclick="strainInfoDone()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip Level Modal -->
+  <div id="trip-info-modal" class="modal">
+    <div class="modal-content" style="padding:14px 14px 12px">
+      <h3 class="trip-modal-title">Trip Levels</h3>
+      <div id="trip-info-text"></div>
+    </div>
+  </div>
+
+  <!-- Lemon Tek Modal -->
+  <div id="lemon-tek-modal" class="modal">
+    <div class="modal-content">
+      <p style="margin-top:0">Lemon Tek involves soaking ground mushrooms in lemon juice for 20–30 minutes. It may enhance psilocybin conversion to psilocin, leading to a faster onset and stronger effects. Dosage is reduced by 20% to compensate.</p>
+      <div class="modal-buttons">
+        <button class="btn-back" onclick="closeModal('lemon-tek-modal')">Back</button>
+        <button class="btn-done" onclick="closeModal('lemon-tek-modal')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer Popup -->
+  <div id="disclaimer-popup" class="modal">
+    <div class="modal-content" style="max-width:min(520px,94vw);border-radius:20px;padding:28px 30px 22px">
+      <h2 style="margin:0 0 16px;color:#9b59b6;font-family:'Orbitron',sans-serif;font-size:1.25em;letter-spacing:0.05em;text-align:center">Disclaimer</h2>
+      <p style="color:#e0e0e0;font-size:0.96em;line-height:1.6;margin:0">This calculator gives a ballpark, not a prescription. Real potency shifts with the strain, the batch, how you dried it, what you've eaten, your tolerance, and your headspace — none of which a formula can know. <strong style="color:#fff">Always start lower than the number shown</strong>, especially with anything you haven't tried before.</p>
+      <hr style="border:none;border-top:1px solid #3a3a3a;margin:18px 0 12px">
+      <p style="color:#bbb;font-size:0.84em;margin:0;line-height:1.45">&gt; Made with AI, which is also known to <span class="hallucinate">hallucinate</span>.</p>
+      <div style="text-align:center;margin-top:18px">
+        <p id="countdown-text" style="font-size:0.85em;color:#666;margin:0 0 10px;min-height:1.2em"></p>
+        <button id="close-disclaimer" style="display:none">I understand</button>
+      </div>
+
+    </div>
+  </div>
+  <script>
+  (function(){
+    var c=document.getElementById('cosmos'),ctx=c.getContext('2d');
+    var stars=[],W,H;
+    function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;buildStars();}
+    function buildStars(){
+      stars=[];
+      // deep background — tiny, dim, many
+      for(var i=0;i<180;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*0.7+0.15,base:Math.random()*0.25+0.08,speed:Math.random()*0.004+0.001,phase:Math.random()*Math.PI*2,col:0});
+      // midground — slightly brighter, fewer
+      for(var i=0;i<60;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.0+0.4,base:Math.random()*0.35+0.15,speed:Math.random()*0.007+0.002,phase:Math.random()*Math.PI*2,col:Math.random()<0.3?1:0});
+      // foreground sparkles — rare, visible
+      for(var i=0;i<18;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.8,base:Math.random()*0.4+0.3,speed:Math.random()*0.012+0.004,phase:Math.random()*Math.PI*2,col:Math.random()<0.4?2:0});
+    }
+    resize();window.addEventListener('resize',resize);
+    var cols=['rgba(230,220,255,','rgba(180,200,255,','rgba(210,170,255,'];
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var t=Date.now()*0.001;
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        var a=s.base+s.base*0.7*Math.sin(s.phase+t*s.speed*8);
+        ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle=cols[s.col]+a+')';ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+  <script>
+  // ── Strain data ──────────────────────────────────────────────────────────
+  const STRAINS = [
+    {name:"Acadian Coast (ACC)",potency:1.0,evidence:"Low",origin:"East Coast North America (Newfoundland to Louisiana)",desc:"Prolific 2nd–3rd flushes; thick tan caps; reliable intermediate grower."},
+    {name:"Alacabenzi (ACBZ)",potency:1.0,evidence:"Low",origin:"USA — early 2000s hybrid (possible P. semilanceata influence)",desc:"Aggressive colonizer, highly contamination-resistant. Medium fruits; classic beginner strain with balanced effects."},
+    {name:"Albino A+",potency:1.0,evidence:"Low",origin:"USA — A+ albino mutation",desc:"A leucistic (near-albino) phenotype of the A+ cubensis strain. Despite community speculation about elevated potency in albino phenotypes, there is no confirmed evidence that Albino A+ is systematically stronger than standard cubensis. Effects are typical cubensis."},
+    {name:"Albino Bluey Vuitton (ABV)",potency:1.9,evidence:"Low",origin:"USA — Bluey Vuitton albino phenotype",desc:"The albino/leucistic phenotype of the Bluey Vuitton hybrid. White/cream fruiting bodies with the Bluey Vuitton potency reputation and vigorous Panama/Melmac growth genetics. Community reports are very positive for both aesthetics and potency."},
+    {name:"Albino Burma",potency:1.1,evidence:"Low",origin:"USA — leucistic Burma variant",desc:"Tested up to 1.41% total tryptamines — nearly double standard Burma. Pale white fruits with strong visual appeal."},
+    {name:"Albino Chode Wave (ACW)",potency:1.5,evidence:"Low",origin:"USA — modern breeder albino selection",desc:"A modern breeder albino cubensis isolate with a compact, wide-capped fruiting body. Representative of the wave of aesthetic/potency-focused cubensis breeding in the 2020s. Above-baseline potency reputation from community."},
+    {name:"Albino Penis Envy (APE)",potency:1.7,evidence:"High",origin:"USA — lab selection (PE × PF Albino)",desc:"A leucistic (near-albino) phenotype developed from a cross between Penis Envy and PF Albino. Retains the characteristic dense PE fruiting body with a white/cream coloration and intense blue bruising. Considered one of the most potent PE-family variants. Like standard PE, it produces very few viable spores and is best propagated via agar. Not an entry-level strain."},
+    {name:"Albino Riptide",potency:1.4,evidence:"Low",origin:"USA — Riptide albino phenotype",desc:"The albino phenotype of the Riptide strain. Retains Riptide's characteristic compact, dense fruiting body in an all-white/cream version with intense blue bruising. Community reports are consistent with standard Riptide potency — above-average and reliable."},
+    {name:"Allen Strain",potency:1.0,evidence:"Low",origin:"Thailand (collected by John Allen, Koh Samui)",desc:"Thin, tall fruits; 10–20% faster colonization than average; heat-tolerant."},
+    {name:"Amazonian",potency:1.2,evidence:"Moderate",origin:"Amazon Basin, South America",desc:"A P. cubensis strain attributed to the Amazon basin. Known as a vigorous grower with above-average yields and dense, medium-to-large fruiting bodies. Effects are frequently described as energetic and visually stimulating with a more body-forward onset than many cubensis strains. A good intermediate strain."},
+    {name:"Australian",potency:1.0,evidence:"Low",origin:"Australian pastures",desc:"Large fruits, rapid colonization, mold-resistant; classic Australian cubensis."},
+    {name:"Avery's Albino (AA)",potency:0.9,evidence:"Low",origin:"USA — true albino mutation of Cambodian",desc:"A true albino mutation isolated from the Cambodian cubensis lineage. Produces ghostly white fruiting bodies lacking any pigmentation — rarer and more fragile than leucistic 'albino' variants. Potency is assumed comparable to the Cambodian parent (slightly below average)."},
+    {name:"B+",potency:1.0,evidence:"Moderate",origin:"Florida, USA — 1990s (cultivator Mr. G)",desc:"Developed by a Florida cultivator known as Mr. G in the 1990s. One of the most forgiving strains to grow — tolerates a wide range of substrates and temperatures. Known for large fruiting bodies, good yields, and a warm, positive experience with balanced visuals and euphoria. The 'B+' name is said to stand for 'Be Positive'."},
+    {name:"Ban Hua Thanon (BHT)",potency:1.0,evidence:"Low",origin:"Thailand (John Allen)",desc:"Heat-resistant Thai variant collected by ethnomycologist John Allen."},
+    {name:"Bix Mex",potency:1.0,evidence:"Low",origin:"Mexico (vendor isolation)",desc:"Heavy sporulator with flat caps; photogenic but messy."},
+    {name:"Blue Ghost",potency:1.7,evidence:"Low",origin:"USA — Ghost lineage × blue-cap hybrid",desc:"A hybrid selection combining Ghost/TAT lineage with blue-cap isolates. The 'blue' refers to both the striking blue bruising reaction and the slightly blue-tinted cap surface on some phenotypes. Visually striking with Ghost-lineage potency reputation."},
+    {name:"Blue Meanie (BM)",potency:1.2,evidence:"High",origin:"Ambiguous — Australia / Tropics (cubensis version) or Panaeolus cyanescens",desc:"'Blue Meanie' is a dangerously ambiguous name applied to at least two entirely different fungi: (1) Panaeolus cyanescens — a tropical dung species that is extremely potent (2–3× stronger than P. cubensis), and (2) various P. cubensis cultivars informally called Blue Meanie due to heavy bruising. 2024 LC-MS/MS testing of cubensis 'Blue Meanie' gave 1.221% total tryptamines. Always confirm your species before dosing."},
+    {name:"Blue Pulaski (BP)",potency:1.2,evidence:"Low",origin:"USA — community selection",desc:"A P. cubensis community isolate named for its notably vivid blue bruising reaction on caps when handled — an indication of psilocin oxidation. Community reports suggest above-average visual intensity and a clean cerebral onset. The deep blue bruising is one of the most visually striking of any cubensis strain."},
+    {name:"Blue Pulaski × Ghost",potency:1.7,evidence:"Low",origin:"USA — hybrid (Blue Pulaski × Ghost lineage)",desc:"A hybrid project combining Blue Pulaski (notable blue-cap cubensis isolate) with Ghost/TAT lineage. Developed for combining the visual distinctiveness of Blue Pulaski's intense bruising with Ghost-level potency."},
+    {name:"Blue Shakti",potency:1.3,evidence:"Low",origin:"USA — Malabar-derived albino isolation",desc:"A Malabar Coast-derived leucistic/albino isolation. The 'Shakti' name references Hindu goddess Shakti, fitting given the Indian Malabar origin. Community reports consistently note above-average potency and a smooth, flowing quality to the experience."},
+    {name:"Bluey Vuitton (BV)",potency:1.8,evidence:"Moderate",origin:"USA — modern hybrid (Panama × Melmac PE)",desc:"A modern PE hybrid crossing Panama cubensis with Melmac PE. Developed around 2024–2025 and rapidly gaining community popularity for high potency combined with Melmac's relative ease of cultivation. The Panama genetics add aggressive colonisation and vigour while Melmac contributes PE-level potency."},
+    {name:"Brainiac",potency:1.6,evidence:"Low",origin:"USA — Tidal Wave phenotype",desc:"A phenotype/derivative from the Tidal Wave family exhibiting unusual morphological characteristics — dense, layered caps with a heavier-than-average fruiting body. Community reports emphasise cerebral intensity and strong visuals."},
+    {name:"Brazilian",potency:1.2,evidence:"Low",origin:"Brazil",desc:"Aggressive colonization; can produce massive wild-style fruits. Community reports describe an energetic, visually rich experience."},
+    {name:"Burma",potency:0.9,evidence:"Low",origin:"Myanmar (Burma)",desc:"A P. cubensis strain reportedly collected in Burma (Myanmar). Known as a fast, aggressive coloniser — tolerant of suboptimal conditions and resistant to contamination. Produces medium to large fruits with consistent flushes. Effects reported as energetic and uplifting. Tested averages ~0.50–0.63% total tryptamines."},
+    {name:"Cambodian",potency:0.8,evidence:"Low",origin:"Cambodia — collected near Angkor Wat",desc:"Originally collected near Angkor Wat, Cambodia. Prized as one of the fastest colonising cubensis strains — ideal for beginners due to contamination resistance and ease of growth. The trade-off is lower potency; community reports consistently place it below baseline cubensis."},
+    {name:"Campinas",potency:1.1,evidence:"Low",origin:"Brazil (Sao Paulo region)",desc:"Stabilized mid-2010s; balanced and relatively rare isolate from the São Paulo region."},
+    {name:"Casper",potency:1.8,evidence:"Low",origin:"USA",desc:"Ghost-grey fruits with tested 1.79% total tryptamines — one of the stronger albino-like isolates in the community."},
+    {name:"Chilean",potency:1.0,evidence:"Low",origin:"Chilean rainforests/mountains",desc:"Climate-tolerant cubensis; performs well in cool/wet conditions."},
+    {name:"Chitwan (Nepal)",potency:1.2,evidence:"Low",origin:"Chitwan region, Nepal (John Allen)",desc:"Dense flushes; contamination-resistant; collected in Nepal by ethnomycologist John Allen."},
+    {name:"Chodewave",potency:0.8,evidence:"Low",origin:"USA — APE × Tidal Wave progeny",desc:"Thick white stalks; impressive effects despite modest tested potency (~0.41%). A visually striking cross between APE and Tidal Wave."},
+    {name:"Colombian Rust Spore (CRS)",potency:1.2,evidence:"Low",origin:"Colombia",desc:"Unique rust-red spores; peaceful, anxiety-free effects reported by community."},
+    {name:"Copelandia cyanescens",potency:2.1,evidence:"High",origin:"Tropical worldwide (synonym of Pan. cyanescens)",desc:"An older synonym for Panaeolus cyanescens — the same extremely potent dung-loving tropical species. The name Copelandia is still used colloquially in some cultivation and vendor communities. Dose with serious caution — extremely potent, significantly stronger than P. cubensis."},
+    {name:"Corumbá",potency:1.0,evidence:"Low",origin:"Brazil (Corumbá)",desc:"Tricky but rewarding Brazilian isolate; intermediate grower with generous yields when conditions are right."},
+    {name:"Costa Rican",potency:1.0,evidence:"Low",origin:"Costa Rica",desc:"A P. cubensis strain from the rainforests of Costa Rica. Known for producing large, caramel-capped fruits with thick stems. Community reports describe a warm, visually colourful experience with a relatively gentle body load — suited for beginners or outdoor settings."},
+    {name:"Creeper",potency:1.4,evidence:"High",origin:"USA — Keeper's Creeper isolate (Cambodian lineage)",desc:"2024 LC-MS/MS study measured 1.36% total psilocybin+psilocin — one of the highest for non-PE cubensis. Aggressive colonizer with very large fruits; fast and contamination-resistant."},
+    {name:"DC Mak",potency:1.5,evidence:"Low",origin:"USA — PE family isolation",desc:"A PE-family isolation from an independent breeder/vendor. Known for dense fruiting bodies and strong community potency reports. Related to Makilla Gorilla lineage by some accounts. Community consensus places it in the upper-tier cubensis potency range."},
+    {name:"Ecuadorian",potency:1.0,evidence:"Low",origin:"Ecuador — high-altitude regions near the Andes",desc:"A P. cubensis strain collected from high-altitude regions of Ecuador. Produces large, meaty fruits with broad caps — one of the larger-fruiting cubensis strains. Effects described as colourful and euphoric with good body sensation — a pleasant all-rounder."},
+    {name:"Enigma",potency:3.2,evidence:"High",origin:"USA — spontaneous mutation of Tidal Wave",desc:"A spontaneous sporeless mutation of the Tidal Wave strain (PE × B+), producing bizarre brain/blob-shaped growth instead of normal fruiting bodies. The 2021 Spring Hyphae Cup sample tested at 3.82% total tryptamines — the highest confirmed result for any cubensis in competition history. Because it produces no spores, it can only be propagated via agar. Treat as 3× stronger than average cubensis."},
+    {name:"Fiji",potency:1.0,evidence:"Low",origin:"Fiji Islands, Pacific",desc:"A P. cubensis strain collected from the Fiji Islands. Moderately fast coloniser with above-average yields. Produces thick-stemmed fruits with broad caramel caps. Community reports are generally positive — balanced effects typical of cubensis."},
+    {name:"Ghost",potency:1.7,evidence:"Moderate",origin:"USA — TAT/True Albino Teacher breeder lineage",desc:"A family of isolates descended from True Albino Teacher (TAT), a leucistic Golden Teacher phenotype. The Ghost lineage was developed by breeders focusing on elevated potency alongside albino aesthetics. Community reports are consistently enthusiastic about potency and experience quality."},
+    {name:"Golden Ghost",potency:1.7,evidence:"Low",origin:"USA — Ghost × Golden Teacher lineage",desc:"A cross between Golden Teacher-derived lineage and Ghost/TAT isolates. Combines GT's reliable, consistent growth with Ghost's potency reputation. Community reports above-average potency with a characteristically warm, insightful quality."},
+    {name:"Golden Jack (GJ)",potency:1.1,evidence:"Low",origin:"USA — lab cross (GT × Jack Frost)",desc:"A breeder cross between Golden Teacher-derived lineage and Jack Frost (TAT × APE). Visually distinctive with pale to near-white coloration. Potency reported near baseline or slightly above — the GT genetics appear to bring potency back toward average despite Jack Frost's PE lineage."},
+    {name:"Golden Teacher (GT)",potency:1.0,evidence:"Moderate",origin:"Florida, USA — 1980s",desc:"Named for its distinct golden-caramel caps and the introspective, reflective quality of the experience. One of the most widely cultivated cubensis strains ever; popular for beginners due to consistent, manageable effects. Fast-growing with good yields. Effects emphasise clarity, insight, and emotional warmth rather than heavy visuals — often described as the quintessential beginner mushroom with a gentle, enlightening quality."},
+    {name:"Gymnopilus junonius (GJ)",potency:0.3,evidence:"Low",origin:"Cosmopolitan — worldwide",desc:"A large, striking orange-brown mushroom growing in clusters on hardwood stumps. Despite historical reports of psychoactivity, modern chemical assays frequently return negative or negligible psilocybin results. The psychoactivity is thought to be unreliable or possibly attributable to other compounds. Should not be relied upon as a psilocybin source."},
+    {name:"Gymnopilus luteofolius",potency:0.4,evidence:"Low",origin:"North America, Europe — wood-rotting species",desc:"A yellow-gilled wood-rotting mushroom. Modern assays are inconsistent — some confirm psilocybin at very low levels, others do not. Unreliable as a psilocybin source; not practical for use."},
+    {name:"Hawaiian",potency:1.0,evidence:"Low",origin:"Hawaii, USA (disputed — possibly vendor name)",desc:"A popular early cultivation variety known for consistent growth and above-average yields. Produces broad, golden-capped fruits. Effects are typical cubensis — balanced visuals, euphoria, and moderate body load. Not to be confused with PES Hawaiian (a different vendor strain)."},
+    {name:"Hillbilly",potency:1.0,evidence:"Low",origin:"Arkansas, USA",desc:"Known in the community for an unusually social, giggly, and uplifting experience compared to most cubensis strains — often described as a 'party strain'. Easy to grow with consistent flushes and good contamination resistance."},
+    {name:"Huautla",potency:1.0,evidence:"Low",origin:"Huautla de Jiménez, Oaxaca, Mexico",desc:"A P. cubensis strain associated with the Mazatec town of Huautla de Jiménez — the same community where María Sabina performed legendary mushroom ceremonies witnessed by R. Gordon Wasson in 1955. Slow grower but culturally significant lineage. Effects described as introspective and spiritual."},
+    {name:"Inocybe aeruginascens",potency:0.5,evidence:"Low",origin:"Central Europe — found in sandy soils, parks",desc:"A small European species that stains blue-green when damaged. Contains psilocybin, baeocystin, and aeruginascin. WARNING: The Inocybe genus contains many deadly toxic look-alikes containing muscarine. Misidentification risk is extremely high — this is not a safe species to forage under any circumstances."},
+    {name:"Jack Frost (JF)",potency:1.0,evidence:"Moderate",origin:"USA — lab cross (TAT × APE)",desc:"A cross of True Albino Teacher (TAT) and Albino PE, producing an all-white fruiting body with a frosted crystalline appearance at maturity caused by spore deposits forming on the cap surface before the veil breaks. Despite the impressive PE-crossed genetics, lab tests around 1% total tryptamines place it at average potency."},
+    {name:"Jedi Mind Fuck (JMF)",potency:1.5,evidence:"Low",origin:"USA — early 2000s vendor selection",desc:"Known for producing above-average visual intensity and a strong cerebral component compared to typical cubensis strains. Fast-growing and decent yielder. Community reports are notably variable (some find it unremarkable, others find it quite strong), suggesting batch-to-batch variability typical of unverified community strains."},
+    {name:"Koh Samui (KS)",potency:0.9,evidence:"Low",origin:"Koh Samui, Thailand",desc:"A P. cubensis strain originally collected on Koh Samui island, Thailand — an island long associated with 'mushroom shakes' served in beach bars. Produces small to medium fruiting bodies but multiple dense flushes with above-average yield. Reportedly more body-heavy than average cubensis with moderate visuals."},
+    {name:"Long Ghost",potency:1.7,evidence:"Low",origin:"USA — Ghost/TAT lineage selection",desc:"A Ghost-family isolate selected for unusually elongated stipes — the long, elegant stems are both aesthetically distinctive and practically useful for dosing by weight. Community reports are enthusiastic and consistent with other Ghost-family strains."},
+    {name:"Makilla Gorilla (MG)",potency:1.6,evidence:"Moderate",origin:"USA — modern PE/Melmac-style breeder",desc:"A modern breeder selection from PE/Melmac-family lineages. Named for the large, gorilla-like size of its fruiting bodies. Some assays have shown notably high psilocybin (up to 1.93%), placing it among the more potent modern cubensis selections."},
+    {name:"Malabar",potency:1.0,evidence:"Low",origin:"Malabar Coast, India",desc:"A P. cubensis strain from the Malabar Coast of southwestern India. Produces large, dense fruits with thick caps and stems. Known as a fast, vigorous coloniser with good yields and contamination resistance. Effects reported as uplifting and euphoric with moderate visuals."},
+    {name:"Mazatapec",potency:1.0,evidence:"Moderate",origin:"Oaxaca, Mexico — Mazatec region",desc:"A P. cubensis strain originating from the Mazatec region of Oaxaca, Mexico — home to the indigenous Mazatec people who have used psilocybin mushrooms in healing ceremonies for centuries. One of the slower-growing cubensis strains. Effects are commonly described as spiritual, introspective, and calming rather than visually intense — fitting its ceremonial roots."},
+    {name:"McKennaii",potency:1.2,evidence:"Low",origin:"Mexico (vendor stabilized)",desc:"Named after Terence McKenna; strong visuals and reliable potency in community tests."},
+    {name:"Melmac",potency:1.5,evidence:"Low",origin:"USA — PE family selection",desc:"A Penis Envy-derived isolate, sometimes called 'Melmac PE' or 'Home Depot PE'. Characterised by a distinctive wavy, contorted cap edge. Retains PE characteristics of dense stems and high potency. Like PE, it produces very few viable spores and needs agar for propagation."},
+    {name:"Mexican",potency:1.0,evidence:"Low",origin:"Mexico (geographic label — multiple lineages)",desc:"A generic label applied to various P. cubensis strains collected across Mexico. Note: 'Mexican' cubensis should not be confused with Psilocybe mexicana — an entirely different species used in Aztec ceremonies. When referring to P. cubensis with a Mexican geographic label, expect average potency."},
+    {name:"Orissa India (OI)",potency:1.0,evidence:"Low",origin:"Odisha (formerly Orissa), India",desc:"A P. cubensis strain from Odisha, India. One of the larger cubensis varieties — known for producing impressively large fruiting bodies, sometimes described as among the biggest in the cubensis world. Moderate colonisation speed but generous yields."},
+    {name:"Panaeolus cinctulus (PCT)",potency:0.6,evidence:"Moderate",origin:"Cosmopolitan — worldwide",desc:"One of the most widespread Panaeolus species — found in lawns, compost heaps, and enriched grasslands worldwide. Formerly known as Panaeolus subbalteatus. Psilocybin content is lower and more variable than P. cubensis; some specimens test negative. Often confused with Panaeolus cyanescens in the field — a potentially dangerous error."},
+    {name:"Panaeolus cyanescens (PCY)",potency:2.1,evidence:"High",origin:"Tropical worldwide — dung-loving species",desc:"Also known as 'Blue Meanie' in Australia and 'Natal Blue Meanie' in South Africa. A dung-loving tropical/subtropical species; one of the most potent psilocybin mushrooms known. Significantly stronger than P. cubensis; dose with serious caution — what looks like a small amount can be extremely potent. Fast onset reported by users."},
+    {name:"Pearly Gates (PG)",potency:1.8,evidence:"Low",origin:"USA — competition winner",desc:"A potent modern cubensis hybrid that reportedly won the Recreational category at a community potency competition. Limited documentation on lineage — likely a PE-family cross. Very high community potency reputation; treat with appropriate caution."},
+    {name:"Penis Envy (PE)",potency:1.6,evidence:"High",origin:"Colombian Amazon → Florida, USA — 1970s–80s",desc:"Origin traces to spores collected by Terence McKenna in the Colombian Amazon in the early 1970s, subsequently stabilised by cultivators Steven Pollock and Rich Gee. Genomic research (PMC 2021) identified a 4.6kb insertion in the N-methyltransferase gene (PsiM), likely contributing to elevated psilocybin production. Most PE mushrooms are near-sterile. Dense, thick-stemmed fruits with underdeveloped caps. Intense, immersive experience; typically not suggested for beginners."},
+    {name:"PES Amazonian (PESA)",potency:1.0,evidence:"Low",origin:"Amazon Basin (Pacific Exotica Spores vendor)",desc:"A vendor label from Pacific Exotica Spores (PES) for an Amazonian P. cubensis isolate — historically one of the most popular spore vendor offerings in the early online cultivation era. Fast and reliable coloniser with large fruits. A classic beginner strain."},
+    {name:"PES Hawaiian (PESH)",potency:1.0,evidence:"Low",origin:"Hawaii (Pacific Exotica Spores vendor)",desc:"A vendor label from Pacific Exotica Spores (PES) for a Hawaiian P. cubensis isolate. Similar growth characteristics to PES Amazonian — fast, reliable, and good yields. A classic early online-era vendor strain."},
+    {name:"PF Classic (PFC)",potency:1.0,evidence:"Low",origin:"USA — Robert McPherson 'Psilocybe Fanaticus'",desc:"Named after Robert McPherson, who developed the famous PF Tek method — growing psilocybin mushrooms on brown rice flour in small jars. One of the most historically significant strains in home cultivation, responsible for spreading amateur mushroom growing throughout the 1990s internet."},
+    {name:"Pluteus americanus",potency:0.5,evidence:"Low",origin:"Eastern North America",desc:"An eastern North American wood-rotting species. Contains psilocybin alongside aeruginascin and baeocystin — making it one of the few confirmed psilocybin-containing Pluteus species in North America. Potency is low and inconsistent across specimens."},
+    {name:"Pluteus salicinus (PLS)",potency:0.6,evidence:"Low",origin:"Europe, North America",desc:"One of the few psilocybin-containing mushrooms outside the Psilocybe/Panaeolus/Gymnopilus genera. Grows on decaying hardwood logs and stumps across Europe and North America. A grey-brown wood-rotting species with pink-tinted gills at maturity. Psilocybin content is low and inconsistent across specimens. Also contains aeruginascin."},
+    {name:"Psilocybe allenii",potency:1.5,evidence:"Moderate",origin:"West Coast, USA — Pacific Northwest to Bay Area",desc:"First formally described in 2012 from the West Coast of North America. Grows on wood chips and woody debris in landscaped areas — a species adapted to human-modified environments. Several assays indicate high potency, possibly comparable to P. cyanescens. Named after mycologist John Allen."},
+    {name:"Psilocybe atlantis",potency:0.6,evidence:"Low",origin:"Fulton County, Georgia, USA — described 2006",desc:"Notable for forming both fruiting bodies and underground sclerotia ('philosopher's stones') similar to P. tampanensis. Sclerotia are the primary product from cultivated specimens and are typically milder than fruiting bodies. Limited potency data; experience reported as gentle and colourful."},
+    {name:"Psilocybe azurescens (AZU)",potency:1.9,evidence:"High",origin:"Columbia River mouth, Pacific Northwest, USA",desc:"The Flying Saucer mushroom — native to a small coastal area of the Pacific Northwest. Among the most potent wild Psilocybe species, with an average ~1.78% psilocybin. Wood-loving; grows on buried deciduous wood and sandy soils. Fruiting limited to a narrow autumn window. Can cause temporary paralysis of the lower extremities ('wood lover's paralysis') in some users."},
+    {name:"Psilocybe baeocystis",potency:1.3,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and mulch species. The compound baeocystin was first isolated and named from this very species (Leung and Paul, 1967–68). Beug and Bigwood (1981) HPLC assays found 0.15–0.85% psilocybin. Uniquely, potency is markedly higher when fresh — reported to diminish by roughly half when dried. Bruises intensely metallic blue."},
+    {name:"Psilocybe caeruleorhiza",potency:0.8,evidence:"Low",origin:"Midwest USA — described 2025",desc:"Cold-weather wood-rotting species in section Aztecorum. New to science; bluing reaction and psilocybin confirmed but potency expected moderate-low."},
+    {name:"Psilocybe caeruleipes",potency:0.5,evidence:"Low",origin:"Eastern North America",desc:"Known as the 'blue-foot' mushroom — found on decaying hardwood logs in eastern North America. Often found alongside Galerina marginata (deadly toxic) — identification confidence is critical before any contact. Not a practical source due to low and inconsistent potency."},
+    {name:"Psilocybe caerulescens",potency:1.1,evidence:"Moderate",origin:"Mexico, Venezuela, Central America",desc:"A tropical to subtropical species found in Mexico, Venezuela, and surrounding regions. One of the Mazatec ceremonial species used alongside P. mexicana. Known as 'derrumbe' (landslide mushroom) in Mexico. A handful of assays report moderate-to-above-average alkaloids."},
+    {name:"Psilocybe coprophila",potency:0.0,evidence:"Negligible",origin:"Cosmopolitan — mostly reclassified",desc:"Modern taxonomic revisions have moved most records to Deconica species — which are not psychoactive. This reclassification means what is sold or listed as 'P. coprophila' is likely not a reliable psilocybin source. Exercise extreme caution."},
+    {name:"Psilocybe cubensis",potency:1.0,evidence:"High",origin:"Tropical worldwide — first described Cuba, 1906",desc:"First described in 1906 in Cuba by mycologist Franklin Sumner Earle. The world's most widely cultivated psilocybin mushroom due to ease of growth and broad substrate tolerance. Psilocybin ranges from ~0.2% to over 2% dry weight depending on strain, flush, and growing conditions. Wide strain-to-strain variability means the species label alone tells you little about potency."},
+    {name:"Psilocybe cyanofibrillosa",potency:0.4,evidence:"Low",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest species found in grassy areas near the coast, distinguishable by its fibrous stem that stains blue when damaged. Older assays report very low tryptamine levels — generally the least potent of the commonly listed Pacific Northwest Psilocybe species."},
+    {name:"Psilocybe cyanescens (CYA)",potency:1.6,evidence:"High",origin:"Pacific Northwest, USA / Europe",desc:"The Wavy Cap — a wood-loving species found across the Pacific Northwest, Europe, and other temperate regions, typically fruiting on mulched garden beds and wood chips in autumn. A 2025 PMC bibliographic review found agitation-extraction methods yielded over 2% psilocybin. Produces aeruginascin in addition to psilocybin/psilocin."},
+    {name:"Psilocybe fimetaria",potency:0.3,evidence:"Low",origin:"Europe, North America — dung habitats",desc:"A European and North American dung species. Multiple older reports and some assays indicate little-to-no psilocybin in many specimens; results are inconsistent across different collections. Not considered a reliable psilocybin source."},
+    {name:"Psilocybe galindoi",potency:0.6,evidence:"Low",origin:"Oaxaca, Mexico",desc:"A Mexican species often confused with P. tampanensis in cultivation circles, where 'galindoi' is sometimes used as a label for sclerotia-producing cultures. Both fruiting body and sclerotia potency are variable and generally considered mild."},
+    {name:"Psilocybe hispanica",potency:0.8,evidence:"Low",origin:"Pyrenees — Spain, France",desc:"A European species found in the Pyrenees mountains of northern Spain and southern France — one of the few confirmed psilocybin species in continental Europe. Grows in high-altitude alpine meadows, typically associated with sheep dung. First described in 2000."},
+    {name:"Psilocybe ingeli",potency:0.0,evidence:"Low",origin:"Ingeli Forest, KwaZulu-Natal, South Africa",desc:"Newly described (2023) from the Ingeli Forest in KwaZulu-Natal, South Africa. Traditional use by local communities has been reported. No quantitative potency data published yet. Expected to contain psilocybin based on species placement; actual levels unknown."},
+    {name:"Psilocybe maluti",potency:0.0,evidence:"Low",origin:"Maluti Mountains, Lesotho / South Africa",desc:"Newly described (2023) from the Maluti mountain range spanning Lesotho and South Africa. Used in traditional cultural practices in the region. No quantitative potency data published to date."},
+    {name:"Psilocybe mexicana (MEX)",potency:0.7,evidence:"Moderate",origin:"Mexico, Central America",desc:"One of the most historically significant psilocybin mushrooms. Used by the Aztec people — who called it teonanácatl ('flesh of the gods') — for over 2,000 years. Albert Hofmann isolated psilocybin and psilocin from this species in 1958. Known for producing underground sclerotia ('philosopher's stones'). Experience is mild, colourful, and introspective — good for beginners."},
+    {name:"Psilocybe natalensis",potency:1.1,evidence:"Moderate",origin:"KwaZulu-Natal, South Africa",desc:"Originally thought to be a P. cubensis variety from South Africa, but recent genetic testing confirmed it as a distinct species. Community reports describe the experience as 'cleaner' and 'smoother' than cubensis, with fewer side effects and superior visuals. More resistant to contamination than cubensis."},
+    {name:"Psilocybe ochraceocentrata",potency:1.0,evidence:"Low",origin:"Africa (preliminary name)",desc:"Closest known wild relative of cultivated P. cubensis. Suggests African origins for the species; similar morphology and expected baseline potency."},
+    {name:"Psilocybe ovoideocystidiata",potency:1.0,evidence:"Moderate",origin:"Eastern North America — river banks",desc:"Found along rivers and streams of the eastern USA, growing on wood chips and woody debris — often turning up in landscaped parks near rivers. One of the more recently described North American psilocybin species. Some specimens have tested positive for psilocybin at near-cubensis levels."},
+    {name:"Psilocybe pelliculosa",potency:0.4,evidence:"Low",origin:"Pacific Northwest, USA / Canada",desc:"A Pacific Northwest species found on wood chips and mossy areas in coniferous forests. Multiple assays report consistently low psilocybin (0.1–0.2% dry weight). Not considered a potent source."},
+    {name:"Psilocybe samuiensis",potency:0.7,evidence:"Low",origin:"Koh Samui, Thailand — first described 1993",desc:"First described from Koh Samui island, Thailand in 1993 — the first psilocybin mushroom formally described from Asia. The species has cultural significance given the Thai island's association with 'mushroom shakes' in the backpacker tourism era."},
+    {name:"Psilocybe semilanceata (SEM)",potency:1.5,evidence:"High",origin:"Europe, temperate North America",desc:"The Liberty Cap — one of the most widely distributed wild psilocybin mushrooms in Europe and temperate North America. Small, conical, with a distinctive nipple-like umbo. A 2025 PMC review found psilocybin up to 1.70–2.02% dry weight. Found in pastures and meadows, typically fruiting in autumn. Do not confuse with toxic lookalikes."},
+    {name:"Psilocybe serbica",potency:1.5,evidence:"High",origin:"Central/Eastern Europe — Serbia, Czech Republic",desc:"A Central and Eastern European wood-loving species. One of the few potent wild Psilocybe species native to Europe alongside P. semilanceata and P. cyanescens. Modern HPLC assays and genomic studies (PNAS 2024) confirm the full psilocybin biosynthesis cluster. High psilocybin reported in some specimens."},
+    {name:"Psilocybe striata",potency:1.0,evidence:"Low",origin:"Chongqing, China — described 2025",desc:"Newly described bluing species with striking white pileus and striate veils. Confirmed psilocybin presence; limited quantitative data."},
+    {name:"Psilocybe strictipes",potency:1.2,evidence:"Moderate",origin:"Europe — Netherlands, UK",desc:"A close relative of P. semilanceata found primarily in the Netherlands and UK, growing in enriched grasslands. Some comparative assay work suggests it may contain psilocybin at above-average levels in good specimens. Morphologically distinguished from the Liberty Cap by its more cylindrical cap."},
+    {name:"Psilocybe stuntzii",potency:0.5,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and lawn species. The 2026 HPTLC cultivation study found P. stuntzii had the lowest psilocybin content (0.45%) of all six Psilocybe species tested under controlled conditions. Generally considered a weak species not worth seeking for potency."},
+    {name:"Psilocybe subaeruginosa",potency:1.6,evidence:"High",origin:"Southeastern Australia, New Zealand",desc:"The dominant potent wild species in southeastern Australia and New Zealand; grows on decaying wood and wood chips, typically fruiting in autumn and winter. Specimens up to 1.93% psilocybin reported. A 2026 HPTLC cultivation study found it exhibited the most pronounced psilocin band of all six tested species."},
+    {name:"Psilocybe subcubensis",potency:1.0,evidence:"Low",origin:"Tropical worldwide",desc:"Taxonomically considered very closely related to P. cubensis, and sometimes synonymised with it entirely in modern treatments. Found in tropical regions worldwide. If you have what is labelled subcubensis, treat it as standard cubensis baseline."},
+    {name:"Psilocybe subtropicalis",potency:5.0,evidence:"Moderate",origin:"Subtropical regions — enhanced breeding",desc:"Enhanced breeding variants of subtropical Psilocybe species have reportedly reached extraordinarily high alkaloid concentrations approaching ~5% through selective breeding programs. Treat with extreme caution: even a fraction of a normal dose could be overwhelming. Evidence relies on competition and breeder reports rather than independent peer-reviewed assays."},
+    {name:"Psilocybe tampanensis (TAM)",potency:0.6,evidence:"Moderate",origin:"Tampa, Florida, USA — discovered 1977",desc:"Discovered in 1977 near Tampa, Florida by Steven Pollock — he found a single specimen growing in a sand dune. Famous for producing psychoactive underground sclerotia nicknamed 'philosopher's stones'. Alkaloid assays on sclerotia show 0.31–0.68% psilocybin dry weight. Sclerotia are legally sold in the Netherlands. Experience is typically gentle and introspective."},
+    {name:"Psilocybe weraroa",potency:0.6,evidence:"Low",origin:"New Zealand",desc:"A pouched (secotioid) species from New Zealand — one of the most unusual psilocybin mushrooms morphologically. Rather than a typical mushroom cap, it produces a closed, pouch-like or truffle-shaped fruiting body that never opens fully. A fascinating evolutionary case."},
+    {name:"Psilocybe weilii",potency:0.6,evidence:"Low",origin:"Northern Georgia, USA — very limited range",desc:"Found in a very limited area of northern Georgia, USA, described in 1995. Grows in bermudagrass and red clay soils — a habitat unlike most other Psilocybe species. Rarely encountered in practice; a notable curiosity given its unusual habitat."},
+    {name:"Psilocybe yungensis",potency:0.8,evidence:"Low",origin:"Mexico, Colombia — cloud forests",desc:"Found in Mexico and Colombia at higher altitudes in cloud forests and coffee plantations. Grows on decaying plant matter and enriched soils. Used in traditional practices in some Colombian communities."},
+    {name:"Psilocybe zapotecorum",potency:1.4,evidence:"High",origin:"Oaxaca, Mexico — Zapotec region",desc:"A sacred Mesoamerican species used historically by Zapotec peoples in Oaxaca for spiritual and ceremonial purposes. A 2026 controlled HPTLC cultivation study found P. zapotecorum had the highest psilocybin content (1.89%) of six Psilocybe species tested, outperforming even P. azurescens under the same conditions."},
+    {name:"Puerto Rican (PR)",potency:1.0,evidence:"Low",origin:"Puerto Rico",desc:"A P. cubensis strain with origins attributed to Puerto Rico. Produces medium-to-large fruits with golden-brown caps. Effects are typical cubensis — balanced visuals and euphoria."},
+    {name:"Riptide (RT)",potency:1.4,evidence:"Low",origin:"USA — breeder selection",desc:"A compact, dense cubensis selection with a reputation for consistent, reliable potency. Community describes the experience as body-heavy with good visual quality — the short, wide fruiting body shape (resembling a wave just before it crests) is characteristic."},
+    {name:"Rusty Whyte",potency:1.0,evidence:"Low",origin:"USA — lab cross (Albino A+ × Colombian Rust)",desc:"A leucistic cubensis hybrid. Produces white to cream caps with rusty-orange edges and patches on some specimens — hence the name. One of the more aesthetically unique non-albino cubensis strains. Average potency; reliable grower."},
+    {name:"South American (SA)",potency:1.0,evidence:"Low",origin:"South America — Colombia, Brazil, Peru",desc:"A broad geographic label for P. cubensis strains collected from various South American countries. Multiple distinct strains may be sold under this name by different vendors. Generally considered average cubensis baseline."},
+    {name:"Squatty Riptide",potency:1.4,evidence:"Low",origin:"USA — Riptide phenotype selection",desc:"The squat, compact phenotype selection of the Riptide family — selected specifically for extremely short stipes and wide, dense caps. Community reports consistently note body-heavy effects and good visual quality consistent with the Riptide family."},
+    {name:"Steel Magnolia (SM)",potency:1.5,evidence:"Low",origin:"USA — lab cross (PE × Blue Magnolia)",desc:"A cross of Penis Envy lineage with Blue Magnolia isolates. Community reports above-average potency with visually interesting blue-cap phenotypes. Named to reference PE's robust genetics (the steel) combined with Blue Magnolia's aesthetics (the magnolia)."},
+    {name:"Swamp Ghost",potency:1.6,evidence:"Low",origin:"USA — Ghost lineage × swamp/wild isolate",desc:"A selection from the Ghost lineage crossed with unspecified swamp or wild-collected isolates. Community reports of potency consistent with the Ghost family, with some reports of a heavier, more body-focused experience than typical Ghost selections."},
+    {name:"Teonanacatl",potency:1.2,evidence:"Low",origin:"Mexico — stabilized vendor lineage",desc:"Named after the Aztec sacred mushroom 'teonanácatl' (flesh of the gods); a stabilized vendor lineage with reliable potency and easy cultivation."},
+    {name:"Texas Yellow",potency:1.1,evidence:"High",origin:"USA",desc:"2024 LC-MS/MS study: 1.103% total tryptamines. Robust yellow-capped fruits; excellent outdoor performer."},
+    {name:"Thai",potency:0.9,evidence:"Low",origin:"Thailand — island beach culture",desc:"P. cubensis strains from Thailand, historically associated with the backpacker 'mushroom shake' culture around Koh Samui and Koh Phangan. Generally considered average to slightly below average potency."},
+    {name:"Tidal Wave (TW)",potency:1.7,evidence:"High",origin:"USA — lab hybrid (PE × B+)",desc:"A hybrid of Penis Envy × B+, combining PE potency with B+ vigour and ease of cultivation. Won the 2021 Spring Hyphae Cup. Regular fruits averaged ~1.17% total tryptamines across multiple Cup entries. Fast coloniser with above-average yields."},
+    {name:"Transkei",potency:1.1,evidence:"Low",origin:"Transkei, Eastern Cape, South Africa",desc:"A P. cubensis strain from the Transkei region of South Africa's Eastern Cape province. Often described as producing a more active, moving visual experience compared to typical cubensis — sometimes called SAT (South African Transkei). More energetic, body-forward onset."},
+    {name:"Trans Envy",potency:1.6,evidence:"Low",origin:"USA — accidental Transkei × PE cross",desc:"An accidental cross between Transkei and Penis Envy. Thicker stems and boosted potency from PE genetics, combined with Transkei's energetic visual character."},
+    {name:"Treasure Coast",potency:1.1,evidence:"Moderate",origin:"Treasure Coast, Florida, USA",desc:"A P. cubensis strain originally collected along Florida's Treasure Coast. Known for producing albino or near-albino mutations at a higher rate than most cubensis strains. Effects are reported as smooth, clear-headed, and introspective — often described as a 'cleaner' cubensis experience without overwhelming body load."},
+    {name:"Trinity",potency:1.3,evidence:"Low",origin:"USA — PE × Aztec God × Tidal Wave",desc:"A PE-dominant three-way hybrid. PE morphology with slightly larger caps; above-average potency from the stacked PE/Tidal Wave genetics."},
+    {name:"TTBVI",potency:5.0,evidence:"Moderate",origin:"USA — interspecies hybrid (includes P. azurescens genes)",desc:"An extraordinary interspecies hybrid reportedly incorporating P. azurescens genetics. Won a potency competition with a reported alkaloid content exceeding 5% — which, if verified, would be the highest ever recorded for any cultivated psilocybin mushroom. This figure is based on competition and breeder reports. Dose with extreme caution."},
+    {name:"TWAPE",potency:1.8,evidence:"Low",origin:"USA — lab hybrid (Tidal Wave × APE)",desc:"A cross of Tidal Wave (PE × B+) with Albino PE, stacking PE genetics heavily. Breeder claims suggest very high potency in some isolations. Near-sterile like other PE-heavy hybrids; agar propagation required. Community reports consistently above average and trending very high."},
+    {name:"TWAPE Variants",potency:1.7,evidence:"Low",origin:"USA — TWAPE downstream isolations",desc:"Multiple downstream isolations from Tidal Wave × APE crosses. Variable phenotypes ranging from near-white albino to speckled and standard colour. Generally high potency reputation across all phenotypes."},
+    {name:"Uncut Envy",potency:1.6,evidence:"Low",origin:"USA — PE phenotype/vendor selection",desc:"A PE phenotype/line marketed as an 'uncut' or 'original' Penis Envy selection — implying it has not been outcrossed or diluted with other genetics. Community reports strong potency consistent with the PE family."},
+    {name:"White Rabbit",potency:1.7,evidence:"Low",origin:"Holland — APE × Moby Dick hybrid",desc:"Award-winning high-potency albino hybrid from Dutch breeders; rivals top PE variants in community potency reports."},
+    {name:"Wollongong",potency:1.0,evidence:"Low",origin:"Australia (Wollongong)",desc:"Classic large Australian strain; tenacious colonization with good contamination resistance."},
+    {name:"Xapuri",potency:1.2,evidence:"Low",origin:"Brazil (roadside collection)",desc:"Brazilian isolate known for massive fruit production; can become unstable if fruits grow too large before harvest."},
+    {name:"Yeti",potency:1.6,evidence:"Low",origin:"USA — TAT isolation, large albino phenotype",desc:"A TAT-family isolate selected for large, albino fruiting bodies. The 'Yeti' name references the large white appearance of the fruiting bodies. Considered one of the more vigorous white cubensis strains with good yields for an albino."},
+    {name:"Z-Strain (ZS)",potency:1.0,evidence:"Low",origin:"USA — early online vendor selection",desc:"A popular P. cubensis vendor strain known for aggressive rhizomorphic growth, fast colonisation, and above-average yields. One of the most popular beginner strains due to forgiving nature and fast results. Average potency."},
+  ];
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  let selectedStrain = null; // the current strain object
+  let pendingStrain = null;  // strain clicked in picker but not confirmed yet
+  let strainInfoSource = 'picker'; // 'picker' or 'icon'
+  let weightUnit = 'kg';
+  let strainNavList = [];
+  let strainNavIdx = 0;
+  let _interacted = false;
+
+  // ── Potency helpers ────────────────────────────────────────────────────────
+  function getPotencyLabel(p) {
+    if (p <= 0)   return 'Unknown';
+    if (p < 0.45) return 'Very Low';
+    if (p < 0.95) return 'Below Avg';
+    if (p < 1.05) return 'Average';
+    if (p < 1.2)  return 'Above Avg';
+    if (p < 1.4)  return 'Above Avg+';
+    if (p < 1.75) return 'High';
+    if (p < 2.05) return 'Very High';
+    if (p < 3.5)  return 'Extremely High';
+    return 'Exceptionally High';
+  }
+
+  // Sort strains A-Z (strip trailing parenthetical for sort key)
+  STRAINS.sort(function(a,b){
+    var ka=a.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
+    var kb=b.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
+    return ka<kb?-1:ka>kb?1:0;
+  });
+
+  // ── Strain picker ──────────────────────────────────────────────────────────
+  function openStrainPicker() {
+    renderStrainGrid('');
+    document.getElementById('picker-search').value = '';
+    document.getElementById('strain-picker-modal').style.display = 'flex';
+    setTimeout(() => document.getElementById('picker-search').focus(), 120);
+    _startSearchPoll();
+  }
+
+  function renderStrainGrid(q) {
+    const grid = document.getElementById('strain-grid');
+    const filtered = q ? STRAINS.filter(s => s.name.toLowerCase().includes(q)) : STRAINS;
+    // dedupe by name
+    const seen = new Set();
+    const unique = filtered.filter(s => { if (seen.has(s.name)) return false; seen.add(s.name); return true; });
+    if (unique.length === 0) {
+      document.getElementById('picker-title').textContent = 'No results';
+      document.getElementById('picker-search').placeholder = 'Search ' + STRAINS.length + ' strains\u2026';
+      grid.innerHTML = '<div class="picker-no-results">No strains found</div>';
+      return;
+    }
+    var label = q ? ('Results (' + unique.length + ')') : 'SELECT STRAIN';
+    document.getElementById('picker-title').textContent = label;
+    document.getElementById('picker-search').placeholder = 'Search ' + unique.length + ' strains\u2026';
+    grid.innerHTML = '';
+    unique.forEach(function(s) {
+      const isSelected = selectedStrain && selectedStrain.name === s.name;
+      const item = document.createElement('div');
+      item.className = 'strain-list-item' + (isSelected ? ' selected' : '');
+      item.textContent = s.name;
+      item.addEventListener('click', function() { openStrainInfoFromPicker(s.name); });
+      grid.appendChild(item);
+    });
+  }
+
+  // ── Strain info modal ──────────────────────────────────────────────────────
+  function openStrainInfoFromPicker(name) {
+    const s = STRAINS.find(x => x.name === name);
+    if (!s) return;
+    pendingStrain = s;
+    strainInfoSource = 'picker';
+    // Always navigate the full list starting from selected position
+    strainNavList = STRAINS;
+    strainNavIdx = STRAINS.findIndex(x => x.name === name);
+    if (strainNavIdx < 0) strainNavIdx = 0;
+    renderStrainInfo(s);
+    _updateNavBtns();
+    document.getElementById('strain-modal').style.display = 'flex';
+  }
+
+  function showStrainInfoFromIcon() {
+    if (!selectedStrain) { openStrainPicker(); return; }
+    strainInfoSource = 'icon';
+    pendingStrain = null;
+    strainNavList = STRAINS;
+    strainNavIdx = STRAINS.findIndex(x => x.name === selectedStrain.name);
+    if (strainNavIdx < 0) strainNavIdx = 0;
+    renderStrainInfo(selectedStrain);
+    _updateNavBtns();
+    document.getElementById('strain-modal').style.display = 'flex';
+  }
+
+  function renderStrainInfo(s) {
+    const potLabel = getPotencyLabel(s.potency);
+    const evidenceTips = {
+      'Negligible': 'No credible data supports psilocybin content. Likely non-psychoactive.',
+      'Low':        'Anecdotal community reports only. No formal lab testing. Treat with caution.',
+      'Moderate':   'Some verified lab assays or well-documented community data, but coverage is limited.',
+      'High':       'Multiple independent peer-reviewed studies or verified HPLC/HPTLC assays.'
+    };
+    const potencyTip = s.potency <= 0
+      ? 'Insufficient data — do not dose without species confirmation.'
+      : `${s.potency.toFixed(1)}× average P. cubensis baseline. Adjust your dose accordingly.`;
+    document.getElementById('strain-info-text').innerHTML = `
+      <p class="strain-modal-name"><span class="hallucinate">${s.name}</span></p>
+      <div class="strain-badges">
+        <span class="badge badge-potency">⚡ ${potLabel}${s.potency > 0 ? ' <span class="badge-num">x' + s.potency.toFixed(1) + '</span>' : ''}
+          <span class="tip">${potencyTip}</span>
+        </span>
+        <span class="badge badge-evidence">🔬 Evidence: ${s.evidence}
+          <span class="tip">${evidenceTips[s.evidence] || 'See description.'}</span>
+        </span>
+      </div>
+      <p class="strain-modal-origin">📍 <span>${s.origin}</span></p>
+      <hr class="strain-modal-divider">
+      <p class="strain-modal-desc">${s.desc}</p>
+    `;
+    document.querySelectorAll('#strain-info-text .badge').forEach(b => {
+      b.addEventListener('click', e => { e.stopPropagation(); b.classList.toggle('tip-open'); });
+    });
+  }
+
+  function strainInfoBack() {
+    closeModal('strain-modal');
+  }
+
+  function strainInfoDone() {
+    if (strainInfoSource === 'picker' && pendingStrain) {
+      selectedStrain = pendingStrain;
+      _interacted = true;
+      updateStrainDisplay();
+      calculate();
+      closeModal('strain-modal');
+      closeModal('strain-picker-modal');
+    } else {
+      // just viewing info from icon — close info modal
+      closeModal('strain-modal');
+    }
+    pendingStrain = null;
+  }
+
+  function _updateNavBtns() {
+    const prev = document.getElementById('strain-nav-prev');
+    const next = document.getElementById('strain-nav-next');
+    if (!prev) return;
+    const show = strainNavList.length > 1;
+    prev.style.display = next.style.display = show ? 'flex' : 'none';
+    prev.style.opacity = strainNavIdx > 0 ? '1' : '0.25';
+    next.style.opacity = strainNavIdx < strainNavList.length - 1 ? '1' : '0.25';
+  }
+
+  function navigateStrain(dir) {
+    const ni = strainNavIdx + dir;
+    if (ni < 0 || ni >= strainNavList.length) return;
+    strainNavIdx = ni;
+    const s = strainNavList[ni];
+    if (strainInfoSource === 'picker') pendingStrain = s;
+    renderStrainInfo(s);
+    _updateNavBtns();
+  }
+
+  // keyboard left/right for strain nav
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeAllModals(); return; }
+    if (document.getElementById('strain-modal').style.display !== 'flex') return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); navigateStrain(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); navigateStrain(1); }
+  });
+
+  // touch swipe for strain modal
+  (function(){
+    var tx = 0;
+    var sm = document.getElementById('strain-modal');
+    sm.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; }, {passive:true});
+    sm.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) navigateStrain(dx < 0 ? 1 : -1);
+    }, {passive:true});
+  })();
+
+  function updateStrainDisplay() {
+    const el = document.getElementById('strain-display');
+    const txt = document.getElementById('strain-display-text');
+    if (selectedStrain) {
+      txt.textContent = selectedStrain.name;
+      el.classList.add('has-value');
+      txt.classList.add('hallucinate');
+    } else {
+      txt.textContent = 'Strain';
+      el.classList.remove('has-value');
+      txt.classList.remove('hallucinate');
+    }
+  }
+
+  // ── Trip level ─────────────────────────────────────────────────────────────
+  const tripNames = {'1':'Microdose','2':'Low','3':'Normal','4':'High','5':'Heroic'};
+  function showTripInfo() {
+    const current = document.getElementById('trip-level').value;
+    const levels = [
+      {v:'1', name:'Microdose', bar:'▁', desc:'Sub-perceptual. No hallucinations. Subtle mood lift, focus, and creativity. Work-safe for most people.'},
+      {v:'2', name:'Low',       bar:'▃', desc:'Mild effects. Light visuals, colour enhancement, gentle euphoria. Good for social settings.'},
+      {v:'3', name:'Normal',    bar:'▅', desc:'Full psychedelic experience. Visuals, pattern distortion, introspective thoughts. Prepare your set and setting.'},
+      {v:'4', name:'High',      bar:'▇', desc:'Strong effects. Ego softening, profound insights, possible challenging moments. Experienced users only.'},
+      {v:'5', name:'Heroic',    bar:'█', desc:'Very intense. Ego dissolution likely. Not suggested without significant experience and a trusted sitter.'},
+    ];
+    const list = document.getElementById('trip-info-text');
+    list.innerHTML = '';
+    levels.forEach(({v, name, bar, desc}) => {
+      const active = v === current;
+      const card = document.createElement('div');
+      card.className = 'trip-card' + (active ? ' trip-card-active' : '');
+      card.innerHTML =
+        '<div class="trip-card-header"><span class="trip-bar">' + bar + '</span><span class="trip-name">' + name + '</span></div>' +
+        '<div class="trip-desc">' + desc + '</div>';
+      card.addEventListener('click', () => selectTripLevel(v));
+      list.appendChild(card);
+    });
+    document.getElementById('trip-info-modal').style.display = 'flex';
+  }
+
+  function selectTripLevel(v) {
+    _interacted = true;
+    document.getElementById('trip-level').value = v;
+    const display = document.getElementById('trip-display');
+    display.textContent = tripNames[v] || 'Trip Level';
+    display.classList.toggle('has-value', !!v);
+    display.style.color = v ? '#9b59b6' : '';
+    display.style.webkitTextFillColor = v ? '#9b59b6' : '';
+    calculate();
+    setTimeout(() => closeModal('trip-info-modal'), 180);
+  }
+
+  // ── Lemon Tek ──────────────────────────────────────────────────────────────
+  function showLemonTekInfo() {
+    document.getElementById('lemon-tek-modal').style.display = 'flex';
+  }
+
+  // ── Calculate ──────────────────────────────────────────────────────────────
+  function calculate() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const level = document.getElementById('trip-level').value;
+    const useLemonTek = document.getElementById('lemon-tek').checked;
+    const result = document.getElementById('result');
+
+    if (!weight || weight < 1 || weight > 500 || !selectedStrain || !level) {
+      if (_interacted) {
+        result.style.display = '';
+        result.innerHTML = 'Please fill all fields.';
+      } else {
+        result.style.display = 'none';
+      }
+      return;
+    }
+    result.style.display = '';
+    const weightInKg = weightUnit === 'lb' ? weight * 0.453592 : weight;
+    const potency = selectedStrain.potency;
+    if (potency <= 0) {
+      result.style.display = '';
+      result.innerHTML = 'Potency unknown — cannot calculate dose.';
+      return;
+    }
+    const baseDosages = {1:0.25, 2:0.7, 3:1.5, 4:3, 5:4.5};
+    let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
+    if (useLemonTek) dose *= 0.8;
+    result.innerHTML = `Suggested: <strong>${dose.toFixed(2)}g</strong> <span style="color:#888;font-size:0.85em">(dry)</span>`;
+  }
+
+  // ── Modal helpers ──────────────────────────────────────────────────────────
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+    if (id === 'strain-picker-modal') _stopSearchPoll();
+  }
+  function closeAllModals() {
+    document.querySelectorAll('.modal').forEach(function(m){ m.style.display='none'; });
+    _stopSearchPoll();
+  }
+  document.querySelectorAll('.modal').forEach(function(modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeAllModals();
+    });
+  });
+
+  // ── Unit toggle ────────────────────────────────────────────────────────────
+  document.querySelectorAll('.unit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.unit-btn.active').classList.remove('active');
+      btn.classList.add('active');
+      weightUnit = btn.dataset.unit;
+      calculate();
+    });
+  });
+
+  document.getElementById('weight').addEventListener('input', function(){ _interacted=true; calculate(); });
+  document.getElementById('picker-search').addEventListener('keyup', function(e){ renderStrainGrid(e.target.value.toLowerCase().trim()); });
+
+  // Robust mobile search: poll while picker is open (catches Android composing, paste, autofill)
+  var _searchPoll = null;
+  function _startSearchPoll() {
+    var el = document.getElementById('picker-search');
+    var last = '';
+    _searchPoll = setInterval(function() {
+      var v = el.value.toLowerCase().trim();
+      if (v !== last) { last = v; renderStrainGrid(v); }
+    }, 80);
+  }
+  function _stopSearchPoll() { clearInterval(_searchPoll); _searchPoll = null; }
+  document.getElementById('lemon-tek').addEventListener('change', calculate);
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const kgBtn = document.querySelector('[data-unit="kg"]');
+    const lbBtn = document.querySelector('[data-unit="lb"]');
+    var ipCtrl = new AbortController();
+    var ipTimeout = setTimeout(function(){ ipCtrl.abort(); }, 3000);
+    fetch('https://ipapi.co/json/', {signal: ipCtrl.signal})
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        clearTimeout(ipTimeout);
+        if (['US','LR','MM'].includes(data.country_code)) {
+          lbBtn.classList.add('active'); kgBtn.classList.remove('active'); weightUnit = 'lb';
+        }
+      }).catch(function(){});
+
+    {
+      const DISC_KEY = 'shroom_disc_v3';
+      const last = parseInt(localStorage.getItem(DISC_KEY) || '0');
+      const shownThisSession = sessionStorage.getItem(DISC_KEY);
+      if (!shownThisSession && Date.now() - last > 345600000) { // once per session, max every 4 days
+        const popup = document.getElementById('disclaimer-popup');
+        const closeBtn = document.getElementById('close-disclaimer');
+        const countdownText = document.getElementById('countdown-text');
+        popup.style.display = 'flex';
+        let timer = 7; countdownText.textContent = timer;
+        const iv = setInterval(() => {
+          timer--;
+          if (timer > 0) { countdownText.textContent = timer; }
+          else { clearInterval(iv); countdownText.style.display = 'none'; closeBtn.style.display = 'inline-block'; }
+        }, 1000);
+        closeBtn.addEventListener('click', () => {
+          popup.style.display = 'none';
+          localStorage.setItem(DISC_KEY, Date.now().toString());
+          sessionStorage.setItem(DISC_KEY, '1');
+        });
+      }
+    }
+  });
+  </script>
+
+
+  // ── FAQ deep-link: ?faq=slug or #faq-slug opens section + item ──────────
+  (function(){
+    var hash = window.location.hash; // e.g. #faq-tolerance
+    var param = new URLSearchParams(window.location.search).get('faq'); // e.g. ?faq=tolerance
+    var slug = param ? 'faq-' + param : (hash.startsWith('#faq-') ? hash.slice(1) : null);
+    if (!slug) return;
+    var target = document.getElementById(slug);
+    if (!target) return;
+    // Open the HOW IT WORKS section
+    var section = document.querySelector('.seo-section');
+    if (section) section.setAttribute('open', '');
+    // Open the specific FAQ item
+    target.setAttribute('open', '');
+    // Scroll to it after a short delay (allow render)
+    setTimeout(function(){ target.scrollIntoView({behavior:'smooth', block:'start'}); }, 180);
+  })();
+
+
+  // ── Strain deep-link: ?strain=golden-teacher or #strain-golden-teacher ──
+  (function(){
+    var hash = window.location.hash;
+    var param = new URLSearchParams(window.location.search).get('strain');
+    var raw = param || (hash.startsWith('#strain-') ? hash.slice(8) : null);
+    if (!raw) return;
+    // Normalise slug back to name: replace hyphens with spaces, lowercase compare
+    var slug = raw.toLowerCase().replace(/-/g, ' ');
+    var match = null;
+    for (var i = 0; i < STRAINS.length; i++) {
+      if (STRAINS[i].name.toLowerCase() === slug) { match = STRAINS[i]; break; }
+    }
+    // Fuzzy fallback: starts-with match
+    if (!match) {
+      for (var i = 0; i < STRAINS.length; i++) {
+        if (STRAINS[i].name.toLowerCase().startsWith(slug.slice(0,6))) { match = STRAINS[i]; break; }
+      }
+    }
+    if (!match) return;
+    // Auto-select as selectedStrain and show info modal
+    selectedStrain = match;
+    _interacted = true;
+    updateStrainDisplay();
+    calculate();
+    strainInfoSource = 'icon';
+    pendingStrain = null;
+    strainNavList = STRAINS;
+    strainNavIdx = STRAINS.findIndex(function(x){ return x.name === match.name; });
+    if (strainNavIdx < 0) strainNavIdx = 0;
+    setTimeout(function(){
+      renderStrainInfo(match);
+      _updateNavBtns();
+      document.getElementById('strain-modal').style.display = 'flex';
+    }, 120);
+  })();
+
+  <script data-goatcounter="https://headpot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

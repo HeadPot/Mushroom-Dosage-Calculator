@@ -202,6 +202,9 @@
     input[type="number"],.unit-btn{height:44px;box-sizing:border-box}
     input[type="number"]{padding:0 10px;background:#333;color:#ffa500;-webkit-text-fill-color:#ffa500;font-size:16px;font-weight:700;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
     input[type="number"]:focus{border-color:#9b59b6;outline:none}
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+    input[type="number"]{-moz-appearance:textfield}
     #weight-unit-toggle{display:flex;flex-shrink:0}
     .unit-btn{padding:0 11px;background:#2a2a2a;color:#aaa;border:1px solid #555;cursor:pointer;transition:background 0.2s,color 0.2s;flex-shrink:0;font-size:0.88em;letter-spacing:0.03em}
     .unit-btn:first-child{border-radius:0;border-right:none}
@@ -299,27 +302,33 @@
     @media(max-width:480px){body{padding:8px 6px 14px}.container{padding:12px 8px 16px}.site-header{font-size:1.2em;margin-bottom:10px}.input-group{padding:0;justify-content:center}.input-group > label{width:28px;min-width:28px;flex-shrink:0;padding:0}.row-right{flex:1;width:auto;max-width:none;min-width:0}.icon-slot{width:28px;min-width:28px;flex-shrink:0;padding-left:2px;justify-content:flex-start}.modal-content{padding:12px 10px 10px}}
     @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}.row-right{width:200px}}
     /* ── SEO content section (collapsible spoiler) ── */
-    .seo-section{max-width:500px;margin:14px auto 16px;font-size:0.78em;line-height:1.65;background:rgba(12,10,20,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:10px;padding:10px 14px;border:1px solid rgba(80,60,120,0.15)}
-    .seo-section summary{color:#bbb;font-size:0.75em;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-family:'Orbitron',sans-serif;cursor:pointer;padding:8px 0;list-style:none;display:flex;align-items:center;justify-content:center;user-select:none;transition:color 0.2s;text-align:center}
-    .seo-section summary::-webkit-details-marker{display:none}
-    .seo-section summary:hover{color:#ddd}
-    .seo-body{color:#777;padding-top:12px;border-top:1px solid #2a2a2a;margin-top:6px}
+    .seo-section{max-width:500px;margin:14px auto 20px;border-radius:14px;overflow:hidden}
+    .seo-section > summary{color:#c39ad8;font-size:0.8em;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-family:'Orbitron',sans-serif;cursor:pointer;padding:13px 20px;list-style:none;display:flex;align-items:center;justify-content:center;gap:10px;user-select:none;transition:color 0.2s,background 0.2s;text-align:center;background:rgba(26,26,26,0.92);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .seo-section > summary::before{content:'▸';font-size:0.8em;transition:transform 0.2s;color:#9b59b6}
+    .seo-section[open] > summary::before{transform:rotate(90deg)}
+    .seo-section[open] > summary{border-radius:14px 14px 0 0;border-bottom:1px solid rgba(100,70,160,0.2)}
+    .seo-section > summary::-webkit-details-marker{display:none}
+    .seo-section > summary:hover{color:#e0c8f8;background:rgba(155,89,182,0.06)}
+    .seo-body{padding:18px 20px 22px;background:rgba(26,26,26,0.92);border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     /* formula block */
-    .formula-box{background:rgba(20,16,30,0.85);border:1px solid rgba(155,89,182,0.5);border-radius:10px;padding:14px 16px 16px;margin:0 0 14px;text-align:center}
-    .formula-eq{font-family:monospace;font-size:1.2em;font-weight:700;color:#d0a8f0;letter-spacing:0.02em;margin:0;line-height:1.4}
-    .formula-plain{font-size:0.84em;color:#aaa;margin:6px 0 0;font-style:italic;line-height:1.55}
-    .section-label{color:#7a5fa0;font-size:0.72em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:14px 0 6px}
-    /* faq nested details */
-    .faq-list{margin:0;display:flex;flex-direction:column;gap:2px}
-    .faq-item{border-bottom:1px solid #2a2a2a}
-    .faq-item summary{color:#ccc;font-size:0.9em;font-weight:600;font-family:Arial,Helvetica,sans-serif;cursor:pointer;padding:8px 0 8px 18px;list-style:none;position:relative;user-select:none;transition:color 0.15s;display:block;text-align:left;letter-spacing:0}
+    .formula-box{padding:4px 0 20px;margin:0;text-align:center;border-bottom:1px solid rgba(100,70,160,0.15)}
+    .formula-eq{font-family:monospace;font-size:1.25em;font-weight:700;color:#d0a8f0;letter-spacing:0.02em;margin:0;line-height:1.4}
+    .formula-plain{font-size:0.9em;color:#aaa;margin:8px 0 0;font-style:italic;line-height:1.6}
+    .section-label{color:#9b59b6;font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:20px 0 10px;font-family:'Orbitron',sans-serif}
+    .faq-heading{font-family:'Orbitron',sans-serif;font-size:1.6em;font-weight:700;color:#c39ad8;text-align:center;letter-spacing:0.18em;margin:22px 0 12px;text-shadow:0 0 18px rgba(155,89,182,0.35)}
+    /* faq */
+    .faq-list{margin:0;display:flex;flex-direction:column;gap:0}
+    .faq-item{border-bottom:1px solid rgba(100,70,160,0.15)}
+    .faq-item:last-child{border-bottom:none}
+    .faq-item summary{color:#d0c8e0;font-size:1em;font-weight:600;font-family:Arial,Helvetica,sans-serif;cursor:pointer;padding:14px 14px 14px 32px;list-style:none;position:relative;user-select:none;transition:color 0.15s,background 0.15s;display:block;text-align:left;line-height:1.4}
     .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::before{content:'▸';position:absolute;left:2px;top:9px;font-size:0.72em;color:#8060a0;transition:transform 0.15s;font-weight:400}
+    .faq-item summary::before{content:'▸';position:absolute;left:10px;top:16px;font-size:0.75em;color:#9b59b6;transition:transform 0.15s}
     .faq-item[open] summary::before{transform:rotate(90deg)}
-    .faq-item summary:hover{color:#d0c0e8}
-    .faq-answer{color:#e0e0e0;font-size:0.88em;line-height:1.65;padding:4px 0 10px 18px;font-family:Arial,Helvetica,sans-serif}
-    .faq-answer strong{color:#fff}
-    .faq-answer em{color:#ddd}
+    .faq-item summary:hover{color:#e8d8ff;background:rgba(155,89,182,0.06)}
+    .faq-item[open] summary{color:#e8d8ff;background:rgba(155,89,182,0.08)}
+    .faq-answer{color:#ccc;font-size:0.97em;line-height:1.75;padding:2px 18px 16px 32px;font-family:Arial,Helvetica,sans-serif}
+    .faq-answer strong{color:#fff;font-weight:700}
+    .faq-answer em{color:#c39ad8;font-style:normal}
 
     /* ── Cosmic background ── */
     #cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(2px);opacity:0.7}
@@ -414,7 +423,7 @@
 
   <!-- SEO content — indexed by crawlers, readable but secondary for users -->
   <details class="seo-section" aria-label="Dosage guide and frequently asked questions">
-    <summary>HOW IT WORKS / FAQ</summary>
+    <summary>HOW IT WORKS</summary>
     <div class="seo-body">
 
       <div class="formula-box" style="margin-bottom:0">
@@ -423,109 +432,80 @@
         <div class="formula-plain">Adapted from established harm-reduction dosage tables (Erowid, PsychonautWiki) and scaled by the potency multipliers from published HPLC/HPTLC assay data where available, community consensus elsewhere. The 70&nbsp;kg reference body weight is standard in pharmacological dosing literature.</div>
       </div>
 
-      <h3 class="section-label" style="margin-top:18px">FAQ</h3>
+      <h3 class="faq-heading">F.A.Q.</h3>
       <div class="faq-list">
 
         <details class="faq-item" id="faq-mental-health">
-          <summary>Is psilocybin safe if I have a history of mental illness?</summary>
-          <div class="faq-answer">This is the most important safety question. Psilocybin is <strong>contraindicated</strong> for anyone with a personal or family history of schizophrenia, schizoaffective disorder, bipolar I, or any psychosis-spectrum condition — <em>every major clinical research programme, including Johns Hopkins and Imperial College London, excludes these individuals from trials for this reason.</em> The risk is not physical toxicity but triggering a latent psychotic episode that may not resolve. Active severe depression or suicidal ideation are also exclusion criteria in all published research. If any of this applies to you or a first-degree relative, psilocybin is not a suitable substance regardless of dose.</div>
+          <summary>Who should not take psilocybin?</summary>
+          <div class="faq-answer">Psilocybin is <strong>contraindicated</strong> for anyone with a personal or family history of schizophrenia, schizoaffective disorder, bipolar I, or any psychosis-spectrum condition — every major clinical trial, including Johns Hopkins and Imperial College London, excludes these individuals. The risk is not physical toxicity but triggering a latent psychotic episode that may not resolve. Active severe depression or suicidal ideation are also exclusion criteria in all published research.<br><br>
+          <strong>Medications:</strong> SSRIs and SNRIs blunt or block psilocybin effects via 5-HT₂A receptor down-regulation — many people on SSRIs report needing 2–3× the normal dose or feeling nothing. <em>Do not taper or stop SSRIs without medical supervision.</em> MAOIs are a separate category entirely: combining with psilocybin can cause serotonin syndrome, a genuine medical emergency. If you're on any psychiatric medication, research that specific interaction before proceeding.</div>
+        </details>
+
+        <details class="faq-item" id="faq-preparation">
+          <summary>Preparation: set, setting, fasting, and timing</summary>
+          <div class="faq-answer"><strong>Set</strong> is your mindset going in — mood, intentions, any unresolved anxiety. <strong>Setting</strong> is where you are and who you're with. Research consistently shows these two factors shape the experience more than dose alone. A moderate dose in a bad environment can be harder than a higher dose in a trusted, calm one.<br><br>
+          <strong>Fasting:</strong> eat nothing for 3–4 hours minimum. A full stomach doesn't make things safer — it makes onset slower, less predictable, and often significantly weaker. Fatty meals are worst — they delay gastric emptying the most. Ginger tea beforehand reduces nausea without blunting anything.<br><br>
+          <strong>Plan the day:</strong> full experience is 4–6 hours, peak 2–3 hours, come-up 30–90 minutes (or 15–30 with Lemon Tek). Heroic doses can run 6–8 hours. Clear the next morning for anything above Level 3 — the afterglow is real.</div>
+        </details>
+
+        <details class="faq-item" id="faq-dose-didnt-work">
+          <summary>The dose barely worked — or I feel nothing. Why?</summary>
+          <div class="faq-answer">Three common reasons, roughly in order of likelihood:<br><br>
+          <strong>Food:</strong> a full stomach can cut absorption dramatically. The same 2g that would floor you fasted might barely register after a meal. Try again on an empty stomach before assuming anything else.<br><br>
+          <strong>Tolerance:</strong> if you dosed within the past 2–3 weeks, your 5-HT₂A receptors are still down-regulated. Full reset takes 2–4 weeks. Cross-tolerance exists with LSD and other classics — they all compete for the same receptors.<br><br>
+          <strong>Batch variation:</strong> potency varies 30–50% between flushes of the same strain from the same grower. The number you have might just be a weak batch.<br><br>
+          If it genuinely didn't work after 2.5 hours on an empty stomach, try 20–30% higher next time — not double. <em>Never redose before 2 hours — the first dose and a second peak simultaneously is one of the most common causes of overwhelming experiences.</em></div>
         </details>
 
         <details class="faq-item" id="faq-bad-trip">
-          <summary>What's the difference between a difficult experience and a bad trip?</summary>
-          <div class="faq-answer">A difficult experience still has a frame around it — challenging emotions, confrontational thoughts, discomfort — but you remain grounded enough to know what you took and that it will end. A bad trip involves losing that anchor entirely: real terror, paranoia, or ego dissolution with no sense of ground. Dose is a factor, but set and setting usually matter more. Most difficult experiences resolve positively if you surrender rather than fight them. If someone is in genuine distress: calm voice, safe space, constant presence, no new stimulation. Never leave them alone.</div>
-        </details>
-
-        <details class="faq-item" id="faq-redosing">
-          <summary>It's been 90 minutes and I barely feel anything — should I redose?</summary>
-          <div class="faq-answer">Almost certainly not yet. On a full stomach, onset can push past 2 hours. Redosing too early is one of the most common causes of overwhelming experiences — the first dose and the second peak simultaneously, far stronger than intended. Wait the full 2 hours before considering it. If genuinely nothing at 2.5 hours on an empty stomach, a <em>half</em>-dose top-up is reasonable. Never take a second full dose.</div>
-        </details>
-
-        <details class="faq-item" id="faq-tolerance">
-          <summary>How does tolerance work, and how long to reset?</summary>
-          <div class="faq-answer">Psilocybin tolerance builds after a single dose via rapid down-regulation of 5-HT₂A serotonin receptors. <em>Dose again within 2–3 days and the effect is noticeably blunted.</em> Full reset takes approximately 2–4 weeks. Cross-tolerance exists with LSD, DMT, and other classic psychedelics — all acting on the same receptors. This is why recreational weekend use produces rapidly diminishing returns, and why every microdosing protocol includes multiple off-days. Tolerance is not dependence — psilocybin produces no physical withdrawal and has low addiction potential.</div>
-        </details>
-
-        <details class="faq-item" id="faq-cannabis">
-          <summary>Can you combine mushrooms with cannabis?</summary>
-          <div class="faq-answer">Cannabis amplifies psilocybin for most people — sometimes significantly. Many unexpectedly intense experiences involve cannabis added mid-trip when things seemed manageable. Whether this is desirable or overwhelming depends entirely on dose, tolerance, and setting. If you do combine, use it sparingly, only after the peak, and only if you already have experience with both substances separately.</div>
-        </details>
-
-        <details class="faq-item" id="faq-felt-nothing">
-          <summary>Why did I feel almost nothing at this dose last time?</summary>
-          <div class="faq-answer">Three most common reasons: <strong>tolerance</strong> — dose within the past 2–3 weeks means you need significantly more for the same effect; <strong>food</strong> — a full stomach can reduce absorption dramatically, sometimes turning a 2g experience into a barely perceptible one; <strong>batch variation</strong> — potency varies 30–50% between flushes of the same strain from the same grower. If the number barely touched you, try 20–30% higher next time — not double.</div>
-        </details>
-
-        <details class="faq-item" id="faq-fasting">
-          <summary>Should I fast beforehand?</summary>
-          <div class="faq-answer">Fast for at least 3–4 hours for reliable onset and full effect. A full stomach doesn't make the experience safer — it makes it slower, less predictable, and often significantly weaker. If nausea is a concern, ginger tea beforehand helps without blunting the experience. <em>Fatty meals slow gastric emptying the most — avoid them in the hours before.</em></div>
-        </details>
-
-        <details class="faq-item" id="faq-duration">
-          <summary>How long does it last?</summary>
-          <div class="faq-answer">The full experience typically runs <strong>4–6 hours</strong>, with the peak lasting 2–3 hours. Heroic doses can extend to 6–8 hours. Come-up is 30–90 minutes depending on stomach content, or 15–30 minutes with Lemon Tek. An afterglow — tired but often reflective — can persist several hours beyond that. Plan the full day and clear the next morning for anything above Level 3.</div>
-        </details>
-
-        <details class="faq-item" id="faq-unknown-strain">
-          <summary>My strain isn't in the list — what do I use?</summary>
-          <div class="faq-answer">Marketing names for cubensis strains multiply faster than anyone can track — many are rebranded genetics, often with inflated potency claims. Use <strong>Golden Teacher</strong> as a conservative baseline for any unknown cubensis, or <strong>Penis Envy</strong> if it's marketed as a PE variant. For anything described as "extremely potent" or a new hybrid, start at 50% of the suggested dose until you know the batch.</div>
-        </details>
-
-        <details class="faq-item" id="faq-fresh-vs-dried">
-          <summary>Fresh vs dried — does this calculator work for fresh mushrooms?</summary>
-          <div class="faq-answer">No — <strong>dried only</strong>. Fresh mushrooms are approximately 90% water, so the rough conversion is 10:1 by weight (15g fresh ≈ 1.5g dried). <em>Potency also varies more in fresh mushrooms because water content fluctuates with age and handling.</em> Dry to cracker-crisp consistency before weighing for the most accurate dosing.</div>
-        </details>
-
-        <details class="faq-item" id="faq-cultivated-vs-wild">
-          <summary>What's the difference between cultivated strains and wild species?</summary>
-          <div class="faq-answer">Every cultivated "strain" — Golden Teacher, PE, B+, Enigma — is <em>Psilocybe cubensis</em>. Wild species like <em>P. azurescens</em>, <em>P. cyanescens</em>, <em>P. semilanceata</em>, and <em>Panaeolus cyanescens</em> are entirely different organisms. <em>Most wild species are meaningfully more potent than cubensis and vary more with season, habitat, and drying method.</em> The calculator adjusts per species, but treat wild species with additional caution regardless.</div>
-        </details>
-
-        <details class="faq-item" id="faq-storage">
-          <summary>Are my mushrooms still good?</summary>
-          <div class="faq-answer">For <strong>safety</strong>: discard anything with mold (white or green fuzz), a musty or sour smell, or visible slime — these indicate contamination regardless of storage. For <strong>potency</strong>: bone-dry mushrooms in an airtight jar with a desiccant packet, stored in a cool dark place, retain most of their potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is still present and oxidising. <em>Soft or bendy mushrooms may still be fine if the jar is sealed, but re-dry them before use.</em></div>
-        </details>
-
-
-        <details class="faq-item" id="faq-ssri">
-          <summary>Can you take psilocybin if you're on antidepressants?</summary>
-          <div class="faq-answer">SSRIs and SNRIs blunt or completely block psilocybin effects in most people — both act on serotonin receptors, and chronic SSRI use down-regulates the 5-HT₂A receptors that psilocybin activates. Many people on SSRIs report needing 2–3× their expected dose for any effect, or nothing at all. <strong>Do not stop or taper SSRIs to improve a trip without medical supervision</strong> — discontinuation syndrome is real and dangerous. MAOIs are a separate and serious risk: combining with psilocybin can cause serotonin syndrome, which is a medical emergency.</div>
-        </details>
-
-        <details class="faq-item" id="faq-overdose">
-          <summary>Can you overdose on psilocybin?</summary>
-          <div class="faq-answer">Not in the traditional lethal sense — psilocybin has an extraordinarily high safety margin and there are no confirmed human deaths from psilocybin toxicity alone. The real risks are behavioural: at very high doses, loss of coordination and judgment can lead to accidents. Psychological overdose — an overwhelmingly intense experience with full ego dissolution, terror, and loss of reality anchoring — is very possible and can have lasting effects. This is why dose matters, why a sitter matters at high doses, and why "it's non-toxic" is not the same as "it's safe at any dose."</div>
+          <summary>Difficult experience vs bad trip — and what to do</summary>
+          <div class="faq-answer">A <strong>difficult experience</strong> still has a frame — you're grounded enough to know what you took and that it will end. A <strong>bad trip</strong> is losing that anchor entirely: real terror, paranoia, ego dissolution with no sense of ground or time. Dose is a factor but set and setting usually matter more.<br><br>
+          <strong>If you're struggling:</strong> change your environment (go outside or lie down), change the music or turn it off, surrender rather than fight — resisting the experience tends to amplify it. Remind yourself what you took, that it's temporary, that it will end.<br><br>
+          <strong>If someone else is struggling — trip sitting:</strong> your job is to be a calm, stable presence. Stay sober. Keep things quiet and familiar. Lower your voice, get on their level, remind them gently it will pass. Don't restrain, don't argue with their reality, don't leave them alone. Ask before they dose whether they want to be touched or talked to — not during.</div>
         </details>
 
         <details class="faq-item" id="faq-ego-death">
-          <summary>What is ego death and should I be trying to achieve it?</summary>
-          <div class="faq-answer">Ego dissolution — often called ego death — is the temporary loss of the sense of being a separate self. The boundary between "you" and everything else dissolves. At its best it's described as profoundly liberating, oceanic, or mystical. At its worst it's terrifying, because the part of you that knows "this will end" is the same part that disappears. It typically requires a heroic dose (4.5g+ at baseline cubensis) and an appropriate setting. It is not a goal to chase casually — it's something to approach with preparation, intention, and respect. The clinical research showing psilocybin's most profound therapeutic effects also involves the most intense experiences.</div>
+          <summary>What is ego dissolution and should I try to reach it?</summary>
+          <div class="faq-answer">Ego dissolution is the temporary loss of the sense of being a separate self — the boundary between you and everything else dissolves. At its best it's described as oceanic, liberating, or mystical. At its worst it's terrifying, because the part of you that knows "this will end" is the same part that disappears.<br><br>
+          It typically requires a heroic dose (4.5g+ at cubensis baseline) in the right setting with preparation and intention. It's not a goal to chase casually. The clinical research showing psilocybin's most profound therapeutic outcomes also involves its most intense experiences — that's not a coincidence. Approach it with respect, not ambition.</div>
         </details>
 
-        <details class="faq-item" id="faq-trip-sitting">
-          <summary>How do I trip sit for someone?</summary>
-          <div class="faq-answer">Your job as a sitter is to be a calm, stable presence — not a guide, not a therapist, not entertainment. Stay sober. Keep the environment safe, quiet, and familiar. Don't offer unsolicited reassurance or try to redirect the experience — just be there. If they become distressed: lower your voice, get on their level physically, remind them gently what they took and that it will pass. Don't restrain, don't argue with their reality, don't leave them alone. Have water and a blanket available. Know in advance whether they want to be touched or talked to during difficult moments — ask before they dose, not during.</div>
+        <details class="faq-item" id="faq-tolerance">
+          <summary>Tolerance, frequency, and microdosing</summary>
+          <div class="faq-answer">Psilocybin tolerance builds fast — often after a single dose via rapid 5-HT₂A receptor down-regulation. Dose two days in a row and the second will be noticeably weaker. Full reset takes 2–4 weeks. Cross-tolerance with LSD, DMT, and other classics means recreational weekend use produces rapidly diminishing returns.<br><br>
+          Psilocybin produces no physical withdrawal and has low addiction potential — tolerance is not dependence.<br><br>
+          <strong>Microdosing:</strong> the most widely used protocol is <em>Fadiman</em> — one day on, two days off, repeat. A true microdose is 0.05–0.1g dried cubensis: sub-perceptual, meaning no obvious alteration, just subtle shifts in mood or focus. If you feel clearly different, the dose is too high. <em>Stamets protocol</em> is more aggressive: four days on, three off. Keep a journal either way — effects accumulate and are easier to notice in retrospect.</div>
         </details>
 
-        <details class="faq-item" id="faq-wood-lovers-paralysis">
-          <summary>What is wood lover's paralysis?</summary>
-          <div class="faq-answer">A rare phenomenon reported almost exclusively with wood-loving Psilocybe species — particularly <em>P. azurescens</em>, <em>P. cyanescens</em>, and <em>P. subaeruginosa</em>. Some users experience temporary weakness or paralysis of the legs, typically during the come-up, lasting 30 minutes to a few hours. The cause is unknown — it may be related to aeruginascin or other compounds these species produce alongside psilocybin. It resolves on its own and leaves no permanent effects, but it is alarming if unexpected. If you're using a wood-loving species, be aware, don't be alone, and don't plan to walk anywhere during the experience.</div>
+        <details class="faq-item" id="faq-combinations">
+          <summary>Combining with cannabis, SSRIs, or other substances</summary>
+          <div class="faq-answer"><strong>Cannabis</strong> amplifies psilocybin for most people — sometimes dramatically. Many unexpectedly overwhelming experiences involve cannabis added mid-trip when things felt manageable. If you do combine, use it sparingly, only after the peak, only if you have experience with both substances separately.<br><br>
+          <strong>SSRIs/SNRIs:</strong> see the contraindications entry above — these blunt or block effects and stopping them to "fix" this is dangerous.<br><br>
+          <strong>MAOIs:</strong> can potentiate psilocybin but the combination is unpredictable and the risk of serotonin syndrome is real. Avoid unless you have deep specific knowledge of what you're doing.<br><br>
+          <strong>Alcohol:</strong> tends to blunt the experience and increases nausea. Not dangerous but not useful.<br><br>
+          In general: add complexity only if you're already experienced with both substances separately and have a specific reason, not because you're curious mid-experience.</div>
         </details>
 
-        <details class="faq-item" id="faq-microdose-protocol">
-          <summary>What microdosing protocol should I follow?</summary>
-          <div class="faq-answer">The most widely used is the <strong>Fadiman protocol</strong>: dose one day, off two days, repeat. This prevents tolerance build-up while allowing observation of effects over time. A typical starting microdose is 0.05–0.1g dried cubensis — you should feel nothing perceptible, just subtle shifts in mood, focus, or creativity. <strong>Stamets protocol</strong> is more aggressive: four days on, three days off. Start lower than you think you need. If you feel obviously altered, the dose is too high — a microdose should be sub-perceptual. Keep a journal; effects often accumulate and are easier to see in retrospect than in the moment.</div>
+        <details class="faq-item" id="faq-strains-wild">
+          <summary>Cultivated strains vs wild species — what's the difference?</summary>
+          <div class="faq-answer">Every cultivated "strain" — Golden Teacher, PE, B+, Enigma — is <em>Psilocybe cubensis</em>. Wild species like <em>P. azurescens</em>, <em>P. cyanescens</em>, <em>P. semilanceata</em> (Liberty Caps), and <em>Panaeolus cyanescens</em> are entirely different organisms, often meaningfully more potent, and vary more with season, habitat, and drying method.<br><br>
+          <strong>Panaeolus cyanescens</strong> (Blue Meanie) is typically 2–3× stronger than average cubensis — a handful that looks modest can be an intense experience. <strong>P. azurescens</strong> is the most potent reliably documented Psilocybe, averaging around 4× cubensis. Both cause <em>wood lover's paralysis</em> in some users — temporary leg weakness or inability to walk during the come-up, lasting up to a few hours. It resolves without permanent effects but is alarming if unexpected. Don't use wood-loving species alone.<br><br>
+          Marketing names for cubensis strains multiply endlessly. For anything unknown, use <strong>Golden Teacher</strong> as a conservative baseline, or <strong>Penis Envy</strong> for anything marketed as a PE variant. Start at 50% of the suggested dose for anything you haven't tried before.</div>
         </details>
 
-        <details class="faq-item" id="faq-enigma">
-          <summary>How much stronger is Enigma than regular cubensis?</summary>
-          <div class="faq-answer">Significantly. Enigma tested at 3.82% total tryptamines at the 2021 Hyphae Cup — the highest ever recorded for any cubensis sample in a verified competition. That's roughly <strong>3–4× average cubensis</strong>. A dose that would give a normal experience with Golden Teacher could be overwhelming with Enigma. It also can't be grown from spores — it's a sporeless mutation that only propagates via agar — so any Enigma you encounter comes from a clone chain, and potency can vary between them. Always start at a fraction of your normal dose.</div>
+        <details class="faq-item" id="faq-storage">
+          <summary>Fresh vs dried, storage, and potency degradation</summary>
+          <div class="faq-answer"><strong>This calculator is for dried mushrooms only.</strong> Fresh mushrooms are ~90% water — the rough conversion is 10:1 (15g fresh ≈ 1.5g dried). Potency in fresh mushrooms varies more because water content fluctuates with handling and age. Dry to cracker-crisp consistency before weighing.<br><br>
+          <strong>Storage:</strong> bone-dry mushrooms in an airtight jar with a desiccant packet, stored cool and dark, retain most potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is oxidising, meaning it's still active.<br><br>
+          <strong>Discard if:</strong> visible mold (white or green fuzz), musty or sour smell, or visible slime — these indicate contamination regardless of storage. Soft or bendy mushrooms may still be usable if the jar was sealed, but re-dry them before use and reduce your expected potency.</div>
         </details>
 
-        <details class="faq-item" id="faq-panaeolus-vs-cubensis">
-          <summary>How much stronger is Panaeolus cyanescens than P. cubensis?</summary>
-          <div class="faq-answer"><em>Panaeolus cyanescens</em> (Blue Meanie, Natal Blue Meanie) is typically <strong>2–3× stronger than average P. cubensis</strong> by dry weight. Because they're also much smaller mushrooms, visual comparisons are extremely misleading — a handful of Pan. cyan that looks like a modest amount can be an intense experience. They also have a reputation for a faster, sharper onset. Treat them as an entirely different category from cubensis: halve your expected dose, go somewhere safe, and don't underestimate them based on appearance.</div>
+        <details class="faq-item" id="faq-ssri">
+          <summary>Can you overdose? Is psilocybin toxic?</summary>
+          <div class="faq-answer">No confirmed human deaths from psilocybin toxicity alone — it has an extraordinarily high safety margin relative to its effective dose. The real physical risks are behavioural: at very high doses, loss of coordination and judgment can lead to accidents. The psychological risk is real though: an overwhelming experience with ego dissolution, terror, and complete loss of reality anchoring is possible and can have lasting effects.<br><br>
+          <em>"Non-toxic" does not mean "safe at any dose."</em> Dose, set, setting, and having a sober presence all still matter — not because the compound will kill you, but because the experience can exceed what you're prepared for.</div>
         </details>
+
       </div>
     </div>
   </details>

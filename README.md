@@ -9,7 +9,8 @@
 ## How it works
 
 
-Formula used
+Formula used:
+
 dose = (base × weight / 70) / potency × lemonTek
 
 Adapted from established harm-reduction dosage tables (Erowid, PsychonautWiki) and scaled by the potency multipliers from published HPLC/HPTLC assay data where available, community consensus elsewhere. The 70 kg reference body weight is standard in pharmacological dosing literature.

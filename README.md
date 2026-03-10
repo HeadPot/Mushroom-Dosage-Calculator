@@ -1,6 +1,6 @@
 # 🍄 Shroomulator 🍄
 
-**Psilocybin dosage calculator — 128 strains, scaled to your weight.**
+**Magic Mushroom dosage calculator.**
 
 → **[shroomulator.app](https://headpot.github.io/Mushroom-Dosage-Calculator/)**
 

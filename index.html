@@ -500,7 +500,6 @@
     </div>
   </div>
 
-  <!-- Lemon Tek Modal -->
   <div id="lemon-tek-modal" class="modal">
     <div class="modal-content">
       <p style="margin-top:0">Lemon Tek involves soaking ground mushrooms in lemon juice for 20–30 minutes. It may enhance psilocybin conversion to psilocin, leading to a faster onset and stronger effects. Dosage is reduced by 20% to compensate.</p>
@@ -794,7 +793,7 @@
     const potLabel = getPotencyLabel(s.potency);
     const evidenceTips = {
       'Negligible': 'No credible data supports psilocybin content. Likely non-psychoactive.',
-      'Low':        'Anecdotal community reports only. No formal lab testing. Treat with caution.',
+      'Low':        'No lab testing exists for this strain. Potency is estimated from community grow logs and trip reports only — which can be unreliable. Real strength may differ significantly. Start lower than suggested and wait at least 90 min before redosing.',
       'Moderate':   'Some verified lab assays or well-documented community data, but coverage is limited.',
       'High':       'Multiple independent peer-reviewed studies or verified HPLC/HPTLC assays.'
     };
@@ -807,7 +806,7 @@
         <span class="badge badge-potency">⚡ ${potLabel}${s.potency > 0 ? ' <span class="badge-num">x' + s.potency.toFixed(1) + '</span>' : ''}
           <span class="tip">${potencyTip}</span>
         </span>
-        <span class="badge badge-evidence">🔬 Evidence: ${s.evidence}
+        <span class="badge badge-evidence ${s.evidence === 'Low' ? 'badge-evidence-low' : ''}" ${s.evidence === 'Low' ? 'style="background:rgba(231,76,60,0.15);border-color:#e74c3c;color:#ff7c6e"' : ''}>🔬 Evidence: ${s.evidence}${s.evidence === 'Low' ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:2px solid #fff;font-size:0.8em;font-style:italic;font-weight:700;color:#fff;margin-left:4px;vertical-align:middle;line-height:1">i</span>' : ''}
           <span class="tip">${evidenceTips[s.evidence] || 'See description.'}</span>
         </span>
       </div>

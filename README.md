@@ -32,8 +32,6 @@ Psilocybin is a controlled substance in most jurisdictions. Know your local laws
 
 Single self-contained HTML file. No frameworks, no build step, no external dependencies beyond Google Fonts (Orbitron) and ipapi.co for country detection.
 
-To run locally: just open `shroomulator-cosmic.html` in a browser.
-
 ---
 
 ## License

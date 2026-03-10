@@ -3,14 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍄 Shroomulator</title>
+
+  <!-- ── Primary SEO ── -->
+  <title>Shroomulator — Psilocybin Dosage Calculator by Weight & Strain</title>
+  <meta name="description" content="Free psilocybin dosage calculator for 100+ mushroom strains. Enter your body weight and strain — Golden Teacher, Penis Envy, Liberty Cap, Enigma, Panaeolus cyanescens, Psilocybe azurescens — and get a personalised gram dose. Supports Lemon Tek, microdose through heroic levels.">
+  <meta name="keywords" content="psilocybin dosage calculator, magic mushroom dose calculator, shroom dose calculator, how many grams of mushrooms to take, golden teacher dosage, penis envy dose, liberty cap potency, enigma mushroom potency, panaeolus cyanescens dose, psilocybe azurescens dose, lemon tek calculator, microdose psilocybin calculator, heroic dose mushrooms, psilocybe cubensis calculator, mushroom trip level guide, psychedelic harm reduction, set and setting psychedelics, psilocybin tolerance, shroom potency by strain, wavy caps dose, flying saucer mushroom potency">
+  <link rel="canonical" href="https://shroomulator.com/">
+  <meta name="author" content="Shroomulator">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#2a1f35">
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://shroomulator.com/">
+  <meta property="og:site_name" content="Shroomulator">
+  <meta property="og:title" content="Shroomulator — Psilocybin Dosage Calculator">
+  <meta property="og:description" content="Calculate your magic mushroom dose by body weight and strain. 100+ strains: Golden Teacher, Penis Envy, Liberty Cap, Enigma, Panaeolus cyanescens, Psilocybe azurescens, and more. Lemon Tek and trip level adjustments included. Free harm-reduction tool.">
+  <meta property="og:image" content="https://shroomulator.com/og-image.png">
+  <meta property="og:image:alt" content="Shroomulator psilocybin dosage calculator interface">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- ── Twitter / X ── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shroomulator">
+  <meta name="twitter:title" content="Shroomulator — Psilocybin Dosage Calculator">
+  <meta name="twitter:description" content="Free dose calculator for 100+ psilocybin mushroom strains. Adjust for your weight, experience level, and Lemon Tek.">
+  <meta name="twitter:image" content="https://shroomulator.com/og-image.png">
+  <meta name="twitter:image:alt" content="Shroomulator psilocybin dosage calculator">
+
+  <!-- ── JSON-LD: FAQ rich results (Google shows these in SERPs) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much stronger is Penis Envy than Golden Teacher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roughly 1.5–2x stronger based on lab data and competition results. A 2 g Golden Teacher dose corresponds to about 1.25 g of standard Penis Envy. Albino PE runs about 1.7x, and Enigma — which tested at 3.82% total tryptamines at the 2021 Hyphae Cup — is approximately 3.2x average cubensis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Lemon Tek and does it actually work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lemon Tek means soaking finely ground dried mushrooms in fresh citrus juice for 20–30 minutes before consuming. The citric acid pre-converts psilocybin to psilocin outside the body, resulting in a faster onset (15–30 min vs 45–90 min), sharper peak, and often less nausea. The mechanism is plausible but not proven in controlled trials. Standard practice is to reduce dose by 20% — Shroomulator applies this automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a microdose of psilocybin mushrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A psilocybin microdose is a sub-perceptual amount — typically 0.05–0.3 g dried cubensis — taken on a schedule such as one day on, two days off (Fadiman protocol). You should not feel high or see visuals. The goal is subtle improvements in mood, focus, and creativity. Shroomulator's Level 1 estimates a microdose scaled to your weight and strain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Blue Meanie show unknown potency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Blue Meanie refers to two completely different mushrooms: Panaeolus cyanescens (extremely potent, 2–3x stronger than average cubensis) and various P. cubensis cultivars informally called Blue Meanie due to bruising. Without confirming which species you have, any dose calculation could be off by a factor of three — which is why Shroomulator flags this as unknown potency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How potent are Liberty Caps compared to regular mushrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Psilocybe semilanceata (Liberty Caps) are significantly more potent than average P. cubensis — typically around 1.5x stronger, with psilocybin content up to 1.7–2.0% dry weight. They are also smaller and more variable in potency depending on season and habitat. Shroomulator applies a 1.5x multiplier for Liberty Caps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does body weight affect psilocybin dosage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but less than most people expect. Shroomulator scales dose proportionally to a 70 kg baseline. Individual sensitivity, whether you have eaten, your mental state, and your environment typically have a larger practical effect on the experience than body weight alone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is set and setting in psychedelics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set refers to your mindset going in — mood, intentions, expectations, and any unresolved anxiety. Setting is the physical and social environment — who you're with, where you are, whether it's safe and comfortable. Research consistently shows these factors shape a psychedelic experience more than dose alone. A moderate dose in a bad environment can be harder than a higher dose in a trusted, calm setting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does psilocybin build tolerance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — psilocybin builds tolerance extremely fast, often after a single dose. If you take a full dose two days in a row, the second will be significantly weaker. Full reset takes approximately 2–4 weeks. There is also cross-tolerance with LSD and other classic psychedelics, which all act on the same serotonin 5-HT2A receptors."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── JSON-LD: WebApplication schema ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Shroomulator",
+    "url": "https://shroomulator.com/",
+    "description": "Psilocybin mushroom dosage calculator. Calculates personalised doses in grams based on body weight, mushroom strain potency, trip level, and Lemon Tek preparation. Covers 100+ strains of Psilocybe, Panaeolus, and other psilocybin-containing fungi.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "100+ psilocybin mushroom strains",
+      "Dose calculation by body weight",
+      "Kg and lb unit support",
+      "Five experience levels from microdose to heroic",
+      "Lemon Tek dosage adjustment",
+      "Potency and evidence ratings per strain"
+    ]
+  }
+  </script>
+
+  <!-- ── JSON-LD: WebSite + SiteLinksSearchBox ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Shroomulator",
+    "url": "https://shroomulator.com/",
+    "description": "Free psilocybin dosage calculator for 100+ mushroom strains",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://shroomulator.com/?strain={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body{background:radial-gradient(circle at center,#2a1f35,#1a1a1a);color:#e0e0e0;font-family:Arial,sans-serif;margin:0;padding:20px;min-height:100vh}
     .site-header{text-align:center;font-size:2.1em;color:#ffa500;font-family:'Orbitron',sans-serif;margin-bottom:25px;text-shadow:0 0 15px rgba(255,165,0,0.4)}
     .container{max-width:500px;margin:0 auto;padding:30px;background:rgba(26,26,26,0.92);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     .input-group{display:flex;align-items:center;justify-content:center;margin:16px 0}
-    .input-group label{width:85px;flex-shrink:0;text-align:right;padding-right:12px;font-weight:700;color:#ffa500;line-height:1}
+    .input-group label{width:95px;flex-shrink:0;text-align:right;padding-right:12px;font-weight:700;color:#ffa500;line-height:1;font-size:0.88em;letter-spacing:0.01em}
     .row-right{width:240px;flex-shrink:0;display:flex;align-items:center}
     input[type="number"],.unit-btn{height:38px;box-sizing:border-box;font-size:0.95em}
     input[type="number"]{padding:0 10px;background:#333;color:#e0e0e0;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0}
@@ -106,8 +250,32 @@
     #countdown-text{font-size:1.1em;color:#aaa;margin:8px 0 4px;min-height:1.4em}
     #close-disclaimer{background:#9b59b6;border:2px solid #9b59b6;color:#fff;padding:9px 32px;border-radius:8px;cursor:pointer;font-size:0.95em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s;letter-spacing:0.03em;margin-top:4px}
     #close-disclaimer:hover{background:#7d3faa;border-color:#7d3faa}
-    @media(max-width:480px){body{padding:12px}.container{padding:16px 14px}.site-header{font-size:1.35em;margin-bottom:18px}.input-group label{width:78px;padding-right:8px;font-size:0.87em}.row-right{width:calc(100vw - 150px);max-width:240px}.modal-content{padding:14px 12px 12px}}
+    @media(max-width:480px){body{padding:12px}.container{padding:16px 14px}.site-header{font-size:1.35em;margin-bottom:18px}.input-group label{width:82px;padding-right:8px;font-size:0.82em}.row-right{width:calc(100vw - 150px);max-width:240px}.modal-content{padding:14px 12px 12px}}
     @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}.row-right{width:200px}}
+    /* ── SEO content section (collapsible spoiler) ── */
+    .seo-section{max-width:500px;margin:28px auto 20px;font-size:0.78em;line-height:1.65}
+    .seo-section summary{color:#666;font-size:0.95em;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;padding:6px 0;list-style:none;display:flex;align-items:center;justify-content:center;gap:7px;user-select:none;transition:color 0.2s;text-align:center}
+    .seo-section summary::-webkit-details-marker{display:none}
+    .seo-section summary::before{content:'▸';color:#555;font-size:0.8em;transition:transform 0.2s;display:inline-block;font-weight:400}
+    .seo-section[open] summary::before{transform:rotate(90deg)}
+    .seo-section summary:hover{color:#888}
+    .seo-body{color:#777;padding-top:12px;border-top:1px solid #2a2a2a;margin-top:6px}
+    /* formula block */
+    .formula-box{background:rgba(155,89,182,0.07);border:1px solid rgba(155,89,182,0.2);border-radius:8px;padding:14px 16px;margin:0 0 14px;text-align:center}
+    .formula-eq{font-family:monospace;font-size:1.25em;font-weight:700;color:#c39ad8;letter-spacing:0.02em;margin:0 0 6px;line-height:1.4}
+    .formula-plain{font-size:0.85em;color:#555;margin:0 0 12px;font-style:italic;line-height:1.4}
+    .formula-vars{font-size:0.85em;color:#666;text-align:left;margin:0;display:grid;grid-template-columns:max-content 1fr;gap:2px 10px;line-height:1.6}
+    .formula-vars span{color:#999;font-family:monospace;font-size:0.95em;white-space:nowrap}
+    /* faq nested details */
+    .faq-list{margin:0;display:flex;flex-direction:column;gap:2px}
+    .faq-item{border-bottom:1px solid #2a2a2a}
+    .faq-item summary{color:#666;font-size:0.95em;font-weight:600;cursor:pointer;padding:7px 0 7px 16px;list-style:none;position:relative;user-select:none;transition:color 0.15s;display:block;justify-content:unset;letter-spacing:0;text-transform:none;text-align:left}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::before{content:'▸';position:absolute;left:0;top:8px;font-size:0.75em;color:#555;transition:transform 0.15s;font-weight:400}
+    .faq-item[open] summary::before{transform:rotate(90deg)}
+    .faq-item summary:hover{color:#888}
+    .faq-answer{color:#666;font-size:0.92em;line-height:1.6;padding:4px 0 10px 16px}
+    .faq-answer strong{color:#777}
   </style>
 </head>
 <body>
@@ -115,9 +283,9 @@
   <div class="container">
     <!-- Weight -->
     <div class="input-group">
-      <label for="weight">Weight</label>
+      <label for="weight">Your Weight</label>
       <div class="row-right">
-        <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your weight">
+        <input type="number" id="weight" step="0.1" min="1" required aria-label="Enter your body weight">
         <div id="weight-unit-toggle">
           <button class="unit-btn active" data-unit="kg">kg</button>
           <button class="unit-btn" data-unit="lb">lb</button>
@@ -165,6 +333,80 @@
       <strong>Important Disclaimer:</strong> This calculator is for informational purposes only. Strain potencies are based on general reports; actual potency can vary significantly. Always start with a lower dose and use responsibly.
     </div>
   </div>
+
+  <!-- SEO content — indexed by crawlers, readable but secondary for users -->
+  <details class="seo-section" aria-label="Dosage guide and frequently asked questions">
+    <summary>how it works</summary>
+    <div class="seo-body">
+
+      <div class="formula-box">
+        <div class="formula-eq">dose = (base × weight / 70) / potency × lemonTek</div>
+        <div class="formula-plain">base dose, scaled to your weight, adjusted for strain potency and prep method</div>
+        <div class="formula-vars">
+          <span>base</span><div>grams for a 70 kg person at the chosen trip level</div>
+          <span>potency</span><div>strain multiplier — higher means less grams needed</div>
+          <span>lemonTek</span><div>0.8 if checked (−20%), otherwise 1.0</div>
+        </div>
+      </div>
+
+      <div class="faq-list">
+
+
+        <details class="faq-item">
+          <summary>Why does body weight matter (and how much)?</summary>
+          <div class="faq-answer">It matters, but less than most people expect — less so than with alcohol. The formula scales dose proportionally to a 70 kg reference. In practice, your individual sensitivity, whether you've eaten, your mental state, and the setting you're in will have a bigger real-world effect than weight alone. Always start below the calculated number with any unfamiliar strain.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How much stronger is Penis Envy than Golden Teacher?</summary>
+          <div class="faq-answer">Roughly 1.5–2× stronger based on lab data and competition results. A 2 g Golden Teacher dose corresponds to about 1.25 g of standard PE. Albino PE runs about 1.7×. Enigma — the sporeless blob mutant that won the 2021 Hyphae Cup at 3.82% total tryptamines — is approximately 3.2× average cubensis. Anything in the PE family deserves genuine respect, not just hype.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does the evidence level mean?</summary>
+          <div class="faq-answer"><strong>High</strong>: multiple independent peer-reviewed HPLC or HPTLC assays confirm the potency figure. <strong>Moderate</strong>: some verified lab data or well-documented community reports exist but coverage is limited. <strong>Low</strong>: anecdotal community reports only, no formal testing — treat the multiplier as a rough guide. <strong>Negligible</strong>: no credible psilocybin data — the species may not be psychoactive at all. Always start lower with Low or Negligible evidence strains.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is Lemon Tek and does it actually work?</summary>
+          <div class="faq-answer">Lemon Tek means soaking finely ground dried mushrooms in fresh citrus juice for 20–30 minutes before consuming the slurry. The theory: citric acid begins converting psilocybin to psilocin outside the body, bypassing part of the liver's conversion step. Most users report onset in 15–30 min instead of 45–90 min, a sharper and shorter peak, and reduced nausea. The mechanism is plausible but not proven in controlled trials. The standard harm-reduction adjustment is −20% dose, which Shroomulator applies automatically when checked.</div>
+        </details>
+
+
+        <details class="faq-item">
+          <summary>What is a heroic dose?</summary>
+          <div class="faq-answer">The term was coined by ethnobotanist Terence McKenna and refers to a very high dose — typically 4–5+ grams of dried average-potency cubensis — taken alone, in silence, in complete darkness, with eyes closed. At this level, ego dissolution and a complete break from ordinary reality are likely. McKenna believed this was necessary to experience the full depth of what psilocybin offers. It's not a party dose — it requires experience, careful preparation, and ideally a trusted sober sitter present.</div>
+        </details>
+
+
+        <details class="faq-item">
+          <summary>What is set and setting and why does it matter?</summary>
+          <div class="faq-answer">Set and setting is a concept popularised by psychedelic researcher Timothy Leary and later developed by researchers like Bill Richards. <strong>Set</strong> refers to your mindset going in — your mood, intentions, expectations, and any unresolved anxiety or stress. <strong>Setting</strong> refers to the physical and social environment — who you're with, where you are, whether it's safe, comfortable, and free of interruptions. Research consistently shows these factors shape the quality of a psychedelic experience more than dose alone. A moderate dose in an uncomfortable situation can be more difficult than a higher dose in a familiar, trusted, calm environment.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use this calculator for wild mushrooms?</summary>
+          <div class="faq-answer">Yes — Shroomulator includes Liberty Caps (P. semilanceata), Wavy Caps (P. cyanescens), Flying Saucers (P. azurescens), and several other wild species. But wild mushroom potency varies significantly with season, habitat, specimen age, and drying method. Use the calculated number as a ceiling and go lower. Never dose a wild mushroom without confident expert identification — <strong>Galerina marginata</strong>, which is deadly hepatotoxic, can be mistaken for several psilocybin species.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does "Blue Meanie" show unknown potency?</summary>
+          <div class="faq-answer">"Blue Meanie" is one of the most dangerous naming collisions in the mushroom world. It refers to both (1) <strong>Panaeolus cyanescens</strong> — one of the most potent psilocybin mushrooms on earth, 2–3× stronger than average cubensis — and (2) various P. cubensis cultivars that bruise blue and get the nickname casually. Without confirming which you have, a dose calculation could be off by a factor of three. Shroomulator flags this as unknown to force you to verify species before proceeding.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does psilocybin build tolerance quickly?</summary>
+          <div class="faq-answer">Yes — psilocybin builds tolerance extremely fast, often after a single dose. If you take a full dose two days in a row, the second experience will be significantly blunted. Full tolerance reset takes approximately 2–4 weeks. This is why microdosing protocols include multiple off days, and why taking mushrooms every weekend will produce diminishing returns quickly. There is also cross-tolerance with LSD and other classic psychedelics — they act on the same serotonin 5-HT2A receptors.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is the calculated dose safe?</summary>
+          <div class="faq-answer">It's an evidence-based estimate, not a guarantee. Shroomulator uses published assay data where available and community consensus where it isn't. Start at 50–70% of the calculated dose with any unfamiliar strain. Set and setting matter enormously. Have a trusted, sober person present for Level 4 or 5. Psilocybin is a Schedule I substance and illegal in most jurisdictions — know your local laws. This tool exists for harm reduction, not encouragement.</div>
+        </details>
+
+      </div>
+    </div>
+  </details>
 
   <!-- Strain Picker Modal -->
   <div id="strain-picker-modal" class="modal">
@@ -242,15 +484,12 @@
     {name:"Psilocybe caerulescens",potency:1.1,evidence:"Moderate",origin:"Mexico, Venezuela, Central America",desc:"A tropical to subtropical species found in Mexico, Venezuela, and surrounding regions. One of the Mazatec ceremonial species used alongside P. mexicana. Known as 'derrumbe' (landslide mushroom) in Mexico. A handful of assays report moderate-to-above-average alkaloids."},
     {name:"Psilocybe subaeruginosa",potency:1.6,evidence:"High",origin:"Southeastern Australia, New Zealand",desc:"The dominant potent wild species in southeastern Australia and New Zealand; grows on decaying wood and wood chips, typically fruiting in autumn and winter. Specimens up to 1.93% psilocybin reported. A 2026 HPTLC cultivation study found it exhibited the most pronounced psilocin band of all six tested species."},
     {name:"Psilocybe zapotecorum",potency:1.4,evidence:"High",origin:"Oaxaca, Mexico — Zapotec region",desc:"A sacred Mesoamerican species used historically by Zapotec peoples in Oaxaca for spiritual and ceremonial purposes. A 2026 controlled HPTLC cultivation study found P. zapotecorum had the highest psilocybin content (1.89%) of six Psilocybe species tested, outperforming even P. azurescens under the same conditions."},
-    {name:"Psilocybe azurescens (AZU)",potency:1.9,evidence:"High",origin:"Columbia River mouth, Pacific Northwest, USA",desc:"The Flying Saucer mushroom. Among the most potent wild Psilocybe species. Average ~1.78% psilocybin. Can cause temporary lower-extremity paralysis. Wood-loving; narrow autumn fruiting window."},
     {name:"Psilocybe serbica",potency:1.5,evidence:"High",origin:"Central/Eastern Europe — Serbia, Czech Republic",desc:"A Central and Eastern European wood-loving species. One of the few potent wild Psilocybe species native to Europe alongside P. semilanceata and P. cyanescens. Modern HPLC assays and genomic studies (PNAS 2024) confirm the full psilocybin biosynthesis cluster. High psilocybin reported in some specimens."},
     {name:"Psilocybe allenii",potency:1.5,evidence:"Moderate",origin:"West Coast, USA — Pacific Northwest to Bay Area",desc:"First formally described in 2012 from the West Coast of North America. Grows on wood chips and woody debris in landscaped areas — a species adapted to human-modified environments. Several assays indicate high potency, possibly comparable to P. cyanescens. Named after mycologist John Allen."},
     {name:"Psilocybe natalensis",potency:1.1,evidence:"Moderate",origin:"KwaZulu-Natal, South Africa",desc:"Originally thought to be a P. cubensis variety from South Africa, but recent genetic testing confirmed it as a distinct species. Community reports describe the experience as 'cleaner' and 'smoother' than cubensis, with fewer side effects and superior visuals. More resistant to contamination than cubensis."},
     {name:"Psilocybe strictipes",potency:1.2,evidence:"Moderate",origin:"Europe — Netherlands, UK",desc:"A close relative of P. semilanceata found primarily in the Netherlands and UK, growing in enriched grasslands. Some comparative assay work suggests it may contain psilocybin at above-average levels in good specimens. Morphologically distinguished from the Liberty Cap by its more cylindrical cap."},
     {name:"Psilocybe stuntzii",potency:0.5,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and lawn species. The 2026 HPTLC cultivation study found P. stuntzii had the lowest psilocybin content (0.45%) of all six Psilocybe species tested under controlled conditions. Generally considered a weak species not worth seeking for potency."},
     {name:"Psilocybe ovoideocystidiata",potency:1.0,evidence:"Moderate",origin:"Eastern North America — river banks",desc:"Found along rivers and streams of the eastern USA, growing on wood chips and woody debris — often turning up in landscaped parks near rivers. One of the more recently described North American psilocybin species. Some specimens have tested positive for psilocybin at near-cubensis levels."},
-    {name:"Psilocybe mexicana (MEX)",potency:0.7,evidence:"Moderate",origin:"Mexico, Central America",desc:"Historically significant. Used in Aztec ceremonies. First source of isolated psilocybin (Hofmann 1958). Known for sclerotia ('philosopher's stones'). Below average potency. Good for beginners."},
-    {name:"Psilocybe tampanensis (TAM)",potency:0.6,evidence:"Moderate",origin:"Tampa, Florida — 1977",desc:"Famous for sclerotia ('philosopher's stones'). Discovered 1977 by Steven Pollock. Gentle and introspective. Sclerotia legally sold in the Netherlands."},
     {name:"Psilocybe hispanica",potency:0.8,evidence:"Low",origin:"Pyrenees — Spain, France",desc:"A European species found in the Pyrenees mountains of northern Spain and southern France — one of the few confirmed psilocybin species in continental Europe. Grows in high-altitude alpine meadows, typically associated with sheep dung. First described in 2000."},
     {name:"Psilocybe samuiensis",potency:0.7,evidence:"Low",origin:"Koh Samui, Thailand — first described 1993",desc:"First described from Koh Samui island, Thailand in 1993 — the first psilocybin mushroom formally described from Asia. The species has cultural significance given the Thai island's association with 'mushroom shakes' in the backpacker tourism era."},
     {name:"Psilocybe yungensis",potency:0.8,evidence:"Low",origin:"Mexico, Colombia — cloud forests",desc:"Found in Mexico and Colombia at higher altitudes in cloud forests and coffee plantations. Grows on decaying plant matter and enriched soils. Used in traditional practices in some Colombian communities."},
@@ -295,8 +534,7 @@
     {name:"PF Classic (PFC)",potency:1.0,evidence:"Low",origin:"USA — Robert McPherson 'Psilocybe Fanaticus'",desc:"Named after Robert McPherson, who developed the famous PF Tek method — growing psilocybin mushrooms on brown rice flour in small jars. One of the most historically significant strains in home cultivation, responsible for spreading amateur mushroom growing throughout the 1990s internet."},
     {name:"Blue Pulaski (BP)",potency:1.2,evidence:"Low",origin:"USA — community selection",desc:"A P. cubensis community isolate named for its notably vivid blue bruising reaction on caps when handled — an indication of psilocin oxidation. Community reports suggest above-average visual intensity and a clean cerebral onset. The deep blue bruising is one of the most visually striking of any cubensis strain."},
     {name:"Blue Shakti",potency:1.3,evidence:"Low",origin:"USA — Malabar-derived albino isolation",desc:"A Malabar Coast-derived leucistic/albino isolation. The 'Shakti' name references Hindu goddess Shakti, fitting given the Indian Malabar origin. Community reports consistently note above-average potency and a smooth, flowing quality to the experience."},
-    {name:"Riptide (RT)",potency:1.4,evidence:"Low",origin:"USA — breeder selection",desc:"A compact, dense cubensis selection with a reputation for consistent, reliable potency. Community describes the experience as body-heavy with good visual quality — the short, wide fruiting body shape (resembling a wave just before it crests) is characteristic."},
-    {name:"Albino Riptide",potency:1.4,evidence:"Low",origin:"USA — Riptide albino phenotype",desc:"The albino phenotype of the Riptide strain. Retains Riptide's characteristic compact, dense fruiting body in an all-white/cream version with intense blue bruising. Community reports are consistent with standard Riptide potency — above-average and reliable."},
+    {name:"Riptide (RT)",potency:1.4,evidence:"Low",origin:"USA — breeder selection",desc:"A compact, dense cubensis selection with a reputation for consistent, reliable potency. Community describes the experience as body-heavy with good visual quality — the short, wide fruiting body shape (resembling a wave just before it crests) is characteristic."},{name:"Albino Riptide",potency:1.4,evidence:"Low",origin:"USA — Riptide albino phenotype",desc:"The albino phenotype of the Riptide strain. Retains Riptide's characteristic compact, dense fruiting body in an all-white/cream version with intense blue bruising. Community reports are consistent with standard Riptide potency — above-average and reliable."},
     {name:"Squatty Riptide",potency:1.4,evidence:"Low",origin:"USA — Riptide phenotype selection",desc:"The squat, compact phenotype selection of the Riptide family — selected specifically for extremely short stipes and wide, dense caps. Community reports consistently note body-heavy effects and good visual quality consistent with the Riptide family."},
     {name:"Enigma",potency:3.2,evidence:"High",origin:"USA — spontaneous mutation of Tidal Wave",desc:"A spontaneous sporeless mutation of the Tidal Wave strain (PE × B+), producing bizarre brain/blob-shaped growth instead of normal fruiting bodies. The 2021 Spring Hyphae Cup sample tested at 3.82% total tryptamines — the highest confirmed result for any cubensis in competition history. Because it produces no spores, it can only be propagated via agar. Treat as 3× stronger than average cubensis."},
     {name:"Tidal Wave (TW)",potency:1.7,evidence:"High",origin:"USA — lab hybrid (PE × B+)",desc:"A hybrid of Penis Envy × B+, combining PE potency with B+ vigour and ease of cultivation. Won the 2021 Spring Hyphae Cup. Regular fruits averaged ~1.17% total tryptamines across multiple Cup entries. Fast coloniser with above-average yields."},
@@ -318,7 +556,6 @@
     {name:"Uncut Envy",potency:1.6,evidence:"Low",origin:"USA — PE phenotype/vendor selection",desc:"A PE phenotype/line marketed as an 'uncut' or 'original' Penis Envy selection — implying it has not been outcrossed or diluted with other genetics. Community reports strong potency consistent with the PE family."},
     {name:"Albino Chode Wave (ACW)",potency:1.5,evidence:"Low",origin:"USA — modern breeder albino selection",desc:"A modern breeder albino cubensis isolate with a compact, wide-capped fruiting body. Representative of the wave of aesthetic/potency-focused cubensis breeding in the 2020s. Above-baseline potency reputation from community."},
     {name:"Blue Pulaski × Ghost",potency:1.7,evidence:"Low",origin:"USA — hybrid (Blue Pulaski × Ghost lineage)",desc:"A hybrid project combining Blue Pulaski (notable blue-cap cubensis isolate) with Ghost/TAT lineage. Developed for combining the visual distinctiveness of Blue Pulaski's intense bruising with Ghost-level potency."},
-    {name:"Riptide (RT)",potency:1.4,evidence:"Low",origin:"USA — breeder selection",desc:"Compact, dense selection with consistent potency. Body-heavy with good visual quality."},
     {name:"Pearly Gates (PG)",potency:1.8,evidence:"Low",origin:"USA — competition winner",desc:"A potent modern cubensis hybrid that reportedly won the Recreational category at a community potency competition. Limited documentation on lineage — likely a PE-family cross. Very high community potency reputation; treat with appropriate caution."},
     {name:"Bluey Vuitton (BV)",potency:1.8,evidence:"Moderate",origin:"USA — modern hybrid (Panama × Melmac PE)",desc:"A modern PE hybrid crossing Panama cubensis with Melmac PE. Developed around 2024–2025 and rapidly gaining community popularity for high potency combined with Melmac's relative ease of cultivation. The Panama genetics add aggressive colonisation and vigour while Melmac contributes PE-level potency."},
     {name:"Albino Bluey Vuitton (ABV)",potency:1.9,evidence:"Low",origin:"USA — Bluey Vuitton albino phenotype",desc:"The albino/leucistic phenotype of the Bluey Vuitton hybrid. White/cream fruiting bodies with the Bluey Vuitton potency reputation and vigorous Panama/Melmac growth genetics. Community reports are very positive for both aesthetics and potency."},

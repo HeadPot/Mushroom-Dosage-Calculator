@@ -232,10 +232,14 @@
     .strain-modal-desc{color:#ddd;font-size:0.87em;line-height:1.68;text-align:left;margin:0}
     .strain-modal-divider{border:none;border-top:1px solid #3a3a3a;margin:0 0 14px}
     .strain-modal-wrap{position:relative;overflow:visible !important}
-    .strain-nav-btn{display:none;position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,20,50,0.92);border:1px solid rgba(155,89,182,0.5);color:#c39ad8;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.3em;line-height:1;padding:0;transition:all 0.15s;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-    .strain-nav-btn:hover,.strain-nav-btn:active{background:rgba(155,89,182,0.3);border-color:#9b59b6}
-    #strain-nav-prev{left:-18px}
-    #strain-nav-next{right:-18px}
+    .strain-nav-zone{display:none;position:absolute;top:0;bottom:0;width:52px;cursor:pointer;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background 0.15s;border-radius:inherit}
+    .strain-nav-zone:hover{background:rgba(155,89,182,0.10)}
+    .strain-nav-zone:active{background:rgba(155,89,182,0.22)}
+    #strain-nav-prev{left:0;border-radius:14px 0 0 14px}
+    #strain-nav-next{right:0;border-radius:0 14px 14px 0}
+    .strain-nav-arrow{color:rgba(195,154,216,0.55);font-size:1.8em;line-height:1;pointer-events:none;transition:color 0.15s;user-select:none}
+    .strain-nav-zone:hover .strain-nav-arrow{color:rgba(195,154,216,0.9)}
+    #strain-info-text{padding:0 48px}
     /* ── Trip level cards — compact ── */
     #trip-info-modal .modal-content{max-height:88vh;overflow-y:auto;padding:12px 12px 10px}
     .trip-modal-title{color:#c39ad8;margin:0 0 10px;font-size:0.8em;letter-spacing:0.12em;text-transform:uppercase;font-family:'Orbitron',sans-serif}
@@ -482,8 +486,8 @@
   <!-- Strain Info Modal -->
   <div id="strain-modal" class="modal">
     <div class="modal-content strain-modal-wrap">
-      <button id="strain-nav-prev" class="strain-nav-btn" onclick="navigateStrain(-1)" aria-label="Previous strain">&#8249;</button>
-      <button id="strain-nav-next" class="strain-nav-btn" onclick="navigateStrain(1)" aria-label="Next strain">&#8250;</button>
+      <div id="strain-nav-prev" class="strain-nav-zone" onclick="navigateStrain(-1)" role="button" aria-label="Previous strain"><span class="strain-nav-arrow">&#8249;</span></div>
+      <div id="strain-nav-next" class="strain-nav-zone" onclick="navigateStrain(1)" role="button" aria-label="Next strain"><span class="strain-nav-arrow">&#8250;</span></div>
       <div id="strain-info-text"></div>
       <div class="modal-buttons">
         <button class="btn-back" id="strain-info-back" onclick="strainInfoBack()">Back</button>

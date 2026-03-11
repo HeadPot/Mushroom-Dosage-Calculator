@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ── Primary SEO ── -->
   <title>Shroomulator — Psilocybin Dosage Calculator by Weight & Strain</title>
@@ -36,7 +36,7 @@
   <meta name="twitter:image" content="https://headpot.github.io/Mushroom-Dosage-Calculator/og-image.png">
   <meta name="twitter:image:alt" content="Shroomulator psilocybin dosage calculator">
 
-  <!-- ── JSON-LD: FAQ rich results (Google shows these in SERPs) ── -->
+  <!-- ── JSON-LD: FAQ rich results ── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -133,12 +133,12 @@
     "@type": "WebApplication",
     "name": "Shroomulator",
     "url": "https://headpot.github.io/Mushroom-Dosage-Calculator/",
-    "description": "Psilocybin mushroom dosage calculator. Calculates personalised doses in grams based on body weight, mushroom strain potency, trip level, and Lemon Tek preparation. Covers 130+ strains of Psilocybe, Panaeolus, and other psilocybin-containing fungi.",
+    "description": "Psilocybin mushroom dosage calculator. Calculates personalised doses in grams based on body weight, mushroom strain potency, trip level, and Lemon Tek preparation. Covers 138 strains of Psilocybe, Panaeolus, and other psilocybin-containing fungi.",
     "applicationCategory": "HealthApplication",
     "operatingSystem": "Any",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "featureList": [
-      "130 psilocybin mushroom strains",
+      "138 psilocybin mushroom strains",
       "Dose calculation by body weight",
       "Kg and lb unit support",
       "Five experience levels from microdose to heroic",
@@ -148,9 +148,41 @@
   }
   </script>
 
-
-
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- ── Early SEO: set title+description from URL params before first paint ── -->
+  <script>
+  (function(){
+    var p = new URLSearchParams(window.location.search);
+    var strain = p.get('strain');
+    var faq    = p.get('faq');
+    var meta   = document.querySelector('meta[name="description"]');
+    if (strain) {
+      // Convert slug to readable name: "golden-teacher" → "Golden Teacher"
+      var name = strain.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+      document.title = name + ' Dosage Calculator — Shroomulator';
+      if (meta) meta.setAttribute('content', 'Psilocybin dose calculator for ' + name + '. Personalised gram dose by body weight, with Lemon Tek support. Microdose through heroic trip levels.');
+    } else if (faq) {
+      var faqTitles = {
+        'mental-health':  ['Who should not take psilocybin? — Shroomulator',       'Contraindications for psilocybin: schizophrenia, bipolar I, SSRIs, MAOIs, and serotonin syndrome risk.'],
+        'preparation':    ['How to prepare for a psilocybin experience — Shroomulator', 'Set, setting, fasting, and timing for psilocybin. Come-up, peak, and total duration explained.'],
+        'dose-didnt-work':['Why did my mushroom dose not work? — Shroomulator',     'Top reasons a psilocybin dose fails: food, tolerance, batch variation. When and how to adjust.'],
+        'bad-trip':       ['How to handle a bad trip — Shroomulator',               'Difference between a difficult experience and a bad trip. Trip sitting advice and grounding techniques.'],
+        'ego-death':      ['What is ego dissolution on psilocybin? — Shroomulator', 'Ego dissolution explained: what it feels like, when it happens, and whether to seek it.'],
+        'tolerance':      ['Psilocybin tolerance and microdosing guide — Shroomulator','How fast tolerance builds, reset time, cross-tolerance with LSD, Fadiman and Stamets protocols.'],
+        'combinations':   ['Combining psilocybin with cannabis, SSRIs or alcohol — Shroomulator','Psilocybin drug combination risks: cannabis amplification, MAOI danger, SSRI blunting, alcohol.'],
+        'strains-wild':   ['Cubensis vs wild psilocybin species — Shroomulator',    'How P. azurescens and Panaeolus cyanescens differ from cubensis. Wood lover\'s paralysis warning.'],
+        'storage':        ['How to store psilocybin mushrooms — Shroomulator',      'Dried vs fresh, 10:1 conversion, optimal storage for potency, when to discard.'],
+        'ssri':           ['Can you overdose on psilocybin? — Shroomulator',        'Psilocybin toxicity, overdose risk, psychological vs physical dangers at high doses.'],
+      };
+      var entry = faqTitles[faq];
+      if (entry) {
+        document.title = entry[0];
+        if (meta) meta.setAttribute('content', entry[1]);
+      }
+    }
+  })();
+  </script>
   <style>
     body{background:#050408;color:#e0e0e0;font-family:Arial,sans-serif;margin:0;padding:6px 16px 10px;overflow-x:hidden;box-sizing:border-box}
     .site-header{text-align:center;font-size:2.1em;color:#ffa500;font-family:'Orbitron',sans-serif;margin:0 0 14px;text-shadow:0 0 15px rgba(255,165,0,0.4)}
@@ -158,19 +190,18 @@
     .input-group{display:flex;align-items:center;justify-content:center;margin:10px 0}
     .input-group > label{width:95px;flex-shrink:0;visibility:hidden;padding:0}
     .row-right{width:240px;flex-shrink:0;display:flex;align-items:center}
-    input[type="number"]::placeholder{color:#ffa500;font-family:'Orbitron',sans-serif;font-size:0.78em;font-weight:700;letter-spacing:0.05em;opacity:1}
+    input[type="number"]::placeholder{color:#ffa500;font-family:'Orbitron',sans-serif;font-size:0.72em;font-weight:700;letter-spacing:0.05em;opacity:1}
     input[type="number"],.unit-btn{height:44px;box-sizing:border-box}
-    input[type="number"]{padding:0 10px;background:#333;color:#ffa500;-webkit-text-fill-color:#ffa500;font-size:16px;font-weight:700;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
+    input[type="number"]{padding:0 10px;background:#333;color:#ffa500;-webkit-text-fill-color:#ffa500;font-size:20px;font-weight:700;border:1px solid #555;border-radius:6px 0 0 6px;border-right:none;transition:border 0.3s;flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
     input[type="number"]:focus{border-color:#9b59b6;outline:none}
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
     input[type="number"]{-moz-appearance:textfield}
-    #weight-unit-toggle{display:flex;flex-shrink:0}
-    .unit-btn{padding:0 11px;background:#2a2a2a;color:#aaa;border:1px solid #555;cursor:pointer;transition:background 0.2s,color 0.2s;flex-shrink:0;font-size:0.88em;letter-spacing:0.03em}
-    .unit-btn:first-child{border-radius:0;border-right:none}
-    .unit-btn:last-child{border-radius:0 6px 6px 0}
-    .unit-btn:hover:not(.active){background:#3a3a3a;color:#e0e0e0}
-    .unit-btn.active{background:#7d3faa;color:#fff;border-color:#7d3faa}
+    #weight-unit-toggle{display:flex;flex-shrink:0;background:#1e1e1e;border-radius:0 6px 6px 0;border:1px solid #555;border-left:none;overflow:hidden}
+    .unit-btn{padding:0 13px;background:transparent;color:#555;border:none;border-left:1px solid #3a3a3a;cursor:pointer;transition:background 0.2s,color 0.2s;flex-shrink:0;font-size:0.78em;font-weight:700;letter-spacing:0.06em;font-family:'Orbitron',sans-serif}
+    .unit-btn:first-child{border-left:none}
+    .unit-btn:hover:not(.active){background:rgba(255,255,255,0.05);color:#aaa}
+    .unit-btn.active{background:#7d3faa;color:#fff}
     .icon-slot{width:95px;flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;padding-left:8px}
     .info-icon{cursor:pointer;color:#9b59b6;font-size:1.15em;line-height:1;transition:all 0.2s;user-select:none}
     .info-icon:hover{color:#ffcc66;transform:scale(1.2)}
@@ -183,6 +214,8 @@
     .strain-display.has-value{font-size:16px;letter-spacing:0.02em}
     .strain-display.has-value::after{color:#c39ad8}
     .strain-display-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+    .strain-clear{display:none;background:none;border:none;color:#555;font-size:1.15em;line-height:1;cursor:pointer;padding:0 2px 0 4px;flex-shrink:0;transition:color 0.15s;-webkit-tap-highlight-color:transparent}
+    .strain-clear:hover{color:#ffa500}
     /* Trip display */
     #trip-display{width:100%;height:44px;padding:0 12px;background:#333;color:#ffa500;border:1px solid #555;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:16px;font-weight:700;font-family:'Orbitron',sans-serif;letter-spacing:0.03em;box-sizing:border-box;transition:border 0.3s;user-select:none;touch-action:manipulation}
     #trip-display::after{content:"▾";color:#ffa500;font-size:0.9em}
@@ -190,7 +223,7 @@
     #trip-display.has-value{font-size:16px;letter-spacing:0.02em}
     #trip-display.has-value::after{color:#c39ad8}
     /* Result */
-    #result{width:100%;padding:7px 10px;background:linear-gradient(45deg,#2a2a2a,#3a3a3a);border:2px solid #9b59b6;border-radius:8px;text-align:center;font-weight:700;color:#9b59b6;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;animation:fadeIn 0.4s}
+    #result{width:100%;padding:7px 10px;background:linear-gradient(45deg,#2a2a2a,#3a3a3a);border:2px solid #9b59b6;border-radius:8px;text-align:center;font-weight:700;color:#9b59b6;font-size:0.95em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;animation:fadeIn 0.4s;cursor:pointer}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     /* ── Modals ── */
     .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);justify-content:center;align-items:center;z-index:9999}
@@ -224,15 +257,16 @@
     .badge-potency{background:rgba(155,89,182,0.2);border:1px solid #9b59b6;color:#c39ad8}
     .badge-num{font-weight:700;font-size:0.9em;margin-left:4px;color:#e0c0ff}
     .badge-evidence{background:rgba(255,165,0,0.15);border:1px solid #ffa500;color:#ffcc66}
-    .badge .tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#222;border:1px solid #555;color:#ddd;font-size:0.82em;font-weight:400;line-height:1.45;padding:7px 10px;border-radius:7px;width:min(210px,70vw);text-align:center;z-index:9999;pointer-events:none;white-space:normal;box-shadow:0 4px 12px rgba(0,0,0,0.5)}
+    .badge .tip{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#222;border:1px solid #555;color:#ddd;font-size:0.82em;font-weight:400;line-height:1.45;padding:7px 10px;border-radius:7px;width:min(220px,72vw);text-align:center;z-index:9999;pointer-events:none;white-space:normal;box-shadow:0 4px 12px rgba(0,0,0,0.5)}
     .badge .tip::after{content:'';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-bottom-color:#555}
-    .badge:hover .tip,.badge.tip-open .tip{display:block}
+    @media(hover:hover){.badge:hover .tip{display:block}}
+    .badge.tip-open .tip{display:block}
     .strain-modal-origin{text-align:center;font-size:0.8em;color:#aaa;margin:0 0 14px;letter-spacing:0.02em}
     .strain-modal-origin span{color:#ccc}
     .strain-modal-desc{color:#ddd;font-size:0.87em;line-height:1.68;text-align:left;margin:0}
     .strain-modal-divider{border:none;border-top:1px solid #3a3a3a;margin:0 0 14px}
     .strain-modal-wrap{position:relative;overflow:visible !important}
-    .strain-nav-zone{display:none;position:absolute;top:0;bottom:0;width:52px;cursor:pointer;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background 0.15s;border-radius:inherit}
+    .strain-nav-zone{display:none;position:absolute;top:0;bottom:0;width:52px;cursor:pointer;z-index:20;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background 0.15s;border-radius:inherit;user-select:none;-webkit-user-select:none}
     .strain-nav-zone:hover{background:rgba(155,89,182,0.10)}
     .strain-nav-zone:active{background:rgba(155,89,182,0.22)}
     #strain-nav-prev{left:0;border-radius:14px 0 0 14px}
@@ -240,20 +274,16 @@
     .strain-nav-arrow{color:rgba(195,154,216,0.55);font-size:1.8em;line-height:1;pointer-events:none;transition:color 0.15s;user-select:none}
     .strain-nav-zone:hover .strain-nav-arrow{color:rgba(195,154,216,0.9)}
     #strain-info-text{padding:0 48px}
-    /* ── Trip level cards — compact ── */
+    /* ── Trip level cards ── */
     #trip-info-modal .modal-content{max-height:88vh;overflow-y:auto;padding:12px 12px 10px}
     .trip-modal-title{color:#c39ad8;margin:0 0 10px;font-size:0.8em;letter-spacing:0.12em;text-transform:uppercase;font-family:'Orbitron',sans-serif}
     .trip-card{margin-bottom:3px;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid #3a3a3a;cursor:pointer;transition:background 0.15s,border-color 0.15s;text-align:left}
     .trip-card:last-of-type{margin-bottom:0}
-    .trip-card:hover{background:rgba(155,89,182,0.10);border-color:#7d3faa}
-    .trip-card-active{background:rgba(155,89,182,0.18);border-color:#9b59b6}
+    @media(hover:hover){.trip-card:hover{background:rgba(155,89,182,0.10);border-color:#7d3faa}}
     .trip-card-header{display:flex;align-items:center;gap:9px;margin-bottom:3px}
     .trip-bar{font-size:1em;color:#9b59b6;letter-spacing:-1px;min-width:14px;text-align:center;flex-shrink:0}
-    .trip-card-active .trip-bar{color:#c39ad8}
     .trip-name{color:#e8e8e8;font-weight:700;font-size:0.82em;letter-spacing:0.06em;font-family:'Orbitron',sans-serif}
-    .trip-card-active .trip-name{color:#d4a8f0}
-    .trip-desc{color:#e0e0e0;font-size:0.76em;line-height:1.38;margin-left:23px;margin-top:1px;font-style:italic}
-    .trip-card-active .trip-desc{color:#fff}
+    .trip-desc{color:#999;font-size:0.76em;line-height:1.38;margin-left:23px;margin-top:1px;font-style:italic}
     /* ── Lemon tek modal ── */
     #lemon-tek-modal .modal-content{max-width:min(380px,90vw)}
     /* ── Disclaimer ── */
@@ -263,9 +293,12 @@
     #countdown-text{font-size:0.9em;color:#666;margin:0 0 8px;min-height:1.3em}
     #close-disclaimer{background:#9b59b6;border:2px solid #9b59b6;color:#fff;padding:8px 28px;border-radius:8px;cursor:pointer;font-size:0.9em;font-weight:700;font-family:Arial,sans-serif;transition:background 0.2s;letter-spacing:0.03em}
     #close-disclaimer:hover{background:#7d3faa;border-color:#7d3faa}
+    /* Copy toast */
+    #copy-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#9b59b6;color:#fff;padding:8px 18px;border-radius:8px;font-size:0.85em;font-weight:700;opacity:0;pointer-events:none;transition:opacity 0.2s,transform 0.2s;z-index:99999}
+    #copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
     @media(max-width:480px){body{padding:8px 6px 14px}.container{padding:12px 8px 16px}.site-header{font-size:1.2em;margin-bottom:10px}.input-group{padding:0;justify-content:center}.input-group > label{width:28px;min-width:28px;flex-shrink:0;padding:0}.row-right{flex:1;width:auto;max-width:none;min-width:0}.icon-slot{width:28px;min-width:28px;flex-shrink:0;padding-left:2px;justify-content:flex-start}.modal-content{padding:12px 10px 10px}}
     @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}.row-right{width:200px}}
-    /* ── SEO content section (collapsible spoiler) ── */
+    /* ── SEO content section ── */
     .seo-section{max-width:500px;margin:14px auto 20px;border-radius:14px;overflow:hidden}
     .seo-section > summary{color:#c39ad8;font-size:0.8em;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-family:'Orbitron',sans-serif;cursor:pointer;padding:13px 20px;list-style:none;display:flex;align-items:center;justify-content:center;gap:10px;user-select:none;transition:color 0.2s,background 0.2s;text-align:center;background:rgba(26,26,26,0.92);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
     .seo-section > summary::before{content:'';display:none}
@@ -274,13 +307,11 @@
     .seo-section > summary::-webkit-details-marker{display:none}
     .seo-section > summary:hover{color:#e0c8f8;background:rgba(155,89,182,0.06)}
     .seo-body{padding:18px 20px 22px;background:rgba(26,26,26,0.92);border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    /* formula block */
     .formula-box{padding:4px 0 20px;margin:0;text-align:center;border-bottom:1px solid rgba(100,70,160,0.15)}
     .formula-eq{font-family:monospace;font-size:1.25em;font-weight:700;color:#d0a8f0;letter-spacing:0.02em;margin:0;line-height:1.4}
     .formula-plain{font-size:0.9em;color:#aaa;margin:8px 0 0;font-style:italic;line-height:1.6}
     .section-label{color:#9b59b6;font-size:0.75em;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:20px 0 10px;font-family:'Orbitron',sans-serif}
     .faq-heading{font-family:'Orbitron',sans-serif;font-size:1.6em;font-weight:700;color:#c39ad8;text-align:center;letter-spacing:0.18em;margin:22px 0 12px;text-shadow:0 0 18px rgba(155,89,182,0.35)}
-    /* faq */
     .faq-list{margin:0;display:flex;flex-direction:column;gap:0}
     .faq-item{border-bottom:1px solid rgba(100,70,160,0.15)}
     .faq-item:last-child{border-bottom:none}
@@ -293,7 +324,6 @@
     .faq-answer{color:#ccc;font-size:0.97em;line-height:1.75;padding:2px 18px 16px 32px;font-family:Arial,Helvetica,sans-serif}
     .faq-answer strong{color:#fff;font-weight:700}
     .faq-answer em{color:#c39ad8;font-style:normal}
-
     /* ── Cosmic background ── */
     #cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(2px);opacity:0.7}
     body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;filter:blur(60px);
@@ -304,13 +334,13 @@
         radial-gradient(ellipse 80% 45% at 5% 90%, rgba(8,20,50,0.18) 0%, transparent 60%)}
   </style>
 
-  <!-- ── JSON-LD: ItemList of top strains (rich results) ── -->
+  <!-- ── JSON-LD: ItemList of top strains ── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Psilocybin Mushroom Strains — Potency Guide",
-    "description": "Potency and dosage data for 128 psilocybin mushroom strains and species",
+    "description": "Potency and dosage data for 138 psilocybin mushroom strains and species",
     "url": "https://headpot.github.io/Mushroom-Dosage-Calculator/",
     "itemListElement": [
       {"@type":"ListItem","position":1,"name":"Golden Teacher","url":"https://headpot.github.io/Mushroom-Dosage-Calculator/?strain=golden-teacher"},
@@ -344,16 +374,6 @@
       </div>
       <span class="icon-slot"></span>
     </div>
-    <!-- Strain -->
-    <div class="input-group">
-      <label>Strain</label>
-      <div class="row-right">
-        <div class="strain-display" id="strain-display" onclick="openStrainPicker()" title="Click to select strain">
-          <span class="strain-display-text" id="strain-display-text">Strain</span>
-        </div>
-      </div>
-      <span class="icon-slot"><button class="info-btn" onclick="showStrainInfoFromIcon()" aria-label="Strain info">i</button></span>
-    </div>
     <!-- Trip Level -->
     <div class="input-group">
       <label>Trip Level</label>
@@ -363,11 +383,22 @@
       </div>
       <span class="icon-slot"></span>
     </div>
+    <!-- Strain -->
+    <div class="input-group">
+      <label>Strain</label>
+      <div class="row-right">
+        <div class="strain-display" id="strain-display" onclick="openStrainPicker()" title="Click to select strain">
+          <span class="strain-display-text" id="strain-display-text">Strain</span>
+          <button id="strain-clear" class="strain-clear" onclick="event.stopPropagation();clearStrain()" aria-label="Clear strain">✕</button>
+        </div>
+      </div>
+      <span class="icon-slot"><button class="info-btn" onclick="showStrainInfoFromIcon()" aria-label="Strain info">i</button></span>
+    </div>
     <!-- Result -->
     <div class="input-group">
       <label></label>
       <div class="row-right">
-        <div id="result" style="display:none"></div>
+        <div id="result" style="display:none" onclick="copyResult()" title="Click to copy"></div>
       </div>
       <span class="icon-slot"></span>
     </div>
@@ -376,7 +407,7 @@
       <label></label>
       <div class="row-right" style="justify-content:center;gap:6px;white-space:nowrap;flex-wrap:nowrap">
         <input type="checkbox" id="lemon-tek" aria-label="Use Lemon Tek" style="width:14px;height:14px;flex:none;cursor:pointer;accent-color:#9b59b6;margin:0">
-        <label for="lemon-tek" style="cursor:pointer;margin:0;font-size:13px;font-weight:700;font-family:'Orbitron',sans-serif;color:#ffa500;white-space:nowrap;letter-spacing:0.04em">Use Lemon Tek</label>
+        <label for="lemon-tek" style="cursor:pointer;margin:0;font-size:10px;font-weight:600;font-family:'Orbitron',sans-serif;color:#8a6faa;white-space:nowrap;letter-spacing:0.08em;opacity:0.85">Lemon Tek</label>
         <button class="info-btn" onclick="showLemonTekInfo()" aria-label="Lemon Tek info">i</button>
       </div>
       <span class="icon-slot"></span>
@@ -385,11 +416,10 @@
 
   <p style="max-width:500px;margin:10px auto 0;text-align:center;font-size:0.72em;color:#bbb;line-height:1.5">For harm reduction purposes only. Not medical advice. Psilocybin is a controlled substance — know your local laws.</p>
 
-  <!-- SEO content — indexed by crawlers, readable but secondary for users -->
+  <!-- SEO content -->
   <details class="seo-section" aria-label="Dosage guide and frequently asked questions">
     <summary>HOW IT WORKS &nbsp;/&nbsp; F.A.Q.</summary>
     <div class="seo-body">
-
       <div class="formula-box" style="margin-bottom:0">
         <div style="text-align:center;margin:0 0 12px;font-size:1em;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c39ad8">Formula used</div>
         <div class="formula-eq">dose = (base &times; weight / 70) / potency &times; lemonTek</div>
@@ -453,14 +483,14 @@
         <details class="faq-item" id="faq-strains-wild">
           <summary>Cultivated strains vs wild species — what's the difference?</summary>
           <div class="faq-answer">Every cultivated "strain" — Golden Teacher, PE, B+, Enigma — is <em>Psilocybe cubensis</em>. Wild species like <em>P. azurescens</em>, <em>P. cyanescens</em>, <em>P. semilanceata</em> (Liberty Caps), and <em>Panaeolus cyanescens</em> are entirely different organisms, often meaningfully more potent, and vary more with season, habitat, and drying method.<br><br>
-          <strong>Panaeolus cyanescens</strong> (Blue Meanie) is typically 2–3× stronger than average cubensis — a handful that looks modest can be an intense experience. <strong>P. azurescens</strong> is the most potent reliably documented Psilocybe, averaging around 4× cubensis. Both cause <em>wood lover's paralysis</em> in some users — temporary leg weakness or inability to walk during the come-up, lasting up to a few hours. It resolves without permanent effects but is alarming if unexpected. Don't use wood-loving species alone.<br><br>
+          <strong>Panaeolus cyanescens</strong> (Blue Meanie) is typically 2–3× stronger than average cubensis — a handful that looks modest can be an intense experience. <strong>P. azurescens</strong> is the most potent reliably documented Psilocybe, averaging around 2× cubensis based on multiple HPLC studies. Both can cause <em>wood lover's paralysis</em> in some users — temporary leg weakness or inability to walk during the come-up, lasting up to a few hours. It resolves without permanent effects but is alarming if unexpected. Don't use wood-loving species alone.<br><br>
           Marketing names for cubensis strains multiply endlessly. For anything unknown, use <strong>Golden Teacher</strong> as a conservative baseline, or <strong>Penis Envy</strong> for anything marketed as a PE variant. Start at 50% of the suggested dose for anything you haven't tried before.</div>
         </details>
 
         <details class="faq-item" id="faq-storage">
           <summary>Fresh vs dried, storage, and potency degradation</summary>
           <div class="faq-answer"><strong>This calculator is for dried mushrooms only.</strong> Fresh mushrooms are ~90% water — the rough conversion is 10:1 (15g fresh ≈ 1.5g dried). Potency in fresh mushrooms varies more because water content fluctuates with handling and age. Dry to cracker-crisp consistency before weighing.<br><br>
-          <strong>Storage:</strong> bone-dry mushrooms in an airtight jar with a desiccant packet, stored cool and dark, retain most potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is oxidising, meaning it's still active.<br><br>
+          <strong>Storage:</strong> bone-dry mushrooms in an airtight jar with a desiccant packet, stored cool and dark, retain most potency for 1–2 years. Blue bruising when broken is a good sign — psilocin is oxidising, meaning it's still active. Note: storing fresh mushrooms in a freezer before drying significantly degrades psilocybin and should be avoided (Nammex HPTLC study, 2025).<br><br>
           <strong>Discard if:</strong> visible mold (white or green fuzz), musty or sour smell, or visible slime — these indicate contamination regardless of storage. Soft or bendy mushrooms may still be usable if the jar was sealed, but re-dry them before use and reduce your expected potency.</div>
         </details>
 
@@ -490,8 +520,8 @@
       <div id="strain-nav-next" class="strain-nav-zone" onclick="navigateStrain(1)" role="button" aria-label="Next strain"><span class="strain-nav-arrow">&#8250;</span></div>
       <div id="strain-info-text"></div>
       <div class="modal-buttons">
-        <button class="btn-back" id="strain-info-back" onclick="strainInfoBack()">Back</button>
-        <button class="btn-done" id="strain-info-done" onclick="strainInfoDone()">Done</button>
+        <button class="btn-back" id="strain-info-back" onclick="strainInfoBack()">← Back</button>
+        <button class="btn-done" id="strain-info-done" onclick="strainInfoDone()">✓ Select</button>
       </div>
     </div>
   </div>
@@ -501,12 +531,15 @@
     <div class="modal-content" style="padding:14px 14px 12px">
       <h3 class="trip-modal-title">Trip Levels</h3>
       <div id="trip-info-text"></div>
+      <div class="modal-buttons" style="margin-top:12px">
+        <button class="btn-back" onclick="closeModal('trip-info-modal')">Close</button>
+      </div>
     </div>
   </div>
 
   <div id="lemon-tek-modal" class="modal">
     <div class="modal-content">
-      <p style="margin-top:0">Lemon Tek involves soaking ground mushrooms in lemon juice for 20–30 minutes. It may enhance psilocybin conversion to psilocin, leading to a faster onset and stronger effects. Dosage is reduced by 20% to compensate.</p>
+      <p style="margin-top:0">Lemon Tek involves soaking ground mushrooms in lemon juice for 20–30 minutes. The citric acid may accelerate the conversion of psilocybin to psilocin before ingestion, leading to a faster onset (15–30 min vs. 30–90 min) and a more front-loaded, intense peak. Total duration is often shorter as a result. Dosage is reduced by 20% to compensate.</p>
       <div class="modal-buttons">
         <button class="btn-back" onclick="closeModal('lemon-tek-modal')">Back</button>
         <button class="btn-done" onclick="closeModal('lemon-tek-modal')">Done</button>
@@ -525,9 +558,12 @@
         <p id="countdown-text" style="font-size:0.85em;color:#666;margin:0 0 10px;min-height:1.2em"></p>
         <button id="close-disclaimer" style="display:none">I understand</button>
       </div>
-
     </div>
   </div>
+
+  <!-- Copy toast -->
+  <div id="copy-toast">Copied!</div>
+
   <script>
   (function(){
     var c=document.getElementById('cosmos'),ctx=c.getContext('2d');
@@ -535,11 +571,8 @@
     function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;buildStars();}
     function buildStars(){
       stars=[];
-      // deep background — tiny, dim, many
       for(var i=0;i<180;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*0.7+0.15,base:Math.random()*0.25+0.08,speed:Math.random()*0.004+0.001,phase:Math.random()*Math.PI*2,col:0});
-      // midground — slightly brighter, fewer
       for(var i=0;i<60;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.0+0.4,base:Math.random()*0.35+0.15,speed:Math.random()*0.007+0.002,phase:Math.random()*Math.PI*2,col:Math.random()<0.3?1:0});
-      // foreground sparkles — rare, visible
       for(var i=0;i<18;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.8,base:Math.random()*0.4+0.3,speed:Math.random()*0.012+0.004,phase:Math.random()*Math.PI*2,col:Math.random()<0.4?2:0});
     }
     resize();window.addEventListener('resize',resize);
@@ -559,7 +592,12 @@
   })();
   </script>
   <script>
-  // ── Strain data ──────────────────────────────────────────────────────────
+  // ── Strain data ──────────────────────────────────────────────────────────────
+  // Potency multiplier = strain's average total tryptamines / 0.70% (P. cubensis baseline)
+  // Evidence: "High" = multiple independent peer-reviewed HPLC/HPTLC studies
+  //           "Moderate" = some lab data or well-documented cup results
+  //           "Low" = community/grow reports only — potency estimate may differ significantly
+  //           "Negligible" = no credible evidence of psilocybin content
   const STRAINS = [
     {name:"A+",potency:1.0,evidence:"Moderate",origin:"USA — developed by Mr. G (cultivator), 1990s",desc:"The parent strain of the popular Albino A+ (AA+). Developed by the prolific Florida cultivator known as 'Mr. G' — the same person credited with several other classic strains including B+ and Treasure Coast. Origin of the founding stock is unclear; likely a Southeast Asian or South American cubensis. Characterised by caramel-to-golden caps on thick white stems; grows fast with very heavy spore drops. Cup data across 9 Psilocybin Cup samples averages ~0.64–0.87% total tryptamines — average for cubensis. Known for a notably fast onset (~30 minutes) compared to most strains. Easy to grow, beginner-friendly, excellent contamination resistance, prolific multiple flushes."},
     {name:"Acadian Coast (ACC)",potency:1.0,evidence:"Low",origin:"East Coast North America (Newfoundland to Louisiana)",desc:"Prolific 2nd–3rd flushes; thick tan caps; reliable intermediate grower."},
@@ -640,39 +678,39 @@
     {name:"Pluteus salicinus (PLS)",potency:0.6,evidence:"Low",origin:"Europe, North America",desc:"One of the few psilocybin-containing mushrooms outside the Psilocybe/Panaeolus/Gymnopilus genera. Grows on decaying hardwood logs and stumps across Europe and North America. A grey-brown wood-rotting species with pink-tinted gills at maturity. Psilocybin content is low and inconsistent across specimens. Also contains aeruginascin."},
     {name:"Psilocybe allenii",potency:1.5,evidence:"Moderate",origin:"West Coast, USA — Pacific Northwest to Bay Area",desc:"First formally described in 2012 from the West Coast of North America. Grows on wood chips and woody debris in landscaped areas — a species adapted to human-modified environments. Several assays indicate high potency, possibly comparable to P. cyanescens. Named after mycologist John Allen."},
     {name:"Psilocybe atlantis",potency:0.6,evidence:"Low",origin:"Fulton County, Georgia, USA — described 2006",desc:"Notable for forming both fruiting bodies and underground sclerotia ('philosopher's stones') similar to P. tampanensis. Sclerotia are the primary product from cultivated specimens and are typically milder than fruiting bodies. Limited potency data; experience reported as gentle and colourful."},
-    {name:"Psilocybe azurescens (AZU)",potency:2.1,evidence:"High",origin:"Columbia River mouth, Pacific Northwest, USA",desc:"The Flying Saucer mushroom — native to a small coastal area near the Columbia River mouth in the Pacific Northwest. Literature values range from 1.0–2.0%+ psilocybin across multiple analyses; the most-cited average is approximately 1.4–1.5% psilocybin, giving a calibrated 2.1× multiplier relative to average cubensis. The 1.78% figure often quoted is from one early Repke et al. study, not the mean across all collections. Wood-loving; grows on buried deciduous wood and sandy soils. Narrow autumn fruiting window. Can cause temporary lower-extremity weakness ('wood lover's paralysis') in some users."},
+    {name:"Psilocybe azurescens (AZU)",potency:2.1,evidence:"High",origin:"Columbia River mouth, Pacific Northwest, USA",desc:"The Flying Saucer mushroom — native to a small coastal area near the Columbia River mouth in the Pacific Northwest. Multiple independent HPLC analyses average approximately 1.4–1.5% psilocybin; the 2025 Nammex HPTLC reference study confirmed strong psilocin content placing azurescens above cyanescens in total tryptamines. The 1.78% figure often quoted is from one early Repke et al. study — the calibrated multiplier of 2.1× represents the best-estimate average across published work (1.47% / 0.70% = 2.1×). Wood-loving; grows on buried deciduous wood and sandy soils. Narrow autumn fruiting window. Can cause temporary lower-extremity weakness ('wood lover's paralysis') in some users."},
     {name:"Psilocybe baeocystis",potency:1.0,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and mulch species. The compound baeocystin was first isolated and named from this very species (Leung & Paul, 1967–68). Beug and Bigwood (1981) HPLC assays found 0.15–0.85% psilocybin in dried specimens — average ~0.5%. Total tryptamines including baeocystin and psilocin bring it to roughly 0.70% per gram dried — equivalent to average cubensis. Note: potency markedly higher when fresh; roughly half as much survives drying. Bruises intensely metallic blue-green."},
     {name:"Psilocybe caeruleorhiza",potency:0.8,evidence:"Low",origin:"Midwest USA — described 2025",desc:"Wood-rotting species in section Aztecorum. A relatively newly characterised species; specimens from the Midwest USA. Shows strong bluing reaction. Potency data is limited; estimated low based on related section species. Not commonly encountered in cultivation. Cold-tolerant, found fruiting at lower temperatures than most psilocybin species."},
     {name:"Psilocybe caeruleipes",potency:0.5,evidence:"Low",origin:"Eastern North America",desc:"Known as the 'blue-foot' mushroom — found on decaying hardwood logs in eastern North America. Often found alongside Galerina marginata (deadly toxic) — identification confidence is critical before any contact. Not a practical source due to low and inconsistent potency."},
     {name:"Psilocybe caerulescens",potency:1.1,evidence:"Moderate",origin:"Mexico, Venezuela, Central America",desc:"A tropical to subtropical species found in Mexico, Venezuela, and surrounding regions. One of the Mazatec ceremonial species used alongside P. mexicana. Known as 'derrumbe' (landslide mushroom) in Mexico. A handful of assays report moderate-to-above-average alkaloids."},
     {name:"Psilocybe coprophila",potency:0.0,evidence:"Negligible",origin:"Cosmopolitan — mostly reclassified",desc:"Modern taxonomic revisions have moved most records to Deconica species — which are not psychoactive. This reclassification means what is sold or listed as 'P. coprophila' is likely not a reliable psilocybin source. Exercise extreme caution."},
-    {name:"Psilocybe cubensis",potency:1.0,evidence:"High",origin:"Tropical worldwide — first described Cuba, 1906",desc:"First described in 1906 in Cuba by mycologist Franklin Sumner Earle. The world's most widely cultivated psilocybin mushroom due to ease of growth and broad substrate tolerance. Psilocybin ranges from ~0.2% to over 2% dry weight depending on strain, flush, and growing conditions. Wide strain-to-strain variability means the species label alone tells you little about potency."},
+    {name:"Psilocybe cubensis",potency:1.0,evidence:"High",origin:"Tropical worldwide — first described Cuba, 1906",desc:"First described in 1906 in Cuba by mycologist Franklin Sumner Earle. The world's most widely cultivated psilocybin mushroom due to ease of growth and broad substrate tolerance. HPLC studies report total tryptamine content ranging from ~0.2% to over 2% dry weight depending on strain, flush, and growing conditions — with the population average around 0.70% (Gotvaldová et al. 2021; Goff et al. 2024). Wide strain-to-strain variability means the species label alone tells you little about potency."},
     {name:"Psilocybe cyanofibrillosa",potency:0.4,evidence:"Low",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest species found in grassy areas near the coast, distinguishable by its fibrous stem that stains blue when damaged. Older assays report very low tryptamine levels — generally the least potent of the commonly listed Pacific Northwest Psilocybe species."},
-    {name:"Psilocybe cyanescens (CYA)",potency:1.9,evidence:"High",origin:"Pacific Northwest, USA / Europe",desc:"The Wavy Cap — wood-loving species found in the Pacific Northwest, Western Europe, and other temperate regions, fruiting on mulched garden beds in autumn. Multiple independent analyses report an average of ~1.3% psilocybin; the '2%+' figure from some recent papers used aggressive agitation-extraction that inflates yields. Calibrated to 1.9× (avg ~1.33% / 0.70% baseline). Also produces aeruginascin and small amounts of baeocystin. Famously difficult to cultivate indoors; predominantly a wild or outdoor species."},
+    {name:"Psilocybe cyanescens (CYA)",potency:1.9,evidence:"High",origin:"Pacific Northwest, USA / Europe",desc:"The Wavy Cap — wood-loving species found in the Pacific Northwest, Western Europe, and other temperate regions, fruiting on mulched garden beds in autumn. Multiple independent analyses report an average of approximately 1.1–1.3% psilocybin; the 2025 Nammex HPTLC reference study confirmed high psilocin content in cultivated specimens. Calibrated to 1.9× (avg ~1.33% / 0.70% baseline). Also produces aeruginascin and small amounts of baeocystin. Famously difficult to cultivate indoors; predominantly a wild or outdoor species."},
     {name:"Psilocybe fimetaria",potency:0.3,evidence:"Low",origin:"Europe, North America — dung habitats",desc:"A European and North American dung species. Multiple older reports and some assays indicate little-to-no psilocybin in many specimens; results are inconsistent across different collections. Not considered a reliable psilocybin source."},
     {name:"Psilocybe galindoi",potency:0.6,evidence:"Low",origin:"Oaxaca, Mexico",desc:"A Mexican species often confused with P. tampanensis in cultivation circles, where 'galindoi' is sometimes used as a label for sclerotia-producing cultures. Both fruiting body and sclerotia potency are variable and generally considered mild."},
     {name:"Psilocybe hispanica",potency:0.8,evidence:"Low",origin:"Pyrenees — Spain, France",desc:"A European species found in the Pyrenees mountains of northern Spain and southern France — one of the few confirmed psilocybin species in continental Europe. Grows in high-altitude alpine meadows, typically associated with sheep dung. First described in 2000."},
-    {name:"Psilocybe ingeli",potency:3.5,evidence:"Low",origin:"Ingeli Forest, KwaZulu-Natal, South Africa",desc:"Newly described (2023) from the Ingeli Forest in KwaZulu-Natal, South Africa. Member of section Zapotecorum — the same high-potency clade as P. zapotecorum (~3.5×) and P. natalensis (~4.0×). No strain-specific HPLC data available yet; potency estimated at 3.5× based on section membership and phylogenetic proximity to relatives. Treat all doses conservatively until lab data exists. Rarely cultivated outside South Africa; grow reports are minimal."},
+    {name:"Psilocybe ingeli",potency:2.5,evidence:"Low",origin:"Ingeli Forest, KwaZulu-Natal, South Africa",desc:"Newly described (2023) from the Ingeli Forest in KwaZulu-Natal, South Africa. Member of section Zapotecorum — the same high-potency clade as P. zapotecorum and P. natalensis. No strain-specific HPLC data available yet; potency estimated at 2.5× based on section membership and phylogenetic proximity to relatives. Treat all doses very conservatively until lab data exists. Rarely cultivated outside South Africa; grow reports are minimal."},
     {name:"Psilocybe maluti",potency:0.0,evidence:"Low",origin:"Maluti Mountains, Lesotho / South Africa",desc:"Newly described (2023) from the Maluti mountain range spanning Lesotho and South Africa. Used in traditional cultural practices in the region. No quantitative potency data published to date."},
     {name:"Psilocybe mexicana (MEX)",potency:0.7,evidence:"Moderate",origin:"Mexico, Central America",desc:"One of the most historically significant psilocybin mushrooms. Used by the Aztec people — who called it teonanácatl ('flesh of the gods') — for over 2,000 years. Albert Hofmann isolated psilocybin and psilocin from this species in 1958. Known for producing underground sclerotia ('philosopher's stones'). Experience is mild, colourful, and introspective — good for beginners."},
-    {name:"Psilocybe natalensis",potency:4.0,evidence:"Moderate",origin:"KwaZulu-Natal, South Africa",desc:"Originally misidentified as a P. cubensis variety; 2023 DNA analyses confirmed it as a distinct species, distantly related to cubensis. Multiple alkaloid analyses report 2.3–4.2% total tryptamines — average ~2.8%, giving a calibrated multiplier of 4.0× (2.8/0.70). Often called 'Natal Blues' or 'South African Blues.' Member of section Zapotecorum alongside P. zapotecorum and P. ingeli. Grows very aggressively with fast colonisation and good contamination resistance, fruiting prolifically. Treat doses seriously — a standard 1.5g cubensis level-3 dose is equivalent to just ~0.375g of natalensis."},
+    {name:"Psilocybe natalensis",potency:3.0,evidence:"Moderate",origin:"KwaZulu-Natal, South Africa",desc:"Originally misidentified as a P. cubensis variety; 2023 DNA analyses confirmed it as a distinct species, distantly related to cubensis. Community analyses and competition data report 2.0–3.0%+ total tryptamines in strong specimens, calibrated to 3.0× (2.1/0.70% conservative estimate). The 2025 Nammex HPTLC reference study confirmed P. natalensis has strong psilocin content, comparable to P. cyanescens and P. azurescens. Often called 'Natal Blues' or 'South African Blues.' Member of section Zapotecorum alongside P. zapotecorum and P. ingeli. Grows aggressively with fast colonisation and good contamination resistance, fruiting prolifically. Note: solid peer-reviewed HPLC quantification of total tryptamines in cultivated specimens is still limited — treat community potency estimates with caution and dose conservatively."},
     {name:"Psilocybe ochraceocentrata",potency:1.0,evidence:"Low",origin:"Africa (preliminary name)",desc:"Closest known wild relative of cultivated P. cubensis. Suggests African origins for the species; similar morphology and expected baseline potency."},
     {name:"Psilocybe ovoideocystidiata",potency:1.0,evidence:"Moderate",origin:"Eastern North America — river banks",desc:"Found along rivers and streams of the eastern USA, growing on wood chips and woody debris — often turning up in landscaped parks near rivers. One of the more recently described North American psilocybin species. Some specimens have tested positive for psilocybin at near-cubensis levels."},
     {name:"Psilocybe pelliculosa",potency:0.4,evidence:"Low",origin:"Pacific Northwest, USA / Canada",desc:"A Pacific Northwest species found on wood chips and mossy areas in coniferous forests. Multiple assays report consistently low psilocybin (0.1–0.2% dry weight). Not considered a potent source."},
     {name:"Psilocybe samuiensis",potency:0.7,evidence:"Low",origin:"Koh Samui, Thailand — first described 1993",desc:"First described from Koh Samui island, Thailand in 1993 — the first psilocybin mushroom formally described from Asia. The species has cultural significance given the Thai island's association with 'mushroom shakes' in the backpacker tourism era."},
-    {name:"Psilocybe semilanceata (SEM)",potency:1.5,evidence:"High",origin:"Europe, temperate North America",desc:"The Liberty Cap — one of the most widely distributed wild psilocybin mushrooms in Europe and temperate North America. Small, conical, with a distinctive nipple-like umbo. A 2025 PMC review found psilocybin up to 1.70–2.02% dry weight. Found in pastures and meadows, typically fruiting in autumn. Do not confuse with toxic lookalikes."},
+    {name:"Psilocybe semilanceata (SEM)",potency:2.0,evidence:"High",origin:"Europe, temperate North America",desc:"The Liberty Cap — one of the most widely distributed wild psilocybin mushrooms in Europe and temperate North America. Small, conical, with a distinctive nipple-like umbo. Finnish HPLC studies found a mean psilocybin content of 1.42% (range 0.62–2.37%) in dried specimens; Norwegian studies found 0.17–1.96%. A 2025 MDPI review cites maximum documented content of 2.02%. The 2.0× multiplier is calibrated to the Finnish mean of 1.42% / 0.70% = 2.03×. Found in pastures and meadows, typically fruiting in autumn. Do not confuse with toxic lookalikes; always identify with certainty before handling."},
     {name:"Psilocybe serbica",potency:1.5,evidence:"High",origin:"Central/Eastern Europe — Serbia, Czech Republic",desc:"A Central and Eastern European wood-loving species. One of the few potent wild Psilocybe species native to Europe alongside P. semilanceata and P. cyanescens. Modern HPLC assays and genomic studies (PNAS 2024) confirm the full psilocybin biosynthesis cluster. High psilocybin reported in some specimens."},
     {name:"Psilocybe striata",potency:1.0,evidence:"Low",origin:"Chongqing, China — described 2025",desc:"Recently described bluing species with striking white pileus and striate veils — believed to be from East Asia, with specimens documented from China. Shows strong bluing reaction consistent with psilocybin presence. Potency data not yet established; estimated average based on morphological comparisons. Rarely encountered in cultivation or scientific literature."},
     {name:"Psilocybe strictipes",potency:1.2,evidence:"Moderate",origin:"Europe — Netherlands, UK",desc:"A close relative of P. semilanceata found primarily in the Netherlands and UK, growing in enriched grasslands. Some comparative assay work suggests it may contain psilocybin at above-average levels in good specimens. Morphologically distinguished from the Liberty Cap by its more cylindrical cap."},
-    {name:"Psilocybe stuntzii",potency:0.5,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and lawn species named after mycologist Daniel Stuntz. Found across the coastal Pacific Northwest on wood chips, landscaping mulch, and grass. Smaller and less potent than P. cyanescens or P. allenii. HPTLC analysis has reported low psilocybin levels — typically under 0.5%. Sometimes consumed recreationally by foragers in the Pacific Northwest but not considered a preferred species due to modest potency. Easily confused with the toxic Galerina marginata; careful identification required."},
-    {name:"Psilocybe subaeruginosa",potency:1.8,evidence:"High",origin:"Southeastern Australia, New Zealand",desc:"The dominant potent wild species in southeastern Australia and New Zealand; grows on decaying wood and wood chips, typically fruiting in autumn and winter. Multiple analyses report 0.8–1.93% psilocybin — average ~1.25%, calibrated to 1.8× (1.25/0.70). The highest sample (1.93%) is a peak, not the mean. Considered the Australian equivalent of P. cyanescens in terms of distribution and cultural prominence among foragers. Cold-tolerant; difficult to cultivate indoors."},
+    {name:"Psilocybe stuntzii",potency:0.5,evidence:"High",origin:"Pacific Northwest, USA",desc:"A Pacific Northwest wood chip and lawn species named after mycologist Daniel Stuntz. Found across the coastal Pacific Northwest on wood chips, landscaping mulch, and grass. The 2025 Nammex HPTLC reference study measured 0.45% psilocybin in cultivated specimens — the lowest of the six species tested, consistent with earlier HPTLC analyses reporting under 0.5%. Easily confused with the toxic Galerina marginata; careful identification required. Sometimes consumed recreationally by foragers in the Pacific Northwest but not considered a preferred species due to modest potency."},
+    {name:"Psilocybe subaeruginosa",potency:1.8,evidence:"High",origin:"Southeastern Australia, New Zealand",desc:"The dominant potent wild species in southeastern Australia and New Zealand; grows on decaying wood and wood chips, typically fruiting in autumn and winter. Multiple analyses report 0.8–1.93% psilocybin — average ~1.25%, calibrated to 1.8× (1.25/0.70). The 2025 Nammex HPTLC reference study found P. subaeruginosa had the strongest psilocin band of the six species tested, consistent with a high total tryptamine profile. Considered the Australian equivalent of P. cyanescens in terms of distribution and cultural prominence among foragers. Cold-tolerant; difficult to cultivate indoors."},
     {name:"Psilocybe subcubensis",potency:1.0,evidence:"Low",origin:"Tropical worldwide",desc:"Taxonomically considered very closely related to P. cubensis, and sometimes synonymised with it entirely in modern treatments. Found in tropical regions worldwide. If you have what is labelled subcubensis, treat it as standard cubensis baseline."},
     {name:"Psilocybe subtropicalis",potency:0.8,evidence:"Low",origin:"Mexico, Guatemala, Central America — subtropical forests",desc:"Known as Semperviva ('ever-living') for its exceptionally persistent mycelium and marathon fruiting cycles over many months. Described by Gastón Guzmán in 1995; formerly called P. semperviva and confused with P. hoogshagenii. Sacred to Mixe and Zapotec peoples of Mexico — called 'los niños' (the little boys) and 'pajaritos de monte' (little birds of the woods). Community growers consistently describe potency as similar to P. mexicana — moderate, clearly psychedelic, but not pan-level. Standout feature: unusually potent mycelium. Lab-reported range is wide (0.85–4.85% in some analyses), but average cultivation yields are low-to-moderate by most accounts. Slow fruiter but very contamination resistant."},
     {name:"Psilocybe tampanensis (TAM)",potency:0.7,evidence:"Moderate",origin:"Tampa, Florida, USA — discovered 1977",desc:"Discovered in 1977 near Tampa, Florida by Steven Pollock — a single specimen growing in a sand dune; all cultivated specimens descend from that one find. Famous for producing psychoactive underground sclerotia ('philosopher's stones'). Alkaloid assays on sclerotia show 0.31–0.68% psilocybin dry weight, average ~0.5%; total tryptamines ~0.5% = 0.7× baseline cubensis. Sclerotia are legally sold in the Netherlands. Fruiting bodies can be similarly potent but are rarely produced. Experience typically gentle and introspective."},
     {name:"Psilocybe weraroa",potency:0.6,evidence:"Low",origin:"New Zealand",desc:"A pouched (secotioid) species from New Zealand — one of the most unusual psilocybin mushrooms morphologically. Rather than a typical mushroom cap, it produces a closed, pouch-like or truffle-shaped fruiting body that never opens fully. A fascinating evolutionary case."},
     {name:"Psilocybe weilii",potency:0.6,evidence:"Low",origin:"Northern Georgia, USA — very limited range",desc:"Found in a very limited area of northern Georgia, USA, described in 1995. Grows in bermudagrass and red clay soils — a habitat unlike most other Psilocybe species. Rarely encountered in practice; a notable curiosity given its unusual habitat."},
     {name:"Psilocybe yungensis",potency:0.8,evidence:"Low",origin:"Mexico, Colombia — cloud forests",desc:"Found in Mexico and Colombia at higher altitudes in cloud forests and coffee plantations. Grows on decaying plant matter and enriched soils. Used in traditional practices in some Colombian communities."},
-    {name:"Psilocybe zapotecorum",potency:3.5,evidence:"High",origin:"Oaxaca, Mexico — Zapotec region",desc:"A sacred Mesoamerican species used by Zapotec peoples of Oaxaca for centuries — Guzmán documented ceremonial use in the 1970s–90s. Multiple chemical analyses have recorded 2.25–4.17% total psilocybin-equivalent alkaloids; average ~3.0%, calibrated to 3.5× (conservative relative to the 4.3× mathematical result to account for collection variability). Grows in ravines, near streams and rivers, in oak-pine forests from 900–3,200m elevation across Mexico, Guatemala, Colombia, Chile, Brazil, Ecuador, Argentina and Venezuela. Rarely cultivated; typically a wild-collected species. Not related to P. cubensis."},
+    {name:"Psilocybe zapotecorum",potency:3.0,evidence:"High",origin:"Oaxaca, Mexico — Zapotec region",desc:"A sacred Mesoamerican species used by Zapotec peoples of Oaxaca for centuries — Guzmán documented ceremonial use in the 1970s–90s. The 2024 Journal of Psychedelic Studies HPLC study (Rockefeller et al.) found an average of 17.9 ± 1.7 mg/g psilocybin (= 1.79%) with a range of 10.6–25.7 mg/g across 7 specimens, plus ~2.0 mg/g psilocin on average. Total average tryptamines approximately 2.0–2.1%, calibrated to 3.0× (2.1/0.70%). The 2025 Nammex HPTLC study confirmed it as the highest psilocybin content species in their 6-species comparison at 1.89%. Earlier community estimates of 3.5–4× were based on limited data; this well-replicated peer-reviewed work sets a more conservative baseline. Grows in ravines and near streams in oak-pine forests at 900–3,200m elevation across Mexico, Guatemala, and parts of South America. Rarely cultivated; typically wild-collected. Not related to P. cubensis."},
     {name:"Puerto Rican (PR)",potency:1.0,evidence:"Low",origin:"Puerto Rico",desc:"A P. cubensis strain with origins attributed to Puerto Rico. Produces medium-to-large fruits with golden-brown caps. Effects are typical cubensis — balanced visuals and euphoria."},
     {name:"Red Boy",potency:1.0,evidence:"Low",origin:"USA — Florida, 1980s–90s; revived by mycologist Roger Rabbit",desc:"One of the most historically distinctive cubensis strains for a single unusual trait: it drops rust-red to cinnamon-coloured spores, instead of the purple-black spores universal to other P. cubensis strains. Origin is disputed — some attribute the original find to mycologist Dr. Pollock in Florida in the 1980s who noted a red-spore mutation in wild specimens; others say it appeared spontaneously in early online cultivation circles. By the early 2000s it was considered lost. Mycologist Roger Rabbit revived it using an un-germinated 20-year-old print, crossing it with Puerto Rico cubensis mycelium and rattlesnake venom to break down cell walls and facilitate nuclear exchange — the resulting 75% Red Boy cross was released publicly. Wide, bell-shaped caps on meaty stems. Moderate potency consistent with average cubensis — no lab data. Easy to grow, heavy spore depositor."},
     {name:"Riptide (RT)",potency:1.4,evidence:"Low",origin:"USA — breeder selection",desc:"A compact, dense cubensis selection with a reputation for consistent, reliable potency. Community describes the experience as body-heavy with good visual quality — the short, wide fruiting body shape (resembling a wave just before it crests) is characteristic."},
@@ -702,9 +740,9 @@
   ];
 
   // ── State ─────────────────────────────────────────────────────────────────
-  let selectedStrain = null; // the current strain object
-  let pendingStrain = null;  // strain clicked in picker but not confirmed yet
-  let strainInfoSource = 'picker'; // 'picker' or 'icon'
+  let selectedStrain = null;
+  let pendingStrain = null;
+  let strainInfoSource = 'picker';
   let weightUnit = 'kg';
   let strainNavList = [];
   let strainNavIdx = 0;
@@ -724,12 +762,33 @@
     return 'Exceptionally High';
   }
 
-  // Sort strains A-Z (strip trailing parenthetical for sort key)
+  // Sort strains A-Z
   STRAINS.sort(function(a,b){
     var ka=a.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
     var kb=b.name.replace(/ *[(][^)]*[)]$/,"").toLowerCase();
     return ka<kb?-1:ka>kb?1:0;
   });
+
+  // ── Copy result ────────────────────────────────────────────────────────────
+  function copyResult() {
+    const r = document.getElementById('result');
+    if (r.style.display === 'none') return;
+    const text = r.textContent.replace(/copy$/,'').trim();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(showCopyToast);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showCopyToast(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  }
+  function showCopyToast() {
+    const t = document.getElementById('copy-toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
 
   // ── Strain picker ──────────────────────────────────────────────────────────
   function openStrainPicker() {
@@ -743,7 +802,6 @@
   function renderStrainGrid(q) {
     const grid = document.getElementById('strain-grid');
     const filtered = q ? STRAINS.filter(s => s.name.toLowerCase().includes(q)) : STRAINS;
-    // dedupe by name
     const seen = new Set();
     const unique = filtered.filter(s => { if (seen.has(s.name)) return false; seen.add(s.name); return true; });
     if (unique.length === 0) {
@@ -770,14 +828,19 @@
   function openStrainInfoFromPicker(name) {
     const s = STRAINS.find(x => x.name === name);
     if (!s) return;
+    // Immediately apply this strain to the calculator
+    selectedStrain = s;
     pendingStrain = s;
+    _interacted = true;
+    updateStrainDisplay();
+    calculate();
     strainInfoSource = 'picker';
-    // Always navigate the full list starting from selected position
     strainNavList = STRAINS;
     strainNavIdx = STRAINS.findIndex(x => x.name === name);
     if (strainNavIdx < 0) strainNavIdx = 0;
     renderStrainInfo(s);
     _updateNavBtns();
+    _updateStrainModalButtons();
     document.getElementById('strain-modal').style.display = 'flex';
   }
 
@@ -790,6 +853,7 @@
     if (strainNavIdx < 0) strainNavIdx = 0;
     renderStrainInfo(selectedStrain);
     _updateNavBtns();
+    _updateStrainModalButtons();
     document.getElementById('strain-modal').style.display = 'flex';
   }
 
@@ -810,7 +874,7 @@
         <span class="badge badge-potency">⚡ ${potLabel}${s.potency > 0 ? ' <span class="badge-num">x' + s.potency.toFixed(1) + '</span>' : ''}
           <span class="tip">${potencyTip}</span>
         </span>
-        <span class="badge badge-evidence ${s.evidence === 'Low' ? 'badge-evidence-low' : ''}" ${s.evidence === 'Low' ? 'style="background:rgba(231,76,60,0.15);border-color:#e74c3c;color:#ff7c6e"' : ''}>🔬 Evidence: ${s.evidence}${s.evidence === 'Low' ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:2px solid #fff;font-size:0.8em;font-style:italic;font-weight:700;color:#fff;margin-left:4px;vertical-align:middle;line-height:1">i</span>' : ''}
+        <span class="badge badge-evidence ${s.evidence === 'Low' ? 'badge-evidence-low' : ''}" ${s.evidence === 'Low' ? 'style="background:rgba(231,76,60,0.15);border-color:#e74c3c;color:#ff7c6e"' : ''}>🔬 Evidence: ${s.evidence}${s.evidence === 'Low' ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,0.9);font-size:0.8em;font-style:italic;font-weight:700;color:rgba(255,255,255,0.9);margin-left:4px;vertical-align:middle;line-height:1;flex-shrink:0">i</span>' : ''}
           <span class="tip">${evidenceTips[s.evidence] || 'See description.'}</span>
         </span>
       </div>
@@ -818,9 +882,29 @@
       <hr class="strain-modal-divider">
       <p class="strain-modal-desc">${s.desc}</p>
     `;
-    document.querySelectorAll('#strain-info-text .badge').forEach(b => {
-      b.addEventListener('click', e => { e.stopPropagation(); b.classList.toggle('tip-open'); });
-    });
+    // Mobile only: tap badge to toggle tooltip; desktop uses CSS hover
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      document.querySelectorAll('#strain-info-text .badge').forEach(b => {
+        b.addEventListener('click', e => {
+          e.stopPropagation();
+          const isOpen = b.classList.contains('tip-open');
+          document.querySelectorAll('#strain-info-text .badge.tip-open').forEach(x => x.classList.remove('tip-open'));
+          if (!isOpen) b.classList.add('tip-open');
+        });
+      });
+    }
+  }
+
+  function _updateStrainModalButtons() {
+    var backBtn = document.getElementById('strain-info-back');
+    var doneBtn = document.getElementById('strain-info-done');
+    if (strainInfoSource === 'icon') {
+      backBtn.textContent = '✕ Close';
+      doneBtn.style.display = 'none';
+    } else {
+      backBtn.textContent = '← Back';
+      doneBtn.style.display = '';
+    }
   }
 
   function strainInfoBack() {
@@ -833,12 +917,9 @@
       _interacted = true;
       updateStrainDisplay();
       calculate();
-      closeModal('strain-modal');
       closeModal('strain-picker-modal');
-    } else {
-      // just viewing info from icon — close info modal
-      closeModal('strain-modal');
     }
+    closeModal('strain-modal');
     pendingStrain = null;
   }
 
@@ -862,7 +943,6 @@
     _updateNavBtns();
   }
 
-  // keyboard left/right for strain nav
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { closeAllModals(); return; }
     if (document.getElementById('strain-modal').style.display !== 'flex') return;
@@ -870,7 +950,13 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); navigateStrain(1); }
   });
 
-  // touch swipe for strain modal
+  // Close badge tooltips when tapping outside on mobile
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest || !e.target.closest('.badge')) {
+      document.querySelectorAll('.badge.tip-open').forEach(b => b.classList.remove('tip-open'));
+    }
+  });
+
   (function(){
     var tx = 0;
     var sm = document.getElementById('strain-modal');
@@ -881,17 +967,26 @@
     }, {passive:true});
   })();
 
+  function clearStrain() {
+    selectedStrain = null;
+    updateStrainDisplay();
+    calculate();
+  }
+
   function updateStrainDisplay() {
-    const el = document.getElementById('strain-display');
+    const el  = document.getElementById('strain-display');
     const txt = document.getElementById('strain-display-text');
+    const clr = document.getElementById('strain-clear');
     if (selectedStrain) {
       txt.textContent = selectedStrain.name;
       el.classList.add('has-value');
       txt.classList.add('hallucinate');
+      if (clr) clr.style.display = 'inline-block';
     } else {
       txt.textContent = 'Strain';
       el.classList.remove('has-value');
       txt.classList.remove('hallucinate');
+      if (clr) clr.style.display = 'none';
     }
   }
 
@@ -909,9 +1004,8 @@
     const list = document.getElementById('trip-info-text');
     list.innerHTML = '';
     levels.forEach(({v, name, bar, desc}) => {
-      const active = v === current;
       const card = document.createElement('div');
-      card.className = 'trip-card' + (active ? ' trip-card-active' : '');
+      card.className = 'trip-card';
       card.innerHTML =
         '<div class="trip-card-header"><span class="trip-bar">' + bar + '</span><span class="trip-name">' + name + '</span></div>' +
         '<div class="trip-desc">' + desc + '</div>';
@@ -938,6 +1032,25 @@
     document.getElementById('lemon-tek-modal').style.display = 'flex';
   }
 
+  // ── Reset all ──────────────────────────────────────────────────────────────
+  function resetAll() {
+    document.getElementById('weight').value = '';
+    document.getElementById('trip-level').value = '';
+    document.getElementById('lemon-tek').checked = false;
+    selectedStrain = null;
+    _interacted = false;
+    updateStrainDisplay();
+    // Reset trip display
+    var td = document.getElementById('trip-display');
+    td.textContent = 'Trip Level';
+    td.classList.remove('has-value');
+    td.style.color = '';
+    td.style.webkitTextFillColor = '';
+    var result = document.getElementById('result');
+    result.style.display = 'none';
+    result.innerHTML = '';
+  }
+
   // ── Calculate ──────────────────────────────────────────────────────────────
   function calculate() {
     const weight = parseFloat(document.getElementById('weight').value);
@@ -948,7 +1061,7 @@
     if (!weight || weight < 1 || weight > 500 || !selectedStrain || !level) {
       if (_interacted) {
         result.style.display = '';
-        result.innerHTML = 'Please fill all fields.';
+        result.innerHTML = 'Fill all fields &nbsp;<button onclick="event.stopPropagation();resetAll()" title="Reset" style="background:none;border:none;color:#666;font-size:1.1em;cursor:pointer;padding:0;vertical-align:middle;line-height:1;transition:color 0.15s" onmouseover="this.style.color=\'#ffa500\'" onmouseout="this.style.color=\'#666\'">&#x21BA;</button>';
       } else {
         result.style.display = 'none';
       }
@@ -958,13 +1071,16 @@
     const weightInKg = weightUnit === 'lb' ? weight * 0.453592 : weight;
     const potency = selectedStrain.potency;
     if (potency <= 0) {
-      result.style.display = '';
       result.innerHTML = 'Potency unknown — cannot calculate dose.';
       return;
     }
     const baseDosages = {1:0.25, 2:0.7, 3:1.5, 4:3, 5:4.5};
     let dose = (baseDosages[level] * (weightInKg / 70)) / potency;
     if (useLemonTek) dose *= 0.8;
+    // Reset animation so it re-fires on every new result
+    result.style.animation = 'none';
+    void result.offsetHeight;
+    result.style.animation = '';
     result.innerHTML = `Suggested: <strong>${dose.toFixed(2)}g</strong> <span style="color:#888;font-size:0.85em">(dry)</span>`;
   }
 
@@ -996,7 +1112,6 @@
   document.getElementById('weight').addEventListener('input', function(){ _interacted=true; calculate(); });
   document.getElementById('picker-search').addEventListener('keyup', function(e){ renderStrainGrid(e.target.value.toLowerCase().trim()); });
 
-  // Robust mobile search: poll while picker is open (catches Android composing, paste, autofill)
   var _searchPoll = null;
   function _startSearchPoll() {
     var el = document.getElementById('picker-search');
@@ -1028,12 +1143,12 @@
       const DISC_KEY = 'shroom_disc_v3';
       const last = parseInt(localStorage.getItem(DISC_KEY) || '0');
       const shownThisSession = sessionStorage.getItem(DISC_KEY);
-      if (!shownThisSession && Date.now() - last > 345600000) { // once per session, max every 4 days
+      if (!shownThisSession && Date.now() - last > 345600000) {
         const popup = document.getElementById('disclaimer-popup');
         const closeBtn = document.getElementById('close-disclaimer');
         const countdownText = document.getElementById('countdown-text');
         popup.style.display = 'flex';
-        let timer = 7; countdownText.textContent = timer;
+        let timer = 5; countdownText.textContent = timer;
         const iv = setInterval(() => {
           timer--;
           if (timer > 0) { countdownText.textContent = timer; }
@@ -1080,7 +1195,14 @@
         if (STRAINS[i].name.toLowerCase().startsWith(slug.slice(0,6))) { match = STRAINS[i]; break; }
       }
     }
-    if (!match) return;
+    if (!match) {
+      // 404: show friendly message in result box
+      setTimeout(function(){
+        var r = document.getElementById('result');
+        if (r) { r.style.display = ''; r.innerHTML = 'Strain \u201c' + raw + '\u201d not found \u2014 please search above.'; }
+      }, 200);
+      return;
+    }
     selectedStrain = match;
     _interacted = true;
     updateStrainDisplay();
@@ -1093,6 +1215,7 @@
     setTimeout(function(){
       renderStrainInfo(match);
       _updateNavBtns();
+      _updateStrainModalButtons();
       document.getElementById('strain-modal').style.display = 'flex';
     }, 120);
   })();

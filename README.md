@@ -45,4 +45,4 @@ Single self-contained HTML file. No frameworks, no build step, no external JS de
 
 ## License
 
-Copyright (c) 2025 headpot. All rights reserved. See [LICENSE](LICENSE).
+Copyright (c) 2026 headpot. All rights reserved. See [LICENSE](LICENSE).

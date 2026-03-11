@@ -37,7 +37,6 @@ Psilocybin is a controlled substance in most jurisdictions. Know your local laws
 ## Technical
 
 Single self-contained HTML file. No frameworks, no build step, no external JS dependencies beyond:
-- **ipapi.co** — country detection for kg/lb auto-toggle
 - **GoatCounter** — anonymous, privacy-respecting visit counter (no cookies, no fingerprinting, GDPR compliant). Stats are private and visible only to the author.
 
 

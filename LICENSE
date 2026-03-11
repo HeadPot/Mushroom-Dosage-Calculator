@@ -1,27 +1,24 @@
-Copyright (c) 2025 headpot (https://github.com/headpot)
-All rights reserved.
+Shroomulator - Mushroom Dosage Calculator
+Copyright © 2025 HeadPot. All rights reserved.
 
-This project — including its source code, design, strain data, dosage logic,
-and all associated content — is the original work of the author.
+This software and its source code are made publicly viewable on GitHub for transparency, education, and personal use.
 
-You are free to:
-  - View and study the code for personal, educational, or harm-reduction purposes.
-  - Fork the repository on GitHub for the purpose of submitting contributions
-    back to the original project via pull request.
+You are explicitly permitted to:
+- View the source code
+- Download or clone this repository to your own device
+- Run the calculator offline or locally on your personal devices
+- Use it privately for your own non-commercial purposes (e.g. personal dosage calculations, study, or private experimentation)
 
 You are NOT permitted to:
-  - Copy, redistribute, or republish this project (in whole or in part) as your
-    own work, under a different name, or on a different platform without explicit
-    written permission from the author.
-  - Use this project or any portion of it in a commercial product or service.
-  - Remove or alter this copyright notice.
+- Redistribute the code or any part of it (in original or modified form)
+- Publicly host, re-publish, or share a running version of this tool (please direct people to https://shroomulator.app instead)
+- Modify the code for the purpose of redistribution, public use, or commercial gain
+- Sell, monetize, add advertising to, or include this software (or derivatives) in any for-profit product, service, or website
+- Remove, alter, or obscure the copyright notice, project name, links to shroomulator.app, disclaimers, or any branding/attribution
 
-The strain potency data, descriptions, and harm-reduction content contained
-in this project represent significant original research and curation effort
-and are protected under this license.
+If you would like to do anything beyond personal offline use (e.g. contribute changes back, host a modified public version, or discuss other permissions), please contact the author via GitHub issues or other provided channels.
 
-For permissions beyond the scope of this license, contact the author via GitHub.
+For the best experience, always-up-to-date strain data, FAQ, and safety information, please use the official hosted version:
+https://shroomulator.app
 
-THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE AUTHOR
-ACCEPTS NO LIABILITY FOR ANY HARM, LOSS, OR LEGAL CONSEQUENCE ARISING FROM
-THE USE OF THIS SOFTWARE OR THE INFORMATION IT PROVIDES.
+Thank you for respecting these terms.

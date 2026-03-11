@@ -45,4 +45,10 @@ Single self-contained HTML file. No frameworks, no build step, no external JS de
 
 ## License
 
-Copyright (c) 2026 headpot. All rights reserved. See [LICENSE](LICENSE).
+Licensed under the **MIT License with Commons Clause**.
+
+- Personal, non-commercial use is allowed (download, run locally/offline, modify for yourself).
+- Commercial use, selling, monetizing, or profiting from the software (or derivatives) is prohibited.
+- See full details in [LICENSE](./LICENSE).
+
+For the best experience → https://shroomulator.app

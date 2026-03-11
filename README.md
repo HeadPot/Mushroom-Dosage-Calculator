@@ -51,4 +51,4 @@ Licensed under the **MIT License with Commons Clause**.
 - Commercial use, selling, monetizing, or profiting from the software (or derivatives) is prohibited.
 - See full details in [LICENSE](./LICENSE).
 
-For the best experience → https://shroomulator.app
+For the best experience → **[shroomulator.app](https://headpot.github.io/Mushroom-Dosage-Calculator/)**

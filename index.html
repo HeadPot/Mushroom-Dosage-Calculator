@@ -14,7 +14,8 @@
   <meta name="author" content="Shroomulator">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#2a1f35">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJjZyIgY3g9IjUwJSIgY3k9IjY1JSIgcj0iNTUlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzE3MGU4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNmIxZmEwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTE2IDNDNyAzIDIgMTIgMiAxN2MwIDIuNSAyLjUgMy41IDUuNSAzLjVoMTdjMyAwIDUuNS0xIDUuNS0zLjUgMC01LTUtMTQtMTQtMTR6IiBmaWxsPSJ1cmwoI2NnKSIvPjxlbGxpcHNlIGN4PSIxMSIgY3k9IjExIiByeD0iMi41IiByeT0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+PGVsbGlwc2UgY3g9IjE2IiBjeT0iMjAuNSIgcng9IjkuNSIgcnk9IjEuMiIgZmlsbD0iIzhiMzBjMCIgb3BhY2l0eT0iMC41Ii8+PHJlY3QgeD0iMTIuNSIgeT0iMjAiIHdpZHRoPSI3IiBoZWlnaHQ9IjkiIHJ4PSIyLjUiIGZpbGw9IiNjODkwZjAiLz48L3N2Zz4=">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzBkMGExNCIvPgogIDxlbGxpcHNlIGN4PSIxNiIgY3k9IjI2IiByeD0iMTIiIHJ5PSI0LjUiIGZpbGw9IiMyZDdhMjgiIG9wYWNpdHk9IjAuODIiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNiwxNykiPgogICAgPHBhdGggZD0iTTAsMCBDLTIsLTIuNSAtMSwtNyAwLC03IEMxLC03IDIsLTIuNSAwLDAiIGZpbGw9IiNmOGMwZDQiIG9wYWNpdHk9IjAuOTMiIHRyYW5zZm9ybT0icm90YXRlKDApIi8+CiAgICA8cGF0aCBkPSJNMCwwIEMtMiwtMi41IC0xLC03IDAsLTcgQzEsLTcgMiwtMi41IDAsMCIgZmlsbD0iI2Y4YzBkNCIgb3BhY2l0eT0iMC45MyIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIi8+CiAgICA8cGF0aCBkPSJNMCwwIEMtMiwtMi41IC0xLC03IDAsLTcgQzEsLTcgMiwtMi41IDAsMCIgZmlsbD0iI2Y4YzBkNCIgb3BhY2l0eT0iMC45MyIgdHJhbnNmb3JtPSJyb3RhdGUoOTApIi8+CiAgICA8cGF0aCBkPSJNMCwwIEMtMiwtMi41IC0xLC03IDAsLTcgQzEsLTcgMiwtMi41IDAsMCIgZmlsbD0iI2Y4YzBkNCIgb3BhY2l0eT0iMC45MyIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1KSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTIsLTIuNSAtMSwtNyAwLC03IEMxLC03IDIsLTIuNSAwLDAiIGZpbGw9IiNmOGMwZDQiIG9wYWNpdHk9IjAuOTMiIHRyYW5zZm9ybT0icm90YXRlKDE4MCkiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy0yLC0yLjUgLTEsLTcgMCwtNyBDMSwtNyAyLC0yLjUgMCwwIiBmaWxsPSIjZjhjMGQ0IiBvcGFjaXR5PSIwLjkzIiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUpIi8+CiAgICA8cGF0aCBkPSJNMCwwIEMtMiwtMi41IC0xLC03IDAsLTcgQzEsLTcgMiwtMi41IDAsMCIgZmlsbD0iI2Y4YzBkNCIgb3BhY2l0eT0iMC45MyIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwKSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTIsLTIuNSAtMSwtNyAwLC03IEMxLC03IDIsLTIuNSAwLDAiIGZpbGw9IiNmOGMwZDQiIG9wYWNpdHk9IjAuOTMiIHRyYW5zZm9ybT0icm90YXRlKDMxNSkiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNyIgcj0iMi40IiBmaWxsPSIjZjhlMDQwIi8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNyIgcj0iMS4wIiBmaWxsPSIjZmVmZGUwIiBvcGFjaXR5PSIwLjkiLz4KPC9zdmc+">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMGQwYTE0Ii8+CiAgPGVsbGlwc2UgY3g9IjkwIiBjeT0iMTM4IiByeD0iNjgiIHJ5PSIyNiIgZmlsbD0iIzJkN2EyOCIgb3BhY2l0eT0iMC44NSIvPgogIDxwYXRoIGQ9Ik05MCwxMzggUTkyLDE0OCA5MCwxNTUiIHN0cm9rZT0iIzNhODAzMCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjYiLz4KICA8cGF0aCBkPSJNOTAsMTQzIFE2MiwxNTAgNDYsMTU4IiBzdHJva2U9IiMzYTgwMzAiIHN0cm9rZS13aWR0aD0iMi4yIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjQ1Ii8+CiAgPHBhdGggZD0iTTkwLDE0MyBRMTE2LDE1MCAxMzIsMTU3IiBzdHJva2U9IiMzYTgwMzAiIHN0cm9rZS13aWR0aD0iMi4yIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjQ1Ii8+CiAgPHBhdGggZD0iTTkwLDE0OCBMNzQsMTM2IiBmaWxsPSIjMWEzMDE4IiBvcGFjaXR5PSIwLjI1Ii8+CiAgPCEtLSA4IG91dGVyIHBldGFscyBwYWxlIHBpbmsgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTAsOTUpIj4KICAgIDxwYXRoIGQ9Ik0wLDAgQy0xMSwtMTQgLTYsLTM4IDAsLTQwIEM2LC0zOCAxMSwtMTQgMCwwIiBmaWxsPSIjZjhjOGRjIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSgwKSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTEwLC0xNSAtNSwtMzggMCwtNDAgQzYsLTM2IDEwLC0xNCAwLDAiIGZpbGw9IiNmOGM4ZGMiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDQ1KSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTExLC0xNCAtNiwtMzggMCwtNDAgQzYsLTM4IDExLC0xNCAwLDAiIGZpbGw9IiNmOGM4ZGMiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDkwKSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTEwLC0xNSAtNSwtMzggMCwtNDAgQzYsLTM2IDEwLC0xNCAwLDAiIGZpbGw9IiNmOGM4ZGMiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDEzNSkiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy0xMSwtMTQgLTYsLTM4IDAsLTQwIEM2LC0zOCAxMSwtMTQgMCwwIiBmaWxsPSIjZjhjOGRjIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSgxODApIi8+CiAgICA8cGF0aCBkPSJNMCwwIEMtMTAsLTE1IC01LC0zOCAwLC00MCBDNiwtMzYgMTAsLTE0IDAsMCIgZmlsbD0iI2Y4YzhkYyIgb3BhY2l0eT0iMC45MiIgdHJhbnNmb3JtPSJyb3RhdGUoMjI1KSIvPgogICAgPHBhdGggZD0iTTAsMCBDLTExLC0xNCAtNiwtMzggMCwtNDAgQzYsLTM4IDExLC0xNCAwLDAiIGZpbGw9IiNmOGM4ZGMiIG9wYWNpdHk9IjAuOTIiIHRyYW5zZm9ybT0icm90YXRlKDI3MCkiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy0xMCwtMTUgLTUsLTM4IDAsLTQwIEM2LC0zNiAxMCwtMTQgMCwwIiBmaWxsPSIjZjhjOGRjIiBvcGFjaXR5PSIwLjkyIiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUpIi8+CiAgPC9nPgogIDwhLS0gaW5uZXIgcGV0YWxzIHdoaXRlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkwLDk1KSI+CiAgICA8cGF0aCBkPSJNMCwwIEMtNywtOSAtNCwtMjQgMCwtMjUgQzQsLTI0IDcsLTkgMCwwIiBmaWxsPSIjZmZmNWY4IiBvcGFjaXR5PSIwLjk3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMikiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy03LC05IC00LC0yNCAwLC0yNSBDNCwtMjQgNywtOSAwLDAiIGZpbGw9IiNmZmY1ZjgiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDExMikiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy03LC05IC00LC0yNCAwLC0yNSBDNCwtMjQgNywtOSAwLDAiIGZpbGw9IiNmZmY1ZjgiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDIwMikiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgQy03LC05IC00LC0yNCAwLC0yNSBDNCwtMjQgNywtOSAwLDAiIGZpbGw9IiNmZmY1ZjgiIG9wYWNpdHk9IjAuOTciIHRyYW5zZm9ybT0icm90YXRlKDI5MikiLz4KICA8L2c+CiAgPCEtLSBjZW50ZXIgLS0+CiAgPGNpcmNsZSBjeD0iOTAiIGN5PSI5NSIgcj0iMTMiIGZpbGw9IiNmOGUwNDAiIG9wYWNpdHk9IjEiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9Ijk1IiByPSI2IiBmaWxsPSIjZmVmZGUwIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSI4NiIgY3k9Ijg5IiByPSIyIiBmaWxsPSIjYjg3MDAwIiBvcGFjaXR5PSIwLjgiLz4KICA8Y2lyY2xlIGN4PSI5MCIgY3k9Ijg3IiByPSIyIiBmaWxsPSIjYjg3MDAwIiBvcGFjaXR5PSIwLjgiLz4KICA8Y2lyY2xlIGN4PSI5NCIgY3k9Ijg5IiByPSIyIiBmaWxsPSIjYjg3MDAwIiBvcGFjaXR5PSIwLjgiLz4KPC9zdmc+">
 
   <!-- ── Open Graph ── -->
   <meta property="og:type" content="website">
@@ -207,6 +208,13 @@
   }
   </script>
 
+
+  <style>
+    /* Lily layer: container needs position/z-index to sit above lilies */
+    .container{position:relative;z-index:2;overflow:visible}
+    /* vine SVG injected by JS */
+    .wlily{position:absolute;pointer-events:none;z-index:1;transform-origin:center center}
+  </style>
 </head>
 <body>
   <h1 class="site-header"><span style="display:inline-block;transform:rotate(180deg);color:rgba(200,200,220,0.35)">꩜</span> <span class="hallucinate">Shroomulator</span> <span style="display:inline-block;transform:rotate(180deg) scaleX(-1);color:rgba(200,200,220,0.35)">꩜</span></h1>
@@ -1360,5 +1368,247 @@
   </script>
 
   <script data-goatcounter="https://headpot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <script>
+  /* ── Water Lilies ──────────────────────────────────────────────────────────── */
+  (function(){
+
+
+
+    /* ── VINES ──────────────────────────────────────────────────────────────── */
+    function injectVines(){
+      var old = document.getElementById('wlily-vines');
+      if(old) old.remove();
+      var cont = document.querySelector('.container');
+      if(!cont) return;
+      var W = cont.offsetWidth, H = cont.offsetHeight;
+      var pad = 40;
+      var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.id = 'wlily-vines';
+      svg.setAttribute('width', W + pad*2);
+      svg.setAttribute('height', H + pad*2);
+      svg.style.cssText = 'position:absolute;top:'+ (-pad) +'px;left:'+ (-pad) +'px;pointer-events:none;z-index:0;overflow:visible;opacity:0.13';
+      // just two gentle arcs along left and right sides, mid-height
+      var o = pad; // offset since SVG is padded
+      var col = '#5aaa40';
+      function p(d,w){ var el=document.createElementNS('http://www.w3.org/2000/svg','path'); el.setAttribute('d',d); el.setAttribute('stroke',col); el.setAttribute('stroke-width',w); el.setAttribute('fill','none'); el.setAttribute('stroke-linecap','round'); svg.appendChild(el); }
+      // left side: single drooping tendril from ~30% down
+      var ly = o + H*0.28;
+      p('M '+o+','+ly+' C '+(o-18)+','+(ly+22)+' '+(o-22)+','+(ly+50)+' '+(o-10)+','+(ly+72), 1.3);
+      p('M '+(o-10)+','+(ly+72)+' C '+(o-4)+','+(ly+84)+' '+(o+6)+','+(ly+80)+' '+(o+4)+','+(ly+90), 0.8);
+      // small leaf bud
+      var bx=o-10, by=ly+72;
+      var b=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+      b.setAttribute('cx',bx); b.setAttribute('cy',by); b.setAttribute('rx','4'); b.setAttribute('ry','2');
+      b.setAttribute('fill',col); b.setAttribute('transform','rotate(-40,'+bx+','+by+')');
+      svg.appendChild(b);
+      // right side: single tendril from ~55% down
+      var ry2 = o + H*0.52;
+      var rx2 = o + W;
+      p('M '+rx2+','+ry2+' C '+(rx2+16)+','+(ry2+18)+' '+(rx2+20)+','+(ry2+44)+' '+(rx2+8)+','+(ry2+66), 1.3);
+      p('M '+(rx2+8)+','+(ry2+66)+' C '+(rx2+2)+','+(ry2+78)+' '+(rx2-8)+','+(ry2+74)+' '+(rx2-6)+','+(ry2+84), 0.8);
+      var bx2=rx2+8, by2=ry2+66;
+      var b2=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+      b2.setAttribute('cx',bx2); b2.setAttribute('cy',by2); b2.setAttribute('rx','4'); b2.setAttribute('ry','2');
+      b2.setAttribute('fill',col); b2.setAttribute('transform','rotate(40,'+bx2+','+by2+')');
+      svg.appendChild(b2);
+      cont.appendChild(svg);
+    }
+
+    /* ── FLOWERS ─────────────────────────────────────────────────────────────── */
+    // Petal shape: nymphaea-style, broad at mid, pointed tip, slightly cupped
+    // asymmetric cs bias makes each petal unique
+    function mkPetal(len, wid, cs){
+      var l=len, w=wid, c=cs||0;
+      // wider mid-section, slightly pinched at base = real lily petal
+      return 'M 0,0'
+        +' C '+(-w*0.8+c)+','+(- l*0.25)+' '+(-w+c*0.5)+','+(- l*0.58)+' '+(-w*0.3+c*0.2)+','+(- l*0.88)
+        +' C '+(-w*0.1)+','+(- l*0.97)+' '+(w*0.1)+','+(- l*0.97)+' '+(w*0.3)+','+(- l*0.88)
+        +' C '+w+','+(- l*0.58)+' '+(w*0.8)+','+(- l*0.25)+' 0,0 Z';
+    }
+
+    // Lily pad: ellipse with pie-slice notch (classic lily pad shape)
+    function mkPad(cx, cy, rx, ry, rot, gradId, op){
+      // notch angle ~50deg wedge
+      var r2d = Math.PI/180;
+      var a1 = (-90+25)*r2d, a2 = (-90-25)*r2d;
+      var x1 = cx + rx*Math.cos(a1), y1 = cy + ry*Math.sin(a1);
+      var x2 = cx + rx*Math.cos(a2), y2 = cy + ry*Math.sin(a2);
+      // ellipse arc path with notch
+      var path = 'M '+cx+','+cy
+        +' L '+x1.toFixed(1)+','+y1.toFixed(1)
+        +' A '+rx+','+ry+' 0 1 0 '+x2.toFixed(1)+','+y2.toFixed(1)
+        +' Z';
+      return '<path d="'+path+'" fill="'+gradId+'" opacity="'+op+'" transform="rotate('+rot+','+cx+','+cy+')" stroke="#2a6020" stroke-width="0.5" stroke-opacity="0.25"/>';
+    }
+
+    // Design A: pale pink nymphaea, 12 petals spread flat
+    function lilyA(u){
+      var oA=[0,30,60,90,120,150,180,210,240,270,300,330];
+      var oL=[20,19,21,20,19,21,20,19,21,20,19,21];
+      var oCS=[0.7,-0.5,0.4,-0.8,0.6,-0.3,0.8,-0.6,0.3,-0.7,0.5,-0.4];
+      var iA=[15,75,135,195,255,315];
+      var oP=oA.map(function(a,i){ return '<path d="'+mkPetal(oL[i],5.8,oCS[i])+'" transform="rotate('+a+')" fill="url(#oA'+u+')" opacity="0.88"/>'; }).join('');
+      var iP=iA.map(function(a,i){ return '<path d="'+mkPetal(13,4.2,oCS[i%12]*0.35)+'" transform="rotate('+a+')" fill="url(#iA'+u+')" opacity="0.95"/>'; }).join('');
+      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="120" height="120" style="display:block;overflow:visible">'
+        +'<defs>'
+        +'<radialGradient id="padgA'+u+'" cx="38%" cy="34%" r="66%"><stop offset="0" stop-color="#90d888"/><stop offset="0.6" stop-color="#3ea03a"/><stop offset="1" stop-color="#1e5e18"/></radialGradient>'
+        +'<linearGradient id="oA'+u+'" x1="0.5" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#f090b4"/><stop offset="0.5" stop-color="#fccce0"/><stop offset="1" stop-color="#fff4f8"/></linearGradient>'
+        +'<linearGradient id="iA'+u+'" x1="0.5" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#ffe0ee"/><stop offset="1" stop-color="#fff8fb"/></linearGradient>'
+        +'<radialGradient id="cA'+u+'"><stop offset="0" stop-color="#fffff2"/><stop offset="0.5" stop-color="#f8e240"/><stop offset="1" stop-color="#e09000"/></radialGradient>'
+        +'<filter id="fA'+u+'" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.0" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        +'</defs>'
+        // pad — big, visible, with notch
+        +mkPad(60, 88, 40, 16, -10, 'url(#padgA'+u+')', '0.58')
+        // pad veins
+        +'<g transform="translate(60,88) rotate(-10)" opacity="0.28">'
+          +'<line x1="0" y1="-16" x2="0" y2="6" stroke="#1e5e18" stroke-width="0.7"/>'
+          +'<line x1="0" y1="-2" x2="-32" y2="6" stroke="#1e5e18" stroke-width="0.5"/>'
+          +'<line x1="0" y1="-2" x2="30" y2="5" stroke="#1e5e18" stroke-width="0.5"/>'
+          +'<line x1="0" y1="-6" x2="-22" y2="0" stroke="#1e5e18" stroke-width="0.35"/>'
+          +'<line x1="0" y1="-6" x2="20" y2="-1" stroke="#1e5e18" stroke-width="0.35"/>'
+        +'</g>'
+        // flower over pad
+        +'<g transform="translate(60,62)" filter="url(#fA'+u+')">'+oP+'</g>'
+        +'<g transform="translate(60,62)">'+iP+'</g>'
+        +'<circle cx="60" cy="62" r="7" fill="url(#cA'+u+')" opacity="1"/>'
+        +'<circle cx="60" cy="62" r="3.2" fill="#fefde8" opacity="0.88"/>'
+        +'<circle cx="57.6" cy="59.4" r="0.9" fill="#b87000" opacity="0.80"/>'
+        +'<circle cx="60" cy="58.7" r="0.9" fill="#b87000" opacity="0.80"/>'
+        +'<circle cx="62.4" cy="59.4" r="0.9" fill="#b87000" opacity="0.80"/>'
+        +'<circle cx="63.3" cy="61.6" r="0.75" fill="#b87000" opacity="0.62"/>'
+        +'<circle cx="56.7" cy="61.6" r="0.75" fill="#b87000" opacity="0.62"/>'
+        +'</svg>';
+    }
+
+    // Design B: white/lavender lotus, 10 tall petals
+    function lilyB(u){
+      var oA=[0,36,72,108,144,180,216,252,288,324];
+      var oL=[24,23,25,23,24,23,25,23,24,23];
+      var oCS=[0.4,-0.6,0.3,-0.5,0.7,-0.3,0.5,-0.7,0.3,-0.5];
+      var iA=[18,90,162,234,306];
+      var iL=[14,15,14,15,14];
+      var oP=oA.map(function(a,i){ return '<path d="'+mkPetal(oL[i],4.2,oCS[i])+'" transform="rotate('+a+')" fill="url(#oB'+u+')" opacity="0.87"/>'; }).join('');
+      var iP=iA.map(function(a,i){ return '<path d="'+mkPetal(iL[i],3.4,oCS[i%10]*0.3)+'" transform="rotate('+a+')" fill="url(#iB'+u+')" opacity="0.94"/>'; }).join('');
+      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="120" height="120" style="display:block;overflow:visible">'
+        +'<defs>'
+        +'<radialGradient id="padgB'+u+'" cx="44%" cy="38%" r="62%"><stop offset="0" stop-color="#8ed886"/><stop offset="0.65" stop-color="#3c9e38"/><stop offset="1" stop-color="#1e5e18"/></radialGradient>'
+        +'<linearGradient id="oB'+u+'" x1="0.5" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#ccc4f8"/><stop offset="0.5" stop-color="#e8e2ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>'
+        +'<linearGradient id="iB'+u+'" x1="0.5" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#dcd6ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>'
+        +'<radialGradient id="cB'+u+'"><stop offset="0" stop-color="#fffff0"/><stop offset="0.5" stop-color="#ffe030"/><stop offset="1" stop-color="#d89000"/></radialGradient>'
+        +'<filter id="fB'+u+'" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        +'</defs>'
+        +mkPad(60, 88, 38, 15, 7, 'url(#padgB'+u+')', '0.55')
+        +'<g transform="translate(60,88) rotate(7)" opacity="0.26">'
+          +'<line x1="0" y1="-15" x2="0" y2="5" stroke="#1e5e18" stroke-width="0.7"/>'
+          +'<line x1="0" y1="-2" x2="-30" y2="5" stroke="#1e5e18" stroke-width="0.5"/>'
+          +'<line x1="0" y1="-2" x2="28" y2="4" stroke="#1e5e18" stroke-width="0.5"/>'
+        +'</g>'
+        +'<g transform="translate(60,62)" filter="url(#fB'+u+')">'+oP+'</g>'
+        +'<g transform="translate(60,62)">'+iP+'</g>'
+        +'<circle cx="60" cy="62" r="6.4" fill="url(#cB'+u+')" opacity="1"/>'
+        +'<circle cx="60" cy="62" r="2.8" fill="#fefef0" opacity="0.88"/>'
+        +'<circle cx="57.8" cy="59.5" r="0.85" fill="#a06800" opacity="0.76"/>'
+        +'<circle cx="60" cy="58.9" r="0.85" fill="#a06800" opacity="0.76"/>'
+        +'<circle cx="62.2" cy="59.5" r="0.85" fill="#a06800" opacity="0.76"/>'
+        +'<circle cx="63" cy="61.5" r="0.7" fill="#a06800" opacity="0.60"/>'
+        +'<circle cx="57" cy="61.5" r="0.7" fill="#a06800" opacity="0.60"/>'
+        +'</svg>';
+    }
+
+    // Design C: blush rose-pink, 7 wide broad petals
+    function lilyC(u){
+      var oA=[0,52,103,155,206,257,309];
+      var oL=[21,20,22,20,21,20,22];
+      var oCS=[0.9,-0.7,0.5,-0.9,0.7,-0.5,0.8];
+      var iA=[26,116,206,296];
+      var iL=[13,12,13,12];
+      var oP=oA.map(function(a,i){ return '<path d="'+mkPetal(oL[i],7.5,oCS[i])+'" transform="rotate('+a+')" fill="url(#oC'+u+')" opacity="0.91"/>'; }).join('');
+      var iP=iA.map(function(a,i){ return '<path d="'+mkPetal(iL[i],5.6,oCS[i%7]*0.3)+'" transform="rotate('+a+')" fill="url(#iC'+u+')" opacity="0.96"/>'; }).join('');
+      return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="120" height="120" style="display:block;overflow:visible">'
+        +'<defs>'
+        +'<radialGradient id="padgC'+u+'" cx="42%" cy="36%" r="63%"><stop offset="0" stop-color="#7dcc76"/><stop offset="0.68" stop-color="#389832"/><stop offset="1" stop-color="#1c5618"/></radialGradient>'
+        +'<linearGradient id="oC'+u+'" x1="0.4" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="#e06088"/><stop offset="0.5" stop-color="#f8acc4"/><stop offset="1" stop-color="#fff0f4"/></linearGradient>'
+        +'<linearGradient id="iC'+u+'" x1="0.5" y1="1" x2="0.5" y2="0"><stop offset="0" stop-color="#fbc8d8"/><stop offset="1" stop-color="#fff5f7"/></linearGradient>'
+        +'<radialGradient id="cC'+u+'"><stop offset="0" stop-color="#fffff0"/><stop offset="0.5" stop-color="#fce840"/><stop offset="1" stop-color="#e09000"/></radialGradient>'
+        +'<filter id="fC'+u+'" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        +'</defs>'
+        +mkPad(60, 87, 37, 15, 4, 'url(#padgC'+u+')', '0.56')
+        +'<g transform="translate(60,87) rotate(4)" opacity="0.27">'
+          +'<line x1="0" y1="-15" x2="0" y2="5" stroke="#1c5618" stroke-width="0.7"/>'
+          +'<line x1="0" y1="-2" x2="-28" y2="5" stroke="#1c5618" stroke-width="0.5"/>'
+          +'<line x1="0" y1="-2" x2="26" y2="4" stroke="#1c5618" stroke-width="0.5"/>'
+          +'<line x1="0" y1="-5" x2="-18" y2="-1" stroke="#1c5618" stroke-width="0.35"/>'
+          +'<line x1="0" y1="-5" x2="16" y2="-1" stroke="#1c5618" stroke-width="0.35"/>'
+        +'</g>'
+        +'<g transform="translate(60,61)" filter="url(#fC'+u+')">'+oP+'</g>'
+        +'<g transform="translate(60,61)">'+iP+'</g>'
+        +'<circle cx="60" cy="61" r="7.2" fill="url(#cC'+u+')" opacity="1"/>'
+        +'<circle cx="60" cy="61" r="3.2" fill="#fdfde0" opacity="0.88"/>'
+        +'<circle cx="57.6" cy="58.3" r="0.9" fill="#c07800" opacity="0.80"/>'
+        +'<circle cx="60" cy="57.7" r="0.9" fill="#c07800" opacity="0.80"/>'
+        +'<circle cx="62.4" cy="58.3" r="0.9" fill="#c07800" opacity="0.80"/>'
+        +'<circle cx="63.4" cy="60.3" r="0.75" fill="#c07800" opacity="0.64"/>'
+        +'<circle cx="56.6" cy="60.3" r="0.75" fill="#c07800" opacity="0.64"/>'
+        +'</svg>';
+    }
+
+    var FNS = [lilyA, lilyB, lilyC];
+
+    function place(){
+      // Remove old lilies from wherever they live
+      document.querySelectorAll('.wlily').forEach(function(e){e.remove();});
+      var cont = document.querySelector('.container');
+      if(!cont) return;
+
+      var cw = cont.offsetWidth;
+      var ch = cont.offsetHeight;
+      var mobile = window.innerWidth < 500;
+
+      // On mobile scale is smaller so they peek out without being huge
+      var scaleMin = mobile ? 0.7 : 1.0;
+      var scaleMax = mobile ? 1.1 : 1.8;
+
+      var n = 1 + Math.floor(Math.random() * 3); // 1-3
+      var usedY = [];
+
+      for(var i = 0; i < n; i++){
+        var fn = FNS[Math.floor(Math.random() * 3)];
+        var scale = scaleMin + Math.random() * (scaleMax - scaleMin);
+        var rot = (Math.random() - 0.5) * 30;
+        var sz = 100 * scale;
+        var side = Math.random() < 0.5 ? 'L' : 'R';
+
+        // Y: random within container height, spaced apart
+        var yOff, tries = 0;
+        var margin = sz * 0.4;
+        do {
+          yOff = margin + Math.random() * (ch - margin * 2);
+          tries++;
+        } while(tries < 20 && usedY.some(function(y){ return Math.abs(y - yOff) < sz * 0.85; }));
+        usedY.push(yOff);
+
+        // Hang ~55% off the edge of the container
+        var hangOut = sz * 0.55;
+        var left = side === 'L' ? (-hangOut) : (cw - sz + hangOut);
+        var top = yOff - sz * 0.5;
+
+        var el = document.createElement('div');
+        el.className = 'wlily';
+        // position:absolute relative to .container
+        var op = (0.10 + Math.random() * 0.14).toFixed(2);
+        el.style.cssText = 'position:absolute;left:'+left+'px;top:'+top+'px;width:'+sz+'px;height:'+sz+'px;transform:rotate('+rot+'deg);pointer-events:none;z-index:0;transform-origin:center center;opacity:'+op+';';
+        el.innerHTML = fn('l'+i+'x'+(Math.random()*9999|0));
+        var svg = el.querySelector('svg');
+        if(svg){ svg.style.width='100%'; svg.style.height='100%'; }
+        cont.appendChild(el); // child of container, not body
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){ injectVines(); place(); });
+    var _rt;
+    window.addEventListener('resize', function(){ clearTimeout(_rt); _rt = setTimeout(place, 240); });
+  })();
+  </script>
 </body>
 </html>
